@@ -1,22 +1,22 @@
-import { TrendingUp, Target, Zap } from "lucide-react";
+import { Brain, Bell, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Features = () => {
   const features = [
     {
-      icon: TrendingUp,
-      title: "The Challenge",
-      description: "Missed opportunities from referrals that never materialize. Under-optimized marketing from your #1 source of new clients. Operational inefficiencies that limit sustainable growth.",
+      icon: Brain,
+      title: "Intelligence Proactive",
+      description: "Chaque agent analyse en continu plus de 1 500 sources immobilières et t'envoie une alerte automatique quand un nouveau bien correspond à tes critères d'investissement.",
     },
     {
-      icon: Target,
-      title: "The Opportunity",
-      description: "53% growth in organic AUM. Systematically replicate your ideal client relationships. A more predictable growth trajectory within your business.",
+      icon: Bell,
+      title: "Alertes Automatiques",
+      description: "Reçois des notifications instantanées pour les nouvelles opportunités, les évolutions de marché, les hausses de valeur détectées et les recommandations personnalisées.",
     },
     {
-      icon: Zap,
-      title: "Rapid Implementation",
-      description: "Our streamlined approach delivers real results. See measurable referral growth in your first month, with compounding benefits over 12 months.",
+      icon: FileText,
+      title: "Dossiers Professionnels",
+      description: "Chaque analyse génère automatiquement un document PDF complet et professionnel, prêt à présenter à ta banque ou à tes partenaires.",
     },
   ];
 
@@ -24,11 +24,11 @@ const Features = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Unlock Your Practice's Hidden Potential</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Une Suite IA Complète</h2>
           <div className="max-w-3xl mx-auto space-y-4 text-muted-foreground text-lg">
-            <p>93% of clients value their advisor enough to refer.</p>
-            <p>51% believe they've sent at least one referral in the past year.</p>
-            <p>82% tried to refer by sharing your name which rarely leads to you meeting the prospect.</p>
+            <p>Couvrez tout le cycle de vie de votre investissement immobilier.</p>
+            <p>De l'analyse de marché à la gestion de patrimoine, en passant par l'évaluation et la sécurisation.</p>
+            <p>Pour tous types de biens : résidentiel, bureaux, commerces, entrepôts, achat-revente, location.</p>
           </div>
         </div>
 

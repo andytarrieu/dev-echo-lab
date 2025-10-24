@@ -1,29 +1,23 @@
 const ClientLogos = () => {
-  const clients = [
-    "Vanguard",
-    "Northwestern Mutual",
-    "MassMutual",
-    "LPL Financial",
-    "TD Wealth",
-    "Strategic Advisors",
-    "Independence Wealth",
-    "Bridge Financial",
+  const logos = [
+    "DVF", "INSEE", "Notaires de France", "SeLoger", "LeBonCoin", 
+    "PAP", "Logic-Immo", "Bien'ici", "MeilleursAgents", "Cadastre",
+    "Permis de Construire", "Bases Locatives", "Données Fiscales", "Mairies"
   ];
 
   return (
     <section className="py-16 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Trusted by Leading Financial Firms</h2>
-          <p className="text-muted-foreground text-lg">Join hundreds of advisors growing their practices</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-          {clients.map((client, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-6 bg-background rounded-lg hover:shadow-md transition-shadow"
+        <h3 className="text-center text-muted-foreground text-sm font-medium mb-8 uppercase tracking-wider">
+          Plus de 1 500 Sources de Données Immobilières
+        </h3>
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+          {logos.map((logo, index) => (
+            <div 
+              key={index} 
+              className="text-muted-foreground/60 hover:text-muted-foreground transition-colors text-sm md:text-base font-medium"
             >
-              <span className="text-lg font-semibold text-muted-foreground">{client}</span>
+              {logo}
             </div>
           ))}
         </div>

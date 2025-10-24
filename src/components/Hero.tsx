@@ -25,11 +25,11 @@ const Hero = () => {
           {/* Left Content */}
           <div className="text-white animate-fade-in">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Unlock Client Acquisition Growth
+              Les 4 Agents IA Immobiliers
             </h1>
             <p className="text-xl sm:text-2xl mb-8 text-white/90 leading-relaxed">
-              We help financial advisors build, grow, and scale their practices with modern marketing, 
-              non-salesy referral strategies and operational excellence.
+              L'intelligence artificielle au service de votre investissement immobilier. 
+              Analysez, évaluez, gérez et sécurisez vos projets avec plus de 1 500 sources de données.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
@@ -39,7 +39,7 @@ const Hero = () => {
                 asChild
               >
                 <Link to="/contact">
-                  Start Growing Your Firm
+                  Découvrir les Agents IA
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -50,7 +50,7 @@ const Hero = () => {
                 asChild
               >
                 <Link to="/services">
-                  Explore Services
+                  Voir les Solutions
                 </Link>
               </Button>
             </div>
@@ -59,23 +59,23 @@ const Hero = () => {
           {/* Right Content - Stats Cards */}
           <div className="animate-scale-in">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-              <h3 className="text-white text-2xl font-semibold mb-6">Our Clients Have Seen Growth:</h3>
+              <h3 className="text-white text-2xl font-semibold mb-6">Notre Puissance IA :</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-6">
-                  <p className="text-sm text-foreground mb-2">Referral Growth</p>
-                  <p className="text-4xl font-bold text-primary">87%</p>
+                  <p className="text-sm text-foreground mb-2">Sources de Données</p>
+                  <p className="text-4xl font-bold text-primary">1500+</p>
                 </div>
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-6">
-                  <p className="text-sm text-foreground mb-2">Client Acquisition</p>
-                  <p className="text-4xl font-bold text-primary">58%</p>
+                  <p className="text-sm text-foreground mb-2">Agents IA</p>
+                  <p className="text-4xl font-bold text-primary">4</p>
                 </div>
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-6">
-                  <p className="text-sm text-foreground mb-2">AUM Growth</p>
-                  <p className="text-4xl font-bold text-primary">53%</p>
+                  <p className="text-sm text-foreground mb-2">Types de Biens</p>
+                  <p className="text-4xl font-bold text-primary">Tous</p>
                 </div>
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-6">
-                  <p className="text-sm text-foreground mb-2">Revenue Growth</p>
-                  <p className="text-4xl font-bold text-primary">53%</p>
+                  <p className="text-sm text-foreground mb-2">Rapports PDF</p>
+                  <p className="text-4xl font-bold text-primary">Auto</p>
                 </div>
               </div>
             </div>

@@ -3,20 +3,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const WhoWeHelp = () => {
   const segments = [
     {
-      range: "$0-50M AUM",
-      description: "Early-stage advisors seeking to establish a strong foundation and accelerate growth.",
+      range: "🏠 Résidentiel",
+      description: "Appartements, maisons, immeubles locatifs. Location longue durée, courte durée ou saisonnière.",
     },
     {
-      range: "$50-250M AUM",
-      description: "Mid-sized practices looking to systemize operations and marketing for sustainable growth.",
+      range: "🏢 Bureaux",
+      description: "Espaces tertiaires, coworking, cabinets professionnels. Location nue ou meublée.",
     },
     {
-      range: "$250M-1B AUM",
-      description: "Growing advisory firms needing scalable systems and firm-wide growth approaches.",
+      range: "🏬 Commerces",
+      description: "Boutiques, restaurants, locaux commerciaux. Bail commercial, murs et fonds.",
     },
     {
-      range: "$1B+ AUM",
-      description: "Enterprise-level firms focusing on acquisition strategies and multi-location growth.",
+      range: "🏭 Entrepôts & Logistique",
+      description: "Hangars, zones logistiques, ateliers. Location professionnelle et industrielle.",
     },
   ];
 
@@ -24,9 +24,9 @@ const WhoWeHelp = () => {
     <section className="py-20 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Who We Help</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Tous Types de Biens Couverts</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Specialized growth solutions for every stage of your advisory firm, from emerging practices to enterprise leaders.
+            Nos agents IA analysent et optimisent tous types d'investissements immobiliers, du résidentiel aux actifs professionnels.
           </p>
         </div>
 
