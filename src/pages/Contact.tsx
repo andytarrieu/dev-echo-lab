@@ -1,0 +1,146 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+const Contact = () => {
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message sent!",
+      description: "We'll get back to you within 24 hours.",
+    });
+  };
+
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="pt-16">
+        <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl font-bold text-foreground mb-4">Get In Touch</h1>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Ready to grow your practice? Let's start a conversation.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+              <Card className="border-border">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Send Us a Message</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium mb-2">
+                          First Name
+                        </label>
+                        <Input id="firstName" required />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium mb-2">
+                          Last Name
+                        </label>
+                        <Input id="lastName" required />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium mb-2">
+                        Email
+                      </label>
+                      <Input id="email" type="email" required />
+                    </div>
+
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                        Phone
+                      </label>
+                      <Input id="phone" type="tel" />
+                    </div>
+
+                    <div>
+                      <label htmlFor="aum" className="block text-sm font-medium mb-2">
+                        Current AUM Range
+                      </label>
+                      <Input id="aum" placeholder="e.g., $50M - $100M" />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium mb-2">
+                        Message
+                      </label>
+                      <Textarea id="message" rows={5} required />
+                    </div>
+
+                    <Button type="submit" size="lg" className="w-full">
+                      Send Message
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+
+              <div className="space-y-8">
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <Mail className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Email</h3>
+                        <p className="text-muted-foreground">contact@modelfa.com</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <Phone className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Phone</h3>
+                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Office</h3>
+                        <p className="text-muted-foreground">
+                          123 Financial District<br />
+                          New York, NY 10004
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Contact;
