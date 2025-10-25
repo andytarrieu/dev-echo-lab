@@ -56,7 +56,8 @@ const Services = () => {
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  style={{ objectPosition: 'center 20%' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
                 <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-accent/90 flex items-center justify-center">
