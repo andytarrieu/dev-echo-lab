@@ -1,28 +1,28 @@
+import { Logos3 } from "@/components/ui/logos3";
+
 const ClientLogos = () => {
   const logos = [
-    "DVF", "INSEE", "Notaires de France", "SeLoger", "LeBonCoin", 
-    "PAP", "Logic-Immo", "Bien'ici", "MeilleursAgents", "Cadastre",
-    "Permis de Construire", "Bases Locatives", "Données Fiscales", "Mairies"
+    { id: "logo-1", name: "DVF", description: "DVF" },
+    { id: "logo-2", name: "INSEE", description: "INSEE" },
+    { id: "logo-3", name: "Notaires de France", description: "Notaires de France" },
+    { id: "logo-4", name: "SeLoger", description: "SeLoger" },
+    { id: "logo-5", name: "LeBonCoin", description: "LeBonCoin" },
+    { id: "logo-6", name: "PAP", description: "PAP" },
+    { id: "logo-7", name: "Logic-Immo", description: "Logic-Immo" },
+    { id: "logo-8", name: "Bien'ici", description: "Bien'ici" },
+    { id: "logo-9", name: "MeilleursAgents", description: "MeilleursAgents" },
+    { id: "logo-10", name: "Cadastre", description: "Cadastre" },
+    { id: "logo-11", name: "Permis de Construire", description: "Permis de Construire" },
+    { id: "logo-12", name: "Bases Locatives", description: "Bases Locatives" },
+    { id: "logo-13", name: "Données Fiscales", description: "Données Fiscales" },
+    { id: "logo-14", name: "Mairies", description: "Mairies" }
   ];
 
   return (
-    <section className="py-16 bg-muted">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h3 className="text-center text-muted-foreground text-sm font-medium mb-8 uppercase tracking-wider">
-          Plus de 1 500 Sources de Données Immobilières
-        </h3>
-        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-          {logos.map((logo, index) => (
-            <div 
-              key={index} 
-              className="text-muted-foreground/60 hover:text-muted-foreground transition-colors text-sm md:text-base font-medium"
-            >
-              {logo}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Logos3 
+      heading="Plus de 1 500 Sources de Données Immobilières"
+      logos={logos}
+    />
   );
 };
 
