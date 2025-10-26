@@ -1,28 +1,43 @@
-import { Logos3 } from "@/components/ui/logos3";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 const ClientLogos = () => {
   const logos = [
-    { id: "logo-1", name: "DVF", description: "DVF" },
-    { id: "logo-2", name: "INSEE", description: "INSEE" },
-    { id: "logo-3", name: "Notaires de France", description: "Notaires de France" },
-    { id: "logo-4", name: "SeLoger", description: "SeLoger" },
-    { id: "logo-5", name: "LeBonCoin", description: "LeBonCoin" },
-    { id: "logo-6", name: "PAP", description: "PAP" },
-    { id: "logo-7", name: "Logic-Immo", description: "Logic-Immo" },
-    { id: "logo-8", name: "Bien'ici", description: "Bien'ici" },
-    { id: "logo-9", name: "MeilleursAgents", description: "MeilleursAgents" },
-    { id: "logo-10", name: "Cadastre", description: "Cadastre" },
-    { id: "logo-11", name: "Permis de Construire", description: "Permis de Construire" },
-    { id: "logo-12", name: "Bases Locatives", description: "Bases Locatives" },
-    { id: "logo-13", name: "Données Fiscales", description: "Données Fiscales" },
-    { id: "logo-14", name: "Mairies", description: "Mairies" }
+    "DVF",
+    "INSEE",
+    "Notaires de France",
+    "SeLoger",
+    "LeBonCoin",
+    "PAP",
+    "Logic-Immo",
+    "Bien'ici",
+    "MeilleursAgents",
+    "Cadastre",
+    "Permis de Construire",
+    "Bases Locatives",
+    "Données Fiscales",
+    "Mairies"
   ];
 
   return (
-    <Logos3 
-      heading="Plus de 1 500 Sources de Données Immobilières"
-      logos={logos}
-    />
+    <section className="py-16 bg-muted">
+      <div className="container flex flex-col items-center text-center">
+        <h3 className="text-muted-foreground text-sm font-medium mb-8 uppercase tracking-wider">
+          Plus de 1 500 Sources de Données Immobilières
+        </h3>
+      </div>
+      <InfiniteSlider gap={48} duration={30} durationOnHover={50} className="py-8">
+        {logos.map((logo, index) => (
+          <div
+            key={index}
+            className="flex items-center justify-center px-6 py-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-colors min-w-[180px]"
+          >
+            <span className="text-foreground/70 hover:text-foreground font-medium text-sm whitespace-nowrap transition-colors">
+              {logo}
+            </span>
+          </div>
+        ))}
+      </InfiniteSlider>
+    </section>
   );
 };
 
