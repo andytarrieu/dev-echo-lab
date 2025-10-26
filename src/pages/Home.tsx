@@ -13,9 +13,9 @@ const Home = () => {
       <main className="pt-16">
         <Hero />
         <ClientLogos />
+        <Services />
         <Features />
         <WhoWeHelp />
-        <Services />
       </main>
       <Footer />
     </div>
