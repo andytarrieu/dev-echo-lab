@@ -5,6 +5,10 @@ import Footer from "@/components/Footer";
 import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import agent1 from "@/assets/agent-1.webp";
+import agent2 from "@/assets/agent-2.webp";
+import agent3 from "@/assets/agent-3.webp";
+import agent4 from "@/assets/agent-4.webp";
 
 const Services = () => {
   const [searchParams] = useSearchParams();
@@ -16,6 +20,10 @@ const Services = () => {
       setActiveTab(tab);
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen">
@@ -57,9 +65,11 @@ const Services = () => {
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                        <Search className="h-8 w-8 text-accent" />
-                      </div>
+                      <img 
+                        src={agent1} 
+                        alt="Analyseur de Marché"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
                       <div>
                         <CardTitle className="text-3xl">Agent #1 — L'Analyseur de Marché 🔍</CardTitle>
                         <p className="text-muted-foreground mt-2">
@@ -190,9 +200,11 @@ const Services = () => {
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                        <Calculator className="h-8 w-8 text-accent" />
-                      </div>
+                      <img 
+                        src={agent2} 
+                        alt="Évaluateur de Rentabilité"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
                       <div>
                         <CardTitle className="text-3xl">Agent #2 — L'Évaluateur de Rentabilité 💰</CardTitle>
                         <p className="text-muted-foreground mt-2">
@@ -327,9 +339,11 @@ const Services = () => {
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                        <BarChart3 className="h-8 w-8 text-accent" />
-                      </div>
+                      <img 
+                        src={agent3} 
+                        alt="Gestionnaire de Portfolio"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
                       <div>
                         <CardTitle className="text-3xl">Agent #3 — Le Gestionnaire de Portfolio 📊</CardTitle>
                         <p className="text-muted-foreground mt-2">
@@ -456,9 +470,11 @@ const Services = () => {
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                        <ShieldCheck className="h-8 w-8 text-accent" />
-                      </div>
+                      <img 
+                        src={agent4} 
+                        alt="Assistant Due Diligence"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
                       <div>
                         <CardTitle className="text-3xl">Agent #4 — L'Assistant Due Diligence 🔎</CardTitle>
                         <p className="text-muted-foreground mt-2">
