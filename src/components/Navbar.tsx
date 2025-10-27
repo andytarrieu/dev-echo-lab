@@ -6,15 +6,30 @@ import { useState } from "react";
 const Navbar = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const isActive = (path: string) => location.pathname === path;
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      setActiveSection(sectionId);
+      setMobileMenuOpen(false);
+    }
+  };
 
   const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/services", label: "Services" },
-    { path: "/team", label: "Team" },
-    { path: "/insights", label: "Insights" },
-    { path: "/contact", label: "Contact" },
+    { id: "home", label: "Home" },
+    { id: "services", label: "Services" },
+    { id: "features", label: "Features" },
+    { id: "faq", label: "FAQ" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
@@ -28,15 +43,15 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
                 className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isActive(link.path) ? "text-accent" : "text-foreground"
+                  activeSection === link.id ? "text-accent" : "text-foreground"
                 }`}
               >
                 {link.label}
-              </Link>
+              </button>
             ))}
             <Button variant="default" size="sm">
               Client Log In
@@ -58,16 +73,15 @@ const Navbar = () => {
           <div className="md:hidden py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-accent ${
-                    isActive(link.path) ? "text-accent" : "text-foreground"
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-sm font-medium transition-colors hover:text-accent text-left ${
+                    activeSection === link.id ? "text-accent" : "text-foreground"
                   }`}
-                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
-                </Link>
+                </button>
               ))}
               <Button variant="default" size="sm" className="w-full">
                 Client Log In
