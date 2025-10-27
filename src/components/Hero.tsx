@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import WaitlistBadge from "@/components/WaitlistBadge";
 import heroBackground from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -24,6 +25,9 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-white animate-fade-in">
+            <div className="mb-6">
+              <WaitlistBadge />
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Les 4 Agents IA Immobiliers
             </h1>

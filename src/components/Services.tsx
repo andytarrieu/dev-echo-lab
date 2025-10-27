@@ -44,9 +44,6 @@ const Services = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <WaitlistBadge />
-          </div>
           <h2 className="text-4xl font-bold text-foreground mb-4">Les 4 Agents IA</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Une suite complète d'agents intelligents pour couvrir chaque étape de votre investissement immobilier.
