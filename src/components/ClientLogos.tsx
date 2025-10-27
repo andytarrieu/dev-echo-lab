@@ -1,21 +1,30 @@
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import republiqueFrancaise from "@/assets/logos/republique-francaise.png";
+import immobilierNotaires from "@/assets/logos/immobilier-notaires.png";
+import figaro from "@/assets/logos/figaro.png";
+import bienici from "@/assets/logos/bienici.png";
+import laforet from "@/assets/logos/laforet.png";
+import leboncoin from "@/assets/logos/leboncoin.png";
+import century21 from "@/assets/logos/century21.png";
+import iad from "@/assets/logos/iad.png";
+import orpi from "@/assets/logos/orpi.png";
 
 const ClientLogos = () => {
   const logos = [
-    "DVF",
-    "INSEE",
-    "Notaires de France",
-    "SeLoger",
-    "LeBonCoin",
-    "PAP",
-    "Logic-Immo",
-    "Bien'ici",
-    "MeilleursAgents",
-    "Cadastre",
-    "Permis de Construire",
-    "Bases Locatives",
-    "Données Fiscales",
-    "Mairies"
+    { name: "République Française", image: republiqueFrancaise },
+    { name: "Immobilier Notaires", image: immobilierNotaires },
+    { name: "Figaro Immobilier", image: figaro },
+    { name: "Bien'ici", image: bienici },
+    { name: "Laforêt", image: laforet },
+    { name: "LeBonCoin", image: leboncoin },
+    { name: "Century 21", image: century21 },
+    { name: "IAD", image: iad },
+    { name: "Orpi", image: orpi },
+    { name: "République Française", image: republiqueFrancaise },
+    { name: "Immobilier Notaires", image: immobilierNotaires },
+    { name: "Figaro Immobilier", image: figaro },
+    { name: "Bien'ici", image: bienici },
+    { name: "Laforêt", image: laforet },
   ];
 
   return (
@@ -29,11 +38,13 @@ const ClientLogos = () => {
         {logos.map((logo, index) => (
           <div
             key={index}
-            className="flex items-center justify-center px-6 py-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-colors min-w-[180px]"
+            className="flex items-center justify-center px-6 py-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary/20 transition-colors min-w-[180px] h-[100px]"
           >
-            <span className="text-foreground/70 hover:text-foreground font-medium text-sm whitespace-nowrap transition-colors">
-              {logo}
-            </span>
+            <img 
+              src={logo.image} 
+              alt={logo.name}
+              className="max-w-full max-h-full object-contain"
+            />
           </div>
         ))}
       </InfiniteSlider>
