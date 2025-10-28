@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const FearsSection = () => {
   const fears = [
     {
-      emoji: "🚨",
       icon: AlertTriangle,
       title: "Peur de Se Faire Arnaquer",
       problems: [
@@ -15,7 +14,6 @@ const FearsSection = () => {
       solution: "Analyse automatique des prix du marché + historique quartier",
     },
     {
-      emoji: "📄",
       icon: FileText,
       title: "Peur de la Paperasse Fiscale",
       problems: [
@@ -26,7 +24,6 @@ const FearsSection = () => {
       solution: "Tools fiscaux automatiques",
     },
     {
-      emoji: "😤",
       icon: UserX,
       title: "Peur des Locataires Problématiques",
       problems: [
@@ -37,7 +34,6 @@ const FearsSection = () => {
       solution: "Automatisation relances + suivi paiements",
     },
     {
-      emoji: "💸",
       icon: Wallet,
       title: "Peur de Manquer de Liquidités",
       problems: [
@@ -48,7 +44,6 @@ const FearsSection = () => {
       solution: "Tableaux de bord cash-flow temps réel",
     },
     {
-      emoji: "🤔",
       icon: Shield,
       title: "Peur de Faire le Mauvais Choix",
       problems: [
@@ -59,7 +54,6 @@ const FearsSection = () => {
       solution: "Comparaisons automatiques + simulations rentabilité",
     },
     {
-      emoji: "🧠",
       icon: Brain,
       title: "Peur de la Charge Mentale",
       problems: [
@@ -70,7 +64,6 @@ const FearsSection = () => {
       solution: "Automatisation 80% des tâches répétitives",
     },
     {
-      emoji: "⏰",
       icon: Clock,
       title: "Peur de Rater des Opportunités",
       problems: [
@@ -87,7 +80,7 @@ const FearsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4">
-            😰 Les 7 PEURS des Investisseurs Débutants
+            Les 7 PEURS des Investisseurs Débutants
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Nos agents IA éliminent toutes vos craintes et vous accompagnent sereinement
@@ -104,9 +97,8 @@ const FearsSection = () => {
               <CardHeader>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-12 h-12 rounded-lg bg-destructive/10 flex items-center justify-center">
-                    <fear.icon className="h-6 w-6 text-destructive" />
+                    <fear.icon className="h-7 w-7 text-destructive" />
                   </div>
-                  <span className="text-3xl">{fear.emoji}</span>
                 </div>
                 <CardTitle className="text-xl">{fear.title}</CardTitle>
               </CardHeader>
