@@ -5,7 +5,6 @@ import Features from "@/components/Features";
 import WhoWeHelp from "@/components/WhoWeHelp";
 import Services from "@/components/Services";
 import FearsSection from "@/components/FearsSection";
-import { PremiumContact } from "@/components/PremiumContact";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -30,7 +29,6 @@ const Home = () => {
           <FAQ />
         </div>
         <div id="contact">
-          <PremiumContact />
           <Footer />
         </div>
       </main>
