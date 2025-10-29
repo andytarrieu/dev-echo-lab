@@ -13,8 +13,8 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Message envoyé !",
+      description: "Nous vous répondrons dans les 24 heures.",
     });
   };
 
@@ -25,29 +25,29 @@ const Contact = () => {
         <section className="py-20 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h1 className="text-5xl font-bold text-foreground mb-4">Get In Touch</h1>
+              <h1 className="text-5xl font-bold text-foreground mb-4">Contactez-nous</h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Ready to grow your practice? Let's start a conversation.
+                Prêt à révolutionner votre investissement immobilier ? Discutons ensemble.
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Send Us a Message</CardTitle>
+                  <CardTitle className="text-2xl">Envoyez-nous un message</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                          First Name
+                          Prénom
                         </label>
                         <Input id="firstName" required />
                       </div>
                       <div>
                         <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                          Last Name
+                          Nom
                         </label>
                         <Input id="lastName" required />
                       </div>
@@ -62,16 +62,16 @@ const Contact = () => {
 
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                        Phone
+                        Téléphone
                       </label>
                       <Input id="phone" type="tel" />
                     </div>
 
                     <div>
-                      <label htmlFor="aum" className="block text-sm font-medium mb-2">
-                        Current AUM Range
+                      <label htmlFor="investment" className="block text-sm font-medium mb-2">
+                        Budget d'investissement
                       </label>
-                      <Input id="aum" placeholder="e.g., $50M - $100M" />
+                      <Input id="investment" placeholder="ex: 100 000€ - 300 000€" />
                     </div>
 
                     <div>
@@ -82,7 +82,7 @@ const Contact = () => {
                     </div>
 
                     <Button type="submit" size="lg" className="w-full">
-                      Send Message
+                      Envoyer le message
                     </Button>
                   </form>
                 </CardContent>
@@ -97,7 +97,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <p className="text-muted-foreground">contact@modelfa.com</p>
+                        <p className="text-muted-foreground">contact@aureaia.fr</p>
                       </div>
                     </div>
                   </CardContent>
@@ -110,8 +110,8 @@ const Contact = () => {
                         <Phone className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Phone</h3>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                        <h3 className="font-semibold mb-1">Téléphone</h3>
+                        <p className="text-muted-foreground">+33 1 23 45 67 89</p>
                       </div>
                     </div>
                   </CardContent>
@@ -124,10 +124,10 @@ const Contact = () => {
                         <MapPin className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Office</h3>
+                        <h3 className="font-semibold mb-1">Bureau</h3>
                         <p className="text-muted-foreground">
-                          123 Financial District<br />
-                          New York, NY 10004
+                          123 Avenue des Champs-Élysées<br />
+                          75008 Paris, France
                         </p>
                       </div>
                     </div>

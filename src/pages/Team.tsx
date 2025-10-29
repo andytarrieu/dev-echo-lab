@@ -5,24 +5,24 @@ import { Card, CardContent } from "@/components/ui/card";
 const Team = () => {
   const team = [
     {
-      name: "Sarah Johnson",
-      role: "Founder & CEO",
-      bio: "20+ years of experience helping financial advisors scale their practices.",
+      name: "Sophie Martin",
+      role: "Fondatrice & CEO",
+      bio: "15+ ans d'expertise en technologie IA et investissement immobilier.",
     },
     {
-      name: "Michael Chen",
-      role: "Chief Marketing Officer",
-      bio: "Former VP of Marketing at leading wealth management firms.",
+      name: "Alexandre Dubois",
+      role: "Directeur Technique",
+      bio: "Ancien lead developer chez des géants de la tech, spécialisé en IA.",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Head of Coaching",
-      bio: "Certified executive coach with a track record of advisor success.",
+      name: "Camille Lefebvre",
+      role: "Responsable Produit",
+      bio: "Expert en UX et conception de produits IA pour l'immobilier.",
     },
     {
-      name: "David Thompson",
-      role: "Director of Operations",
-      bio: "Expert in operational excellence and practice management.",
+      name: "Thomas Bernard",
+      role: "Data Scientist",
+      bio: "Spécialiste en analyse de données immobilières et modèles prédictifs.",
     },
   ];
 
@@ -33,9 +33,9 @@ const Team = () => {
         <section className="py-20 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h1 className="text-5xl font-bold text-foreground mb-4">Our Team</h1>
+              <h1 className="text-5xl font-bold text-foreground mb-4">Notre Équipe</h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Industry experts dedicated to your success
+                Des experts passionnés dédiés à votre réussite
               </p>
             </div>
 

@@ -4,20 +4,20 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Company: [
-      { label: "About", path: "/team" },
+    Entreprise: [
+      { label: "À propos", path: "/team" },
       { label: "Services", path: "/services" },
-      { label: "Insights", path: "/insights" },
+      { label: "Blog", path: "/insights" },
       { label: "Contact", path: "/contact" },
     ],
-    Resources: [
-      { label: "Blog", path: "/insights" },
-      { label: "Case Studies", path: "/insights" },
-      { label: "Website Audit", path: "/contact" },
+    Ressources: [
+      { label: "Documentation", path: "/insights" },
+      { label: "Études de cas", path: "/insights" },
+      { label: "Guide débutant", path: "/contact" },
     ],
-    Legal: [
-      { label: "Privacy Policy", path: "/privacy" },
-      { label: "Terms of Service", path: "/terms" },
+    Légal: [
+      { label: "Politique de confidentialité", path: "/privacy" },
+      { label: "Conditions d'utilisation", path: "/terms" },
     ],
   };
 
@@ -27,10 +27,10 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold">MODEL<span className="text-accent">FA</span></span>
+              <span className="text-2xl font-bold">AURÉA<span className="text-accent">IA</span></span>
             </Link>
-            <p className="text-primary-foreground/80 text-sm">
-              Empowering financial advisors to grow their practices through modern strategies and operational excellence.
+<p className="text-primary-foreground/80 text-sm">
+              L'intelligence artificielle au service de l'investissement immobilier. Analysez, évaluez et optimisez vos projets avec nos 4 agents IA spécialisés.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-primary-foreground/80 text-sm">
-              © {currentYear} Model FA. All rights reserved.
+              © {currentYear} Auréa IA. Tous droits réservés.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">

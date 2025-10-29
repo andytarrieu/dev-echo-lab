@@ -6,40 +6,40 @@ import { Badge } from "@/components/ui/badge";
 const Insights = () => {
   const articles = [
     {
-      title: "5 Strategies to Double Your Referrals This Year",
-      category: "Referrals",
-      date: "Mar 15, 2024",
-      excerpt: "Learn proven tactics to systematically increase client referrals without being pushy or salesy.",
+      title: "5 Stratégies pour Maximiser la Rentabilité de Vos Biens",
+      category: "Investissement",
+      date: "15 Mar 2024",
+      excerpt: "Découvrez des tactiques éprouvées pour augmenter systématiquement vos revenus locatifs.",
     },
     {
-      title: "The Modern Advisor's Guide to Digital Marketing",
-      category: "Marketing",
-      date: "Mar 10, 2024",
-      excerpt: "Navigate the digital landscape with confidence and attract high-value clients online.",
+      title: "Le Guide de l'Investisseur Moderne pour l'IA Immobilière",
+      category: "Technologie",
+      date: "10 Mar 2024",
+      excerpt: "Naviguez dans le paysage technologique avec confiance et optimisez vos investissements.",
     },
     {
-      title: "Scaling Your Practice: From $50M to $250M AUM",
-      category: "Growth",
-      date: "Mar 5, 2024",
-      excerpt: "Key operational changes needed to successfully scale your advisory practice.",
+      title: "Comment Passer de 1 à 10 Biens en 3 Ans",
+      category: "Croissance",
+      date: "5 Mar 2024",
+      excerpt: "Les changements clés nécessaires pour réussir à développer votre patrimoine immobilier.",
     },
     {
-      title: "Building a Referral Culture in Your Firm",
-      category: "Culture",
-      date: "Feb 28, 2024",
-      excerpt: "Transform your team into referral champions with these proven frameworks.",
+      title: "Construire un Portfolio Immobilier Diversifié",
+      category: "Stratégie",
+      date: "28 Fév 2024",
+      excerpt: "Transformez votre approche d'investissement avec ces frameworks éprouvés.",
     },
     {
-      title: "Client Acquisition in a Changing Market",
-      category: "Strategy",
-      date: "Feb 20, 2024",
-      excerpt: "Adapt your client acquisition strategy to today's economic environment.",
+      title: "L'Acquisition Immobilière dans un Marché en Évolution",
+      category: "Marché",
+      date: "20 Fév 2024",
+      excerpt: "Adaptez votre stratégie d'acquisition à l'environnement économique actuel.",
     },
     {
-      title: "The Power of Non-Salesy Referral Conversations",
-      category: "Communication",
-      date: "Feb 15, 2024",
-      excerpt: "Master the art of asking for referrals in a way that feels natural and authentic.",
+      title: "L'Art de Négocier le Prix Parfait",
+      category: "Négociation",
+      date: "15 Fév 2024",
+      excerpt: "Maîtrisez l'art de la négociation immobilière pour obtenir les meilleurs prix.",
     },
   ];
 
@@ -50,9 +50,9 @@ const Insights = () => {
         <section className="py-20 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h1 className="text-5xl font-bold text-foreground mb-4">Insights & Resources</h1>
+              <h1 className="text-5xl font-bold text-foreground mb-4">Ressources & Insights</h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Expert insights to help you grow your advisory practice
+                Des conseils d'experts pour optimiser votre investissement immobilier
               </p>
             </div>
 

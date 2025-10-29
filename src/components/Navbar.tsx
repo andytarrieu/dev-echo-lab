@@ -25,9 +25,9 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { id: "home", label: "Home" },
+    { id: "home", label: "Accueil" },
     { id: "services", label: "Services" },
-    { id: "features", label: "Features" },
+    { id: "features", label: "Fonctionnalités" },
     { id: "faq", label: "FAQ" },
     { id: "contact", label: "Contact" },
   ];
@@ -37,7 +37,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-primary">MODEL<span className="text-accent">FA</span></span>
+            <span className="text-2xl font-bold text-primary">AURÉA<span className="text-accent">IA</span></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,7 +54,7 @@ const Navbar = () => {
               </button>
             ))}
             <Button variant="default" size="sm">
-              Client Log In
+              Connexion
             </Button>
           </div>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
                 </button>
               ))}
               <Button variant="default" size="sm" className="w-full">
-                Client Log In
+                Connexion
               </Button>
             </div>
           </div>
