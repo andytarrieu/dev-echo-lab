@@ -4,27 +4,29 @@ import immobilierNotaires from "@/assets/logos/immobilier-notaires.png";
 import figaro from "@/assets/logos/figaro.png";
 import bienici from "@/assets/logos/bienici.png";
 import laforet from "@/assets/logos/laforet.png";
-import leboncoin from "@/assets/logos/leboncoin.png";
+import paruvendu from "@/assets/logos/paruvendu.png";
 import century21 from "@/assets/logos/century21.png";
 import iad from "@/assets/logos/iad.png";
 import orpi from "@/assets/logos/orpi.png";
+import meilleursagents from "@/assets/logos/meilleursagents.jpg";
 
 const ClientLogos = () => {
   const logos = [
     { name: "République Française", image: republiqueFrancaise },
+    { name: "Meilleurs Agents", image: meilleursagents },
     { name: "Immobilier Notaires", image: immobilierNotaires },
     { name: "Figaro Immobilier", image: figaro },
     { name: "Bien'ici", image: bienici },
     { name: "Laforêt", image: laforet },
-    { name: "LeBonCoin", image: leboncoin },
+    { name: "ParuVendu", image: paruvendu },
     { name: "Century 21", image: century21 },
     { name: "IAD", image: iad },
     { name: "Orpi", image: orpi },
     { name: "République Française", image: republiqueFrancaise },
+    { name: "Meilleurs Agents", image: meilleursagents },
     { name: "Immobilier Notaires", image: immobilierNotaires },
     { name: "Figaro Immobilier", image: figaro },
     { name: "Bien'ici", image: bienici },
-    { name: "Laforêt", image: laforet },
   ];
 
   return (
