@@ -7,8 +7,11 @@ import laforet from "@/assets/logos/laforet.png";
 import paruvendu from "@/assets/logos/paruvendu.png";
 import century21 from "@/assets/logos/century21.png";
 import iad from "@/assets/logos/iad.png";
-import orpi from "@/assets/logos/orpi.png";
+import orpi from "@/assets/logos/orpi-new.png";
 import meilleursagents from "@/assets/logos/meilleursagents.jpg";
+import leboncoin from "@/assets/logos/leboncoin.png";
+import seloger from "@/assets/logos/seloger.png";
+import logicImmo from "@/assets/logos/logic-immo.jpg";
 
 const ClientLogos = () => {
   const logos = [
@@ -22,11 +25,12 @@ const ClientLogos = () => {
     { name: "Century 21", image: century21 },
     { name: "IAD", image: iad },
     { name: "Orpi", image: orpi },
+    { name: "LeBonCoin", image: leboncoin },
+    { name: "SeLoger", image: seloger },
+    { name: "Logic-Immo", image: logicImmo },
     { name: "République Française", image: republiqueFrancaise },
     { name: "Meilleurs Agents", image: meilleursagents },
     { name: "Immobilier Notaires", image: immobilierNotaires },
-    { name: "Figaro Immobilier", image: figaro },
-    { name: "Bien'ici", image: bienici },
   ];
 
   return (
@@ -45,7 +49,7 @@ const ClientLogos = () => {
             <img 
               src={logo.image} 
               alt={logo.name}
-              className="max-w-full max-h-full object-contain"
+              className="w-auto h-[50px] object-contain"
             />
           </div>
         ))}
