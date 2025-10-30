@@ -81,12 +81,12 @@ const agentTabs: Tab[] = [
   {
     value: "optimiseur",
     icon: <TrendingUp className="h-auto w-4 shrink-0" />,
-    label: "Léon",
+    label: "Lucie",
     content: {
-      badge: "👨 Agent #3 : LÉON",
-      title: "L'Optimiseur de Patrimoine",
+      badge: "👩 Agent #3 : LUCIE",
+      title: "L'Optimiseuse de Patrimoine",
       description:
-        "Il transforme vos biens moyens en machines à cash. Vous avez déjà investi ? Cet agent va changer votre vie.",
+        "Elle transforme vos biens moyens en machines à cash. Vous avez déjà investi ? Cet agent va changer votre vie.",
       whatItDoes: [
         "Surveille tous vos biens 24/7 automatiquement",
         "Détecte les opportunités que vous ratez (loyer sous-évalué, LMNP possible, moment de revente optimal)",
@@ -107,12 +107,12 @@ const agentTabs: Tab[] = [
   {
     value: "detecteur",
     icon: <Shield className="h-auto w-4 shrink-0" />,
-    label: "Lucie",
+    label: "Léon",
     content: {
-      badge: "👩 Agent #4 : LUCIE",
-      title: "La Détectrice de Pièges",
+      badge: "👨 Agent #4 : LÉON",
+      title: "Le Détecteur de Pièges",
       description:
-        "Elle vous évite les catastrophes à 30 000€. Vous êtes sur le point d'acheter ? Cet agent peut vous sauver la mise.",
+        "Il vous évite les catastrophes à 30 000€. Vous êtes sur le point d'acheter ? Cet agent peut vous sauver la mise.",
       whatItDoes: [
         "Upload vos documents (DPE, diagnostics, PV de copro)",
         "L'IA les analyse en 5 minutes",
