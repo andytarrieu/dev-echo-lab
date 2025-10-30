@@ -7,22 +7,17 @@ const Security = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
-        <div className="bg-gradient-to-b from-primary/5 to-background py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <Badge variant="outline" className="mb-4">
-                <Shield className="w-4 h-4 mr-2" />
-                Clause de Non-Responsabilité
-              </Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                🛡️ CLAUSE DE NON-RESPONSABILITÉ AURÉA
-              </h1>
-            </div>
-          </div>
-        </div>
-
+      <main className="flex-grow pt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">
+              <Shield className="w-4 h-4 mr-2" />
+              Clause de Non-Responsabilité
+            </Badge>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              🛡️ CLAUSE DE NON-RESPONSABILITÉ AURÉA
+            </h1>
+          </div>
           {/* Clause de Non-responsabilité Importante */}
           <section className="mb-16">
             <div className="flex items-start gap-4 mb-6">
