@@ -3,6 +3,7 @@ import { Target, Calculator, TrendingUp, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 interface TabContent {
   badge: string;
@@ -232,8 +233,8 @@ const AgentsTabs = () => {
                 </Card>
 
                 <div className="flex justify-center mt-6">
-                  <Button size="lg" className="gap-2 text-lg px-8">
-                    Rejoindre la waiting list
+                  <Button size="lg" className="gap-2 text-lg px-8" asChild>
+                    <Link to="/waitlist">Rejoindre la waiting list</Link>
                   </Button>
                 </div>
               </TabsContent>
