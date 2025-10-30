@@ -15,17 +15,15 @@ import FearsSection from "@/components/FearsSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-
 const Home = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navbar />
       <main className="pt-16">
         <div id="home">
           <Hero />
         </div>
         <ClientLogos />
-        <ProblemSection />
+        
         <div id="services">
           <Services />
         </div>
@@ -48,8 +46,6 @@ const Home = () => {
           <Footer />
         </div>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
