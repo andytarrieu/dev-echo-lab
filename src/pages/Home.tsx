@@ -2,10 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
 import ProblemSection from "@/components/ProblemSection";
-import AgentHunter from "@/components/AgentHunter";
-import AgentCalculator from "@/components/AgentCalculator";
-import AgentOptimizer from "@/components/AgentOptimizer";
-import AgentDetector from "@/components/AgentDetector";
+import AgentsTabs from "@/components/AgentsTabs";
 import ComparisonSection from "@/components/ComparisonSection";
 import TargetAudienceSection from "@/components/TargetAudienceSection";
 import Features from "@/components/Features";
@@ -27,10 +24,7 @@ const Home = () => {
         <div id="services">
           <Services />
         </div>
-        <AgentHunter />
-        <AgentCalculator />
-        <AgentOptimizer />
-        <AgentDetector />
+        <AgentsTabs />
         <ComparisonSection />
         <TargetAudienceSection />
         <div id="features">
