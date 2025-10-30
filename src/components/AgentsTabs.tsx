@@ -28,9 +28,9 @@ const agentTabs: Tab[] = [
   {
     value: "chasseur",
     icon: <Target className="h-auto w-4 shrink-0" />,
-    label: "Chasseur",
+    label: "Noah",
     content: {
-      badge: "Agent #1",
+      badge: "👨 Agent #1 : NOAH",
       title: "Le Chasseur d'Opportunités",
       description:
         "Il trouve les pépites que personne ne voit. Imaginez avoir un expert qui surveille en permanence le marché français entier pour vous.",
@@ -54,12 +54,12 @@ const agentTabs: Tab[] = [
   {
     value: "calculateur",
     icon: <Calculator className="h-auto w-4 shrink-0" />,
-    label: "Calculateur",
+    label: "Emma",
     content: {
-      badge: "Agent #2",
-      title: "Le Calculateur Impitoyable",
+      badge: "👩 Agent #2 : EMMA",
+      title: "La Calculatrice Impitoyable",
       description:
-        "Il sait si c'est rentable AVANT que vous ne signiez. Fini les calculs approximatifs sur Excel. Fini les illusions de rentabilité.",
+        "Elle sait si c'est rentable AVANT que vous ne signiez. Fini les calculs approximatifs sur Excel. Fini les illusions de rentabilité.",
       whatItDoes: [
         "Colle n'importe quel lien d'annonce → Analyse complète en 60 secondes",
         "Compare avec 50+ ventes réelles similaires",
@@ -81,9 +81,9 @@ const agentTabs: Tab[] = [
   {
     value: "optimiseur",
     icon: <TrendingUp className="h-auto w-4 shrink-0" />,
-    label: "Optimiseur",
+    label: "Léon",
     content: {
-      badge: "Agent #3",
+      badge: "👨 Agent #3 : LÉON",
       title: "L'Optimiseur de Patrimoine",
       description:
         "Il transforme vos biens moyens en machines à cash. Vous avez déjà investi ? Cet agent va changer votre vie.",
@@ -107,12 +107,12 @@ const agentTabs: Tab[] = [
   {
     value: "detecteur",
     icon: <Shield className="h-auto w-4 shrink-0" />,
-    label: "Détecteur",
+    label: "Lucie",
     content: {
-      badge: "Agent #4",
-      title: "Le Détecteur de Pièges",
+      badge: "👩 Agent #4 : LUCIE",
+      title: "La Détectrice de Pièges",
       description:
-        "Il vous évite les catastrophes à 30 000€. Vous êtes sur le point d'acheter ? Cet agent peut vous sauver la mise.",
+        "Elle vous évite les catastrophes à 30 000€. Vous êtes sur le point d'acheter ? Cet agent peut vous sauver la mise.",
       whatItDoes: [
         "Upload vos documents (DPE, diagnostics, PV de copro)",
         "L'IA les analyse en 5 minutes",
