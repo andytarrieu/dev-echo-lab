@@ -29,12 +29,19 @@ const Hero = () => {
               <WaitlistBadge />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Les 4 Agents IA Immobiliers
+              Investissez dans l'immobilier comme les 0,1% qui gagnent vraiment
             </h1>
             <p className="text-xl sm:text-2xl mb-8 text-white/90 leading-relaxed">
-              L'intelligence artificielle au service de votre investissement immobilier. 
-              Analysez, évaluez, gérez et sécurisez vos projets avec plus de 1 500 sources de données.
+              4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les meilleures opportunités, sécuriser vos achats, et optimiser votre patrimoine automatiquement.
             </p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/20">
+              <p className="text-lg text-white/90 mb-2">
+                <span className="text-destructive font-semibold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
+              </p>
+              <p className="text-lg text-white font-semibold">
+                Les investisseurs intelligents en analysent 50 en 30 minutes avec Auréa.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
@@ -43,7 +50,7 @@ const Hero = () => {
                 asChild
               >
                 <Link to="/contact">
-                  Découvrir les Agents IA
+                  Rejoindre la waiting list gratuitement
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>

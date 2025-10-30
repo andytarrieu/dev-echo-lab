@@ -1,10 +1,18 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
+import ProblemSection from "@/components/ProblemSection";
+import AgentHunter from "@/components/AgentHunter";
+import AgentCalculator from "@/components/AgentCalculator";
+import AgentOptimizer from "@/components/AgentOptimizer";
+import AgentDetector from "@/components/AgentDetector";
+import ComparisonSection from "@/components/ComparisonSection";
+import TargetAudienceSection from "@/components/TargetAudienceSection";
 import Features from "@/components/Features";
 import WhoWeHelp from "@/components/WhoWeHelp";
 import Services from "@/components/Services";
 import FearsSection from "@/components/FearsSection";
+import GuaranteeSection from "@/components/GuaranteeSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -17,14 +25,22 @@ const Home = () => {
           <Hero />
         </div>
         <ClientLogos />
+        <ProblemSection />
         <div id="services">
           <Services />
         </div>
+        <AgentHunter />
+        <AgentCalculator />
+        <AgentOptimizer />
+        <AgentDetector />
+        <ComparisonSection />
+        <TargetAudienceSection />
         <div id="features">
           <Features />
           <WhoWeHelp />
         </div>
         <FearsSection />
+        <GuaranteeSection />
         <div id="faq">
           <FAQ />
         </div>
