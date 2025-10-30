@@ -16,6 +16,7 @@ const Footer = () => {
       { label: "Guide débutant", path: "/contact" },
     ],
     Légal: [
+      { label: "Clause de non-responsabilité", path: "/security" },
       { label: "Politique de confidentialité", path: "/privacy" },
       { label: "Conditions d'utilisation", path: "/terms" },
     ],
