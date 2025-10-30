@@ -73,7 +73,7 @@ const GuaranteeSection = () => {
                   className="text-lg group"
                   asChild
                 >
-                  <Link to="/contact">
+                  <Link to="/waitlist">
                     Rejoindre la Waiting List
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
