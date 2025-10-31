@@ -18,10 +18,10 @@ const GuaranteeSection = () => {
                 <Shield className="w-10 h-10 text-primary" />
               </div>
               <CardTitle className="text-3xl sm:text-4xl font-bold mb-4">
-                Garantie Zéro Risque
+                Accès Anticipé Sans Engagement
               </CardTitle>
               <p className="text-2xl font-semibold text-primary">
-                30 jours satisfait ou 100% remboursé
+                Rejoignez la waiting list gratuitement
               </p>
             </CardHeader>
 
@@ -29,12 +29,11 @@ const GuaranteeSection = () => {
               <Card className="bg-background/50 border-primary/20">
                 <CardContent className="pt-6">
                   <p className="text-lg text-foreground mb-4">
-                    Testez Auréa pendant <span className="font-semibold text-primary">30 jours</span>. 
-                    Utilisez tous les agents, analysez des dizaines de biens.
+                    Inscrivez-vous dès maintenant à la <span className="font-semibold text-primary">waiting list</span> pour être parmi les premiers à accéder à Auréa.
                   </p>
                   <p className="text-lg text-foreground">
-                    Si vous n'êtes pas convaincu à 200% ? Un simple email et vous récupérez 
-                    <span className="font-semibold text-primary"> TOUT votre argent</span>.
+                    Bénéficiez d'un accès anticipé et de conditions préférentielles. 
+                    <span className="font-semibold text-primary"> Aucun engagement, aucun paiement</span>.
                   </p>
                 </CardContent>
               </Card>
@@ -43,29 +42,29 @@ const GuaranteeSection = () => {
                 <Card className="bg-background/50 border-primary/20">
                   <CardContent className="pt-6 text-center">
                     <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                    <p className="text-foreground font-semibold">Pas de justification</p>
+                    <p className="text-foreground font-semibold">Inscription gratuite</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-background/50 border-primary/20">
                   <CardContent className="pt-6 text-center">
                     <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                    <p className="text-foreground font-semibold">Pas de questions</p>
+                    <p className="text-foreground font-semibold">Accès anticipé</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-background/50 border-primary/20">
                   <CardContent className="pt-6 text-center">
                     <CheckCircle className="w-8 h-8 text-primary mx-auto mb-3" />
-                    <p className="text-foreground font-semibold">Remboursement intégral</p>
+                    <p className="text-foreground font-semibold">Sans engagement</p>
                   </CardContent>
                 </Card>
               </div>
 
               <div className="text-center pt-6">
                 <p className="text-xl font-bold text-foreground mb-2">
-                  Vous ne risquez RIEN.
+                  Soyez parmi les premiers.
                 </p>
                 <p className="text-xl font-bold text-primary mb-8">
-                  Vous avez TOUT à gagner.
+                  Accédez aux agents IA en exclusivité.
                 </p>
 
                 <Button 
