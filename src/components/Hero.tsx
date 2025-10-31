@@ -42,7 +42,7 @@ const Hero = () => {
                 Les investisseurs intelligents en analysent 50 en 30 minutes avec Auréa.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-6 mb-8">
               <Button 
                 size="lg" 
                 variant="default"
