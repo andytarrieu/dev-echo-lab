@@ -25,7 +25,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-white animate-fade-in">
-            <div className="mb-6">
+            <div className="mb-6 mt-8">
               <WaitlistBadge />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
