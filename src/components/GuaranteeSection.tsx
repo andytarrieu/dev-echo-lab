@@ -32,8 +32,7 @@ const GuaranteeSection = () => {
                     Inscrivez-vous dès maintenant à la <span className="font-semibold text-primary">waiting list</span> pour être parmi les premiers à accéder à Auréa.
                   </p>
                   <p className="text-lg text-foreground">
-                    Bénéficiez d'un accès anticipé et de conditions préférentielles. 
-                    <span className="font-semibold text-primary"> Aucun engagement, aucun paiement</span>.
+                    Bénéficiez d'un <span className="font-semibold text-primary">accès anticipé</span> et de conditions préférentielles lors du lancement.
                   </p>
                 </CardContent>
               </Card>
@@ -78,7 +77,7 @@ const GuaranteeSection = () => {
                   </Link>
                 </Button>
                 <p className="text-sm text-muted-foreground mt-4">
-                  Inscription gratuite. Aucune carte bancaire.
+                  Réservez votre place dès maintenant.
                 </p>
               </div>
             </CardContent>
