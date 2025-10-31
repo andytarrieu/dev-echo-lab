@@ -36,7 +36,7 @@ const Hero = () => {
             </p>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/20">
               <p className="text-lg text-white/90 mb-2">
-                <span className="text-destructive font-semibold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
+                <span className="text-primary font-semibold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
               </p>
               <p className="text-lg text-white font-semibold">
                 Les investisseurs intelligents en analysent 50 en 30 minutes avec Auréa.
