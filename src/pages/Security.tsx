@@ -15,7 +15,7 @@ const Security = () => {
               Clause de Non-Responsabilité
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              🛡️ CLAUSE DE NON-RESPONSABILITÉ AURÉA
+              CLAUSE DE NON-RESPONSABILITÉ AURÉA
             </h1>
           </div>
           {/* Clause de Non-responsabilité Importante */}
@@ -23,7 +23,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <AlertTriangle className="w-8 h-8 text-destructive shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">⚠️ Clause de Non-responsabilité Importante</h2>
+                <h2 className="text-3xl font-bold mb-4">Clause de Non-responsabilité Importante</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Il est crucial de souligner que les contenus et services fournis par Auréa, y compris les analyses et recommandations générées par nos 4 agents IA (Noah, Emma, Lucie et Léon), ne sont en aucun cas conçus pour servir de conseils en investissement, de services d'investissement, ou de services auxiliaires liés à l'investissement.
                 </p>
@@ -39,7 +39,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <BookOpen className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">📚 Usage Éducatif et Informatif</h2>
+                <h2 className="text-3xl font-bold mb-4">Usage Éducatif et Informatif</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Toutes les analyses, projections et recommandations générées par nos agents IA ont une vocation strictement informative et éducative.
                 </p>
@@ -47,10 +47,10 @@ const Security = () => {
                   Les résultats fournis par :
                 </p>
                 <ul className="space-y-2 mb-4 ml-6">
-                  <li className="text-muted-foreground">👨 <strong>Noah</strong> (Chasseur d'Opportunités)</li>
-                  <li className="text-muted-foreground">👩 <strong>Emma</strong> (Calculatrice Impitoyable)</li>
-                  <li className="text-muted-foreground">👩 <strong>Lucie</strong> (Optimiseuse de Patrimoine)</li>
-                  <li className="text-muted-foreground">👨 <strong>Léon</strong> (Détecteur de Pièges)</li>
+                  <li className="text-muted-foreground"><strong>Noah</strong> (Chasseur d'Opportunités)</li>
+                  <li className="text-muted-foreground"><strong>Emma</strong> (Calculatrice Impitoyable)</li>
+                  <li className="text-muted-foreground"><strong>Lucie</strong> (Optimiseuse de Patrimoine)</li>
+                  <li className="text-muted-foreground"><strong>Léon</strong> (Détecteur de Pièges)</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   ...sont de nature générale et ne prennent pas en considération l'intégralité de vos objectifs personnels, votre situation financière spécifique, votre tolérance au risque ou vos besoins particuliers.
@@ -67,7 +67,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <FileText className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">🔍 Sources Fiables et Vérifications Nécessaires</h2>
+                <h2 className="text-3xl font-bold mb-4">Sources Fiables et Vérifications Nécessaires</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Les analyses d'Auréa s'appuient sur plus de 1 500 sources de données, incluant :
                 </p>
@@ -114,7 +114,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <Target className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">🎯 Rôle d'Auréa</h2>
+                <h2 className="text-3xl font-bold mb-4">Rôle d'Auréa</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Auréa et ses 4 agents IA ont pour objectif de :
                 </p>
@@ -170,7 +170,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <Scale className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">⚖️ Limitations et Responsabilités</h2>
+                <h2 className="text-3xl font-bold mb-4">Limitations et Responsabilités</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Auréa et ses agents IA travaillent sur la base de données disponibles publiquement et via nos partenaires.
                 </p>
@@ -198,7 +198,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <Phone className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">📞 Recommandations Avant Tout Investissement</h2>
+                <h2 className="text-3xl font-bold mb-4">Recommandations Avant Tout Investissement</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Avant de finaliser un investissement immobilier, nous vous recommandons vivement de :
                 </p>
@@ -219,7 +219,7 @@ const Security = () => {
             <div className="flex items-start gap-4 mb-6">
               <Shield className="w-8 h-8 text-primary shrink-0 mt-1" />
               <div>
-                <h2 className="text-3xl font-bold mb-4">🛡️ Votre Sécurité Avant Tout</h2>
+                <h2 className="text-3xl font-bold mb-4">Votre Sécurité Avant Tout</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Auréa est un outil puissant qui vous donne un avantage informationnel considérable. Mais la responsabilité finale de vos décisions d'investissement vous appartient.
                 </p>
@@ -251,7 +251,7 @@ const Security = () => {
           {/* Acceptation des Conditions */}
           <section className="mb-16">
             <div className="bg-muted/50 rounded-xl p-8">
-              <h2 className="text-3xl font-bold mb-4">📄 Acceptation des Conditions</h2>
+              <h2 className="text-3xl font-bold mb-4">Acceptation des Conditions</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 En utilisant Auréa et ses agents IA, vous reconnaissez avoir lu, compris et accepté cette clause de non-responsabilité. Vous comprenez qu'Auréa est un outil d'information et d'analyse, et non un service de conseil en investissement.
               </p>
