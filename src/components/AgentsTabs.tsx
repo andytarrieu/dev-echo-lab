@@ -136,63 +136,63 @@ const agentTabs: Tab[] = [
 
 const AgentsTabs = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-background to-muted/20">
+    <section className="py-12 sm:py-20 bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center gap-4 text-center mb-12">
-          <Badge variant="outline" className="text-base px-4 py-2">
+        <div className="flex flex-col items-center gap-3 sm:gap-4 text-center mb-8 sm:mb-12 px-2">
+          <Badge variant="outline" className="text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2">
             🤖 4 Agents IA
           </Badge>
-          <h2 className="max-w-3xl text-3xl font-bold md:text-5xl">
+          <h2 className="max-w-3xl text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl px-2">
             4 Agents IA qui travaillent pour vous 24/7
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl">
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl px-4">
             Chaque agent est spécialisé dans une tâche critique de votre investissement immobilier
           </p>
         </div>
 
-        <Tabs defaultValue={agentTabs[0].value} className="mt-8">
-          <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10 bg-muted/50 p-2 rounded-2xl">
+        <Tabs defaultValue={agentTabs[0].value} className="mt-6 sm:mt-8">
+          <TabsList className="container flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-10 bg-muted/50 p-2 rounded-2xl">
             {agentTabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
+                className="flex items-center gap-1.5 sm:gap-2 rounded-xl px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all"
               >
-                {tab.icon} {tab.label}
+                {tab.icon} <span className="whitespace-nowrap">{tab.label}</span>
               </TabsTrigger>
             ))}
           </TabsList>
 
-          <div className="mx-auto mt-8 max-w-screen-xl rounded-2xl bg-card border border-border/50 p-8 lg:p-16 shadow-xl">
+          <div className="mx-auto mt-6 sm:mt-8 max-w-screen-xl rounded-2xl bg-card border border-border/50 p-4 sm:p-8 lg:p-16 shadow-xl">
             {agentTabs.map((tab) => (
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="grid gap-12 lg:gap-16"
+                className="grid gap-8 sm:gap-12 lg:gap-16"
               >
-                <div className="flex flex-col gap-6">
-                  <Badge variant="outline" className="w-fit bg-primary/10 text-primary border-primary/20">
+                <div className="flex flex-col gap-4 sm:gap-6">
+                  <Badge variant="outline" className="w-fit bg-primary/10 text-primary border-primary/20 text-xs sm:text-sm px-2 sm:px-3 py-1">
                     {tab.content.badge}
                   </Badge>
-                  <h3 className="text-3xl font-bold lg:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                  <h3 className="text-2xl sm:text-3xl font-bold lg:text-4xl xl:text-5xl bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent leading-tight">
                     {tab.content.title}
                   </h3>
-                  <p className="text-muted-foreground text-lg">
+                  <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed">
                     {tab.content.description}
                   </p>
                 </div>
 
-                <div className="grid gap-8 lg:grid-cols-2">
+                <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
                   <Card className="border-primary/20">
-                    <CardHeader>
-                      <CardTitle className="text-2xl">Ce qu'il fait</CardTitle>
+                    <CardHeader className="pb-3 sm:pb-6">
+                      <CardTitle className="text-lg sm:text-xl lg:text-2xl">Ce qu'il fait</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ul className="space-y-3">
+                      <ul className="space-y-2.5 sm:space-y-3">
                         {tab.content.whatItDoes.map((item, index) => (
-                          <li key={index} className="flex gap-3">
-                            <span className="text-primary mt-1">✓</span>
-                            <span className="text-muted-foreground">{item}</span>
+                          <li key={index} className="flex gap-2 sm:gap-3">
+                            <span className="text-primary mt-0.5 sm:mt-1 flex-shrink-0">✓</span>
+                            <span className="text-muted-foreground text-sm sm:text-base leading-snug">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -200,11 +200,11 @@ const AgentsTabs = () => {
                   </Card>
 
                   <Card className="border-primary/20 bg-primary/5">
-                    <CardHeader>
-                      <CardTitle className="text-2xl">Votre avantage</CardTitle>
+                    <CardHeader className="pb-3 sm:pb-6">
+                      <CardTitle className="text-lg sm:text-xl lg:text-2xl">Votre avantage</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-foreground font-medium leading-relaxed">
+                      <p className="text-foreground font-medium leading-relaxed text-sm sm:text-base">
                         {tab.content.advantage}
                       </p>
                     </CardContent>
@@ -212,28 +212,28 @@ const AgentsTabs = () => {
                 </div>
 
                 <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
-                  <CardHeader>
-                    <CardTitle className="text-2xl flex items-center gap-2">
-                      <span className="text-2xl">💡</span> Exemple concret
+                  <CardHeader className="pb-3 sm:pb-6">
+                    <CardTitle className="text-lg sm:text-xl lg:text-2xl flex items-center gap-2">
+                      <span className="text-xl sm:text-2xl">💡</span> Exemple concret
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription className="text-base text-foreground">
+                  <CardContent className="space-y-3 sm:space-y-4">
+                    <CardDescription className="text-sm sm:text-base text-foreground leading-relaxed">
                       <strong>Situation :</strong> {tab.content.example.situation}
                     </CardDescription>
-                    <CardDescription className="text-base text-foreground">
+                    <CardDescription className="text-sm sm:text-base text-foreground leading-relaxed">
                       <strong>Résultat :</strong> {tab.content.example.result}
                     </CardDescription>
-                    <div className="mt-4 p-4 bg-primary/20 rounded-lg border border-primary/30">
-                      <p className="text-lg font-bold text-primary">
+                    <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-primary/20 rounded-lg border border-primary/30">
+                      <p className="text-base sm:text-lg font-bold text-primary">
                         💰 {tab.content.example.savings}
                       </p>
                     </div>
                   </CardContent>
                 </Card>
 
-                <div className="flex justify-center mt-6">
-                  <Button size="lg" className="gap-2 text-lg px-8" asChild>
+                <div className="flex justify-center mt-4 sm:mt-6">
+                  <Button size="lg" className="gap-2 text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto" asChild>
                     <Link to="/waitlist">Rejoindre la waiting list</Link>
                   </Button>
                 </div>
