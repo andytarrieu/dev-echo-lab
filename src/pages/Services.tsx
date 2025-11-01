@@ -68,7 +68,7 @@ const Services = () => {
                       <img 
                         src={agent1} 
                         alt="Analyseur de Marché"
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
                         <CardTitle className="text-3xl">Agent #1 — L'Analyseur de Marché 🔍</CardTitle>
@@ -203,7 +203,7 @@ const Services = () => {
                       <img 
                         src={agent2} 
                         alt="Évaluateur de Rentabilité"
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
                         <CardTitle className="text-3xl">Agent #2 — L'Évaluateur de Rentabilité 💰</CardTitle>
@@ -342,7 +342,7 @@ const Services = () => {
                       <img 
                         src={agent3} 
                         alt="Gestionnaire de Portfolio"
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
                         <CardTitle className="text-3xl">Agent #3 — Le Gestionnaire de Portfolio 📊</CardTitle>
@@ -473,7 +473,7 @@ const Services = () => {
                       <img 
                         src={agent4} 
                         alt="Assistant Due Diligence"
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
                         <CardTitle className="text-3xl">Agent #4 — L'Assistant Due Diligence 🔎</CardTitle>
