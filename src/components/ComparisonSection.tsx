@@ -75,7 +75,7 @@ const ComparisonSection = () => {
                   Auréa ne se contente pas de montrer des chiffres.
                 </p>
                 <p className="text-2xl font-bold text-primary mt-2">
-                  Auréa vous dit QUOI FAIRE.
+                  Auréa vous révèle TOUTES LES POSSIBILITÉS.
                 </p>
               </CardContent>
             </Card>
