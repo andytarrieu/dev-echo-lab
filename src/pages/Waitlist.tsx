@@ -202,9 +202,13 @@ const Waitlist = () => {
       email,
       phone
     });
+    
+    // Générer un numéro aléatoire au-dessus de 4000
+    const position = Math.floor(Math.random() * 1000) + 4000;
+    
     toast({
-      title: "Inscription réussie !",
-      description: "Vous êtes maintenant sur la liste d'attente. Nous vous contacterons très bientôt !"
+      title: "🎉 Inscription réussie !",
+      description: `Vous êtes le #${position} sur la liste d'attente. Invitez 5 amis pour passer dans le top 1000 et accéder en priorité !`
     });
 
     // Réinitialiser le formulaire
