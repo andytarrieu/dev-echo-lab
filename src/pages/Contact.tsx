@@ -102,37 +102,6 @@ const Contact = () => {
                     </div>
                   </CardContent>
                 </Card>
-
-                <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                        <Phone className="h-6 w-6 text-accent" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">Téléphone</h3>
-                        <p className="text-muted-foreground">+33 1 23 45 67 89</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="h-6 w-6 text-accent" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">Bureau</h3>
-                        <p className="text-muted-foreground">
-                          123 Avenue des Champs-Élysées<br />
-                          75008 Paris, France
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
