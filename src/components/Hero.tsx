@@ -29,7 +29,7 @@ const Hero = () => {
               <WaitlistBadge />
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Investissez dans l'immobilier comme les 0,1% qui gagnent vraiment
+              Investissez avec passion. Décidez avec raison.
             </h1>
             <p className="text-xl sm:text-2xl mb-8 text-white/90 leading-relaxed">
               4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les meilleures opportunités, sécuriser vos achats, et optimiser votre patrimoine automatiquement.
