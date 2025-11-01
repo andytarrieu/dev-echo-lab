@@ -42,17 +42,27 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  activeSection === link.id ? "text-accent" : "text-foreground"
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => 
+              link.id === "contact" ? (
+                <Link
+                  key={link.id}
+                  to="/contact"
+                  className="text-sm font-medium transition-colors hover:text-accent text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-sm font-medium transition-colors hover:text-accent ${
+                    activeSection === link.id ? "text-accent" : "text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              )
+            )}
             <Button variant="default" size="sm">
               Connexion
             </Button>
@@ -72,17 +82,28 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className={`text-sm font-medium transition-colors hover:text-accent text-left ${
-                    activeSection === link.id ? "text-accent" : "text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) => 
+                link.id === "contact" ? (
+                  <Link
+                    key={link.id}
+                    to="/contact"
+                    className="text-sm font-medium transition-colors hover:text-accent text-left text-foreground"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollToSection(link.id)}
+                    className={`text-sm font-medium transition-colors hover:text-accent text-left ${
+                      activeSection === link.id ? "text-accent" : "text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                )
+              )}
               <Button variant="default" size="sm" className="w-full">
                 Connexion
               </Button>
