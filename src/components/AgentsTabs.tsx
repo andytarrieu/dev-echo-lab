@@ -236,7 +236,7 @@ const AgentsTabs = () => {
 
                 <div className="flex justify-center mt-4 sm:mt-6">
                   <Button size="lg" className="gap-2 text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto" asChild>
-                    <Link to="/waitlist">Rejoindre la waiting list</Link>
+                    <Link to="/waitlist">Réserver mon accès</Link>
                   </Button>
                 </div>
               </TabsContent>

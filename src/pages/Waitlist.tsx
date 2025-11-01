@@ -353,7 +353,7 @@ const Waitlist = () => {
                     className="w-full relative overflow-hidden group"
                   >
                     <span className="flex items-center justify-center">
-                      Rejoindre la waiting list gratuitement
+                      Réserver mon accès
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>

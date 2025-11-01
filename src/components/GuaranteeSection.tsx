@@ -72,7 +72,7 @@ const GuaranteeSection = () => {
                   asChild
                 >
                   <Link to="/waitlist">
-                    Rejoindre la Waiting List
+                    Réserver mon accès
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>

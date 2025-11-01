@@ -50,7 +50,7 @@ const Hero = () => {
                 asChild
               >
                 <Link to="/waitlist">
-                  Rejoindre la waiting list gratuitement
+                  Réserver mon accès
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
