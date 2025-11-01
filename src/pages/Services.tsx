@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle } from "lucide-react";
+import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import agent1 from "@/assets/agent-1.webp";
@@ -140,7 +140,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">🚨 Alertes automatiques</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Bell className="h-5 w-5 text-primary" />
+                              Alertes automatiques
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -176,7 +179,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">📑 Rapport complet</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <FileText className="h-5 w-5 text-primary" />
+                              Rapport complet
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -283,7 +289,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">🎯 Score d'investissement</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Target className="h-5 w-5 text-primary" />
+                              Score d'investissement
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -303,7 +312,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">📑 Documents générés automatiquement</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <FileText className="h-5 w-5 text-primary" />
+                              Documents générés automatiquement
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -319,7 +331,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">🚨 Alerte nouvelle opportunité</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Bell className="h-5 w-5 text-primary" />
+                              Alerte nouvelle opportunité
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -398,24 +413,39 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">🚨 Alertes intelligentes</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Bell className="h-5 w-5 text-primary" />
+                              Alertes intelligentes
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">📉 Marché en baisse dans une zone</p>
+                              <p className="text-muted-foreground flex items-center gap-2">
+                                <TrendingDown className="h-4 w-4 text-destructive flex-shrink-0" />
+                                Marché en baisse dans une zone
+                              </p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">📈 Hausse de valeur détectée sur un bien</p>
+                              <p className="text-muted-foreground flex items-center gap-2">
+                                <TrendingUp className="h-4 w-4 text-primary flex-shrink-0" />
+                                Hausse de valeur détectée sur un bien
+                              </p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">💰 Opportunité similaire détectée (rendement supérieur)</p>
+                              <p className="text-muted-foreground flex items-center gap-2">
+                                <DollarSign className="h-4 w-4 text-primary flex-shrink-0" />
+                                Opportunité similaire détectée (rendement supérieur)
+                              </p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">🔧 Travaux rentables suggérés (amélioration du ROI)</p>
+                              <p className="text-muted-foreground flex items-center gap-2">
+                                <Wrench className="h-4 w-4 text-primary flex-shrink-0" />
+                                Travaux rentables suggérés (amélioration du ROI)
+                              </p>
                             </div>
                           </CardContent>
                         </Card>
@@ -442,7 +472,10 @@ const Services = () => {
 
                         <Card className="border-border md:col-span-2">
                           <CardHeader>
-                            <CardTitle className="text-lg">📑 Reporting et documents</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <FileText className="h-5 w-5 text-primary" />
+                              Reporting et documents
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -505,7 +538,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">🚨 Détection des risques ("Red Flags")</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Bell className="h-5 w-5 text-destructive" />
+                              Détection des risques ("Red Flags")
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -565,7 +601,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">💡 Détection d'opportunités</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Lightbulb className="h-5 w-5 text-primary" />
+                              Détection d'opportunités
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -585,7 +624,10 @@ const Services = () => {
 
                         <Card className="border-border">
                           <CardHeader>
-                            <CardTitle className="text-lg">📑 Rapport professionnel complet</CardTitle>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <FileText className="h-5 w-5 text-primary" />
+                              Rapport professionnel complet
+                            </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
@@ -628,28 +670,28 @@ const Services = () => {
                     </thead>
                     <tbody>
                       <tr className="border-b border-border">
-                        <td className="py-4 px-4 text-muted-foreground">1️⃣</td>
+                        <td className="py-4 px-4 text-muted-foreground font-semibold">1.</td>
                         <td className="py-4 px-4 font-medium">Analyseur de Marché</td>
                         <td className="py-4 px-4 text-muted-foreground">Trouver où investir</td>
                         <td className="py-4 px-4 text-muted-foreground">Résidentiel, bureaux, entrepôts, commerces</td>
                         <td className="py-4 px-4 text-muted-foreground">Étude marché, prévisions, alertes</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="py-4 px-4 text-muted-foreground">2️⃣</td>
+                        <td className="py-4 px-4 text-muted-foreground font-semibold">2.</td>
                         <td className="py-4 px-4 font-medium">Évaluateur de Rentabilité</td>
                         <td className="py-4 px-4 text-muted-foreground">Évaluer un bien précis</td>
                         <td className="py-4 px-4 text-muted-foreground">Tous types de biens</td>
                         <td className="py-4 px-4 text-muted-foreground">Calculs, travaux, ROI, PDF bancaire</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="py-4 px-4 text-muted-foreground">3️⃣</td>
+                        <td className="py-4 px-4 text-muted-foreground font-semibold">3.</td>
                         <td className="py-4 px-4 font-medium">Gestionnaire de Portfolio</td>
                         <td className="py-4 px-4 text-muted-foreground">Optimiser ton patrimoine</td>
                         <td className="py-4 px-4 text-muted-foreground">Multi-actifs immobiliers</td>
                         <td className="py-4 px-4 text-muted-foreground">Suivi, alertes, fiscalité, reporting</td>
                       </tr>
                       <tr>
-                        <td className="py-4 px-4 text-muted-foreground">4️⃣</td>
+                        <td className="py-4 px-4 text-muted-foreground font-semibold">4.</td>
                         <td className="py-4 px-4 font-medium">Assistant Due Diligence</td>
                         <td className="py-4 px-4 text-muted-foreground">Sécuriser ton achat</td>
                         <td className="py-4 px-4 text-muted-foreground">Résidentiel & professionnel</td>

@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Target, Calculator, TrendingUp, Shield } from "lucide-react";
+import { Target, Calculator, TrendingUp, Shield, User, Lightbulb, DollarSign } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,7 +31,7 @@ const agentTabs: Tab[] = [
     icon: <Target className="h-auto w-4 shrink-0" />,
     label: "Noah",
     content: {
-      badge: "👨 Agent #1 : NOAH",
+      badge: "Agent #1 : NOAH",
       title: "Le Chasseur d'Opportunités",
       description:
         "Il trouve les pépites que personne ne voit. Imaginez avoir un expert qui surveille en permanence le marché français entier pour vous.",
@@ -57,7 +57,7 @@ const agentTabs: Tab[] = [
     icon: <Calculator className="h-auto w-4 shrink-0" />,
     label: "Emma",
     content: {
-      badge: "👩 Agent #2 : EMMA",
+      badge: "Agent #2 : EMMA",
       title: "La Calculatrice Impitoyable",
       description:
         "Elle sait si c'est rentable AVANT que vous ne signiez. Fini les calculs approximatifs sur Excel. Fini les illusions de rentabilité.",
@@ -84,7 +84,7 @@ const agentTabs: Tab[] = [
     icon: <TrendingUp className="h-auto w-4 shrink-0" />,
     label: "Lucie",
     content: {
-      badge: "👩 Agent #3 : LUCIE",
+      badge: "Agent #3 : LUCIE",
       title: "L'Optimiseuse de Patrimoine",
       description:
         "Elle transforme vos biens moyens en machines à cash. Vous avez déjà investi ? Cet agent va changer votre vie.",
@@ -110,7 +110,7 @@ const agentTabs: Tab[] = [
     icon: <Shield className="h-auto w-4 shrink-0" />,
     label: "Léon",
     content: {
-      badge: "👨 Agent #4 : LÉON",
+      badge: "Agent #4 : LÉON",
       title: "Le Détecteur de Pièges",
       description:
         "Il vous évite les catastrophes à 30 000€. Vous êtes sur le point d'acheter ? Cet agent peut vous sauver la mise.",
@@ -139,8 +139,9 @@ const AgentsTabs = () => {
     <section className="py-12 sm:py-20 bg-gradient-to-br from-background to-muted/20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center gap-3 sm:gap-4 text-center mb-8 sm:mb-12 px-2">
-          <Badge variant="outline" className="text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2">
-            🤖 4 Agents IA
+          <Badge variant="outline" className="text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2 w-fit mx-auto">
+            <Target className="h-4 w-4" />
+            4 Agents IA
           </Badge>
           <h2 className="max-w-3xl text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl px-2">
             4 Agents IA qui travaillent pour vous 24/7
@@ -214,7 +215,7 @@ const AgentsTabs = () => {
                 <Card className="border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
                   <CardHeader className="pb-3 sm:pb-6">
                     <CardTitle className="text-lg sm:text-xl lg:text-2xl flex items-center gap-2">
-                      <span className="text-xl sm:text-2xl">💡</span> Exemple concret
+                      <Lightbulb className="h-5 w-5 sm:h-6 sm:w-6 text-primary" /> Exemple concret
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 sm:space-y-4">
@@ -225,8 +226,9 @@ const AgentsTabs = () => {
                       <strong>Résultat :</strong> {tab.content.example.result}
                     </CardDescription>
                     <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-primary/20 rounded-lg border border-primary/30">
-                      <p className="text-base sm:text-lg font-bold text-primary">
-                        💰 {tab.content.example.savings}
+                      <p className="text-base sm:text-lg font-bold text-primary flex items-center gap-2">
+                        <DollarSign className="h-5 w-5 flex-shrink-0" />
+                        {tab.content.example.savings}
                       </p>
                     </div>
                   </CardContent>
