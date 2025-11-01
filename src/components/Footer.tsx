@@ -7,14 +7,9 @@ const Footer = () => {
     Entreprise: [
       { label: "À propos", path: "/team" },
       { label: "Services", path: "/services" },
-      { label: "Blog", path: "/insights" },
       { label: "Contact", path: "/contact" },
     ],
-    Ressources: [
-      { label: "Documentation", path: "/insights" },
-      { label: "Études de cas", path: "/insights" },
-      { label: "Guide débutant", path: "/contact" },
-    ],
+    Ressources: [],
     Légal: [
       { label: "Clause de non-responsabilité", path: "/security" },
       { label: "Politique de confidentialité", path: "/privacy" },
@@ -59,17 +54,6 @@ const Footer = () => {
             <p className="text-primary-foreground/80 text-sm">
               © {currentYear} Auréa IA. Tous droits réservés.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                LinkedIn
-              </a>
-              <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                Twitter
-              </a>
-              <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                Facebook
-              </a>
-            </div>
           </div>
         </div>
       </div>
