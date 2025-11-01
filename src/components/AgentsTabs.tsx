@@ -151,7 +151,7 @@ const AgentsTabs = () => {
         </div>
 
         <Tabs defaultValue={agentTabs[0].value} className="mt-6 sm:mt-8">
-          <TabsList className="container flex items-center justify-start sm:justify-center gap-2 sm:gap-4 md:gap-10 bg-muted/50 p-2 rounded-2xl overflow-x-auto">
+          <TabsList className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 md:gap-10 bg-muted/50 p-2 rounded-2xl overflow-x-auto w-full max-w-fit mx-auto">
             {agentTabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
