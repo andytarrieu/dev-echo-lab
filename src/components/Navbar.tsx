@@ -65,7 +65,7 @@ const Navbar = () => {
               )
             )}
             <Button variant="default" size="sm" asChild>
-              <Link to="/waitlist">Connexion</Link>
+              <Link to="/waitlist">Réserver mon accès</Link>
             </Button>
           </div>
 
@@ -106,7 +106,7 @@ const Navbar = () => {
                 )
               )}
               <Button variant="default" size="sm" className="w-full" asChild>
-                <Link to="/waitlist">Connexion</Link>
+                <Link to="/waitlist">Réserver mon accès</Link>
               </Button>
             </div>
           </div>
