@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoImage from "@/assets/aurea-logo.png";
+import logoImage from "@/assets/aurea-logo-new.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

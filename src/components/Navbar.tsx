@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import logoImage from "@/assets/aurea-logo.png";
+import logoImage from "@/assets/aurea-logo-new.png";
 
 const Navbar = () => {
   const location = useLocation();
