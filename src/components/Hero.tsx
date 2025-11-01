@@ -34,9 +34,9 @@ const Hero = () => {
             <p className="text-xl sm:text-2xl mb-8 text-white/90 leading-relaxed">
               4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les meilleures opportunités, sécuriser vos achats, et optimiser votre patrimoine automatiquement.
             </p>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/20">
-              <p className="text-lg text-white/90 mb-2">
-                <span className="text-primary font-semibold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/30">
+              <p className="text-lg text-white mb-2">
+                <span className="text-white font-bold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
               </p>
               <p className="text-lg text-white font-semibold">
                 Les investisseurs intelligents en analysent 50 en 30 minutes avec Auréa.
