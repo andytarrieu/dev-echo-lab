@@ -33,7 +33,7 @@ const ProblemSection = () => {
             Le Problème Que Vous Vivez
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8">
-            Vous perdez un temps fou à :
+            Que ce soit pour votre future maison ou un investissement locatif, vous perdez un temps fou à :
           </p>
         </div>
 
@@ -55,10 +55,10 @@ const ProblemSection = () => {
         <div className="max-w-3xl mx-auto text-center px-2">
           <Card className="p-4 sm:p-6 md:p-8 bg-destructive/5 border-destructive/30">
             <p className="text-base sm:text-lg md:text-xl font-semibold text-destructive mb-2">
-              Résultat : Vous hésitez, vous doutez, vous perdez de l'argent.
+              Résultat : Vous hésitez, vous doutez, vous risquez de vous faire arnaquer ou de payer trop cher.
             </p>
             <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary">
-              Et si tout ça disparaissait ?
+              Et si vous achetiez en toute confiance ?
             </p>
           </Card>
         </div>

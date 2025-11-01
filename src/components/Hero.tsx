@@ -29,17 +29,17 @@ const Hero = () => {
               <WaitlistBadge />
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
-              Investissez avec passion. Décidez avec raison.
+              Achetez en toute sérénité. Décidez avec raison.
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 text-white/90 leading-relaxed">
-              4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les meilleures opportunités, sécuriser vos achats, et optimiser votre patrimoine automatiquement.
+              4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les pièges cachés, sécuriser vos achats, et vous protéger des arnaques immobilières.
             </p>
             <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 md:mb-8 border border-white/30">
               <p className="text-sm sm:text-base md:text-lg text-white mb-2">
-                <span className="text-white font-bold">Pendant que vous passez 50 heures sur Excel à analyser UN bien...</span>
+                <span className="text-white font-bold">Résidence principale ou investissement locatif...</span>
               </p>
               <p className="text-sm sm:text-base md:text-lg text-white font-semibold">
-                Les investisseurs intelligents en analysent 50 en 30 minutes avec Auréa.
+                Ne vous faites plus arnaquer. Auréa analyse chaque bien en profondeur pour vous.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">

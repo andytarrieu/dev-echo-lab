@@ -5,28 +5,28 @@ const TargetAudienceSection = () => {
   const audiences = [
     {
       icon: Sparkles,
-      title: "Débutants",
-      description: "Les agents vous guident pas à pas pour éviter les erreurs coûteuses",
+      title: "Primo-accédants",
+      description: "Achetez votre première maison sans stress et évitez les pièges courants",
+    },
+    {
+      icon: Users,
+      title: "Particuliers",
+      description: "Protégez-vous des arnaques et achetez votre résidence principale sereinement",
     },
     {
       icon: TrendingUp,
+      title: "Investisseurs débutants",
+      description: "Les agents vous guident pas à pas pour éviter les erreurs coûteuses",
+    },
+    {
+      icon: Briefcase,
       title: "Investisseurs confirmés",
       description: "Multipliez votre vitesse d'analyse par 10 et scannez le marché entier",
     },
     {
-      icon: Users,
+      icon: Clock,
       title: "Professionnels de l'immobilier",
       description: "Automatisez votre sourcing et vos analyses pour traiter plus de dossiers",
-    },
-    {
-      icon: Briefcase,
-      title: "Gestionnaires de patrimoine",
-      description: "Optimisez les portefeuilles de vos clients avec des données précises",
-    },
-    {
-      icon: Clock,
-      title: "Ceux qui manquent de temps",
-      description: "Les agents travaillent pendant que vous vivez votre vie",
     },
   ];
 
@@ -67,9 +67,9 @@ const TargetAudienceSection = () => {
           <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/30">
             <CardContent className="pt-6 text-center">
               <p className="text-xl text-foreground">
-                Que vous ayez <span className="font-semibold text-primary">0 ou 50 biens</span>, 
-                qu'il s'agisse de votre <span className="font-semibold text-primary">premier achat ou de votre 20ème</span>, 
-                Auréa s'adapte à votre niveau.
+                Que vous achetiez <span className="font-semibold text-primary">votre future maison ou un bien locatif</span>, 
+                qu'il s'agisse de votre <span className="font-semibold text-primary">premier achat ou du 20ème</span>, 
+                Auréa vous protège et vous accompagne à chaque étape.
               </p>
             </CardContent>
           </Card>
