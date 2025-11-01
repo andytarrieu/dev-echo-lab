@@ -9,7 +9,6 @@ const Footer = () => {
       { label: "Services", path: "/services" },
       { label: "Contact", path: "/contact" },
     ],
-    Ressources: [],
     Légal: [
       { label: "Clause de non-responsabilité", path: "/security" },
       { label: "Politique de confidentialité", path: "/privacy" },
