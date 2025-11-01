@@ -21,28 +21,28 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 sm:py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Une Suite IA Complète</h2>
-          <div className="max-w-3xl mx-auto space-y-4 text-muted-foreground text-lg">
+        <div className="text-center mb-8 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 px-2">Une Suite IA Complète</h2>
+          <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4 text-muted-foreground text-sm sm:text-base md:text-lg px-4">
             <p>Couvrez tout le cycle de vie de votre investissement immobilier.</p>
             <p>De l'analyse de marché à la gestion de patrimoine, en passant par l'évaluation et la sécurisation.</p>
             <p>Pour tous types de biens : résidentiel, bureaux, commerces, entrepôts, achat-revente, location.</p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {features.map((feature, index) => (
             <Card key={index} className="border-border hover:shadow-lg transition-shadow animate-fade-in">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-accent" />
+              <CardHeader className="pb-3 sm:pb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-3 sm:mb-4">
+                  <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
-                <CardTitle className="text-2xl">{feature.title}</CardTitle>
+                <CardTitle className="text-lg sm:text-xl md:text-2xl">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">{feature.description}</p>
               </CardContent>
             </Card>
           ))}

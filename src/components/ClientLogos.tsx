@@ -31,16 +31,16 @@ const ClientLogos = () => {
   ];
 
   return (
-    <section className="py-16 bg-muted/50">
-      <div className="container flex flex-col items-center text-center mb-8">
-        <h3 className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
+    <section className="py-8 sm:py-12 md:py-16 bg-muted/50">
+      <div className="container flex flex-col items-center text-center mb-6 sm:mb-8 px-4">
+        <h3 className="text-muted-foreground text-xs sm:text-sm font-medium uppercase tracking-wider">
           Plus de 1 500 Sources de Données Immobilières
         </h3>
       </div>
-      <div className="container">
-        <div className="h-px bg-border/50 [mask-image:linear-gradient(to_right,transparent,black,transparent)] mb-8" />
+      <div className="container px-4">
+        <div className="h-px bg-border/50 [mask-image:linear-gradient(to_right,transparent,black,transparent)] mb-6 sm:mb-8" />
         <LogoCloud logos={logos} />
-        <div className="h-px bg-border/50 [mask-image:linear-gradient(to_right,transparent,black,transparent)] mt-8" />
+        <div className="h-px bg-border/50 [mask-image:linear-gradient(to_right,transparent,black,transparent)] mt-6 sm:mt-8" />
       </div>
     </section>
   );

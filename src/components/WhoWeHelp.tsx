@@ -50,11 +50,11 @@ const WhoWeHelp = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted">
+    <section className="py-12 sm:py-20 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground mb-4">Tous Types de Biens Couverts</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-8 sm:mb-12 px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Tous Types de Biens Couverts</h2>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Nos agents IA analysent et optimisent tous types d'investissements immobiliers, du résidentiel aux actifs professionnels.
           </p>
         </div>
