@@ -71,7 +71,7 @@ const Services = () => {
                         className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Agent #1 — L'Analyseur de Marché 🔍</CardTitle>
+                        <CardTitle className="text-3xl">Noah — L'Analyseur de Marché</CardTitle>
                         <p className="text-muted-foreground mt-2">
                           Détermine les meilleures zones d'investissement selon ton budget, ton profil et ton type de bien
                         </p>
@@ -206,7 +206,7 @@ const Services = () => {
                         className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Agent #2 — L'Évaluateur de Rentabilité 💰</CardTitle>
+                        <CardTitle className="text-3xl">Emma — L'Évaluateur de Rentabilité</CardTitle>
                         <p className="text-muted-foreground mt-2">
                           Évalue la rentabilité réelle et le potentiel d'un bien précis
                         </p>
@@ -345,7 +345,7 @@ const Services = () => {
                         className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Agent #3 — Le Gestionnaire de Portfolio 📊</CardTitle>
+                        <CardTitle className="text-3xl">Lucie — Le Gestionnaire de Portfolio</CardTitle>
                         <p className="text-muted-foreground mt-2">
                           Centralise, suit et optimise ton patrimoine immobilier, tous types confondus
                         </p>
@@ -476,7 +476,7 @@ const Services = () => {
                         className="w-16 h-16 rounded-full object-contain bg-muted p-2"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Agent #4 — L'Assistant Due Diligence 🔎</CardTitle>
+                        <CardTitle className="text-3xl">Léon — L'Assistant Due Diligence</CardTitle>
                         <p className="text-muted-foreground mt-2">
                           Vérifie la conformité, les risques et les coûts cachés avant d'acheter ou d'exploiter un bien
                         </p>
