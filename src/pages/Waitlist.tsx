@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { ArrowRight, Mail, User, Phone } from "lucide-react";
+import { ArrowRight, Mail, User, Phone, CheckCircle2, PartyPopper } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -198,7 +198,7 @@ const Waitlist = () => {
     console.log("Inscription waitlist:", { name, email, phone });
     
     toast({
-      title: "Inscription réussie ! 🎉",
+      title: "Inscription réussie !",
       description: "Vous êtes maintenant sur la liste d'attente. Nous vous contacterons très bientôt !",
     });
 
@@ -361,11 +361,20 @@ const Waitlist = () => {
 
                 <div className="pt-4">
                   <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                    <p className="text-sm text-muted-foreground">
-                      ✅ Accès anticipé aux agents IA<br/>
-                      ✅ Tarif préférentiel early-adopter<br/>
-                      ✅ Support prioritaire
-                    </p>
+                    <div className="space-y-2 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+                        <span>Accès anticipé aux agents IA</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+                        <span>Tarif préférentiel early-adopter</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+                        <span>Support prioritaire</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>
