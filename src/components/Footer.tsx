@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logoImage from "@/assets/aurea-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,7 +23,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <Link to="/" className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold">AURÉA<span className="text-accent">IA</span></span>
+              <img src={logoImage} alt="Auréa IA" className="h-12" />
             </Link>
 <p className="text-primary-foreground/80 text-sm">
               L'intelligence artificielle au service de l'investissement immobilier. Analysez, évaluez et optimisez vos projets avec nos 4 agents IA spécialisés.
