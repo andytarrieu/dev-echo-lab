@@ -179,6 +179,7 @@ const Waitlist = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [referralCode, setReferralCode] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const {
     toast
@@ -215,6 +216,7 @@ const Waitlist = () => {
     setName("");
     setEmail("");
     setPhone("");
+    setReferralCode("");
   };
   return <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-background to-accent/20 p-4">
       <div className="w-full max-w-6xl">
@@ -340,6 +342,16 @@ const Waitlist = () => {
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+33 6 12 34 56 78" className="pl-10" />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="referralCode" className="block text-sm font-medium text-foreground mb-2">
+                    Code Parrainage <span className="text-muted-foreground text-xs">(optionnel)</span>
+                  </label>
+                  <div className="relative">
+                    <PartyPopper className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                    <Input id="referralCode" type="text" value={referralCode} onChange={e => setReferralCode(e.target.value)} placeholder="Code de parrainage" className="pl-10" />
                   </div>
                 </div>
                 
