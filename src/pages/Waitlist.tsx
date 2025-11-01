@@ -280,7 +280,7 @@ const Waitlist = () => {
               </Link>
               
               <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
-                Rejoignez la Waiting List
+                Réserver mon accès
               </h1>
               <p className="text-muted-foreground mb-8">
                 Soyez parmi les premiers à accéder aux 4 agents IA qui révolutionnent l'investissement immobilier
