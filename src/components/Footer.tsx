@@ -21,11 +21,8 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <Link to="/" className="flex items-center space-x-2 mb-4">
-              <img src={logoImage} alt="Auréa IA" className="h-20" />
-            </Link>
-<p className="text-primary-foreground/80 text-sm">
+          <div className="md:col-span-2">
+            <p className="text-primary-foreground/80 text-base mb-6">
               L'intelligence artificielle au service de l'investissement immobilier. Analysez, évaluez et optimisez vos projets avec nos 4 agents IA spécialisés.
             </p>
           </div>
@@ -47,6 +44,12 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+
+          <div className="flex justify-end items-start md:col-start-4 md:row-start-1 md:row-span-2">
+            <Link to="/" className="flex items-center">
+              <img src={logoImage} alt="Auréa IA" className="h-32" />
+            </Link>
+          </div>
         </div>
 
         <div className="border-t border-primary-foreground/20 pt-8">
