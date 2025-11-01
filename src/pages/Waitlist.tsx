@@ -253,19 +253,7 @@ const Waitlist = () => {
               }} className="text-4xl font-bold mb-4 text-center text-primary">
                   AURÉA IA
                 </motion.h2>
-                <motion.p initial={{
-                opacity: 0,
-                y: -20
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                delay: 0.8,
-                duration: 0.5
-              }} className="text-base text-center text-muted-foreground max-w-sm leading-relaxed">
-                  Rejoignez les investisseurs qui investissent intelligemment grâce à l'IA
-                </motion.p>
-                <motion.div initial={{
+              <motion.div initial={{
                 opacity: 0
               }} animate={{
                 opacity: 1
@@ -273,15 +261,27 @@ const Waitlist = () => {
                 delay: 1,
                 duration: 0.5
               }} className="mt-8 grid grid-cols-2 gap-4 w-full max-w-sm">
-                  <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                    <p className="text-2xl font-bold text-primary">1500+</p>
-                    <p className="text-xs text-muted-foreground">Sources</p>
-                  </div>
-                  <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                    <p className="text-2xl font-bold text-primary">4</p>
-                    <p className="text-xs text-muted-foreground">Agents IA</p>
-                  </div>
-                </motion.div>
+                <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
+                  <p className="text-2xl font-bold text-primary">1500+</p>
+                  <p className="text-xs text-muted-foreground">Sources</p>
+                </div>
+                <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
+                  <p className="text-2xl font-bold text-primary">4</p>
+                  <p className="text-xs text-muted-foreground">Agents IA</p>
+                </div>
+              </motion.div>
+              <motion.p initial={{
+                opacity: 0,
+                y: 20
+              }} animate={{
+                opacity: 1,
+                y: 0
+              }} transition={{
+                delay: 1.2,
+                duration: 0.5
+              }} className="mt-6 text-base text-center text-muted-foreground max-w-sm leading-relaxed">
+                Rejoignez les investisseurs qui investissent intelligemment grâce à l'IA
+              </motion.p>
               </div>
             </div>
           </div>
