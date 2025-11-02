@@ -184,7 +184,7 @@ const Waitlist = () => {
   const {
     toast
   } = useToast();
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validation basique
@@ -197,15 +197,32 @@ const Waitlist = () => {
       return;
     }
 
-    // Ici vous pourriez ajouter la logique pour enregistrer dans une base de données
-    console.log("Inscription waitlist:", {
-      name,
-      email,
-      phone
-    });
-    
     // Générer un numéro aléatoire au-dessus de 4000
     const position = Math.floor(Math.random() * 1000) + 4000;
+
+    const formData = {
+      name,
+      email,
+      phone,
+      referralCode,
+      position,
+      timestamp: new Date().toISOString()
+    };
+
+    // Envoyer au webhook
+    try {
+      await fetch("http://localhost:5678/webhook-test/28063da4-4a13-4066-9f3a-4b6269876c33", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log("Inscription waitlist envoyée au webhook:", formData);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi au webhook:", error);
+    }
     
     toast({
       title: "🎉 Inscription réussie !",
