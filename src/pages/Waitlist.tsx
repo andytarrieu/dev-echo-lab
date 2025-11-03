@@ -210,19 +210,27 @@ const Waitlist = () => {
       timestamp: new Date().toISOString()
     };
 
-    // Envoyer via Edge Function
-    try {
-      const { data, error } = await supabase.functions.invoke('waitlist-webhook', {
-        body: formData
+    // Enregistrer dans Supabase
+    const { error } = await supabase
+      .from('waitlist')
+      .insert({
+        name,
+        email,
+        phone,
+        referral_code: referralCode,
+        position
       });
 
-      if (error) {
-        console.error("Erreur lors de l'envoi au webhook:", error);
-      } else {
-        console.log("Inscription waitlist envoyée:", data);
-      }
-    } catch (error) {
-      console.error("Erreur lors de l'envoi au webhook:", error);
+    if (error) {
+      console.error("Erreur lors de l'inscription:", error);
+      toast({
+        title: "Erreur",
+        description: error.message.includes('unique_email') 
+          ? "Cet email est déjà inscrit sur la liste d'attente" 
+          : "Une erreur est survenue lors de l'inscription",
+        variant: "destructive"
+      });
+      return;
     }
     
     toast({
