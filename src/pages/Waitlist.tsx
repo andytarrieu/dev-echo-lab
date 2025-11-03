@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 type RoutePoint = {
   x: number;
   y: number;
@@ -209,17 +210,17 @@ const Waitlist = () => {
       timestamp: new Date().toISOString()
     };
 
-    // Envoyer au webhook
+    // Envoyer via Edge Function
     try {
-      await fetch("http://localhost:5678/webhook-test/28063da4-4a13-4066-9f3a-4b6269876c33", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      const { data, error } = await supabase.functions.invoke('waitlist-webhook', {
+        body: formData
       });
 
-      console.log("Inscription waitlist envoyée au webhook:", formData);
+      if (error) {
+        console.error("Erreur lors de l'envoi au webhook:", error);
+      } else {
+        console.log("Inscription waitlist envoyée:", data);
+      }
     } catch (error) {
       console.error("Erreur lors de l'envoi au webhook:", error);
     }
