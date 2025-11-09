@@ -216,14 +216,18 @@ const Waitlist = () => {
       }
     }
 
-    // Enregistrer dans Supabase (le code de parrainage sera généré automatiquement)
+    // Générer un code de parrainage unique
+    const generatedReferralCode = Math.random().toString(36).substring(2, 10);
+    
+    // Enregistrer dans Supabase
     const { data: newUser, error } = await supabase
       .from('waitlist')
       .insert({
         name,
         email,
         phone,
-        position
+        position,
+        referral_code: generatedReferralCode
       })
       .select()
       .single();
