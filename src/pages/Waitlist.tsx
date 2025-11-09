@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { ArrowRight, Mail, User, Phone, CheckCircle2, PartyPopper } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -177,10 +177,11 @@ const DotMap = () => {
     </div>;
 };
 const Waitlist = () => {
+  const [searchParams] = useSearchParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [referralCode, setReferralCode] = useState("");
+  const [referralCode, setReferralCode] = useState(searchParams.get('ref') || "");
   const [isHovered, setIsHovered] = useState(false);
   const {
     toast
@@ -199,43 +200,62 @@ const Waitlist = () => {
     }
 
     // Générer un numéro aléatoire au-dessus de 4000
-    const position = Math.floor(Math.random() * 1000) + 4000;
+    const position = Math.floor(Math.random() * 8000) + 4000;
 
-    const formData = {
-      name,
-      email,
-      phone,
-      referralCode,
-      position,
-      timestamp: new Date().toISOString()
-    };
+    // Vérifier si le code de parrainage existe
+    let referrerId = null;
+    if (referralCode) {
+      const { data: referrer } = await supabase
+        .from('waitlist')
+        .select('id')
+        .eq('referral_code', referralCode)
+        .maybeSingle();
+      
+      if (referrer) {
+        referrerId = referrer.id;
+      }
+    }
 
-    // Enregistrer dans Supabase
-    const { error } = await supabase
+    // Enregistrer dans Supabase (le code de parrainage sera généré automatiquement)
+    const { data: newUser, error } = await supabase
       .from('waitlist')
       .insert({
         name,
         email,
         phone,
-        referral_code: referralCode,
         position
-      });
+      })
+      .select()
+      .single();
 
     if (error) {
       console.error("Erreur lors de l'inscription:", error);
       toast({
         title: "Erreur",
-        description: error.message.includes('unique_email') 
+        description: error.message.includes('duplicate') || error.message.includes('unique')
           ? "Cet email est déjà inscrit sur la liste d'attente" 
           : "Une erreur est survenue lors de l'inscription",
         variant: "destructive"
       });
       return;
     }
+
+    // Si un code de parrainage a été utilisé, l'enregistrer
+    if (referrerId && newUser) {
+      await supabase
+        .from('referrals')
+        .insert({
+          referrer_id: referrerId,
+          referred_email: email
+        });
+    }
+    
+    // Créer le lien de parrainage unique
+    const referralLink = `aurea-ai.com/waitlist?ref=${newUser.referral_code}`;
     
     toast({
       title: "🎉 Inscription réussie !",
-      description: `Vous êtes le #${position} sur la liste d'attente. Invitez 5 amis pour passer dans le top 1000 et accéder en priorité !`
+      description: `Tu es actuellement #${position.toLocaleString('fr-FR')} dans la liste.\n\nPartage ton lien unique : ${referralLink}\n\nInvite des amis pour avancer :\n+1 ami = +500 places\n+3 amis = Accès anticipé\n+5 amis = VIP Early Access`
     });
 
     // Réinitialiser le formulaire

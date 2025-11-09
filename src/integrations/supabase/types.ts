@@ -14,6 +14,35 @@ export type Database = {
   }
   public: {
     Tables: {
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          referred_email: string
+          referrer_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          referred_email: string
+          referrer_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          referred_email?: string
+          referrer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "waitlist"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       waitlist: {
         Row: {
           created_at: string
@@ -22,7 +51,7 @@ export type Database = {
           name: string
           phone: string | null
           position: number
-          referral_code: string | null
+          referral_code: string
         }
         Insert: {
           created_at?: string
@@ -31,7 +60,7 @@ export type Database = {
           name: string
           phone?: string | null
           position: number
-          referral_code?: string | null
+          referral_code?: string
         }
         Update: {
           created_at?: string
@@ -40,7 +69,7 @@ export type Database = {
           name?: string
           phone?: string | null
           position?: number
-          referral_code?: string | null
+          referral_code?: string
         }
         Relationships: []
       }
