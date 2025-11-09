@@ -257,7 +257,28 @@ const Waitlist = () => {
     
     toast({
       title: "🎉 Inscription réussie !",
-      description: `Tu es actuellement #${position.toLocaleString('fr-FR')} dans la liste.\n\nPartage ton lien unique : ${referralLink}\n\nInvite des amis pour avancer :\n+1 ami = +500 places\n+3 amis = Accès anticipé\n+5 amis = VIP Early Access`
+      description: (
+        <div className="space-y-3">
+          <p className="font-semibold">Tu es actuellement #{position.toLocaleString('fr-FR')} dans la liste.</p>
+          
+          <div>
+            <p className="text-sm font-medium mb-1">Partage ton lien unique :</p>
+            <p className="text-xs bg-background/50 p-2 rounded break-all">{referralLink}</p>
+          </div>
+          
+          <div>
+            <p className="text-sm font-medium mb-1">Invite des amis pour avancer :</p>
+            <ul className="text-xs space-y-1">
+              <li>• +1 ami = +500 places</li>
+              <li>• +3 amis = Accès anticipé</li>
+              <li>• +5 amis = VIP Early Access</li>
+            </ul>
+          </div>
+          
+          <p className="text-xs italic pt-2 border-t border-border">📧 Tu recevras un email de confirmation dans les 24h</p>
+        </div>
+      ),
+      duration: 15000
     });
 
     // Réinitialiser le formulaire
