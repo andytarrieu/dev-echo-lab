@@ -6,6 +6,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Validation schema
+const waitlistSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(2, 'Le nom doit contenir au moins 2 caractères')
+    .max(100, 'Le nom doit contenir moins de 100 caractères')
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le nom contient des caractères invalides'),
+  email: z.string()
+    .trim()
+    .email('Adresse email invalide')
+    .max(255, 'L\'email doit contenir moins de 255 caractères'),
+  phone: z.string()
+    .trim()
+    .regex(/^(\+33|0)[0-9\s.-]{9,}$/, 'Numéro de téléphone invalide (format français attendu)')
+    .max(20, 'Numéro de téléphone trop long')
+    .optional()
+    .or(z.literal('')),
+  referralCode: z.string()
+    .trim()
+    .max(50, 'Code de parrainage trop long')
+    .optional()
+    .or(z.literal(''))
+});
 type RoutePoint = {
   x: number;
   y: number;
@@ -189,15 +214,26 @@ const Waitlist = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation basique
-    if (!name || !email) {
+    // Validate inputs with zod
+    const result = waitlistSchema.safeParse({
+      name,
+      email,
+      phone,
+      referralCode
+    });
+
+    if (!result.success) {
+      const firstError = result.error.errors[0];
       toast({
-        title: "Erreur",
-        description: "Veuillez remplir tous les champs obligatoires",
+        title: "Erreur de validation",
+        description: firstError.message,
         variant: "destructive"
       });
       return;
     }
+
+    // Use validated data
+    const validatedData = result.data;
 
     // Générer un numéro aléatoire au-dessus de 4000
     const position = Math.floor(Math.random() * 8000) + 4000;
@@ -219,19 +255,18 @@ const Waitlist = () => {
     // Générer un code de parrainage unique
     const generatedReferralCode = Math.random().toString(36).substring(2, 10);
     
-    // Enregistrer dans Supabase
+    // Enregistrer dans Supabase avec les données validées
     const { error } = await supabase
       .from('waitlist')
       .insert({
-        name,
-        email,
-        phone,
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone || null,
         position,
         referral_code: generatedReferralCode
       });
 
     if (error) {
-      console.error("Erreur lors de l'inscription:", error);
       toast({
         title: "Erreur",
         description: error.message.includes('duplicate') || error.message.includes('unique')
@@ -248,7 +283,7 @@ const Waitlist = () => {
         .from('referrals')
         .insert({
           referrer_id: referrerId,
-          referred_email: email
+          referred_email: validatedData.email
         });
     }
     
