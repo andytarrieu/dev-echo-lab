@@ -220,7 +220,7 @@ const Waitlist = () => {
     const generatedReferralCode = Math.random().toString(36).substring(2, 10);
     
     // Enregistrer dans Supabase
-    const { data: newUser, error } = await supabase
+    const { error } = await supabase
       .from('waitlist')
       .insert({
         name,
@@ -228,9 +228,7 @@ const Waitlist = () => {
         phone,
         position,
         referral_code: generatedReferralCode
-      })
-      .select()
-      .single();
+      });
 
     if (error) {
       console.error("Erreur lors de l'inscription:", error);
@@ -245,7 +243,7 @@ const Waitlist = () => {
     }
 
     // Si un code de parrainage a été utilisé, l'enregistrer
-    if (referrerId && newUser) {
+    if (referrerId) {
       await supabase
         .from('referrals')
         .insert({
@@ -255,7 +253,7 @@ const Waitlist = () => {
     }
     
     // Créer le lien de parrainage unique
-    const referralLink = `aurea-ai.com/waitlist?ref=${newUser.referral_code}`;
+    const referralLink = `https://aurea-ai.com/waitlist?ref=${generatedReferralCode}`;
     
     toast({
       title: "🎉 Inscription réussie !",
