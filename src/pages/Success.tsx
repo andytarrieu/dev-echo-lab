@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
@@ -14,18 +14,14 @@ const Success = () => {
   const [referralCode, setReferralCode] = useState<string>("");
   const { toast } = useToast();
 
+  const hasProcessedRef = useRef(false);
+
   useEffect(() => {
-    const getUserData = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (user && user.email) {
-        const name = user.user_metadata?.full_name || user.user_metadata?.name || "";
-        const email = user.email;
-        
+    const upsertWaitlist = async (email: string, name: string) => {
+      try {
         setUserName(name);
         setUserEmail(email);
 
-        // Vérifier si l'utilisateur est déjà dans la waitlist
         const { data: existingUser } = await supabase
           .from('waitlist')
           .select('position, referral_code')
@@ -33,39 +29,61 @@ const Success = () => {
           .maybeSingle();
 
         if (existingUser) {
-          // L'utilisateur existe déjà
           setPosition(existingUser.position);
           setReferralCode(existingUser.referral_code);
-        } else {
-          // Créer une nouvelle entrée dans la waitlist
-          const newPosition = Math.floor(Math.random() * 8000) + 4000;
-          const newReferralCode = Math.random().toString(36).substring(2, 10);
-
-          const { error } = await supabase
-            .from('waitlist')
-            .insert({
-              name: name,
-              email: email,
-              position: newPosition,
-              referral_code: newReferralCode
-            });
-
-          if (error) {
-            console.error('Erreur lors de l\'insertion dans la waitlist:', error);
-            toast({
-              title: "Erreur",
-              description: "Impossible d'enregistrer vos données. Veuillez réessayer.",
-              variant: "destructive"
-            });
-          } else {
-            setPosition(newPosition);
-            setReferralCode(newReferralCode);
-          }
+          return;
         }
+
+        const newPosition = Math.floor(Math.random() * 8000) + 4000;
+        const newReferralCode = Math.random().toString(36).substring(2, 10);
+
+        const { error } = await supabase
+          .from('waitlist')
+          .insert({
+            name,
+            email,
+            position: newPosition,
+            referral_code: newReferralCode
+          });
+
+        if (error) {
+          console.error("Erreur lors de l'insertion dans la waitlist:", error);
+          toast({
+            title: "Erreur",
+            description: "Impossible d'enregistrer vos données. Veuillez réessayer.",
+            variant: "destructive"
+          });
+          return;
+        }
+
+        setPosition(newPosition);
+        setReferralCode(newReferralCode);
+      } catch (e) {
+        console.error(e);
       }
     };
 
-    getUserData();
+    const handleSession = (session: any) => {
+      if (hasProcessedRef.current) return;
+      const user = session?.user;
+      if (user?.email) {
+        hasProcessedRef.current = true;
+        const name = user.user_metadata?.full_name || user.user_metadata?.name || "";
+        upsertWaitlist(user.email, name);
+      }
+    };
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      handleSession(session);
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      handleSession(session);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, [toast]);
 
   return (
