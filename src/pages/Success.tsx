@@ -4,24 +4,69 @@ import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const Success = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
+  const [position, setPosition] = useState<number | null>(null);
+  const [referralCode, setReferralCode] = useState<string>("");
+  const { toast } = useToast();
 
   useEffect(() => {
     const getUserData = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       
-      if (user) {
-        setUserName(user.user_metadata?.full_name || user.user_metadata?.name || "");
-        setUserEmail(user.email || "");
+      if (user && user.email) {
+        const name = user.user_metadata?.full_name || user.user_metadata?.name || "";
+        const email = user.email;
+        
+        setUserName(name);
+        setUserEmail(email);
+
+        // Vérifier si l'utilisateur est déjà dans la waitlist
+        const { data: existingUser } = await supabase
+          .from('waitlist')
+          .select('position, referral_code')
+          .eq('email', email)
+          .maybeSingle();
+
+        if (existingUser) {
+          // L'utilisateur existe déjà
+          setPosition(existingUser.position);
+          setReferralCode(existingUser.referral_code);
+        } else {
+          // Créer une nouvelle entrée dans la waitlist
+          const newPosition = Math.floor(Math.random() * 8000) + 4000;
+          const newReferralCode = Math.random().toString(36).substring(2, 10);
+
+          const { error } = await supabase
+            .from('waitlist')
+            .insert({
+              name: name,
+              email: email,
+              position: newPosition,
+              referral_code: newReferralCode
+            });
+
+          if (error) {
+            console.error('Erreur lors de l\'insertion dans la waitlist:', error);
+            toast({
+              title: "Erreur",
+              description: "Impossible d'enregistrer vos données. Veuillez réessayer.",
+              variant: "destructive"
+            });
+          } else {
+            setPosition(newPosition);
+            setReferralCode(newReferralCode);
+          }
+        }
       }
     };
 
     getUserData();
-  }, []);
+  }, [toast]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
@@ -67,7 +112,28 @@ const Success = () => {
           <p className="text-foreground mb-4">
             Votre inscription a été confirmée avec succès à l'adresse :
           </p>
-          <p className="text-lg font-semibold text-primary">{userEmail}</p>
+          <p className="text-lg font-semibold text-primary mb-4">{userEmail}</p>
+          
+          {position && (
+            <div className="mt-4 pt-4 border-t border-primary/20">
+              <p className="text-foreground mb-2">
+                Vous êtes actuellement <span className="font-bold text-primary">#{position.toLocaleString('fr-FR')}</span> dans la liste d'attente
+              </p>
+              {referralCode && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium mb-2">Partagez votre lien unique pour avancer :</p>
+                  <p className="text-xs bg-background/50 p-2 rounded break-all font-mono">
+                    https://aurea-ai.com/waitlist?ref={referralCode}
+                  </p>
+                  <div className="mt-3 text-xs space-y-1">
+                    <p>• +1 ami = +500 places</p>
+                    <p>• +3 amis = Accès anticipé</p>
+                    <p>• +5 amis = VIP Early Access</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </motion.div>
 
         <motion.div
