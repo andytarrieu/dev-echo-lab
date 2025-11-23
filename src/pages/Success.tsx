@@ -34,7 +34,16 @@ const Success = () => {
           return;
         }
 
-        const newPosition = Math.floor(Math.random() * 8000) + 4000;
+        // Récupérer la position maximale actuelle
+        const { data: maxPositionData } = await supabase
+          .from('waitlist')
+          .select('position')
+          .order('position', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        // Si c'est le premier utilisateur, commencer à 15000, sinon incrémenter
+        const newPosition = maxPositionData ? maxPositionData.position + 1 : 15000;
         const newReferralCode = Math.random().toString(36).substring(2, 10);
 
         const { error } = await supabase
