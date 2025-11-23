@@ -241,16 +241,38 @@ const Dashboard = () => {
         >
           <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
             <Zap className="h-6 w-6 text-primary" />
-            Votre Lien Unique
+            Votre Code de Parrainage
           </h2>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 bg-muted p-3 rounded-lg font-mono text-sm break-all">
-              {window.location.origin}/waitlist?ref={userData.referralCode}
+          
+          {/* Code de parrainage en gros */}
+          <div className="bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg p-6 mb-4 text-center">
+            <p className="text-sm text-muted-foreground mb-2">Votre code unique</p>
+            <div className="text-4xl font-black font-mono tracking-wider text-primary mb-3">
+              {userData.referralCode}
             </div>
-            <Button onClick={copyReferralLink} size="lg" className="whitespace-nowrap">
+            <Button onClick={() => {
+              navigator.clipboard.writeText(userData.referralCode);
+              toast({
+                title: "✅ Code copié !",
+                description: "Partage ce code avec tes amis",
+              });
+            }} variant="secondary" size="sm">
               <Copy className="mr-2 h-4 w-4" />
-              Copier
+              Copier le code
             </Button>
+          </div>
+
+          <div className="border-t pt-4">
+            <p className="text-sm text-muted-foreground mb-2">Ou partage ce lien complet :</p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1 bg-muted p-3 rounded-lg font-mono text-sm break-all">
+                {window.location.origin}/waitlist?ref={userData.referralCode}
+              </div>
+              <Button onClick={copyReferralLink} size="lg" className="whitespace-nowrap">
+                <Copy className="mr-2 h-4 w-4" />
+                Copier le lien
+              </Button>
+            </div>
           </div>
         </motion.div>
 
