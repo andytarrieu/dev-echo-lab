@@ -248,35 +248,43 @@ const Waitlist = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🔥 Form submitted', { name, email, phone, referralCode });
 
-    // Validate inputs with zod
-    const result = waitlistSchema.safeParse({
-      name,
-      email,
-      phone,
-      referralCode
-    });
-
-    if (!result.success) {
-      const firstError = result.error.errors[0];
-      toast({
-        title: "Erreur de validation",
-        description: firstError.message,
-        variant: "destructive"
+    try {
+      // Validate inputs with zod
+      const result = waitlistSchema.safeParse({
+        name,
+        email,
+        phone,
+        referralCode
       });
-      return;
-    }
 
-    // Use validated data
-    const validatedData = result.data;
+      if (!result.success) {
+        const firstError = result.error.errors[0];
+        console.log('❌ Validation error:', firstError);
+        toast({
+          title: "Erreur de validation",
+          description: firstError.message,
+          variant: "destructive"
+        });
+        return;
+      }
 
-    // Récupérer la position maximale actuelle
-    const { data: maxPositionData } = await supabase
-      .from('waitlist')
-      .select('position')
-      .order('position', { ascending: false })
-      .limit(1)
-      .maybeSingle();
+      console.log('✅ Validation passed');
+
+      // Use validated data
+      const validatedData = result.data;
+      console.log('📊 Fetching max position...');
+
+      // Récupérer la position maximale actuelle
+      const { data: maxPositionData } = await supabase
+        .from('waitlist')
+        .select('position')
+        .order('position', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      
+      console.log('📊 Max position data:', maxPositionData);
 
     // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
     // Sinon incrémenter la position maximale
@@ -298,42 +306,49 @@ const Waitlist = () => {
       }
     }
 
-    // Générer un code de parrainage unique
-    const generatedReferralCode = Math.random().toString(36).substring(2, 10);
-    
-    // Enregistrer dans Supabase avec les données validées
-    const { error } = await supabase
-      .from('waitlist')
-      .insert({
-        name: validatedData.name,
-        email: validatedData.email,
-        phone: validatedData.phone || null,
-        position,
-        referral_code: generatedReferralCode
-      });
-
-    if (error) {
-      toast({
-        title: "Erreur",
-        description: error.message.includes('duplicate') || error.message.includes('unique')
-          ? "Cet email est déjà inscrit sur la liste d'attente" 
-          : "Une erreur est survenue lors de l'inscription",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Si un code de parrainage a été utilisé, l'enregistrer
-    if (referrerId) {
-      await supabase
-        .from('referrals')
+      // Générer un code de parrainage unique
+      const generatedReferralCode = Math.random().toString(36).substring(2, 10);
+      console.log('🎲 Generated referral code:', generatedReferralCode);
+      
+      // Enregistrer dans Supabase avec les données validées
+      console.log('💾 Inserting into database...');
+      const { error } = await supabase
+        .from('waitlist')
         .insert({
-          referrer_id: referrerId,
-          referred_email: validatedData.email
+          name: validatedData.name,
+          email: validatedData.email,
+          phone: validatedData.phone || null,
+          position,
+          referral_code: generatedReferralCode
         });
-    }
-    
-    toast({
+
+      if (error) {
+        console.error('❌ Database error:', error);
+        toast({
+          title: "Erreur",
+          description: error.message.includes('duplicate') || error.message.includes('unique')
+            ? "Cet email est déjà inscrit sur la liste d'attente" 
+            : "Une erreur est survenue lors de l'inscription",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      console.log('✅ Successfully inserted into database');
+
+      // Si un code de parrainage a été utilisé, l'enregistrer
+      if (referrerId) {
+        console.log('🔗 Recording referral...');
+        await supabase
+          .from('referrals')
+          .insert({
+            referrer_id: referrerId,
+            referred_email: validatedData.email
+          });
+      }
+      
+      console.log('🎉 Showing success toast');
+      toast({
       title: "🎉 Inscription réussie !",
       description: (
         <div className="space-y-3">
@@ -357,18 +372,27 @@ const Waitlist = () => {
         </div>
       ),
       duration: 15000
-    });
+      });
 
-    // Redirection vers le dashboard après 2 secondes
-    setTimeout(() => {
-      navigate(`/dashboard?code=${generatedReferralCode}`);
-    }, 2000);
+      // Redirection vers le dashboard après 2 secondes
+      console.log('🔄 Redirecting to dashboard in 2s...');
+      setTimeout(() => {
+        navigate(`/dashboard?code=${generatedReferralCode}`);
+      }, 2000);
 
-    // Réinitialiser le formulaire
-    setName("");
-    setEmail("");
-    setPhone("");
-    setReferralCode("");
+      // Réinitialiser le formulaire
+      setName("");
+      setEmail("");
+      setPhone("");
+      setReferralCode("");
+    } catch (error) {
+      console.error('💥 Unexpected error:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur inattendue est survenue",
+        variant: "destructive"
+      });
+    }
   };
   return <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-background to-accent/20 p-4">
       <div className="w-full max-w-6xl">
