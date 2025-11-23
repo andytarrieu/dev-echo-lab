@@ -359,6 +359,11 @@ const Waitlist = () => {
       duration: 15000
     });
 
+    // Redirection vers le dashboard après 2 secondes
+    setTimeout(() => {
+      navigate(`/dashboard?code=${generatedReferralCode}`);
+    }, 2000);
+
     // Réinitialiser le formulaire
     setName("");
     setEmail("");
