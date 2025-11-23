@@ -68,7 +68,7 @@ const WaitlistBadge = () => {
             animationDelay: '800ms' 
           }}
         >
-          <span className="font-semibold">8.7K</span> early adopters
+          <span className="font-semibold">14.5K</span> early adopters
         </p>
       </div>
     </>
