@@ -286,11 +286,13 @@ const Waitlist = () => {
       
       console.log('📊 Max position data:', maxPositionData);
 
-    // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
-    // Sinon incrémenter la position maximale
-    const position = !maxPositionData || maxPositionData.position < 15000 
-      ? 15000 
-      : maxPositionData.position + 1;
+      // Position aléatoire entre 15 000 et 25 000 pour les nouveaux inscrits
+      // Si la position max dépasse 25000, on incrémente
+      const position = !maxPositionData || maxPositionData.position < 15000 
+        ? Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000
+        : maxPositionData.position >= 25000 
+          ? maxPositionData.position + 1
+          : Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
 
     // Vérifier si le code de parrainage existe
     let referrerId = null;
@@ -362,9 +364,10 @@ const Waitlist = () => {
           <div>
             <p className="text-sm font-medium mb-1">Invite des amis pour avancer :</p>
             <ul className="text-xs space-y-1">
-              <li>• +1 ami = +500 places</li>
-              <li>• +3 amis = Accès anticipé</li>
-              <li>• +5 amis = VIP Early Access</li>
+              <li>• 1 parrainage = -1 500 places</li>
+              <li>• 3 parrainages = -4 500 places</li>
+              <li>• 10 parrainages = Top 5000 garanti</li>
+              <li>• 20 parrainages = Top 1000 assuré</li>
             </ul>
           </div>
           
