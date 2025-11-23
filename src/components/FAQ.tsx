@@ -21,6 +21,10 @@ const FAQ = () => {
       answer: "La waiting list fonctionne avec un système de parrainage intelligent :\n\nInscription gratuite (vous recevez votre position dans la liste)\n\nMontez dans la liste en parrainant :\n- 1 filleul = +10 places\n- 5 filleuls = +50 places + bonus early-bird\n- 10 filleuls = Accès VIP immédiat + 3 mois gratuits\n\nSuivi transparent avec email hebdomadaire et dashboard personnel\n\nAvantages early-bird :\n- Les 100 premiers : 50% de réduction à vie\n- Les 500 premiers : 30% de réduction à vie\n- Les 1000 premiers : 20% de réduction la première année\n\nDate de lancement prévue : Version beta en Mars 2026, lancement général en Juin 2026.",
     },
     {
+      question: "Quelle est la durée de l'engagement ?",
+      answer: "Il n'y a aucun engagement. Vous pouvez annuler à tout moment. Mieux encore : la formule Investisseur Pro vous permet de mettre votre abonnement en pause pour 0 €/mois une fois votre achat réalisé. Vous ne payez que pour l'analyse de chasse (Agents #1 et #2).",
+    },
+    {
       question: "Quelle est la différence entre Auréa et les sites comme SeLoger ou MeilleursAgents ?",
       answer: "SeLoger, LeBonCoin, PAP sont des sites d'annonces (juste des listings) sans analyse.\n\nMeilleursAgents, DVF donnent des données brutes sans interprétation.\n\nAuréa va plus loin :\n\nAgrège toutes ces sources automatiquement\n\nAnalyse et interprète les données avec l'IA\n\nFournit des recommandations actionnables ('Achetez ici, négociez à X€, voici pourquoi')\n\nUtilise 4 agents spécialisés qui couvrent tout le processus d'investissement\n\nGain de temps massif : 30 secondes au lieu de 10 heures.\n\nAnalogie : SeLoger = un dictionnaire. Auréa = un professeur qui vous explique, analyse et vous conseille.",
     },
