@@ -24,10 +24,13 @@ interface RewardTier {
 }
 
 const REWARD_TIERS: RewardTier[] = [
-  { name: "Pioneer", requiredReferrals: 10, targetPosition: 1000, icon: Crown, color: "text-yellow-500" },
-  { name: "Innovator", requiredReferrals: 7, targetPosition: 5000, icon: Trophy, color: "text-orange-500" },
-  { name: "Early Adopter", requiredReferrals: 3, targetPosition: 10000, icon: Star, color: "text-blue-500" },
-  { name: "Beta Member", requiredReferrals: 0, targetPosition: 15000, icon: Zap, color: "text-purple-500" },
+  { name: "Founding Members", requiredReferrals: 34, targetPosition: 50, icon: Crown, color: "text-yellow-500" },
+  { name: "Pioneer Status", requiredReferrals: 30, targetPosition: 100, icon: Trophy, color: "text-orange-500" },
+  { name: "Early Adopters", requiredReferrals: 20, targetPosition: 500, icon: Star, color: "text-blue-500" },
+  { name: "Insiders", requiredReferrals: 15, targetPosition: 1000, icon: Zap, color: "text-purple-500" },
+  { name: "Supporters", requiredReferrals: 10, targetPosition: 5000, icon: Users, color: "text-green-500" },
+  { name: "Members", requiredReferrals: 5, targetPosition: 10000, icon: Star, color: "text-indigo-500" },
+  { name: "Lancement", requiredReferrals: 3, targetPosition: 15000, icon: Zap, color: "text-pink-500" },
 ];
 
 const Dashboard = () => {
@@ -110,12 +113,22 @@ const Dashboard = () => {
 
   const getNextTier = () => {
     if (!userData) return null;
-    return REWARD_TIERS.find(tier => userData.referralCount < tier.requiredReferrals);
+    const finalPosition = calculateFinalPosition();
+    // Trouver le prochain palier basé sur la position corrigée
+    return REWARD_TIERS.find(tier => finalPosition > tier.targetPosition);
+  };
+
+  const getCurrentTier = () => {
+    if (!userData) return null;
+    const finalPosition = calculateFinalPosition();
+    // Trouver le palier actuel basé sur la position corrigée
+    return REWARD_TIERS.find(tier => finalPosition <= tier.targetPosition) || REWARD_TIERS[REWARD_TIERS.length - 1];
   };
 
   const getUnlockedTiers = () => {
     if (!userData) return [];
-    return REWARD_TIERS.filter(tier => userData.referralCount >= tier.requiredReferrals);
+    const finalPosition = calculateFinalPosition();
+    return REWARD_TIERS.filter(tier => finalPosition <= tier.targetPosition);
   };
 
   const copyReferralLink = () => {
@@ -150,9 +163,16 @@ const Dashboard = () => {
 
   const finalPosition = calculateFinalPosition();
   const nextTier = getNextTier();
+  const currentTier = getCurrentTier();
   const unlockedTiers = getUnlockedTiers();
+  
+  // Calculer combien de parrainages il faut pour le prochain palier
+  const referralsToNext = nextTier 
+    ? Math.ceil((finalPosition - nextTier.targetPosition) / 1500)
+    : 0;
+  
   const progressToNext = nextTier 
-    ? (userData.referralCount / nextTier.requiredReferrals) * 100 
+    ? Math.min(((userData.position - finalPosition) / (userData.position - nextTier.targetPosition)) * 100, 100)
     : 100;
 
   return (
@@ -194,6 +214,14 @@ const Dashboard = () => {
           <div className="text-8xl md:text-9xl font-black bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2">
             #{finalPosition.toLocaleString('fr-FR')}
           </div>
+          {currentTier && (
+            <div className="mb-3">
+              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
+                <currentTier.icon className={`h-5 w-5 ${currentTier.color}`} />
+                <span className="font-bold text-lg">{currentTier.name}</span>
+              </div>
+            </div>
+          )}
           <div className="text-sm text-muted-foreground">
             Position initiale : #{userData.position.toLocaleString('fr-FR')} 
             {userData.referralCount > 0 && (
@@ -237,8 +265,11 @@ const Dashboard = () => {
           
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-muted-foreground">Parrainages</span>
+              <span className="text-sm text-muted-foreground">Parrainages réussis</span>
               <span className="text-2xl font-bold text-primary">{userData.referralCount}</span>
+            </div>
+            <div className="text-xs text-primary/70 mb-4">
+              = -{(userData.referralCount * 1500).toLocaleString('fr-FR')} places gagnées
             </div>
             
             {nextTier && (
@@ -246,20 +277,29 @@ const Dashboard = () => {
                 <Progress value={progressToNext} className="h-4 mb-2" />
                 <p className="text-sm text-muted-foreground">
                   Il vous manque seulement <span className="font-bold text-foreground">
-                    {nextTier.requiredReferrals - userData.referralCount} parrainages
-                  </span> pour garantir votre accès au <span className="font-bold text-primary">
-                    Top {nextTier.targetPosition.toLocaleString('fr-FR')}
+                    {referralsToNext} parrainage{referralsToNext > 1 ? 's' : ''}
+                  </span> pour atteindre le <span className="font-bold text-primary">
+                    {nextTier.name} (Top {nextTier.targetPosition.toLocaleString('fr-FR')})
                   </span> !
                 </p>
+                <p className="text-xs text-primary/70 mt-1">
+                  {referralsToNext} × 1500 = -{(referralsToNext * 1500).toLocaleString('fr-FR')} places
+                </p>
               </>
+            )}
+            {!nextTier && (
+              <p className="text-sm text-green-500 font-bold">
+                🎉 Vous avez débloqué tous les paliers disponibles !
+              </p>
             )}
           </div>
 
           {/* Récompenses */}
           <div className="space-y-3">
-            <h3 className="font-bold text-lg mb-3">Récompenses</h3>
+            <h3 className="font-bold text-lg mb-3">🎁 Paliers de Récompenses</h3>
             {REWARD_TIERS.map((tier, index) => {
-              const isUnlocked = userData.referralCount >= tier.requiredReferrals;
+              const isUnlocked = finalPosition <= tier.targetPosition;
+              const isCurrent = currentTier?.name === tier.name;
               const Icon = tier.icon;
               
               return (
@@ -270,20 +310,27 @@ const Dashboard = () => {
                   transition={{ delay: 0.5 + index * 0.1 }}
                   className={`flex items-center gap-4 p-4 rounded-lg border-2 transition-all ${
                     isUnlocked 
-                      ? 'bg-primary/10 border-primary' 
-                      : 'bg-muted/30 border-muted opacity-50'
+                      ? 'bg-primary/10 border-primary shadow-lg' 
+                      : isCurrent
+                        ? 'bg-accent/50 border-accent ring-2 ring-primary/50'
+                        : 'bg-muted/30 border-muted opacity-50'
                   }`}
                 >
                   <Icon className={`h-8 w-8 ${isUnlocked ? tier.color : 'text-muted-foreground'}`} />
                   <div className="flex-1">
                     <div className="font-bold">{tier.name}</div>
                     <div className="text-sm text-muted-foreground">
-                      Top {tier.targetPosition.toLocaleString('fr-FR')} • {tier.requiredReferrals} parrainages
+                      Top {tier.targetPosition.toLocaleString('fr-FR')} • ~{tier.requiredReferrals} parrainages
                     </div>
                   </div>
                   {isUnlocked && (
                     <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      DÉBLOQUÉ
+                      ✨ DÉBLOQUÉ
+                    </div>
+                  )}
+                  {isCurrent && !isUnlocked && (
+                    <div className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
+                      📍 ACTUEL
                     </div>
                   )}
                 </motion.div>
