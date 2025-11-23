@@ -77,6 +77,9 @@ const ComparisonSection = () => {
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-primary mt-2">
                   Auréa vous révèle TOUTES LES POSSIBILITÉS.
                 </p>
+                <p className="text-sm sm:text-base text-muted-foreground mt-4">
+                  Et vous pouvez mettre en pause votre abonnement une fois votre achat réalisé.
+                </p>
               </CardContent>
             </Card>
           </div>
