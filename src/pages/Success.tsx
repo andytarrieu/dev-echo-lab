@@ -42,8 +42,11 @@ const Success = () => {
           .limit(1)
           .maybeSingle();
 
-        // Si c'est le premier utilisateur, commencer à 15000, sinon incrémenter
-        const newPosition = maxPositionData ? maxPositionData.position + 1 : 15000;
+        // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
+        // Sinon incrémenter la position maximale
+        const newPosition = !maxPositionData || maxPositionData.position < 15000 
+          ? 15000 
+          : maxPositionData.position + 1;
         const newReferralCode = Math.random().toString(36).substring(2, 10);
 
         const { error } = await supabase

@@ -278,8 +278,11 @@ const Waitlist = () => {
       .limit(1)
       .maybeSingle();
 
-    // Si c'est le premier utilisateur, commencer à 15000, sinon incrémenter
-    const position = maxPositionData ? maxPositionData.position + 1 : 15000;
+    // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
+    // Sinon incrémenter la position maximale
+    const position = !maxPositionData || maxPositionData.position < 15000 
+      ? 15000 
+      : maxPositionData.position + 1;
 
     // Vérifier si le code de parrainage existe
     let referrerId = null;
@@ -330,9 +333,6 @@ const Waitlist = () => {
         });
     }
     
-    // Créer le lien de parrainage unique
-    const referralLink = `https://aurea-ai.com/waitlist?ref=${generatedReferralCode}`;
-    
     toast({
       title: "🎉 Inscription réussie !",
       description: (
@@ -340,8 +340,8 @@ const Waitlist = () => {
           <p className="font-semibold">Tu es actuellement #{position.toLocaleString('fr-FR')} dans la liste.</p>
           
           <div>
-            <p className="text-sm font-medium mb-1">Partage ton lien unique :</p>
-            <p className="text-xs bg-background/50 p-2 rounded break-all">{referralLink}</p>
+            <p className="text-sm font-medium mb-1">Ton code de parrainage :</p>
+            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{generatedReferralCode}</p>
           </div>
           
           <div>
