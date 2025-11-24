@@ -70,11 +70,24 @@ const Dashboard = () => {
 
   const fetchDashboardData = async (userId: string) => {
     try {
-      // 1. Données utilisateur
+      // Récupérer l'email de l'utilisateur connecté
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      
+      if (!authUser?.email) {
+        toast({
+          title: "❌ Erreur",
+          description: "Email introuvable",
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+
+      // 1. Chercher l'utilisateur par email
       const { data: user, error: userError } = await supabase
         .from("waitlist")
         .select("*")
-        .eq("user_id", userId)
+        .eq("email", authUser.email)
         .maybeSingle();
 
       if (userError) {
@@ -95,6 +108,14 @@ const Dashboard = () => {
         });
         navigate("/waitlist");
         return;
+      }
+
+      // Lier le user_id si ce n'est pas déjà fait
+      if (!user.user_id) {
+        await supabase
+          .from("waitlist")
+          .update({ user_id: userId })
+          .eq("id", user.id);
       }
 
       // 2. Compte des parrainages
