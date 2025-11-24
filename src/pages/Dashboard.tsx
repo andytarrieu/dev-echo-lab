@@ -179,18 +179,6 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Titre Principal */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            VOTRE STATUT BÊTA AURA AI
-          </h1>
-          <p className="text-muted-foreground text-lg">Bienvenue {userData.name}</p>
-        </motion.div>
 
         {/* Position Actuelle - GROS */}
         <motion.div
