@@ -253,18 +253,6 @@ const Dashboard = () => {
             </Button>
           </div>
 
-          <div className="border-t pt-4">
-            <p className="text-sm text-muted-foreground mb-2">Ou partage ce lien complet :</p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-1 bg-muted p-3 rounded-lg font-mono text-sm break-all">
-                {window.location.origin}/waitlist?ref={userData.referralCode}
-              </div>
-              <Button onClick={copyReferralLink} size="lg" className="whitespace-nowrap">
-                <Copy className="mr-2 h-4 w-4" />
-                Copier le lien
-              </Button>
-            </div>
-          </div>
         </motion.div>
 
         {/* Progression Gamification */}
