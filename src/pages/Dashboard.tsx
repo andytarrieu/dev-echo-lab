@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { Trophy, Users, Copy, Zap, Crown, Star } from "lucide-react";
+import { Trophy, Users, Copy, Zap, Crown, Star, LogOut } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { Session } from "@supabase/supabase-js";
 
 interface UserData {
   email: string;
@@ -35,48 +36,69 @@ const REWARD_TIERS: RewardTier[] = [
 ];
 
 const Dashboard = () => {
-  const [searchParams] = useSearchParams();
-  const code = searchParams.get("code");
-  
+  const navigate = useNavigate();
+  const [session, setSession] = useState<Session | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!code) {
-      toast({
-        title: "❌ Accès refusé",
-        description: "Code de parrainage manquant dans l'URL",
-        variant: "destructive",
-      });
-      setLoading(false);
-      return;
-    }
+    // Check for active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (!session) {
+        navigate("/login");
+      } else {
+        fetchDashboardData(session.user.id);
+      }
+    });
 
-    fetchDashboardData();
-  }, [code]);
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        if (!session) {
+          navigate("/login");
+        } else {
+          fetchDashboardData(session.user.id);
+        }
+      }
+    );
 
-  const fetchDashboardData = async () => {
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const fetchDashboardData = async (userId: string) => {
     try {
       // 1. Données utilisateur
       const { data: user, error: userError } = await supabase
         .from("waitlist")
         .select("*")
-        .eq("referral_code", code)
-        .single();
+        .eq("user_id", userId)
+        .maybeSingle();
 
-      if (userError || !user) {
+      if (userError) {
+        console.error("Error fetching user:", userError);
         toast({
-          title: "❌ Code invalide",
-          description: "Ce code de parrainage n'existe pas",
+          title: "❌ Erreur",
+          description: "Impossible de charger vos données",
           variant: "destructive",
         });
         setLoading(false);
         return;
       }
 
+      if (!user) {
+        toast({
+          title: "⚠️ Profil introuvable",
+          description: "Veuillez d'abord vous inscrire à la liste d'attente",
+        });
+        navigate("/waitlist");
+        return;
+      }
+
       // 2. Compte des parrainages
-      const { count: referralCount, error: countError } = await supabase
+      const { count: referralCount } = await supabase
         .from("referrals")
         .select("*", { count: "exact", head: true })
         .eq("referrer_id", user.id);
@@ -104,6 +126,11 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/login");
   };
 
   const calculateFinalPosition = () => {
@@ -149,17 +176,8 @@ const Dashboard = () => {
     );
   }
 
-  if (!userData) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-4">Code invalide</h1>
-          <Link to="/waitlist">
-            <Button>Retour à l'inscription</Button>
-          </Link>
-        </div>
-      </div>
-    );
+  if (!userData || !session) {
+    return null;
   }
 
   const finalPosition = calculateFinalPosition();
@@ -180,6 +198,13 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <Navbar />
       <div className="container mx-auto px-4 py-8 max-w-4xl pt-24">
+        {/* Logout Button */}
+        <div className="flex justify-end mb-4">
+          <Button variant="outline" size="sm" onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Déconnexion
+          </Button>
+        </div>
         {/* Titre accrocheur */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
