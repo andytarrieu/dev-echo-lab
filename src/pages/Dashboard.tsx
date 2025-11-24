@@ -186,7 +186,7 @@ const Dashboard = () => {
           transition={{ delay: 0.1 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl md:text-6xl font-black mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             VOTRE STATUT BÊTA AURA AI
           </h1>
           <p className="text-muted-foreground text-lg">Bienvenue {userData.name}</p>
@@ -202,7 +202,7 @@ const Dashboard = () => {
           <div className="text-muted-foreground text-sm uppercase tracking-wider mb-2">
             Votre Position Actuelle
           </div>
-          <div className="text-8xl md:text-9xl font-black bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2">
+          <div className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2">
             #{finalPosition.toLocaleString('fr-FR')}
           </div>
           {currentTier && (
