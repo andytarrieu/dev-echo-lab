@@ -1,15 +1,48 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logoImage from "@/assets/aurea-logo-new.png";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
+
+  // Gérer le scroll après navigation
+  useEffect(() => {
+    if (pendingScroll && location.pathname === "/") {
+      // Attendre que la page soit chargée
+      setTimeout(() => {
+        const element = document.getElementById(pendingScroll);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+          setActiveSection(pendingScroll);
+        }
+        setPendingScroll(null);
+      }, 100);
+    }
+  }, [location.pathname, pendingScroll]);
 
   const scrollToSection = (sectionId: string) => {
+    // Si on n'est pas sur la page d'accueil, rediriger d'abord
+    if (location.pathname !== "/") {
+      setPendingScroll(sectionId);
+      navigate("/");
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    // Sinon, scroller directement
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;
