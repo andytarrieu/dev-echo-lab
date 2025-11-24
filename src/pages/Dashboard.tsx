@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import { Trophy, Users, Copy, Zap, Crown, Star, LogOut } from "lucide-react";
+
 import Navbar from "@/components/Navbar";
-import { Session } from "@supabase/supabase-js";
 
 interface UserData {
   email: string;
@@ -37,57 +37,29 @@ const REWARD_TIERS: RewardTier[] = [
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [session, setSession] = useState<Session | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for active session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (!session) {
-        navigate("/login");
-      } else {
-        fetchDashboardData(session.user.id);
-      }
-    });
+    // Vérifier si un email est stocké en localStorage
+    const userEmail = localStorage.getItem("userEmail");
+    
+    if (!userEmail) {
+      navigate("/login");
+      return;
+    }
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        if (!session) {
-          navigate("/login");
-        } else {
-          fetchDashboardData(session.user.id);
-        }
-      }
-    );
-
-    return () => subscription.unsubscribe();
+    fetchDashboardData(userEmail);
   }, [navigate]);
 
-  const fetchDashboardData = async (userId: string) => {
+  const fetchDashboardData = async (userEmail: string) => {
     try {
-      // Récupérer l'email de l'utilisateur connecté
-      const { data: { user: authUser } } = await supabase.auth.getUser();
-      
-      if (!authUser?.email) {
-        toast({
-          title: "❌ Erreur",
-          description: "Email introuvable",
-          variant: "destructive",
-        });
-        setLoading(false);
-        return;
-      }
-
-      // 1. Chercher l'utilisateur par email
+      // Chercher l'utilisateur par email
       const { data: user, error: userError } = await supabase
         .from("waitlist")
         .select("*")
-        .eq("email", authUser.email)
+        .eq("email", userEmail)
         .maybeSingle();
 
       if (userError) {
@@ -106,16 +78,9 @@ const Dashboard = () => {
           title: "⚠️ Profil introuvable",
           description: "Veuillez d'abord vous inscrire à la liste d'attente",
         });
+        localStorage.removeItem("userEmail");
         navigate("/waitlist");
         return;
-      }
-
-      // Lier le user_id si ce n'est pas déjà fait
-      if (!user.user_id) {
-        await supabase
-          .from("waitlist")
-          .update({ user_id: userId })
-          .eq("id", user.id);
       }
 
       // 2. Compte des parrainages
@@ -149,8 +114,12 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
+    localStorage.removeItem("userEmail");
+    toast({
+      title: "👋 À bientôt !",
+      description: "Vous avez été déconnecté",
+    });
     navigate("/login");
   };
 
@@ -197,7 +166,7 @@ const Dashboard = () => {
     );
   }
 
-  if (!userData || !session) {
+  if (!userData) {
     return null;
   }
 
