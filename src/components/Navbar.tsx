@@ -67,6 +67,9 @@ const Navbar = () => {
             <Button variant="default" size="sm" asChild>
               <Link to="/waitlist">Réserver mon accès</Link>
             </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/login">Connexion</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,6 +110,9 @@ const Navbar = () => {
               )}
               <Button variant="default" size="sm" className="w-full" asChild>
                 <Link to="/waitlist">Réserver mon accès</Link>
+              </Button>
+              <Button variant="outline" size="sm" className="w-full" asChild>
+                <Link to="/login">Connexion</Link>
               </Button>
             </div>
           </div>
