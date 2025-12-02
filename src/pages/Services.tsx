@@ -68,7 +68,7 @@ const Services = () => {
                       <img 
                         src={agent1} 
                         alt="Analyseur de Marché"
-                        className="w-16 h-16 rounded-full object-contain bg-muted p-2"
+                        className="w-16 h-16 rounded-full object-cover"
                       />
                       <div>
                         <CardTitle className="text-3xl">Noah — L'Analyseur de Marché</CardTitle>
