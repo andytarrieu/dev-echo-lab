@@ -28,7 +28,7 @@ const waitlistSchema = z.object({
     .or(z.literal('')),
   referralCode: z.string()
     .trim()
-    .max(50, 'Code de parrainage trop long')
+    .regex(/^[a-f0-9]{8}$/, 'Code de parrainage invalide')
     .optional()
     .or(z.literal(''))
 });
