@@ -2,13 +2,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb } from "lucide-react";
+import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb, GraduationCap, Landmark, Scale, MapPin, Hammer, Rocket } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import agent1 from "@/assets/agent-1.webp";
 import agent2 from "@/assets/agent-2.webp";
 import agent3 from "@/assets/agent-3.webp";
 import agent4 from "@/assets/agent-4.webp";
+import agent5 from "@/assets/agent-5.webp";
 
 const Services = () => {
   const [searchParams] = useSearchParams();
@@ -33,7 +34,7 @@ const Services = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Les 4 Agents IA Immobiliers
+                Les 5 Agents IA Immobiliers
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Découvrez en détail comment chaque agent IA transforme votre approche de l'investissement immobilier
@@ -41,10 +42,10 @@ const Services = () => {
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-12">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-12">
                 <TabsTrigger value="market" className="text-sm md:text-base">
                   <Search className="h-4 w-4 mr-2" />
-                  Analyseur de Marché
+                  Analyseur
                 </TabsTrigger>
                 <TabsTrigger value="profitability" className="text-sm md:text-base">
                   <Calculator className="h-4 w-4 mr-2" />
@@ -57,6 +58,10 @@ const Services = () => {
                 <TabsTrigger value="diligence" className="text-sm md:text-base">
                   <ShieldCheck className="h-4 w-4 mr-2" />
                   Due Diligence
+                </TabsTrigger>
+                <TabsTrigger value="mentor" className="text-sm md:text-base">
+                  <GraduationCap className="h-4 w-4 mr-2" />
+                  Mentor
                 </TabsTrigger>
               </TabsList>
 
@@ -649,12 +654,171 @@ const Services = () => {
                   </CardContent>
                 </Card>
               </TabsContent>
+
+              {/* Agent #5 - Victor Le Mentor */}
+              <TabsContent value="mentor" className="space-y-8">
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center gap-4 mb-4">
+                      <img 
+                        src={agent5} 
+                        alt="Victor Le Mentor"
+                        className="w-16 h-16 rounded-full object-cover"
+                      />
+                      <div>
+                        <CardTitle className="text-3xl">Victor — Le Mentor IA</CardTitle>
+                        <p className="text-muted-foreground mt-2">
+                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.
+                        </p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4">Les Domaines d'Intervention :</h3>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Landmark className="h-5 w-5 text-primary" />
+                              Stratégie & Financement
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Scoring bancaire et optimisation</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Dossier en béton pour la banque</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Prêt à 110%, différé de remboursement</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Scale className="h-5 w-5 text-primary" />
+                              Fiscalité & Juridique
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">LMNP, SCI (IS/IR), amortissements</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Clauses suspensives optimales</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Choix du notaire stratégique</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <MapPin className="h-5 w-5 text-primary" />
+                              Recherche & Off-Market
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Techniques de visite professionnelles</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Négociation agressive et efficace</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Trouver avant les annonces publiques</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Hammer className="h-5 w-5 text-primary" />
+                              Travaux & Rénovation
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Chiffrage rapide et précis</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Gestion des artisans optimisée</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Optimisation d'espace (Micro-logements)</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Rocket className="h-5 w-5 text-primary" />
+                              Modes d'Exploitation
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Colocation, LCD (Saisonnier)</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Immeuble de rapport</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Stratégie Cash-flow positive</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-primary/20 bg-primary/5">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Lightbulb className="h-5 w-5 text-primary" />
+                              La Promesse
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-3">
+                            <p className="text-muted-foreground font-medium">Victor est votre cerveau stratégique :</p>
+                            <div className="space-y-2 text-sm">
+                              <p className="text-foreground"><strong>Étape 1 :</strong> Posez votre question ou définissez votre objectif</p>
+                              <p className="text-foreground"><strong>Étape 2 :</strong> Victor vous donne la stratégie gagnante (Gratuit)</p>
+                              <p className="text-foreground"><strong>Étape 3 :</strong> Utilisez nos 4 agents pour exécuter et sécuriser l'achat</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </Tabs>
 
             {/* Vue d'ensemble */}
             <Card className="mt-12">
               <CardHeader>
-                <CardTitle className="text-2xl">🧩 Vue d'ensemble des 4 agents</CardTitle>
+                <CardTitle className="text-2xl">🧩 Vue d'ensemble des 5 agents</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
@@ -690,12 +854,19 @@ const Services = () => {
                         <td className="py-4 px-4 text-muted-foreground">Multi-actifs immobiliers</td>
                         <td className="py-4 px-4 text-muted-foreground">Suivi, alertes, fiscalité, reporting</td>
                       </tr>
-                      <tr>
+                      <tr className="border-b border-border">
                         <td className="py-4 px-4 text-muted-foreground font-semibold">4.</td>
                         <td className="py-4 px-4 font-medium">Assistant Due Diligence</td>
                         <td className="py-4 px-4 text-muted-foreground">Sécuriser ton achat</td>
                         <td className="py-4 px-4 text-muted-foreground">Résidentiel & professionnel</td>
                         <td className="py-4 px-4 text-muted-foreground">Analyse documents, red flags, PDF pro</td>
+                      </tr>
+                      <tr>
+                        <td className="py-4 px-4 text-muted-foreground font-semibold">5.</td>
+                        <td className="py-4 px-4 font-medium">Victor Le Mentor</td>
+                        <td className="py-4 px-4 text-muted-foreground">Formation & Stratégie</td>
+                        <td className="py-4 px-4 text-muted-foreground">Tous projets immobiliers</td>
+                        <td className="py-4 px-4 text-muted-foreground">Coaching gratuit, fiscalité, financement</td>
                       </tr>
                     </tbody>
                   </table>
