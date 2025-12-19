@@ -42,26 +42,56 @@ const Services = () => {
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-12">
-                <TabsTrigger value="market" className="text-sm md:text-base">
-                  <Search className="h-4 w-4 mr-2" />
-                  Analyseur
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 gap-3 mb-12 h-auto bg-transparent p-0">
+                <TabsTrigger 
+                  value="market" 
+                  className="flex flex-col items-center gap-2 p-4 h-auto rounded-xl border border-border bg-card hover:bg-accent/10 hover:border-accent/50 data-[state=active]:bg-accent/20 data-[state=active]:border-accent data-[state=active]:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <Search className="h-6 w-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-sm">Noah</span>
+                  <span className="text-xs text-muted-foreground">Analyseur</span>
                 </TabsTrigger>
-                <TabsTrigger value="profitability" className="text-sm md:text-base">
-                  <Calculator className="h-4 w-4 mr-2" />
-                  Évaluateur
+                <TabsTrigger 
+                  value="profitability" 
+                  className="flex flex-col items-center gap-2 p-4 h-auto rounded-xl border border-border bg-card hover:bg-accent/10 hover:border-accent/50 data-[state=active]:bg-accent/20 data-[state=active]:border-accent data-[state=active]:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <Calculator className="h-6 w-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-sm">Emma</span>
+                  <span className="text-xs text-muted-foreground">Évaluateur</span>
                 </TabsTrigger>
-                <TabsTrigger value="portfolio" className="text-sm md:text-base">
-                  <BarChart3 className="h-4 w-4 mr-2" />
-                  Gestionnaire
+                <TabsTrigger 
+                  value="portfolio" 
+                  className="flex flex-col items-center gap-2 p-4 h-auto rounded-xl border border-border bg-card hover:bg-accent/10 hover:border-accent/50 data-[state=active]:bg-accent/20 data-[state=active]:border-accent data-[state=active]:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-sm">Léon</span>
+                  <span className="text-xs text-muted-foreground">Gestionnaire</span>
                 </TabsTrigger>
-                <TabsTrigger value="diligence" className="text-sm md:text-base">
-                  <ShieldCheck className="h-4 w-4 mr-2" />
-                  Due Diligence
+                <TabsTrigger 
+                  value="diligence" 
+                  className="flex flex-col items-center gap-2 p-4 h-auto rounded-xl border border-border bg-card hover:bg-accent/10 hover:border-accent/50 data-[state=active]:bg-accent/20 data-[state=active]:border-accent data-[state=active]:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <ShieldCheck className="h-6 w-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-sm">Lucie</span>
+                  <span className="text-xs text-muted-foreground">Due Diligence</span>
                 </TabsTrigger>
-                <TabsTrigger value="mentor" className="text-sm md:text-base">
-                  <GraduationCap className="h-4 w-4 mr-2" />
-                  Mentor
+                <TabsTrigger 
+                  value="mentor" 
+                  className="flex flex-col items-center gap-2 p-4 h-auto rounded-xl border border-border bg-card hover:bg-accent/10 hover:border-accent/50 data-[state=active]:bg-accent/20 data-[state=active]:border-accent data-[state=active]:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <GraduationCap className="h-6 w-6 text-accent" />
+                  </div>
+                  <span className="font-semibold text-sm">Victor</span>
+                  <span className="text-xs text-muted-foreground">Mentor</span>
                 </TabsTrigger>
               </TabsList>
 
