@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import VictorSection from "@/components/VictorSection";
 import ClientLogos from "@/components/ClientLogos";
 import ProblemSection from "@/components/ProblemSection";
 import AgentsTabs from "@/components/AgentsTabs";
@@ -19,6 +20,7 @@ const Home = () => {
         <div id="home">
           <Hero />
         </div>
+        <VictorSection />
         <ClientLogos />
         
         <div id="services">
