@@ -32,7 +32,7 @@ const Hero = () => {
               Achetez en toute sérénité. Décidez avec raison.
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 md:mb-8 text-white/90 leading-relaxed">
-              4 agents IA qui analysent 1 500+ sources en temps réel pour détecter les pièges cachés, sécuriser vos achats, et vous protéger des arnaques immobilières.
+              5 agents IA qui analysent 1 500+ sources en temps réel pour détecter les pièges cachés, sécuriser vos achats, et vous protéger des arnaques immobilières.
             </p>
             <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 md:mb-8 border border-white/30">
               <p className="text-sm sm:text-base md:text-lg text-white mb-2">
@@ -78,7 +78,7 @@ const Hero = () => {
                 </div>
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-3 sm:p-4 md:p-6">
                   <p className="text-xs sm:text-sm text-foreground mb-1 sm:mb-2">Agents IA</p>
-                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">4</p>
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary">5</p>
                 </div>
                 <div className="bg-[hsl(var(--stat-card-bg))] rounded-xl p-3 sm:p-4 md:p-6">
                   <p className="text-xs sm:text-sm text-foreground mb-1 sm:mb-2">Types de Biens</p>
