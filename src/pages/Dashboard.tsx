@@ -40,7 +40,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [session, setSession] = useState<Session | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -108,12 +107,6 @@ const Dashboard = () => {
         .select("*", { count: "exact", head: true })
         .eq("referrer_id", user.id);
 
-      // Total users count - this will return 0 for non-authenticated users due to RLS
-      // but we still attempt it for authenticated users
-      const { count: totalCount } = await supabase
-        .from("waitlist")
-        .select("*", { count: "exact", head: true });
-
       setUserData({
         email: user.email,
         name: user.name,
@@ -121,7 +114,6 @@ const Dashboard = () => {
         referralCode: user.referral_code,
         referralCount: referralCount || 0,
       });
-      setTotalUsers(totalCount || 0);
     } catch (error) {
       console.error("Dashboard error:", error);
       toast({
@@ -175,6 +167,11 @@ const Dashboard = () => {
       description: "Partage-le avec tes amis pour grimper dans la liste",
     });
   };
+
+  // Don't render anything until auth is confirmed - prevents UI exposure
+  if (!session) {
+    return null;
+  }
 
   if (loading) {
     return (
