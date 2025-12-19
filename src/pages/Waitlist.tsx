@@ -275,73 +275,52 @@ const Waitlist = () => {
 
       // Use validated data
       const validatedData = result.data;
-      console.log('📊 Fetching max position...');
 
-      // Récupérer la position maximale actuelle
-      const { data: maxPositionData } = await supabase
-        .from('waitlist')
-        .select('position')
-        .order('position', { ascending: false })
-        .limit(1)
-        .maybeSingle();
-      
-      console.log('📊 Max position data:', maxPositionData);
-
-      // Position aléatoire entre 15 000 et 25 000 pour les nouveaux inscrits
-      // Si la position max dépasse 25000, on incrémente
-      const position = !maxPositionData || maxPositionData.position < 15000 
-        ? Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000
-        : maxPositionData.position >= 25000 
-          ? maxPositionData.position + 1
-          : Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
-
-    // Vérifier si le code de parrainage existe
-    let referrerId = null;
-    if (referralCode) {
-      const { data: referrer } = await supabase
-        .from('waitlist')
-        .select('id')
-        .eq('referral_code', referralCode)
-        .maybeSingle();
-      
-      if (referrer) {
-        referrerId = referrer.id;
+      // Vérifier si le code de parrainage existe
+      let referrerId = null;
+      if (referralCode) {
+        const { data: referrer } = await supabase
+          .from('waitlist')
+          .select('id')
+          .eq('referral_code', referralCode)
+          .maybeSingle();
+        
+        if (referrer) {
+          referrerId = referrer.id;
+        }
       }
-    }
-
-      // Générer un code de parrainage unique
-      const generatedReferralCode = Math.random().toString(36).substring(2, 10);
-      console.log('🎲 Generated referral code:', generatedReferralCode);
       
       // Enregistrer dans Supabase avec les données validées
-      console.log('💾 Inserting into database...');
-      const { error } = await supabase
+      // Position is assigned automatically by database trigger
+      const { data: insertedData, error } = await supabase
         .from('waitlist')
         .insert({
           name: validatedData.name,
           email: validatedData.email,
           phone: validatedData.phone || null,
-          position,
-          referral_code: generatedReferralCode
-        });
+          position: 0 // Will be overwritten by database trigger
+        })
+        .select('position, referral_code')
+        .single();
 
-      if (error) {
+      if (error || !insertedData) {
         console.error('❌ Database error:', error);
         toast({
           title: "Erreur",
-          description: error.message.includes('duplicate') || error.message.includes('unique')
+          description: error?.message?.includes('duplicate') || error?.message?.includes('unique')
             ? "Cet email est déjà inscrit sur la liste d'attente" 
+            : error?.message?.includes('rate limit')
+            ? "Trop d'inscriptions en cours. Veuillez réessayer dans quelques minutes."
             : "Une erreur est survenue lors de l'inscription",
           variant: "destructive"
         });
         return;
       }
 
-      console.log('✅ Successfully inserted into database');
+      const { position: assignedPosition, referral_code: assignedReferralCode } = insertedData;
 
       // Si un code de parrainage a été utilisé, l'enregistrer
       if (referrerId) {
-        console.log('🔗 Recording referral...');
         await supabase
           .from('referrals')
           .insert({
@@ -350,16 +329,15 @@ const Waitlist = () => {
           });
       }
       
-      console.log('🎉 Showing success toast');
       toast({
       title: "🎉 Inscription réussie !",
       description: (
         <div className="space-y-3">
-          <p className="font-semibold">Tu es actuellement #{position.toLocaleString('fr-FR')} dans la liste.</p>
+          <p className="font-semibold">Tu es actuellement #{assignedPosition.toLocaleString('fr-FR')} dans la liste.</p>
           
           <div>
             <p className="text-sm font-medium mb-1">Ton code de parrainage :</p>
-            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{generatedReferralCode}</p>
+            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{assignedReferralCode}</p>
           </div>
           
           <div>
@@ -379,9 +357,8 @@ const Waitlist = () => {
       });
 
       // Redirection vers le dashboard après 2 secondes
-      console.log('🔄 Redirecting to dashboard in 2s...');
       setTimeout(() => {
-        navigate(`/dashboard?code=${generatedReferralCode}`);
+        navigate(`/dashboard?code=${assignedReferralCode}`);
       }, 2000);
 
       // Réinitialiser le formulaire
