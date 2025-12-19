@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Target, Calculator, TrendingUp, Shield, User, Lightbulb, DollarSign } from "lucide-react";
+import { Target, Calculator, TrendingUp, Shield, User, Lightbulb, DollarSign, GraduationCap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -128,7 +128,34 @@ const agentTabs: Tab[] = [
           "Julie va acheter un T2 à 175k€. Elle upload les documents.",
         result:
           "L'agent détecte : électricité non conforme (2 500€), DPE E (10 000€ de travaux), travaux copro votés (4 800€). Julie négocie le prix de 175k€ à 160k€.",
-        savings: "17 300€ de coûts cachés évités",
+      savings: "17 300€ de coûts cachés évités",
+      },
+    },
+  },
+  {
+    value: "mentor",
+    icon: <GraduationCap className="h-auto w-4 shrink-0" />,
+    label: "Victor",
+    content: {
+      badge: "Agent #5 : VICTOR",
+      title: "Le Mentor IA qui remplace les formations à 2 000 €",
+      description:
+        "Posez n'importe quelle question sur votre projet immobilier. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.",
+      whatItDoes: [
+        "🏦 Stratégie & Financement : Scoring bancaire, dossier en béton, prêt à 110%, différé de remboursement",
+        "⚖️ Fiscalité & Juridique : LMNP, SCI (IS/IR), amortissements, clauses suspensives, choix du notaire",
+        "🔎 Recherche & Off-Market : Techniques de visite, négociation agressive, trouver avant les annonces",
+        "🏗️ Travaux & Rénovation : Chiffrage rapide, gestion des artisans, optimisation d'espace",
+        "🚀 Modes d'Exploitation : Colocation, LCD (Saisonnier), Immeuble de rapport, stratégie Cash-flow",
+      ],
+      advantage:
+        "Victor est votre cerveau stratégique. Il ne se contente pas de répondre, il bâtit votre feuille de route personnalisée. Posez votre question → Victor vous donne la stratégie gagnante → Utilisez nos 4 autres agents pour exécuter et sécuriser l'achat.",
+      example: {
+        situation:
+          "Thomas veut investir mais ne sait pas par où commencer. Il demande à Victor : 'J'ai 30k€ d'apport, comment maximiser mon premier investissement ?'",
+        result:
+          "Victor lui construit une stratégie complète : ville cible, type de bien, montage financier optimal (prêt 110%), régime fiscal LMNP, et plan d'action en 5 étapes.",
+        savings: "Formation économisée : 2 000€ + stratégie personnalisée gratuite",
       },
     },
   },
@@ -141,10 +168,10 @@ const AgentsTabs = () => {
         <div className="flex flex-col items-center gap-3 sm:gap-4 text-center mb-8 sm:mb-12 px-2">
           <Badge variant="outline" className="text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2 w-fit mx-auto">
             <Target className="h-4 w-4" />
-            4 Agents IA
+            5 Agents IA
           </Badge>
           <h2 className="max-w-3xl text-2xl sm:text-3xl font-bold md:text-4xl lg:text-5xl px-2">
-            4 Agents IA qui travaillent pour vous 24/7
+            5 Agents IA qui travaillent pour vous 24/7
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg max-w-2xl px-4">
             Chaque agent est spécialisé dans une tâche critique de votre investissement immobilier

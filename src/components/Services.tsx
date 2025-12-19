@@ -1,12 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, Calculator, BarChart3, ShieldCheck } from "lucide-react";
+import { Search, Calculator, BarChart3, ShieldCheck, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "@/components/WaitlistBadge";
 import agent1 from "@/assets/agent-1.webp";
 import agent2 from "@/assets/agent-2.webp";
 import agent3 from "@/assets/agent-3.webp";
 import agent4 from "@/assets/agent-4.webp";
+import agent5 from "@/assets/agent-5.webp";
 
 const Services = () => {
   const services = [
@@ -38,19 +39,26 @@ const Services = () => {
       link: "/services?tab=diligence",
       image: agent4,
     },
+    {
+      icon: GraduationCap,
+      title: "Victor : Le Mentor IA",
+      description: "Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.",
+      link: "/services?tab=mentor",
+      image: agent5,
+    },
   ];
 
   return (
     <section className="py-12 sm:py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 px-2">Les 4 Agents IA</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 px-2">Les 5 Agents IA</h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Une suite complète d'agents intelligents pour couvrir chaque étape de votre investissement immobilier.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <Card key={index} className="border-border hover:shadow-lg transition-all group overflow-hidden">
               <div className="relative h-40 sm:h-48 overflow-hidden">
