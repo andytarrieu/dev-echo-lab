@@ -247,9 +247,13 @@ const Waitlist = () => {
       setIsGoogleLoading(false);
     }
   };
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('🔥 Form submitted', { name, email, phone, referralCode });
+    
+    if (isSubmitting) return;
+    setIsSubmitting(true);
 
     try {
       // Validate inputs with zod
@@ -262,129 +266,115 @@ const Waitlist = () => {
 
       if (!result.success) {
         const firstError = result.error.errors[0];
-        console.log('❌ Validation error:', firstError);
         toast({
           title: "Erreur de validation",
           description: firstError.message,
           variant: "destructive"
         });
+        setIsSubmitting(false);
         return;
       }
 
-      console.log('✅ Validation passed');
-
-      // Use validated data
       const validatedData = result.data;
 
-      // Verify referral code using secure RPC function with rate limiting
-      let referrerId = null;
-      if (referralCode) {
-        const { data, error: rpcError } = await supabase.rpc('verify_referral_code', {
-          code: referralCode,
-          client_ip_hash: '' // Client-side cannot reliably get IP, but function still validates
-        });
-        
-        if (rpcError) {
-          if (rpcError.message.includes('Rate limit')) {
-            toast({
-              title: "Trop de tentatives",
-              description: "Veuillez réessayer dans quelques minutes.",
-              variant: "destructive"
-            });
-            return;
+      // Verify referral code if provided (simplified - no rate limit check on client)
+      let referrerId: string | null = null;
+      if (validatedData.referralCode) {
+        try {
+          const { data, error: rpcError } = await supabase.rpc('verify_referral_code', {
+            code: validatedData.referralCode
+          });
+          
+          if (!rpcError && data && data.length > 0 && data[0].is_valid) {
+            referrerId = data[0].referrer_id;
           }
-          console.error('Referral code verification error:', rpcError);
-        }
-        
-        // Check if we got a valid referrer
-        if (data && data.length > 0 && data[0].is_valid) {
-          referrerId = data[0].referrer_id;
+        } catch (err) {
+          // Silently ignore referral code errors - user can still sign up
+          console.warn('Referral verification skipped:', err);
         }
       }
       
-      // Enregistrer dans Supabase avec les données validées
-      // Position is assigned automatically by database trigger
+      // Insert into waitlist - position is assigned by database trigger
       const { data: insertedData, error } = await supabase
         .from('waitlist')
         .insert({
           name: validatedData.name,
           email: validatedData.email,
           phone: validatedData.phone || null,
-          position: 0 // Will be overwritten by database trigger
+          position: 0 // Overwritten by trigger
         })
         .select('position, referral_code')
         .single();
 
-      if (error || !insertedData) {
-        console.error('❌ Database error:', error);
+      if (error) {
+        let errorMessage = "Une erreur est survenue lors de l'inscription";
+        
+        if (error.message?.includes('duplicate') || error.message?.includes('unique') || error.code === '23505') {
+          errorMessage = "Cet email est déjà inscrit sur la liste d'attente";
+        } else if (error.message?.includes('rate limit') || error.message?.includes('Rate limit')) {
+          errorMessage = "Trop d'inscriptions en cours. Veuillez réessayer dans quelques minutes.";
+        }
+        
         toast({
           title: "Erreur",
-          description: error?.message?.includes('duplicate') || error?.message?.includes('unique')
-            ? "Cet email est déjà inscrit sur la liste d'attente" 
-            : error?.message?.includes('rate limit')
-            ? "Trop d'inscriptions en cours. Veuillez réessayer dans quelques minutes."
-            : "Une erreur est survenue lors de l'inscription",
+          description: errorMessage,
           variant: "destructive"
         });
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (!insertedData) {
+        toast({
+          title: "Erreur",
+          description: "Impossible de créer votre inscription",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
         return;
       }
 
       const { position: assignedPosition, referral_code: assignedReferralCode } = insertedData;
 
-      // Si un code de parrainage a été utilisé, l'enregistrer
+      // Record referral if valid
       if (referrerId) {
-        await supabase
-          .from('referrals')
-          .insert({
-            referrer_id: referrerId,
-            referred_email: validatedData.email
-          });
+        try {
+          await supabase
+            .from('referrals')
+            .insert({
+              referrer_id: referrerId,
+              referred_email: validatedData.email
+            });
+        } catch {
+          // Silently ignore referral errors
+        }
       }
       
       toast({
-      title: "🎉 Inscription réussie !",
-      description: (
-        <div className="space-y-3">
-          <p className="font-semibold">Tu es actuellement #{assignedPosition.toLocaleString('fr-FR')} dans la liste.</p>
-          
-          <div>
-            <p className="text-sm font-medium mb-1">Ton code de parrainage :</p>
-            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{assignedReferralCode}</p>
-          </div>
-          
-          <div>
-            <p className="text-sm font-medium mb-1">Invite des amis pour avancer :</p>
-            <ul className="text-xs space-y-1">
-              <li>• 1 parrainage = -1 500 places</li>
-              <li>• 3 parrainages = -4 500 places</li>
-              <li>• 10 parrainages = Top 5000 garanti</li>
-              <li>• 20 parrainages = Top 1000 assuré</li>
-            </ul>
-          </div>
-          
-          <p className="text-xs italic pt-2 border-t border-border">📧 Tu recevras un email de confirmation dans les 24h</p>
-        </div>
-      ),
-      duration: 15000
+        title: "🎉 Inscription réussie !",
+        description: `Vous êtes #${assignedPosition.toLocaleString('fr-FR')} dans la liste. Votre code: ${assignedReferralCode}`,
+        duration: 8000
       });
 
-      // Redirection vers le dashboard après 2 secondes
-      setTimeout(() => {
-        navigate(`/dashboard?code=${assignedReferralCode}`);
-      }, 2000);
-
-      // Réinitialiser le formulaire
+      // Reset form and redirect
       setName("");
       setEmail("");
       setPhone("");
       setReferralCode("");
+      
+      setTimeout(() => {
+        navigate(`/dashboard?code=${assignedReferralCode}`);
+      }, 1500);
+
     } catch (error) {
-      console.error('💥 Unexpected error:', error);
+      console.error('Unexpected error:', error);
       toast({
         title: "Erreur",
         description: "Une erreur inattendue est survenue",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -579,10 +569,10 @@ const Waitlist = () => {
               }} whileTap={{
                 scale: 0.98
               }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)} className="pt-2">
-                  <Button type="submit" size="lg" className="w-full relative overflow-hidden group">
+                  <Button type="submit" size="lg" className="w-full relative overflow-hidden group" disabled={isSubmitting}>
                     <span className="flex items-center justify-center">
-                      Réserver mon accès
-                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? "Inscription en cours..." : "Réserver mon accès"}
+                      {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
                     </span>
                   </Button>
                 </motion.div>
