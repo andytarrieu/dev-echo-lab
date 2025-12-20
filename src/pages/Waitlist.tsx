@@ -276,8 +276,9 @@ const Waitlist = () => {
       }
 
       const validatedData = result.data;
+      const trimmedEmail = validatedData.email.toLowerCase().trim();
 
-      // Verify referral code if provided (simplified - no rate limit check on client)
+      // Verify referral code if provided
       let referrerId: string | null = null;
       if (validatedData.referralCode) {
         try {
@@ -289,17 +290,40 @@ const Waitlist = () => {
             referrerId = data[0].referrer_id;
           }
         } catch (err) {
-          // Silently ignore referral code errors - user can still sign up
           console.warn('Referral verification skipped:', err);
         }
       }
+
+      // Step 1: Create Auth user with magic link (this creates the user in auth.users)
+      const redirectUrl = `${window.location.origin}/dashboard`;
+      const { error: authError } = await supabase.auth.signInWithOtp({
+        email: trimmedEmail,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            name: validatedData.name,
+            phone: validatedData.phone || null
+          }
+        }
+      });
+
+      if (authError) {
+        console.error('Auth error:', authError);
+        toast({
+          title: "Erreur",
+          description: "Impossible de créer votre compte. Veuillez réessayer.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
       
-      // Insert into waitlist - position is assigned by database trigger
+      // Step 2: Insert into waitlist
       const { data: insertedData, error } = await supabase
         .from('waitlist')
         .insert({
           name: validatedData.name,
-          email: validatedData.email,
+          email: trimmedEmail,
           phone: validatedData.phone || null,
           position: 0 // Overwritten by trigger
         })
@@ -343,7 +367,7 @@ const Waitlist = () => {
             .from('referrals')
             .insert({
               referrer_id: referrerId,
-              referred_email: validatedData.email
+              referred_email: trimmedEmail
             });
         } catch {
           // Silently ignore referral errors
@@ -352,19 +376,15 @@ const Waitlist = () => {
       
       toast({
         title: "🎉 Inscription réussie !",
-        description: `Vous êtes #${assignedPosition.toLocaleString('fr-FR')} dans la liste. Votre code: ${assignedReferralCode}`,
-        duration: 8000
+        description: `Vérifiez votre email pour confirmer votre inscription. Position: #${assignedPosition.toLocaleString('fr-FR')}`,
+        duration: 10000
       });
 
-      // Reset form and redirect
+      // Reset form
       setName("");
       setEmail("");
       setPhone("");
       setReferralCode("");
-      
-      setTimeout(() => {
-        navigate(`/dashboard?code=${assignedReferralCode}`);
-      }, 1500);
 
     } catch (error) {
       console.error('Unexpected error:', error);
