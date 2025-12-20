@@ -276,17 +276,29 @@ const Waitlist = () => {
       // Use validated data
       const validatedData = result.data;
 
-      // Vérifier si le code de parrainage existe
+      // Verify referral code using secure RPC function with rate limiting
       let referrerId = null;
       if (referralCode) {
-        const { data: referrer } = await supabase
-          .from('waitlist')
-          .select('id')
-          .eq('referral_code', referralCode)
-          .maybeSingle();
+        const { data, error: rpcError } = await supabase.rpc('verify_referral_code', {
+          code: referralCode,
+          client_ip_hash: '' // Client-side cannot reliably get IP, but function still validates
+        });
         
-        if (referrer) {
-          referrerId = referrer.id;
+        if (rpcError) {
+          if (rpcError.message.includes('Rate limit')) {
+            toast({
+              title: "Trop de tentatives",
+              description: "Veuillez réessayer dans quelques minutes.",
+              variant: "destructive"
+            });
+            return;
+          }
+          console.error('Referral code verification error:', rpcError);
+        }
+        
+        // Check if we got a valid referrer
+        if (data && data.length > 0 && data[0].is_valid) {
+          referrerId = data[0].referrer_id;
         }
       }
       
