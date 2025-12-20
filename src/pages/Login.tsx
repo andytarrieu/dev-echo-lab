@@ -44,35 +44,8 @@ const Login = () => {
     const trimmedEmail = email.trim().toLowerCase();
 
     try {
-      // First check if the email exists in the waitlist
-      const { data: user, error: checkError } = await supabase
-        .from("waitlist")
-        .select("email")
-        .eq("email", trimmedEmail)
-        .maybeSingle();
-
-      if (checkError) {
-        console.error("Error checking waitlist:", checkError);
-        toast({
-          title: "❌ Erreur",
-          description: "Impossible de vérifier votre email",
-          variant: "destructive",
-        });
-        setLoading(false);
-        return;
-      }
-
-      if (!user) {
-        toast({
-          title: "❌ Email non trouvé",
-          description: "Cet email n'est pas inscrit. Rejoignez d'abord la liste d'attente.",
-          variant: "destructive",
-        });
-        setLoading(false);
-        return;
-      }
-
-      // Send magic link
+      // Send magic link WITHOUT checking waitlist first to prevent email enumeration
+      // The dashboard will handle users not in the waitlist gracefully
       const redirectUrl = `${window.location.origin}/dashboard`;
       const { error } = await supabase.auth.signInWithOtp({
         email: trimmedEmail,
@@ -85,21 +58,22 @@ const Login = () => {
         console.error("Magic link error:", error);
         toast({
           title: "❌ Erreur",
-          description: error.message || "Impossible d'envoyer le lien de connexion",
+          description: "Impossible d'envoyer le lien de connexion",
           variant: "destructive",
         });
       } else {
         setMagicLinkSent(true);
+        // Use generic message that doesn't reveal if email exists
         toast({
           title: "✅ Lien envoyé !",
-          description: "Vérifiez votre boîte mail pour vous connecter",
+          description: "Si cet email est enregistré, vous recevrez un lien de connexion",
         });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Login error:", error);
       toast({
         title: "❌ Erreur",
-        description: error.message || "Impossible de se connecter",
+        description: "Impossible de se connecter",
         variant: "destructive",
       });
     } finally {
