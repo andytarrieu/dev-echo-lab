@@ -655,122 +655,47 @@ const Services = () => {
                 </Card>
               </TabsContent>
 
-              {/* Agent #5 - Alexandre Le Mentor */}
+              {/* Agent #5 - Victor Le Mentor */}
               <TabsContent value="mentor" className="space-y-8">
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
                       <img 
                         src={agent5} 
-                        alt="Alexandre Le Mentor"
+                        alt="Victor Le Mentor"
                         className="w-16 h-16 rounded-full object-cover"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Alexandre — Le Mentor IA Révolutionnaire</CardTitle>
+                        <CardTitle className="text-3xl">Victor — Le Mentor IA</CardTitle>
                         <p className="text-muted-foreground mt-2">
-                          Une révolution dans l'investissement immobilier. Alexandre brise la barrière financière de l'expertise : formations à 3 000 €, consultations à 250 €/h... Il vous offre ce savoir <strong className="text-primary">instantanément et gratuitement</strong>.
+                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.
                         </p>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-8">
-                    {/* Pourquoi Alexandre est révolutionnaire */}
+                  <CardContent className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                        <Rocket className="h-5 w-5 text-primary" />
-                        Pourquoi Alexandre est-il une révolution ?
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <DollarSign className="h-5 w-5 text-primary" />
-                              Il brise la barrière financière
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-muted-foreground text-sm">Aujourd'hui, pour obtenir ce niveau de conseil (fiscalité complexe, stratégies bancaires, montages SCI) :</p>
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 text-sm">
-                                <TrendingDown className="h-4 w-4 text-destructive" />
-                                <span className="text-muted-foreground">Formations : <strong className="text-foreground">1 500 € à 3 000 €</strong></span>
-                              </div>
-                              <div className="flex items-center gap-2 text-sm">
-                                <TrendingDown className="h-4 w-4 text-destructive" />
-                                <span className="text-muted-foreground">Avocat fiscaliste : <strong className="text-foreground">250 €/heure</strong></span>
-                              </div>
-                            </div>
-                            <p className="text-primary font-semibold text-sm pt-2">→ Alexandre démocratise l'élite de l'investissement</p>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Target className="h-5 w-5 text-primary" />
-                              De la théorie à la stratégie active
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-muted-foreground text-sm">Le problème des formations classiques : le "Flat Learning". Tu regardes des vidéos, mais tu ne sais pas comment les appliquer à TON cas.</p>
-                            <p className="text-foreground text-sm"><strong>Alexandre est interactif :</strong> Si tu as 10 000 € d'apport et veux investir à Bordeaux, il te donne LA stratégie spécifique (micro-logement, colocation) adaptée à ton budget et ce marché.</p>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <TrendingUp className="h-5 w-5 text-primary" />
-                              Gain de temps neurologique (Fast-Learning)
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-muted-foreground text-sm">Lire des livres ou suivre 40h de vidéos prend des semaines. L'investisseur moderne veut agir vite.</p>
-                            <p className="text-foreground text-sm"><strong>Alexandre synthétise</strong> des concepts complexes en 30 secondes. Il te permet de passer de "l'idée" à "l'offre d'achat" <strong className="text-primary">10x plus vite</strong> que n'importe quel autre outil.</p>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-primary/10">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <ShieldCheck className="h-5 w-5 text-primary" />
-                              Préparation psychologique (Confidence Builder)
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-muted-foreground text-sm">L'achat immobilier est l'acte le plus stressant d'une vie. La plupart n'achètent pas parce qu'ils ont peur de l'inconnu.</p>
-                            <p className="text-foreground text-sm">En répondant à <strong>toutes tes questions sans jugement</strong>, Alexandre construit ta confiance. Un investisseur en confiance passe à l'action.</p>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
-
-                    {/* Les conseils brillants d'Alexandre */}
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                        <Lightbulb className="h-5 w-5 text-primary" />
-                        Les "Conseils Brillants" d'Alexandre
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <h3 className="text-xl font-semibold mb-4">Les Domaines d'Intervention :</h3>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <Card className="border-border">
                           <CardHeader>
                             <CardTitle className="text-lg flex items-center gap-2">
                               <Landmark className="h-5 w-5 text-primary" />
-                              Ingénierie Bancaire Avancée
+                              Stratégie & Financement
                             </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Maîtrise du "Lissage de prêt" et "Différé total vs partiel"</p>
+                              <p className="text-muted-foreground">Scoring bancaire et optimisation</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Comment présenter ton compte pour que le banquier dise "Oui" en 5 minutes</p>
+                              <p className="text-muted-foreground">Dossier en béton pour la banque</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Stratégies de prêt à 110% et optimisation du dossier</p>
+                              <p className="text-muted-foreground">Prêt à 110%, différé de remboursement</p>
                             </div>
                           </CardContent>
                         </Card>
@@ -779,44 +704,21 @@ const Services = () => {
                           <CardHeader>
                             <CardTitle className="text-lg flex items-center gap-2">
                               <Scale className="h-5 w-5 text-primary" />
-                              Fiscalité de Précision
+                              Fiscalité & Juridique
                             </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Pourquoi le LMNP au Réel est souvent plus puissant qu'une SCI pour un premier achat</p>
+                              <p className="text-muted-foreground">LMNP, SCI (IS/IR), amortissements</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Comment l'amortissement comptable permet de payer <strong className="text-primary">0 € d'impôts pendant 10 ans</strong></p>
+                              <p className="text-muted-foreground">Clauses suspensives optimales</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">SCI à l'IS vs IR : le choix stratégique selon ton profil</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Hammer className="h-5 w-5 text-primary" />
-                              Optimisation d'Espace (Micro-logements)
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Transformer un 15m² en espace qui se loue au prix d'un 25m²</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Astuces design : lit escamotable, cuisine compacte, douche à l'italienne</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Maximiser le m² pour booster la rentabilité</p>
+                              <p className="text-muted-foreground">Choix du notaire stratégique</p>
                             </div>
                           </CardContent>
                         </Card>
@@ -825,52 +727,89 @@ const Services = () => {
                           <CardHeader>
                             <CardTitle className="text-lg flex items-center gap-2">
                               <MapPin className="h-5 w-5 text-primary" />
-                              Psychologie de Négociation
+                              Recherche & Off-Market
                             </CardTitle>
                           </CardHeader>
                           <CardContent className="space-y-2">
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Détecter si un vendeur est pressé (succession, divorce, départ)</p>
+                              <p className="text-muted-foreground">Techniques de visite professionnelles</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Savoir quand poser une offre agressive</p>
+                              <p className="text-muted-foreground">Négociation agressive et efficace</p>
                             </div>
                             <div className="flex items-start gap-2">
                               <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Techniques de négociation professionnelles</p>
+                              <p className="text-muted-foreground">Trouver avant les annonces publiques</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Hammer className="h-5 w-5 text-primary" />
+                              Travaux & Rénovation
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Chiffrage rapide et précis</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Gestion des artisans optimisée</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Optimisation d'espace (Micro-logements)</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Rocket className="h-5 w-5 text-primary" />
+                              Modes d'Exploitation
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Colocation, LCD (Saisonnier)</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Immeuble de rapport</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                              <p className="text-muted-foreground">Stratégie Cash-flow positive</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-primary/20 bg-primary/5">
+                          <CardHeader>
+                            <CardTitle className="text-lg flex items-center gap-2">
+                              <Lightbulb className="h-5 w-5 text-primary" />
+                              La Promesse
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-3">
+                            <p className="text-muted-foreground font-medium">Victor est votre cerveau stratégique :</p>
+                            <div className="space-y-2 text-sm">
+                              <p className="text-foreground"><strong>Étape 1 :</strong> Posez votre question ou définissez votre objectif</p>
+                              <p className="text-foreground"><strong>Étape 2 :</strong> Victor vous donne la stratégie gagnante (Gratuit)</p>
+                              <p className="text-foreground"><strong>Étape 3 :</strong> Utilisez nos 4 agents pour exécuter et sécuriser l'achat</p>
                             </div>
                           </CardContent>
                         </Card>
                       </div>
                     </div>
-
-                    {/* La promesse Alexandre */}
-                    <Card className="border-primary bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
-                      <CardContent className="py-8">
-                        <div className="text-center space-y-4">
-                          <h3 className="text-2xl font-bold text-foreground">100% Gratuit. 100% Expert. 100% Personnalisé.</h3>
-                          <p className="text-muted-foreground max-w-2xl mx-auto">
-                            Alexandre est votre cerveau stratégique personnel. Il démocratise l'accès à l'expertise que seuls les investisseurs fortunés pouvaient s'offrir.
-                          </p>
-                          <div className="flex flex-wrap justify-center gap-4 pt-4">
-                            <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
-                              <CheckCircle className="h-5 w-5 text-accent" />
-                              <span className="text-sm font-medium">Posez votre question</span>
-                            </div>
-                            <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
-                              <CheckCircle className="h-5 w-5 text-accent" />
-                              <span className="text-sm font-medium">Obtenez la stratégie gagnante</span>
-                            </div>
-                            <div className="flex items-center gap-2 bg-background/50 px-4 py-2 rounded-full">
-                              <CheckCircle className="h-5 w-5 text-accent" />
-                              <span className="text-sm font-medium">Passez à l'action</span>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -924,10 +863,10 @@ const Services = () => {
                       </tr>
                       <tr>
                         <td className="py-4 px-4 text-muted-foreground font-semibold">5.</td>
-                        <td className="py-4 px-4 font-medium">Alexandre Le Mentor</td>
-                        <td className="py-4 px-4 text-muted-foreground">Formation & Stratégie Gratuite</td>
+                        <td className="py-4 px-4 font-medium">Victor Le Mentor</td>
+                        <td className="py-4 px-4 text-muted-foreground">Formation & Stratégie</td>
                         <td className="py-4 px-4 text-muted-foreground">Tous projets immobiliers</td>
-                        <td className="py-4 px-4 text-muted-foreground">Coaching 100% gratuit, fiscalité, financement, négociation</td>
+                        <td className="py-4 px-4 text-muted-foreground">Coaching gratuit, fiscalité, financement</td>
                       </tr>
                     </tbody>
                   </table>

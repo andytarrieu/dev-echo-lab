@@ -34,33 +34,31 @@ const Success = () => {
           return;
         }
 
-        // Insert with position: 0 - database trigger will assign actual position
-        const { data: insertedData, error } = await supabase
+        // Récupérer la position maximale actuelle
+        const { data: maxPositionData } = await supabase
+          .from('waitlist')
+          .select('position')
+          .order('position', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
+        // Sinon incrémenter la position maximale
+        const newPosition = !maxPositionData || maxPositionData.position < 15000 
+          ? 15000 
+          : maxPositionData.position + 1;
+        const newReferralCode = Math.random().toString(36).substring(2, 10);
+
+        const { error } = await supabase
           .from('waitlist')
           .insert({
             name,
             email,
-            position: 0 // Will be overwritten by database trigger
-          })
-          .select('position, referral_code')
-          .single();
+            position: newPosition,
+            referral_code: newReferralCode
+          });
 
         if (error) {
-          // Handle duplicate email - user already exists
-          if (error.code === '23505') {
-            const { data: existingUser } = await supabase
-              .from('waitlist')
-              .select('position, referral_code')
-              .eq('email', email)
-              .single();
-            
-            if (existingUser) {
-              setPosition(existingUser.position);
-              setReferralCode(existingUser.referral_code);
-              return;
-            }
-          }
-          
           console.error("Erreur lors de l'insertion dans la waitlist:", error);
           toast({
             title: "Erreur",
@@ -70,10 +68,8 @@ const Success = () => {
           return;
         }
 
-        if (insertedData) {
-          setPosition(insertedData.position);
-          setReferralCode(insertedData.referral_code);
-        }
+        setPosition(newPosition);
+        setReferralCode(newReferralCode);
       } catch (e) {
         console.error(e);
       }

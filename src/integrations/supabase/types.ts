@@ -14,27 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      referral_lookup_attempts: {
-        Row: {
-          attempted_at: string | null
-          code_attempted: string | null
-          id: string
-          ip_hash: string
-        }
-        Insert: {
-          attempted_at?: string | null
-          code_attempted?: string | null
-          id?: string
-          ip_hash: string
-        }
-        Update: {
-          attempted_at?: string | null
-          code_attempted?: string | null
-          id?: string
-          ip_hash?: string
-        }
-        Relationships: []
-      }
       referrals: {
         Row: {
           created_at: string
@@ -102,18 +81,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      can_create_referral: {
-        Args: { p_referred_email: string; p_referrer_id: string }
-        Returns: boolean
-      }
-      cleanup_old_lookup_attempts: { Args: never; Returns: undefined }
-      verify_referral_code: {
-        Args: { client_ip_hash?: string; code: string }
-        Returns: {
-          is_valid: boolean
-          referrer_id: string
-        }[]
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never

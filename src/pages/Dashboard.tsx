@@ -5,8 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, Loader2 } from "lucide-react";
-import { Session } from "@supabase/supabase-js";
+import { Trophy, Users, Copy, Zap, Crown, Star, LogOut } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 
@@ -38,42 +37,25 @@ const REWARD_TIERS: RewardTier[] = [
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [session, setSession] = useState<Session | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        if (!session) {
-          navigate("/login");
-        } else if (session.user.email) {
-          // Defer data fetching to avoid auth deadlock
-          setTimeout(() => {
-            fetchDashboardData(session.user.email!);
-          }, 0);
-        }
-      }
-    );
+    // Vérifier si un email est stocké en localStorage
+    const userEmail = localStorage.getItem("userEmail");
+    
+    if (!userEmail) {
+      navigate("/login");
+      return;
+    }
 
-    // Check existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (!session) {
-        navigate("/login");
-      } else if (session.user.email) {
-        fetchDashboardData(session.user.email);
-      }
-    });
-
-    return () => subscription.unsubscribe();
+    fetchDashboardData(userEmail);
   }, [navigate]);
 
   const fetchDashboardData = async (userEmail: string) => {
     try {
-      // Fetch user data from waitlist
+      // Chercher l'utilisateur par email
       const { data: user, error: userError } = await supabase
         .from("waitlist")
         .select("*")
@@ -96,16 +78,21 @@ const Dashboard = () => {
           title: "⚠️ Profil introuvable",
           description: "Veuillez d'abord vous inscrire à la liste d'attente",
         });
-        await supabase.auth.signOut();
+        localStorage.removeItem("userEmail");
         navigate("/waitlist");
         return;
       }
 
-      // Count referrals
+      // 2. Compte des parrainages
       const { count: referralCount } = await supabase
         .from("referrals")
         .select("*", { count: "exact", head: true })
         .eq("referrer_id", user.id);
+
+      // 3. Total des inscrits
+      const { count: totalCount } = await supabase
+        .from("waitlist")
+        .select("*", { count: "exact", head: true });
 
       setUserData({
         email: user.email,
@@ -114,8 +101,9 @@ const Dashboard = () => {
         referralCode: user.referral_code,
         referralCount: referralCount || 0,
       });
+      setTotalUsers(totalCount || 0);
     } catch (error) {
-      console.error("Dashboard error:", error);
+      console.error("Erreur:", error);
       toast({
         title: "❌ Erreur",
         description: "Impossible de charger les données",
@@ -126,8 +114,8 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
+    localStorage.removeItem("userEmail");
     toast({
       title: "👋 À bientôt !",
       description: "Vous avez été déconnecté",
@@ -144,12 +132,14 @@ const Dashboard = () => {
   const getNextTier = () => {
     if (!userData) return null;
     const finalPosition = calculateFinalPosition();
+    // Trouver le prochain palier basé sur la position corrigée
     return REWARD_TIERS.find(tier => finalPosition > tier.targetPosition);
   };
 
   const getCurrentTier = () => {
     if (!userData) return null;
     const finalPosition = calculateFinalPosition();
+    // Trouver le palier actuel basé sur la position corrigée
     return REWARD_TIERS.find(tier => finalPosition <= tier.targetPosition) || REWARD_TIERS[REWARD_TIERS.length - 1];
   };
 
@@ -168,15 +158,10 @@ const Dashboard = () => {
     });
   };
 
-  // Don't render anything until auth is confirmed - prevents UI exposure
-  if (!session) {
-    return null;
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <div className="animate-pulse text-2xl font-bold">Chargement...</div>
       </div>
     );
   }
@@ -190,6 +175,7 @@ const Dashboard = () => {
   const currentTier = getCurrentTier();
   const unlockedTiers = getUnlockedTiers();
   
+  // Calculer combien de parrainages il faut pour le prochain palier
   const referralsToNext = nextTier 
     ? Math.ceil((finalPosition - nextTier.targetPosition) / 1500)
     : 0;

@@ -28,7 +28,7 @@ const waitlistSchema = z.object({
     .or(z.literal('')),
   referralCode: z.string()
     .trim()
-    .regex(/^[a-f0-9]{8}$/, 'Code de parrainage invalide')
+    .max(50, 'Code de parrainage trop long')
     .optional()
     .or(z.literal(''))
 });
@@ -247,13 +247,9 @@ const Waitlist = () => {
       setIsGoogleLoading(false);
     }
   };
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (isSubmitting) return;
-    setIsSubmitting(true);
+    console.log('🔥 Form submitted', { name, email, phone, referralCode });
 
     try {
       // Validate inputs with zod
@@ -266,135 +262,140 @@ const Waitlist = () => {
 
       if (!result.success) {
         const firstError = result.error.errors[0];
+        console.log('❌ Validation error:', firstError);
         toast({
           title: "Erreur de validation",
           description: firstError.message,
           variant: "destructive"
         });
-        setIsSubmitting(false);
         return;
       }
 
+      console.log('✅ Validation passed');
+
+      // Use validated data
       const validatedData = result.data;
-      const trimmedEmail = validatedData.email.toLowerCase().trim();
+      console.log('📊 Fetching max position...');
 
-      // Verify referral code if provided
-      let referrerId: string | null = null;
-      if (validatedData.referralCode) {
-        try {
-          const { data, error: rpcError } = await supabase.rpc('verify_referral_code', {
-            code: validatedData.referralCode
-          });
-          
-          if (!rpcError && data && data.length > 0 && data[0].is_valid) {
-            referrerId = data[0].referrer_id;
-          }
-        } catch (err) {
-          console.warn('Referral verification skipped:', err);
-        }
-      }
-
-      // Step 1: Create Auth user with magic link (this creates the user in auth.users)
-      const redirectUrl = `${window.location.origin}/dashboard`;
-      const { error: authError } = await supabase.auth.signInWithOtp({
-        email: trimmedEmail,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            name: validatedData.name,
-            phone: validatedData.phone || null
-          }
-        }
-      });
-
-      if (authError) {
-        console.error('Auth error:', authError);
-        toast({
-          title: "Erreur",
-          description: "Impossible de créer votre compte. Veuillez réessayer.",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
-      }
+      // Récupérer la position maximale actuelle
+      const { data: maxPositionData } = await supabase
+        .from('waitlist')
+        .select('position')
+        .order('position', { ascending: false })
+        .limit(1)
+        .maybeSingle();
       
-      // Step 2: Insert into waitlist
-      const { data: insertedData, error } = await supabase
+      console.log('📊 Max position data:', maxPositionData);
+
+      // Position aléatoire entre 15 000 et 25 000 pour les nouveaux inscrits
+      // Si la position max dépasse 25000, on incrémente
+      const position = !maxPositionData || maxPositionData.position < 15000 
+        ? Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000
+        : maxPositionData.position >= 25000 
+          ? maxPositionData.position + 1
+          : Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
+
+    // Vérifier si le code de parrainage existe
+    let referrerId = null;
+    if (referralCode) {
+      const { data: referrer } = await supabase
+        .from('waitlist')
+        .select('id')
+        .eq('referral_code', referralCode)
+        .maybeSingle();
+      
+      if (referrer) {
+        referrerId = referrer.id;
+      }
+    }
+
+      // Générer un code de parrainage unique
+      const generatedReferralCode = Math.random().toString(36).substring(2, 10);
+      console.log('🎲 Generated referral code:', generatedReferralCode);
+      
+      // Enregistrer dans Supabase avec les données validées
+      console.log('💾 Inserting into database...');
+      const { error } = await supabase
         .from('waitlist')
         .insert({
           name: validatedData.name,
-          email: trimmedEmail,
+          email: validatedData.email,
           phone: validatedData.phone || null,
-          position: 0 // Overwritten by trigger
-        })
-        .select('position, referral_code')
-        .single();
+          position,
+          referral_code: generatedReferralCode
+        });
 
       if (error) {
-        let errorMessage = "Une erreur est survenue lors de l'inscription";
-        
-        if (error.message?.includes('duplicate') || error.message?.includes('unique') || error.code === '23505') {
-          errorMessage = "Cet email est déjà inscrit sur la liste d'attente";
-        } else if (error.message?.includes('rate limit') || error.message?.includes('Rate limit')) {
-          errorMessage = "Trop d'inscriptions en cours. Veuillez réessayer dans quelques minutes.";
-        }
-        
+        console.error('❌ Database error:', error);
         toast({
           title: "Erreur",
-          description: errorMessage,
+          description: error.message.includes('duplicate') || error.message.includes('unique')
+            ? "Cet email est déjà inscrit sur la liste d'attente" 
+            : "Une erreur est survenue lors de l'inscription",
           variant: "destructive"
         });
-        setIsSubmitting(false);
         return;
       }
 
-      if (!insertedData) {
-        toast({
-          title: "Erreur",
-          description: "Impossible de créer votre inscription",
-          variant: "destructive"
-        });
-        setIsSubmitting(false);
-        return;
-      }
+      console.log('✅ Successfully inserted into database');
 
-      const { position: assignedPosition, referral_code: assignedReferralCode } = insertedData;
-
-      // Record referral if valid
+      // Si un code de parrainage a été utilisé, l'enregistrer
       if (referrerId) {
-        try {
-          await supabase
-            .from('referrals')
-            .insert({
-              referrer_id: referrerId,
-              referred_email: trimmedEmail
-            });
-        } catch {
-          // Silently ignore referral errors
-        }
+        console.log('🔗 Recording referral...');
+        await supabase
+          .from('referrals')
+          .insert({
+            referrer_id: referrerId,
+            referred_email: validatedData.email
+          });
       }
       
+      console.log('🎉 Showing success toast');
       toast({
-        title: "🎉 Inscription réussie !",
-        description: `Vérifiez votre email pour confirmer votre inscription. Position: #${assignedPosition.toLocaleString('fr-FR')}`,
-        duration: 10000
+      title: "🎉 Inscription réussie !",
+      description: (
+        <div className="space-y-3">
+          <p className="font-semibold">Tu es actuellement #{position.toLocaleString('fr-FR')} dans la liste.</p>
+          
+          <div>
+            <p className="text-sm font-medium mb-1">Ton code de parrainage :</p>
+            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{generatedReferralCode}</p>
+          </div>
+          
+          <div>
+            <p className="text-sm font-medium mb-1">Invite des amis pour avancer :</p>
+            <ul className="text-xs space-y-1">
+              <li>• 1 parrainage = -1 500 places</li>
+              <li>• 3 parrainages = -4 500 places</li>
+              <li>• 10 parrainages = Top 5000 garanti</li>
+              <li>• 20 parrainages = Top 1000 assuré</li>
+            </ul>
+          </div>
+          
+          <p className="text-xs italic pt-2 border-t border-border">📧 Tu recevras un email de confirmation dans les 24h</p>
+        </div>
+      ),
+      duration: 15000
       });
 
-      // Reset form
+      // Redirection vers le dashboard après 2 secondes
+      console.log('🔄 Redirecting to dashboard in 2s...');
+      setTimeout(() => {
+        navigate(`/dashboard?code=${generatedReferralCode}`);
+      }, 2000);
+
+      // Réinitialiser le formulaire
       setName("");
       setEmail("");
       setPhone("");
       setReferralCode("");
-
     } catch (error) {
-      console.error('Unexpected error:', error);
+      console.error('💥 Unexpected error:', error);
       toast({
         title: "Erreur",
         description: "Une erreur inattendue est survenue",
         variant: "destructive"
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
   return (
@@ -589,10 +590,10 @@ const Waitlist = () => {
               }} whileTap={{
                 scale: 0.98
               }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)} className="pt-2">
-                  <Button type="submit" size="lg" className="w-full relative overflow-hidden group" disabled={isSubmitting}>
+                  <Button type="submit" size="lg" className="w-full relative overflow-hidden group">
                     <span className="flex items-center justify-center">
-                      {isSubmitting ? "Inscription en cours..." : "Réserver mon accès"}
-                      {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
+                      Réserver mon accès
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Button>
                 </motion.div>
