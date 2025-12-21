@@ -214,8 +214,25 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <Navbar />
       <div className="container mx-auto px-4 py-8 max-w-4xl pt-24">
-        {/* Logout Button */}
-        <div className="flex justify-end mb-4">
+        {/* Header avec Logout et Mentor */}
+        <div className="flex justify-between items-center mb-6">
+          {/* Bouton Mentor - Style Chatbot */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <Button 
+              asChild 
+              size="lg" 
+              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg shadow-violet-500/30 border-0"
+            >
+              <Link to="/mentor">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Discuter avec votre mentor
+              </Link>
+            </Button>
+          </motion.div>
+
           <Button variant="outline" size="sm" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
             Déconnexion
@@ -384,20 +401,6 @@ const Dashboard = () => {
           </div>
         </motion.div>
 
-        {/* Bouton Mentor */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55 }}
-          className="text-center"
-        >
-          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 border-2 border-primary/50 hover:bg-primary/10">
-            <Link to="/mentor">
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Discuter avec votre mentor
-            </Link>
-          </Button>
-        </motion.div>
 
         {/* CTA Final */}
         <motion.div
