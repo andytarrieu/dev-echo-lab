@@ -49,7 +49,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttribu
         />
         {showRing && isFocused && (
           <motion.span
-            className="absolute inset-0 rounded-md pointer-events-none ring-2 ring-offset-0 ring-violet-500/30"
+            className="absolute inset-0 rounded-md pointer-events-none ring-2 ring-offset-0 ring-primary/30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -226,40 +226,40 @@ export default function Mentor() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col w-full bg-gradient-to-br from-slate-950 via-violet-950/20 to-slate-950 text-white relative overflow-hidden">
+    <div className="min-h-screen flex flex-col w-full bg-gradient-to-br from-background via-primary/5 to-background text-foreground relative overflow-hidden">
       {/* Effets de fond */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/10 rounded-full mix-blend-normal filter blur-[128px] animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full mix-blend-normal filter blur-[128px] animate-pulse" style={{ animationDelay: '700ms' }} />
-        <div className="absolute top-1/4 right-1/3 w-64 h-64 bg-fuchsia-500/10 rounded-full mix-blend-normal filter blur-[96px] animate-pulse" style={{ animationDelay: '1000ms' }} />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-normal filter blur-[128px] animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full mix-blend-normal filter blur-[128px] animate-pulse" style={{ animationDelay: '700ms' }} />
+        <div className="absolute top-1/4 right-1/3 w-64 h-64 bg-primary/5 rounded-full mix-blend-normal filter blur-[96px] animate-pulse" style={{ animationDelay: '1000ms' }} />
       </div>
 
       {/* Header avec logo Victor */}
       <motion.div
-        className="relative z-10 p-6 border-b border-white/5 backdrop-blur-xl bg-white/[0.02]"
+        className="relative z-10 p-6 border-b border-border backdrop-blur-xl bg-card/50"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
         <div className="max-w-4xl mx-auto flex items-center gap-4">
           <button
             onClick={() => navigate('/dashboard')}
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
           >
-            <ArrowLeft className="w-5 h-5 text-white/70" />
+            <ArrowLeft className="w-5 h-5 text-muted-foreground" />
           </button>
           <img 
             src={victorAvatar} 
             alt="Victor" 
-            className="w-12 h-12 rounded-full object-cover object-top shadow-lg shadow-violet-500/20 ring-2 ring-violet-500/30"
+            className="w-12 h-12 rounded-full object-cover object-top shadow-lg shadow-primary/20 ring-2 ring-primary/30"
           />
           <div>
-            <h1 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+            <h1 className="text-xl font-semibold text-foreground">
               Agent Victor
             </h1>
-            <p className="text-sm text-white/40">Stratège Immobilier AURÉA</p>
+            <p className="text-sm text-muted-foreground">Stratège Immobilier AURÉA</p>
           </div>
           <div className="ml-auto flex gap-2">
-            <span className="px-3 py-1 rounded-full text-xs bg-green-500/10 text-green-400 border border-green-500/20">● En ligne</span>
+            <span className="px-3 py-1 rounded-full text-xs bg-green-500/10 text-green-600 border border-green-500/20">● En ligne</span>
           </div>
         </div>
       </motion.div>
@@ -274,10 +274,10 @@ export default function Mentor() {
               className="text-center space-y-6 py-12"
             >
               <div className="space-y-3">
-                <h2 className="text-3xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white/90 to-white/40">
+                <h2 className="text-3xl font-medium tracking-tight text-foreground">
                   Bienvenue dans votre espace stratégique
                 </h2>
-                <p className="text-white/40">
+                <p className="text-muted-foreground">
                   Je remplace les formations à 2 000€. Posez-moi toutes vos questions sur l'investissement immobilier.
                 </p>
               </div>
@@ -286,14 +286,14 @@ export default function Mentor() {
                   <motion.button
                     key={i}
                     onClick={() => selectQuestion(q)}
-                    className="p-4 text-left bg-white/[0.02] hover:bg-white/[0.05] rounded-xl border border-white/5 hover:border-violet-500/30 transition-all group"
+                    className="p-4 text-left bg-card hover:bg-muted rounded-xl border border-border hover:border-primary/30 transition-all group"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <Sparkles className="w-4 h-4 text-violet-400 mb-2 group-hover:text-violet-300" />
-                    <p className="text-sm text-white/70 group-hover:text-white/90">{q}</p>
+                    <Sparkles className="w-4 h-4 text-primary mb-2 group-hover:text-primary/80" />
+                    <p className="text-sm text-muted-foreground group-hover:text-foreground">{q}</p>
                   </motion.button>
                 ))}
               </div>
@@ -311,13 +311,13 @@ export default function Mentor() {
                     <img 
                       src={victorAvatar} 
                       alt="Victor" 
-                      className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0 shadow-lg shadow-violet-500/20"
+                      className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0 shadow-lg shadow-primary/20"
                     />
                   )}
                   <div className={`max-w-2xl p-4 rounded-2xl ${
                     msg.role === 'user'
-                      ? 'bg-violet-600/20 border border-violet-500/30 text-white'
-                      : 'bg-white/[0.02] border border-white/5 text-white/90'
+                      ? 'bg-primary/10 border border-primary/30 text-foreground'
+                      : 'bg-card border border-border text-foreground'
                   }`}>
                     <div className="text-sm whitespace-pre-wrap leading-relaxed">{msg.content}</div>
                   </div>
@@ -338,19 +338,19 @@ export default function Mentor() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
           >
-            <div className="flex items-center gap-3 p-3 bg-white/[0.02] rounded-xl border border-white/5 w-fit">
+            <div className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border w-fit">
               <img 
                 src={victorAvatar} 
                 alt="Victor" 
                 className="w-6 h-6 rounded-full object-cover object-top"
               />
-              <div className="flex items-center gap-2 text-sm text-white/70">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>Victor réfléchit</span>
                 <div className="flex gap-1">
                   {[0, 1, 2].map(i => (
                     <motion.div
                       key={i}
-                      className="w-1.5 h-1.5 bg-violet-400 rounded-full"
+                      className="w-1.5 h-1.5 bg-primary rounded-full"
                       animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.1, 0.8] }}
                       transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.15 }}
                     />
@@ -363,10 +363,10 @@ export default function Mentor() {
       </AnimatePresence>
 
       {/* Zone d'input */}
-      <div className="relative z-10 p-6 border-t border-white/5 backdrop-blur-xl bg-white/[0.02]">
+      <div className="relative z-10 p-6 border-t border-border backdrop-blur-xl bg-card/50">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            className="relative bg-white/[0.02] rounded-2xl border border-white/5 shadow-2xl"
+            className="relative bg-card rounded-2xl border border-border shadow-2xl"
             initial={{ scale: 0.98 }}
             animate={{ scale: 1 }}
           >
@@ -375,7 +375,7 @@ export default function Mentor() {
               {showCommandPalette && (
                 <motion.div
                   ref={commandPaletteRef}
-                  className="absolute left-4 right-4 bottom-full mb-2 backdrop-blur-xl bg-black/90 rounded-lg z-50 shadow-lg border border-white/10 overflow-hidden"
+                  className="absolute left-4 right-4 bottom-full mb-2 backdrop-blur-xl bg-popover rounded-lg z-50 shadow-lg border border-border overflow-hidden"
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 5 }}
@@ -385,21 +385,21 @@ export default function Mentor() {
                       <motion.div
                         key={suggestion.prefix}
                         className={`flex items-center gap-3 px-4 py-3 cursor-pointer transition-colors ${
-                          activeSuggestion === index ? 'bg-violet-500/20 text-white' : 'text-white/70 hover:bg-white/5'
+                          activeSuggestion === index ? 'bg-primary/20 text-foreground' : 'text-muted-foreground hover:bg-muted'
                         }`}
                         onClick={() => selectCommand(index)}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: index * 0.03 }}
                       >
-                        <div className="w-8 h-8 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-400">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                           {suggestion.icon}
                         </div>
                         <div className="flex-1">
-                          <div className="font-medium text-sm">{suggestion.label}</div>
-                          <div className="text-xs text-white/40">{suggestion.description}</div>
+                          <div className="font-medium text-sm text-foreground">{suggestion.label}</div>
+                          <div className="text-xs text-muted-foreground">{suggestion.description}</div>
                         </div>
-                        <div className="text-xs text-white/30 font-mono">{suggestion.prefix}</div>
+                        <div className="text-xs text-muted-foreground font-mono">{suggestion.prefix}</div>
                       </motion.div>
                     ))}
                   </div>
@@ -420,23 +420,23 @@ export default function Mentor() {
                 onBlur={() => setInputFocused(false)}
                 placeholder="Posez votre question à Victor..."
                 containerClassName="w-full"
-                className="w-full px-4 py-3 resize-none bg-transparent border-none text-white/90 text-sm focus:outline-none placeholder:text-white/20 min-h-[60px]"
+                className="w-full px-4 py-3 resize-none bg-transparent border-none text-foreground text-sm focus:outline-none placeholder:text-muted-foreground min-h-[60px]"
                 showRing={false}
               />
             </div>
 
-            <div className="p-4 border-t border-white/5 flex items-center justify-between">
+            <div className="p-4 border-t border-border flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setShowCommandPalette(!showCommandPalette)}
                   className={`p-2 rounded-lg transition-colors ${
-                    showCommandPalette ? 'bg-violet-500/20 text-violet-400' : 'text-white/40 hover:text-white/70'
+                    showCommandPalette ? 'bg-primary/20 text-primary' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   <Command className="w-4 h-4" />
                 </button>
-                <span className="text-xs text-white/30">Tapez / pour les commandes</span>
+                <span className="text-xs text-muted-foreground">Tapez / pour les commandes</span>
               </div>
 
               <motion.button
@@ -446,8 +446,8 @@ export default function Mentor() {
                 whileTap={{ scale: 0.98 }}
                 className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
                   value.trim() && !isTyping
-                    ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/20'
-                    : 'bg-white/5 text-white/30 cursor-not-allowed'
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
+                    : 'bg-muted text-muted-foreground cursor-not-allowed'
                 }`}
               >
                 {isTyping ? (
@@ -462,12 +462,12 @@ export default function Mentor() {
 
           {/* Info équipe AURÉA */}
           <motion.div
-            className="mt-4 text-center text-xs text-white/30"
+            className="mt-4 text-center text-xs text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Propulsé par <span className="text-violet-400 font-medium">AURÉA</span> • Victor + 4 agents spécialisés à votre service
+            Propulsé par <span className="text-primary font-medium">AURÉA</span> • Victor + 4 agents spécialisés à votre service
           </motion.div>
         </div>
       </div>
@@ -475,7 +475,7 @@ export default function Mentor() {
       {/* Effet de curseur */}
       {inputFocused && (
         <motion.div
-          className="fixed w-[40rem] h-[40rem] rounded-full pointer-events-none z-0 opacity-[0.015] bg-gradient-to-r from-violet-500 via-fuchsia-500 to-indigo-500 blur-[96px]"
+          className="fixed w-[40rem] h-[40rem] rounded-full pointer-events-none z-0 opacity-[0.03] bg-primary blur-[96px]"
           animate={{
             x: mousePosition.x - 320,
             y: mousePosition.y - 320,
