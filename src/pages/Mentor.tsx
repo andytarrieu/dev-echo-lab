@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Send, Bot, Building2, TrendingUp, Shield, Calculator, Sparkles, Command, ArrowLeft, Loader } from 'lucide-react';
+import { Send, Building2, TrendingUp, Shield, Calculator, Sparkles, Command, ArrowLeft, Loader, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import victorAvatar from '@/assets/agent-5.webp';
 
 // Hook pour auto-resize textarea
 function useAutoResizeTextarea({ minHeight, maxHeight }: { minHeight: number; maxHeight: number }) {
@@ -246,9 +247,11 @@ export default function Mentor() {
           >
             <ArrowLeft className="w-5 h-5 text-white/70" />
           </button>
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-            <Bot className="w-6 h-6 text-white" />
-          </div>
+          <img 
+            src={victorAvatar} 
+            alt="Victor" 
+            className="w-12 h-12 rounded-full object-cover shadow-lg shadow-violet-500/20 ring-2 ring-violet-500/30"
+          />
           <div>
             <h1 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
               Agent Victor
@@ -305,9 +308,11 @@ export default function Mentor() {
                   className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-violet-500/20">
-                      <Bot className="w-4 h-4 text-white" />
-                    </div>
+                    <img 
+                      src={victorAvatar} 
+                      alt="Victor" 
+                      className="w-8 h-8 rounded-full object-cover flex-shrink-0 shadow-lg shadow-violet-500/20"
+                    />
                   )}
                   <div className={`max-w-2xl p-4 rounded-2xl ${
                     msg.role === 'user'
@@ -334,9 +339,11 @@ export default function Mentor() {
             exit={{ opacity: 0, y: 10 }}
           >
             <div className="flex items-center gap-3 p-3 bg-white/[0.02] rounded-xl border border-white/5 w-fit">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
-                <Bot className="w-3 h-3 text-white" />
-              </div>
+              <img 
+                src={victorAvatar} 
+                alt="Victor" 
+                className="w-6 h-6 rounded-full object-cover"
+              />
               <div className="flex items-center gap-2 text-sm text-white/70">
                 <span>Victor réfléchit</span>
                 <div className="flex gap-1">
