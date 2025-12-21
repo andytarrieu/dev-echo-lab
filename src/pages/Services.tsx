@@ -1,8 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb, GraduationCap, Landmark, Scale, MapPin, Hammer, Rocket } from "lucide-react";
+import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb, GraduationCap, Landmark, Scale, MapPin, Hammer, Rocket, Sparkles, AlertCircle, Gem, Brain, MessageCircle } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import agent1 from "@/assets/agent-1.webp";
@@ -657,158 +658,200 @@ const Services = () => {
 
               {/* Agent #5 - Victor Le Mentor */}
               <TabsContent value="mentor" className="space-y-8">
+                {/* Header */}
                 <Card>
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
                       <img 
                         src={agent5} 
                         alt="Victor Le Mentor"
-                        className="w-16 h-16 rounded-full object-cover"
+                        className="w-20 h-20 rounded-full object-cover object-top border-4 border-primary/20"
                       />
                       <div>
                         <CardTitle className="text-3xl">Victor — Le Mentor IA</CardTitle>
-                        <p className="text-muted-foreground mt-2">
-                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.
+                        <p className="text-muted-foreground mt-2 text-lg">
+                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider <span className="text-primary font-semibold">gratuitement</span>.
                         </p>
                       </div>
                     </div>
                   </CardHeader>
+                </Card>
+
+                {/* Pourquoi Victor est une révolution */}
+                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+                  <CardHeader>
+                    <CardTitle className="text-2xl flex items-center gap-3">
+                      <Sparkles className="h-6 w-6 text-primary" />
+                      Pourquoi Victor est-il une révolution ?
+                    </CardTitle>
+                  </CardHeader>
                   <CardContent className="space-y-6">
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4">Les Domaines d'Intervention :</h3>
-                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Landmark className="h-5 w-5 text-primary" />
-                              Stratégie & Financement
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Scoring bancaire et optimisation</p>
+                    {/* Révolution 1 */}
+                    <div className="p-5 rounded-xl bg-background border border-border">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <span className="text-primary font-bold">1</span>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold mb-2">Il brise la barrière financière de l'expertise</h4>
+                          <p className="text-muted-foreground mb-3">
+                            Aujourd'hui, pour obtenir ce niveau de conseil (fiscalité complexe, stratégies bancaires avancées, montages en SCI), vous avez deux choix :
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-3 mb-4">
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <AlertCircle className="h-4 w-4 text-destructive" />
+                              <span>Formation : <strong className="text-foreground">1 500 € à 3 000 €</strong></span>
                             </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Dossier en béton pour la banque</p>
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <AlertCircle className="h-4 w-4 text-destructive" />
+                              <span>Avocat fiscaliste : <strong className="text-foreground">250 €/heure</strong></span>
                             </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Prêt à 110%, différé de remboursement</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Scale className="h-5 w-5 text-primary" />
-                              Fiscalité & Juridique
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">LMNP, SCI (IS/IR), amortissements</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Clauses suspensives optimales</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Choix du notaire stratégique</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <MapPin className="h-5 w-5 text-primary" />
-                              Recherche & Off-Market
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Techniques de visite professionnelles</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Négociation agressive et efficace</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Trouver avant les annonces publiques</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Hammer className="h-5 w-5 text-primary" />
-                              Travaux & Rénovation
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Chiffrage rapide et précis</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Gestion des artisans optimisée</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Optimisation d'espace (Micro-logements)</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-border">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Rocket className="h-5 w-5 text-primary" />
-                              Modes d'Exploitation
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-2">
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Colocation, LCD (Saisonnier)</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Immeuble de rapport</p>
-                            </div>
-                            <div className="flex items-start gap-2">
-                              <CheckCircle className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                              <p className="text-muted-foreground">Stratégie Cash-flow positive</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card className="border-primary/20 bg-primary/5">
-                          <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                              <Lightbulb className="h-5 w-5 text-primary" />
-                              La Promesse
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent className="space-y-3">
-                            <p className="text-muted-foreground font-medium">Victor est votre cerveau stratégique :</p>
-                            <div className="space-y-2 text-sm">
-                              <p className="text-foreground"><strong>Étape 1 :</strong> Posez votre question ou définissez votre objectif</p>
-                              <p className="text-foreground"><strong>Étape 2 :</strong> Victor vous donne la stratégie gagnante (Gratuit)</p>
-                              <p className="text-foreground"><strong>Étape 3 :</strong> Utilisez nos 4 agents pour exécuter et sécuriser l'achat</p>
-                            </div>
-                          </CardContent>
-                        </Card>
+                          </div>
+                          <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
+                            <p className="text-accent font-medium">💎 La valeur de Victor : Il offre ce savoir instantanément et gratuitement. Il démocratise l'élite de l'investissement.</p>
+                          </div>
+                        </div>
                       </div>
+                    </div>
+
+                    {/* Révolution 2 */}
+                    <div className="p-5 rounded-xl bg-background border border-border">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <span className="text-primary font-bold">2</span>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold mb-2">De la "Théorie Passive" à la "Stratégie Active"</h4>
+                          <p className="text-muted-foreground mb-3">
+                            Le problème des formations classiques est le "Flat Learning" : vous regardez des vidéos, mais vous ne savez pas comment les appliquer à <strong className="text-foreground">VOTRE</strong> cas précis.
+                          </p>
+                          <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
+                            <p className="text-accent font-medium">💎 L'apport de Victor : Il est interactif. Si vous dites "J'ai 10 000 € d'apport et je veux investir à Bordeaux", Victor ne fait pas un cours général — il vous donne LA stratégie spécifique (micro-logement, colocation) adaptée à votre situation.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Révolution 3 */}
+                    <div className="p-5 rounded-xl bg-background border border-border">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <span className="text-primary font-bold">3</span>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold mb-2">Un gain de temps neurologique — Le "Fast-Learning"</h4>
+                          <p className="text-muted-foreground mb-3">
+                            Lire des livres ou suivre 40 heures de vidéos prend des semaines. L'investisseur moderne veut <strong className="text-foreground">agir vite</strong>.
+                          </p>
+                          <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
+                            <p className="text-accent font-medium">💎 L'apport de Victor : Il synthétise des concepts complexes en 30 secondes. Il permet de passer de "l'idée" à "l'offre d'achat" 10x plus vite que n'importe quel autre outil.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Révolution 4 */}
+                    <div className="p-5 rounded-xl bg-background border border-border">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                          <span className="text-primary font-bold">4</span>
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold mb-2">La préparation psychologique — Le "Confidence Builder"</h4>
+                          <p className="text-muted-foreground mb-3">
+                            L'achat immobilier est l'acte le plus stressant d'une vie. La plupart des gens n'achètent pas parce qu'ils ont <strong className="text-foreground">peur de l'inconnu</strong>.
+                          </p>
+                          <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
+                            <p className="text-accent font-medium">💎 L'apport de Victor : En répondant à toutes vos questions "bêtes" ou techniques sans jugement, il construit votre confiance. Un investisseur en confiance est un investisseur qui passe à l'action.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Conseils Brillants de Victor */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-2xl flex items-center gap-3">
+                      <Gem className="h-6 w-6 text-primary" />
+                      Les "Conseils Brillants" de Victor
+                    </CardTitle>
+                    <p className="text-muted-foreground">Des détails précis que seuls les experts connaissent</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <Card className="border-border hover:border-primary/30 transition-colors">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Landmark className="h-5 w-5 text-primary" />
+                            Ingénierie Bancaire
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground text-sm">
+                            Victor n'explique pas juste le crédit — il explique le <strong className="text-foreground">"Lissage de prêt"</strong>, le <strong className="text-foreground">"Différé total vs partiel"</strong> et comment présenter un compte bancaire pour que le banquier dise "Oui" en 5 minutes.
+                          </p>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="border-border hover:border-primary/30 transition-colors">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Scale className="h-5 w-5 text-primary" />
+                            Fiscalité de Précision
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground text-sm">
+                            Il explique pourquoi le <strong className="text-foreground">LMNP au Réel</strong> est souvent plus puissant qu'une SCI pour un premier achat, et comment l'amortissement comptable permet de payer <strong className="text-foreground">0 € d'impôts pendant 10 ans</strong>.
+                          </p>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="border-border hover:border-primary/30 transition-colors">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Hammer className="h-5 w-5 text-primary" />
+                            Optimisation d'Espace
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground text-sm">
+                            Il donne des astuces pour transformer un <strong className="text-foreground">15m² en espace qui se loue au prix d'un 25m²</strong> : lit escamotable, cuisine compacte, douche à l'italienne.
+                          </p>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="border-border hover:border-primary/30 transition-colors">
+                        <CardHeader className="pb-3">
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Brain className="h-5 w-5 text-primary" />
+                            Psychologie de Négociation
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-muted-foreground text-sm">
+                            Il apprend à détecter si un vendeur est <strong className="text-foreground">pressé</strong> (succession, divorce, départ) pour savoir quand poser une offre agressive et obtenir le meilleur prix.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* CTA Final */}
+                <Card className="border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent">
+                  <CardContent className="p-8">
+                    <div className="text-center space-y-4">
+                      <h3 className="text-2xl font-bold">Prêt à bénéficier de l'expertise de Victor ?</h3>
+                      <p className="text-muted-foreground max-w-2xl mx-auto">
+                        Posez votre première question et découvrez comment Victor peut transformer votre projet immobilier.
+                      </p>
+                      <Button size="lg" className="mt-4" onClick={() => window.location.href = '/mentor'}>
+                        <MessageCircle className="h-5 w-5 mr-2" />
+                        Discuter avec Victor — Gratuit
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
