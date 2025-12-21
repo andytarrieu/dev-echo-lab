@@ -250,7 +250,7 @@ export default function Mentor() {
           <img 
             src={victorAvatar} 
             alt="Victor" 
-            className="w-12 h-12 rounded-full object-cover shadow-lg shadow-violet-500/20 ring-2 ring-violet-500/30"
+            className="w-12 h-12 rounded-full object-cover object-top shadow-lg shadow-violet-500/20 ring-2 ring-violet-500/30"
           />
           <div>
             <h1 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
@@ -311,7 +311,7 @@ export default function Mentor() {
                     <img 
                       src={victorAvatar} 
                       alt="Victor" 
-                      className="w-8 h-8 rounded-full object-cover flex-shrink-0 shadow-lg shadow-violet-500/20"
+                      className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0 shadow-lg shadow-violet-500/20"
                     />
                   )}
                   <div className={`max-w-2xl p-4 rounded-2xl ${
@@ -342,7 +342,7 @@ export default function Mentor() {
               <img 
                 src={victorAvatar} 
                 alt="Victor" 
-                className="w-6 h-6 rounded-full object-cover"
+                className="w-6 h-6 rounded-full object-cover object-top"
               />
               <div className="flex items-center gap-2 text-sm text-white/70">
                 <span>Victor réfléchit</span>
