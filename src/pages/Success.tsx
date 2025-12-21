@@ -17,11 +17,22 @@ const Success = () => {
   const hasProcessedRef = useRef(false);
 
   useEffect(() => {
-    const upsertWaitlist = async (email: string, name: string) => {
+    const upsertWaitlist = async (session: any) => {
+      const user = session?.user;
+      if (!user?.email) {
+        console.error("No authenticated user found");
+        return;
+      }
+
+      const email = user.email;
+      const name = user.user_metadata?.full_name || user.user_metadata?.name || "";
+
       try {
         setUserName(name);
         setUserEmail(email);
 
+        // Wait for session to be properly established before querying
+        // The RLS policy requires auth.jwt() >> 'email' = email
         const { data: existingUser } = await supabase
           .from('waitlist')
           .select('position, referral_code')
@@ -47,7 +58,9 @@ const Success = () => {
         const newPosition = !maxPositionData || maxPositionData.position < 15000 
           ? 15000 
           : maxPositionData.position + 1;
-        const newReferralCode = Math.random().toString(36).substring(2, 10);
+        
+        // Use cryptographically secure random code
+        const newReferralCode = crypto.randomUUID().split('-')[0];
 
         const { error } = await supabase
           .from('waitlist')
@@ -55,7 +68,8 @@ const Success = () => {
             name,
             email,
             position: newPosition,
-            referral_code: newReferralCode
+            referral_code: newReferralCode,
+            user_id: user.id
           });
 
         if (error) {
@@ -77,11 +91,9 @@ const Success = () => {
 
     const handleSession = (session: any) => {
       if (hasProcessedRef.current) return;
-      const user = session?.user;
-      if (user?.email) {
+      if (session?.user?.email) {
         hasProcessedRef.current = true;
-        const name = user.user_metadata?.full_name || user.user_metadata?.name || "";
-        upsertWaitlist(user.email, name);
+        upsertWaitlist(session);
       }
     };
 

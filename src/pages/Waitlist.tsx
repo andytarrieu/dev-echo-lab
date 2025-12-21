@@ -351,8 +351,8 @@ const Waitlist = () => {
       }
     }
 
-      // Générer un code de parrainage unique
-      const generatedReferralCode = Math.random().toString(36).substring(2, 10);
+      // Générer un code de parrainage cryptographiquement sécurisé
+      const generatedReferralCode = crypto.randomUUID().split('-')[0];
       console.log('🎲 Generated referral code:', generatedReferralCode);
       
       // Enregistrer dans Supabase avec les données validées
