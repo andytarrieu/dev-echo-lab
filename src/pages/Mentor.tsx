@@ -271,89 +271,31 @@ export default function Mentor() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center space-y-8 py-8"
+              className="text-center space-y-6 py-12"
             >
-              {/* Hero Section */}
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-4">
-                  <Sparkles className="w-4 h-4 text-violet-400" />
-                  <span className="text-sm text-violet-300">Gratuit • Illimité • Expert</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-violet-300">
-                  Votre conseiller en patrimoine.<br />Sans les 250€/heure.
+              <div className="space-y-3">
+                <h2 className="text-3xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white/90 to-white/40">
+                  Bienvenue dans votre espace stratégique
                 </h2>
-                <p className="text-lg text-white/50 max-w-2xl mx-auto">
-                  Fiscalité complexe, stratégies bancaires, montages en SCI... 
-                  Ce que les formations vendent 2 000€, Victor vous le donne en 30 secondes.
+                <p className="text-white/40">
+                  Je remplace les formations à 2 000€. Posez-moi toutes vos questions sur l'investissement immobilier.
                 </p>
               </div>
-
-              {/* Value Props */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-3xl mx-auto">
-                <motion.div 
-                  className="p-5 rounded-xl bg-gradient-to-br from-violet-500/10 to-transparent border border-violet-500/20"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <div className="text-2xl mb-2">💎</div>
-                  <h3 className="font-semibold text-white mb-1">Expertise élite, accessible</h3>
-                  <p className="text-sm text-white/40">Avocat fiscaliste, CGP, expert bancaire... tout en un, sans rendez-vous.</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="p-5 rounded-xl bg-gradient-to-br from-indigo-500/10 to-transparent border border-indigo-500/20"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="text-2xl mb-2">🎯</div>
-                  <h3 className="font-semibold text-white mb-1">Stratégie sur-mesure</h3>
-                  <p className="text-sm text-white/40">Pas de théorie générique. Des réponses adaptées à VOTRE situation précise.</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="p-5 rounded-xl bg-gradient-to-br from-fuchsia-500/10 to-transparent border border-fuchsia-500/20"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="text-2xl mb-2">⚡</div>
-                  <h3 className="font-semibold text-white mb-1">De lidée à loffre en 10x moins de temps</h3>
-                  <p className="text-sm text-white/40">40h de formation condensées en conversations de 30 secondes.</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="p-5 rounded-xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <div className="text-2xl mb-2">🛡️</div>
-                  <h3 className="font-semibold text-white mb-1">Confiance totale</h3>
-                  <p className="text-sm text-white/40">Posez toutes vos questions "bêtes" sans jugement. Victor construit votre assurance.</p>
-                </motion.div>
-              </div>
-
-              {/* Suggested Questions */}
-              <div className="space-y-4 pt-4">
-                <p className="text-sm text-white/30 uppercase tracking-wider">Commencez par une question</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {suggestedQuestions.map((q, i) => (
-                    <motion.button
-                      key={i}
-                      onClick={() => selectQuestion(q)}
-                      className="p-4 text-left bg-white/[0.02] hover:bg-white/[0.05] rounded-xl border border-white/5 hover:border-violet-500/30 transition-all group"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      <Sparkles className="w-4 h-4 text-violet-400 mb-2 group-hover:text-violet-300" />
-                      <p className="text-sm text-white/70 group-hover:text-white/90">{q}</p>
-                    </motion.button>
-                  ))}
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8">
+                {suggestedQuestions.map((q, i) => (
+                  <motion.button
+                    key={i}
+                    onClick={() => selectQuestion(q)}
+                    className="p-4 text-left bg-white/[0.02] hover:bg-white/[0.05] rounded-xl border border-white/5 hover:border-violet-500/30 transition-all group"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <Sparkles className="w-4 h-4 text-violet-400 mb-2 group-hover:text-violet-300" />
+                    <p className="text-sm text-white/70 group-hover:text-white/90">{q}</p>
+                  </motion.button>
+                ))}
               </div>
             </motion.div>
           ) : (
