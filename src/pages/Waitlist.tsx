@@ -396,38 +396,14 @@ const Waitlist = () => {
       
       console.log('🎉 Showing success toast');
       toast({
-      title: "🎉 Inscription réussie !",
-      description: (
-        <div className="space-y-3">
-          <p className="font-semibold">Tu es actuellement #{position.toLocaleString('fr-FR')} dans la liste.</p>
-          
-          <div>
-            <p className="text-sm font-medium mb-1">Ton code de parrainage :</p>
-            <p className="text-lg font-mono bg-primary/10 p-3 rounded text-center tracking-wider">{generatedReferralCode}</p>
-          </div>
-          
-          <div>
-            <p className="text-sm font-medium mb-1">Invite des amis pour avancer :</p>
-            <ul className="text-xs space-y-1">
-              <li>• 1 parrainage = -1 500 places</li>
-              <li>• 3 parrainages = -4 500 places</li>
-              <li>• 10 parrainages = Top 5000 garanti</li>
-              <li>• 20 parrainages = Top 1000 assuré</li>
-            </ul>
-          </div>
-          
-          <p className="text-xs italic pt-2 border-t border-border">📧 Tu recevras un email de confirmation dans les 24h</p>
-        </div>
-      ),
-      duration: 15000
+        title: "🎉 Compte créé avec succès !",
+        description: `Bienvenue ! Tu es #${position.toLocaleString('fr-FR')} dans la liste.`,
+        duration: 5000
       });
 
-      // Redirection vers le dashboard après 2 secondes
-      console.log('🔄 Redirecting to dashboard in 2s...');
-      setTimeout(() => {
-        navigate(`/dashboard?code=${generatedReferralCode}`);
-      }, 2000);
-
+      // Redirection immédiate vers le dashboard
+      console.log('🔄 Redirecting to dashboard...');
+      navigate(`/dashboard`);
       // Réinitialiser le formulaire
       setName("");
       setEmail("");
