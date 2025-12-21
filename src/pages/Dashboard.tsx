@@ -42,15 +42,40 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Vérifier si un email est stocké en localStorage
-    const userEmail = localStorage.getItem("userEmail");
-    
-    if (!userEmail) {
-      navigate("/login");
-      return;
-    }
+    const checkAuthAndFetchData = async () => {
+      // Vérifier l'authentification Supabase
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session?.user?.email) {
+        // Stocker l'email pour les futures requêtes
+        localStorage.setItem("userEmail", session.user.email);
+        fetchDashboardData(session.user.email);
+      } else {
+        // Fallback sur localStorage
+        const userEmail = localStorage.getItem("userEmail");
+        if (!userEmail) {
+          navigate("/login");
+          return;
+        }
+        fetchDashboardData(userEmail);
+      }
+    };
 
-    fetchDashboardData(userEmail);
+    checkAuthAndFetchData();
+
+    // Écouter les changements d'authentification
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === 'SIGNED_OUT') {
+          localStorage.removeItem("userEmail");
+          navigate("/login");
+        } else if (session?.user?.email) {
+          localStorage.setItem("userEmail", session.user.email);
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, [navigate]);
 
   const fetchDashboardData = async (userEmail: string) => {
@@ -114,7 +139,8 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     localStorage.removeItem("userEmail");
     toast({
       title: "👋 À bientôt !",

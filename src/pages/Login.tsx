@@ -102,6 +102,9 @@ const Login = () => {
         return;
       }
 
+      // Stocker l'email dans localStorage pour le dashboard
+      localStorage.setItem("userEmail", email.trim().toLowerCase());
+
       toast({
         title: "✅ Connexion réussie !",
         description: "Bienvenue sur votre dashboard !",
