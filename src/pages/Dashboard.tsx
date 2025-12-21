@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { Trophy, Users, Copy, Zap, Crown, Star, LogOut } from "lucide-react";
+import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, MessageCircle } from "lucide-react";
 
 import Navbar from "@/components/Navbar";
 
@@ -382,6 +382,21 @@ const Dashboard = () => {
               );
             })}
           </div>
+        </motion.div>
+
+        {/* Bouton Mentor */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55 }}
+          className="text-center"
+        >
+          <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 border-2 border-primary/50 hover:bg-primary/10">
+            <Link to="/mentor">
+              <MessageCircle className="mr-2 h-5 w-5" />
+              Discuter avec votre mentor
+            </Link>
+          </Button>
         </motion.div>
 
         {/* CTA Final */}
