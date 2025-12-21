@@ -848,7 +848,7 @@ const Services = () => {
                       <p className="text-muted-foreground max-w-2xl mx-auto">
                         Posez votre première question et découvrez comment Victor peut transformer votre projet immobilier.
                       </p>
-                      <Button size="lg" className="mt-4" onClick={() => window.location.href = '/mentor'}>
+                      <Button size="lg" className="mt-4" onClick={() => window.location.href = '/login'}>
                         <MessageCircle className="h-5 w-5 mr-2" />
                         Discuter avec Victor — Gratuit
                       </Button>
