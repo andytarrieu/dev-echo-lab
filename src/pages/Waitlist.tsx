@@ -317,56 +317,32 @@ const Waitlist = () => {
       }
 
       console.log('✅ Auth account created');
-      console.log('📊 Fetching max position...');
 
-      // Récupérer la position maximale actuelle
-      const { data: maxPositionData } = await supabase
-        .from('waitlist')
-        .select('position')
-        .order('position', { ascending: false })
-        .limit(1)
-        .maybeSingle();
-      
-      console.log('📊 Max position data:', maxPositionData);
-
-      // Position aléatoire entre 15 000 et 25 000 pour les nouveaux inscrits
-      // Si la position max dépasse 25000, on incrémente
-      const position = !maxPositionData || maxPositionData.position < 15000 
-        ? Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000
-        : maxPositionData.position >= 25000 
-          ? maxPositionData.position + 1
-          : Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
-
-    // Vérifier si le code de parrainage existe
-    let referrerId = null;
-    if (referralCode) {
-      const { data: referrer } = await supabase
-        .from('waitlist')
-        .select('id')
-        .eq('referral_code', referralCode)
-        .maybeSingle();
-      
-      if (referrer) {
-        referrerId = referrer.id;
+      // Vérifier si le code de parrainage existe via la fonction sécurisée
+      let referrerId: string | null = null;
+      if (referralCode) {
+        const { data: referralResult } = await supabase
+          .rpc('verify_referral_code', { code: referralCode, client_ip_hash: '' });
+        
+        if (referralResult && referralResult.length > 0 && referralResult[0].is_valid) {
+          referrerId = referralResult[0].referrer_id;
+        }
       }
-    }
 
-      // Générer un code de parrainage cryptographiquement sécurisé
-      const generatedReferralCode = crypto.randomUUID().split('-')[0];
-      console.log('🎲 Generated referral code:', generatedReferralCode);
-      
       // Enregistrer dans Supabase avec les données validées
+      // La position est gérée automatiquement par le trigger assign_waitlist_position en DB
       console.log('💾 Inserting into database...');
-      const { error } = await supabase
+      const { data: insertedData, error } = await supabase
         .from('waitlist')
         .insert({
           name: validatedData.name,
           email: validatedData.email,
           phone: validatedData.phone || null,
-          position,
-          referral_code: generatedReferralCode,
-          user_id: authData.user?.id || null
-        });
+          user_id: authData.user?.id || null,
+          position: 0 // Placeholder - sera remplacé par le trigger DB
+        } as any)
+        .select('position, referral_code')
+        .single();
 
       if (error) {
         console.error('❌ Database error:', error);
@@ -382,8 +358,10 @@ const Waitlist = () => {
       }
 
       console.log('✅ Successfully inserted into database');
+      const assignedPosition = insertedData?.position || 15000;
 
       // Si un code de parrainage a été utilisé, l'enregistrer
+      // La validation est faite côté serveur via la policy can_create_referral
       if (referrerId) {
         console.log('🔗 Recording referral...');
         await supabase
@@ -397,7 +375,7 @@ const Waitlist = () => {
       console.log('🎉 Showing success toast');
       toast({
         title: "🎉 Compte créé avec succès !",
-        description: `Bienvenue ! Tu es #${position.toLocaleString('fr-FR')} dans la liste.`,
+        description: `Bienvenue ! Tu es #${assignedPosition.toLocaleString('fr-FR')} dans la liste.`,
         duration: 5000
       });
 

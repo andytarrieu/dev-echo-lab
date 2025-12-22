@@ -45,32 +45,17 @@ const Success = () => {
           return;
         }
 
-        // Récupérer la position maximale actuelle
-        const { data: maxPositionData } = await supabase
-          .from('waitlist')
-          .select('position')
-          .order('position', { ascending: false })
-          .limit(1)
-          .maybeSingle();
-
-        // Si c'est le premier utilisateur OU si la position max < 15000, commencer à 15000
-        // Sinon incrémenter la position maximale
-        const newPosition = !maxPositionData || maxPositionData.position < 15000 
-          ? 15000 
-          : maxPositionData.position + 1;
-        
-        // Use cryptographically secure random code
-        const newReferralCode = crypto.randomUUID().split('-')[0];
-
-        const { error } = await supabase
+        // La position est gérée automatiquement par le trigger assign_waitlist_position en DB
+        const { data: insertedData, error } = await supabase
           .from('waitlist')
           .insert({
             name,
             email,
-            position: newPosition,
-            referral_code: newReferralCode,
-            user_id: user.id
-          });
+            user_id: user.id,
+            position: 0 // Placeholder - sera remplacé par le trigger DB
+          } as any)
+          .select('position, referral_code')
+          .single();
 
         if (error) {
           console.error("Erreur lors de l'insertion dans la waitlist:", error);
@@ -82,8 +67,8 @@ const Success = () => {
           return;
         }
 
-        setPosition(newPosition);
-        setReferralCode(newReferralCode);
+        setPosition(insertedData?.position || 15000);
+        setReferralCode(insertedData?.referral_code || '');
       } catch (e) {
         console.error(e);
       }

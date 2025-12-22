@@ -43,22 +43,17 @@ const Dashboard = () => {
 
   useEffect(() => {
     const checkAuthAndFetchData = async () => {
-      // Vérifier l'authentification Supabase
+      // Vérifier l'authentification Supabase - UNIQUEMENT via session, pas localStorage
       const { data: { session } } = await supabase.auth.getSession();
       
-      if (session?.user?.email) {
-        // Stocker l'email pour les futures requêtes
-        localStorage.setItem("userEmail", session.user.email);
-        fetchDashboardData(session.user.email);
-      } else {
-        // Fallback sur localStorage
-        const userEmail = localStorage.getItem("userEmail");
-        if (!userEmail) {
-          navigate("/login");
-          return;
-        }
-        fetchDashboardData(userEmail);
+      if (!session?.user?.email) {
+        // Pas de session authentifiée, rediriger vers login
+        navigate("/login");
+        return;
       }
+      
+      // Utiliser uniquement l'email de la session authentifiée
+      fetchDashboardData(session.user.email);
     };
 
     checkAuthAndFetchData();
@@ -67,10 +62,9 @@ const Dashboard = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_OUT') {
-          localStorage.removeItem("userEmail");
           navigate("/login");
         } else if (session?.user?.email) {
-          localStorage.setItem("userEmail", session.user.email);
+          fetchDashboardData(session.user.email);
         }
       }
     );
@@ -141,7 +135,6 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem("userEmail");
     toast({
       title: "👋 À bientôt !",
       description: "Vous avez été déconnecté",
