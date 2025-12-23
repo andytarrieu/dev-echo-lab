@@ -208,16 +208,17 @@ const Dashboard = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-8 max-w-4xl pt-24">
         {/* Header avec Logout et Mentor */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           {/* Bouton Mentor - Style Chatbot */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
+            className="w-full sm:w-auto"
           >
             <Button 
               asChild 
               size="lg" 
-              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg shadow-violet-500/30 border-0"
+              className="w-full sm:w-auto bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg shadow-violet-500/30 border-0"
             >
               <Link to="/mentor">
                 <MessageCircle className="mr-2 h-5 w-5" />
@@ -226,7 +227,7 @@ const Dashboard = () => {
             </Button>
           </motion.div>
 
-          <Button variant="outline" size="sm" onClick={handleLogout}>
+          <Button variant="outline" size="sm" onClick={handleLogout} className="w-full sm:w-auto">
             <LogOut className="mr-2 h-4 w-4" />
             Déconnexion
           </Button>
