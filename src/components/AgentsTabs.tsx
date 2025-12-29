@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Target, Calculator, TrendingUp, Shield, User, Lightbulb, DollarSign, GraduationCap } from "lucide-react";
+import { Target, Calculator, TrendingUp, Shield, User, Lightbulb, DollarSign, GraduationCap, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -179,17 +179,25 @@ const AgentsTabs = () => {
         </div>
 
         <Tabs defaultValue={agentTabs[0].value} className="mt-6 sm:mt-8">
-          <TabsList className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 md:gap-10 bg-muted/50 p-2 rounded-2xl overflow-x-auto w-full max-w-fit mx-auto">
-            {agentTabs.map((tab) => (
-              <TabsTrigger
-                key={tab.value}
-                value={tab.value}
-                className="flex items-center gap-1.5 sm:gap-2 rounded-xl px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all whitespace-nowrap flex-shrink-0"
-              >
-                {tab.icon} <span>{tab.label}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
+          <div className="relative">
+            <TabsList className="flex items-center justify-start sm:justify-center gap-2 sm:gap-4 md:gap-10 bg-muted/50 p-2 rounded-2xl overflow-x-auto w-full max-w-fit mx-auto scrollbar-hide">
+              {agentTabs.map((tab) => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="flex items-center gap-1.5 sm:gap-2 rounded-xl px-3 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all whitespace-nowrap flex-shrink-0"
+                >
+                  {tab.icon} <span>{tab.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {/* Indicateur de scroll mobile */}
+            <div className="sm:hidden absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="flex items-center gap-1 bg-gradient-to-l from-background via-background to-transparent pl-6 pr-2 py-2">
+                <ChevronRight className="h-4 w-4 text-primary animate-pulse" />
+              </div>
+            </div>
+          </div>
 
           <div className="mx-auto mt-6 sm:mt-8 max-w-screen-xl rounded-2xl bg-card border border-border/50 p-4 sm:p-8 lg:p-16 shadow-xl">
             {agentTabs.map((tab) => (
