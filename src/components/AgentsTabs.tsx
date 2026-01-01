@@ -135,12 +135,12 @@ const agentTabs: Tab[] = [
   {
     value: "mentor",
     icon: <GraduationCap className="h-auto w-4 shrink-0" />,
-    label: "Victor",
+    label: "Alexandre",
     content: {
-      badge: "Agent #5 : VICTOR",
+      badge: "Agent #5 : ALEXANDRE",
       title: "Le Mentor IA qui remplace les formations à 2 000 €",
       description:
-        "Posez n'importe quelle question sur votre projet immobilier. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.",
+        "Posez n'importe quelle question sur votre projet immobilier. De la stratégie fiscale aux secrets bancaires, Alexandre détient 100% du savoir pour vous guider gratuitement.",
       whatItDoes: [
         "🏦 Stratégie & Financement : Scoring bancaire, dossier en béton, prêt à 110%, différé de remboursement",
         "⚖️ Fiscalité & Juridique : LMNP, SCI (IS/IR), amortissements, clauses suspensives, choix du notaire",
@@ -149,12 +149,12 @@ const agentTabs: Tab[] = [
         "🚀 Modes d'Exploitation : Colocation, LCD (Saisonnier), Immeuble de rapport, stratégie Cash-flow",
       ],
       advantage:
-        "Victor est votre cerveau stratégique. Il ne se contente pas de répondre, il bâtit votre feuille de route personnalisée. Posez votre question → Victor vous donne la stratégie gagnante → Utilisez nos 4 autres agents pour exécuter et sécuriser l'achat.",
+        "Alexandre est votre cerveau stratégique. Il ne se contente pas de répondre, il bâtit votre feuille de route personnalisée. Posez votre question → Alexandre vous donne la stratégie gagnante → Utilisez nos 4 autres agents pour exécuter et sécuriser l'achat.",
       example: {
         situation:
-          "Thomas veut investir mais ne sait pas par où commencer. Il demande à Victor : 'J'ai 30k€ d'apport, comment maximiser mon premier investissement ?'",
+          "Thomas veut investir mais ne sait pas par où commencer. Il demande à Alexandre : 'J'ai 30k€ d'apport, comment maximiser mon premier investissement ?'",
         result:
-          "Victor lui construit une stratégie complète : ville cible, type de bien, montage financier optimal (prêt 110%), régime fiscal LMNP, et plan d'action en 5 étapes.",
+          "Alexandre lui construit une stratégie complète : ville cible, type de bien, montage financier optimal (prêt 110%), régime fiscal LMNP, et plan d'action en 5 étapes.",
         savings: "Formation économisée : 2 000€ + stratégie personnalisée gratuite",
       },
     },

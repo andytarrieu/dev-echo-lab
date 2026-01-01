@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Send, Building2, TrendingUp, Shield, Calculator, Sparkles, Command, ArrowLeft, Loader, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import victorAvatar from '@/assets/agent-5.webp';
+import alexandreAvatar from '@/assets/agent-5.webp';
 
 // Hook pour auto-resize textarea
 function useAutoResizeTextarea({ minHeight, maxHeight }: { minHeight: number; maxHeight: number }) {
@@ -74,7 +74,7 @@ interface CommandSuggestion {
   prompt: string;
 }
 
-// Composant principal Victor Chatbot
+// Composant principal Alexandre Chatbot
 export default function Mentor() {
   const navigate = useNavigate();
   const [value, setValue] = useState('');
@@ -88,7 +88,7 @@ export default function Mentor() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const commandPaletteRef = useRef<HTMLDivElement>(null);
 
-  // Suggestions de commandes pour Victor
+  // Suggestions de commandes pour Alexandre
   const commandSuggestions: CommandSuggestion[] = [
     {
       icon: <TrendingUp className="w-4 h-4" />,
@@ -128,8 +128,8 @@ export default function Mentor() {
     "Quels sont les pièges à éviter ?"
   ];
 
-  // Réponses de Victor (simulation)
-  const getVictorResponse = async (userMessage: string): Promise<string> => {
+  // Réponses de Alexandre (simulation)
+  const getAlexandreResponse = async (userMessage: string): Promise<string> => {
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     const lowerMsg = userMessage.toLowerCase();
@@ -150,7 +150,7 @@ export default function Mentor() {
       return "Très bonne question ! Voici les 5 pièges mortels (et comment les éviter) :\n\n**1. Surpayer le bien** ❌\n→ Solution : Utilisez EMMA pour connaître le prix réel du marché\n\n**2. Ignorer les charges de copropriété** ❌\n→ Solution : LÉON analyse les PV d'AG et détecte les travaux votés\n\n**3. Oublier la fiscalité** ❌\n→ Solution : LUCIE simule votre cash-flow NET après impôts\n\n**4. Acheter dans une zone en déclin** ❌\n→ Solution : NOAH identifie les quartiers en développement\n\n**5. Sous-estimer les travaux** ❌\n→ Solution : Toujours prévoir +20% de marge sur devis\n\n**L'erreur n°1 des débutants ?** Se lancer sans analyser les chiffres.\n\nAvec AURÉA, vous avez la certitude mathématique que votre projet est viable avant de signer. 🛡️\n\nUne annonce vous intéresse ? Je peux l'analyser en 60 secondes !";
     }
 
-    return `Merci pour votre question sur "${userMessage}".\n\nJe suis Victor, votre stratège personnel en investissement immobilier. Je maîtrise 100% des aspects :\n- 💰 Fiscalité (LMNP, SCI, optimisation)\n- 🏦 Financement bancaire\n- 📊 Analyse de rentabilité\n- 🔧 Travaux et rénovation\n- 📋 Réglementations (DPE, lois)\n\nPour vous donner la meilleure réponse, j'aurais besoin de quelques informations :\n\n1. Quel est votre objectif principal ?\n   - Revenu passif mensuel\n   - Constitution de patrimoine\n   - Plus-value à la revente\n\n2. Quelle est votre situation ?\n   - Premier investissement ou déjà investisseur ?\n   - Apport disponible ?\n\nEn attendant, voici mes agents spécialisés qui peuvent vous aider :\n- **NOAH** : Anticipe les tendances 2026\n- **EMMA** : Négocie le meilleur prix\n- **LÉON** : Détecte les risques cachés\n- **LUCIE** : Optimise votre fiscalité\n\nQue souhaitez-vous explorer en priorité ? 🎯`;
+    return `Merci pour votre question sur "${userMessage}".\n\nJe suis Alexandre, votre stratège personnel en investissement immobilier. Je maîtrise 100% des aspects :\n- 💰 Fiscalité (LMNP, SCI, optimisation)\n- 🏦 Financement bancaire\n- 📊 Analyse de rentabilité\n- 🔧 Travaux et rénovation\n- 📋 Réglementations (DPE, lois)\n\nPour vous donner la meilleure réponse, j'aurais besoin de quelques informations :\n\n1. Quel est votre objectif principal ?\n   - Revenu passif mensuel\n   - Constitution de patrimoine\n   - Plus-value à la revente\n\n2. Quelle est votre situation ?\n   - Premier investissement ou déjà investisseur ?\n   - Apport disponible ?\n\nEn attendant, voici mes agents spécialisés qui peuvent vous aider :\n- **NOAH** : Anticipe les tendances 2026\n- **EMMA** : Négocie le meilleur prix\n- **LÉON** : Détecte les risques cachés\n- **LUCIE** : Optimise votre fiscalité\n\nQue souhaitez-vous explorer en priorité ? 🎯`;
   };
 
   // Gestion des messages
@@ -162,7 +162,7 @@ export default function Mentor() {
     setValue('');
     adjustHeight(true);
     setIsTyping(true);
-    const response = await getVictorResponse(userMessage);
+    const response = await getAlexandreResponse(userMessage);
     setIsTyping(false);
     setMessages(prev => [...prev, { role: 'assistant', content: response }]);
   };
@@ -234,7 +234,7 @@ export default function Mentor() {
         <div className="absolute top-1/4 right-1/3 w-64 h-64 bg-primary/5 rounded-full mix-blend-normal filter blur-[96px] animate-pulse" style={{ animationDelay: '1000ms' }} />
       </div>
 
-      {/* Header avec logo Victor */}
+      {/* Header avec logo Alexandre */}
       <motion.div
         className="relative z-10 p-6 border-b border-border backdrop-blur-xl bg-card/50"
         initial={{ y: -20, opacity: 0 }}
@@ -248,13 +248,13 @@ export default function Mentor() {
             <ArrowLeft className="w-5 h-5 text-muted-foreground" />
           </button>
           <img 
-            src={victorAvatar} 
-            alt="Victor" 
+            src={alexandreAvatar} 
+            alt="Alexandre" 
             className="w-12 h-12 rounded-full object-cover object-top shadow-lg shadow-primary/20 ring-2 ring-primary/30"
           />
           <div>
             <h1 className="text-xl font-semibold text-foreground">
-              Agent Victor
+              Agent Alexandre
             </h1>
             <p className="text-sm text-muted-foreground">Stratège Immobilier AURÉA</p>
           </div>
@@ -309,8 +309,8 @@ export default function Mentor() {
                 >
                   {msg.role === 'assistant' && (
                     <img 
-                      src={victorAvatar} 
-                      alt="Victor" 
+                      src={alexandreAvatar} 
+                      alt="Alexandre" 
                       className="w-8 h-8 rounded-full object-cover object-top flex-shrink-0 shadow-lg shadow-primary/20"
                     />
                   )}
@@ -340,12 +340,12 @@ export default function Mentor() {
           >
             <div className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border w-fit">
               <img 
-                src={victorAvatar} 
-                alt="Victor" 
+                src={alexandreAvatar} 
+                alt="Alexandre" 
                 className="w-6 h-6 rounded-full object-cover object-top"
               />
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span>Victor réfléchit</span>
+                <span>Alexandre réfléchit</span>
                 <div className="flex gap-1">
                   {[0, 1, 2].map(i => (
                     <motion.div
@@ -418,7 +418,7 @@ export default function Mentor() {
                 onKeyDown={handleKeyDown}
                 onFocus={() => setInputFocused(true)}
                 onBlur={() => setInputFocused(false)}
-                placeholder="Posez votre question à Victor..."
+                placeholder="Posez votre question à Alexandre..."
                 containerClassName="w-full"
                 className="w-full px-4 py-3 resize-none bg-transparent border-none text-foreground text-sm focus:outline-none placeholder:text-muted-foreground min-h-[60px]"
                 showRing={false}
@@ -467,7 +467,7 @@ export default function Mentor() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Propulsé par <span className="text-primary font-medium">AURÉA</span> • Victor + 4 agents spécialisés à votre service
+            Propulsé par <span className="text-primary font-medium">AURÉA</span> • Alexandre + 4 agents spécialisés à votre service
           </motion.div>
         </div>
       </div>
