@@ -41,8 +41,8 @@ const Services = () => {
     },
     {
       icon: GraduationCap,
-      title: "Victor : Le Mentor IA",
-      description: "Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider gratuitement.",
+      title: "Alexandre : Le Mentor IA",
+      description: "Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Alexandre détient 100% du savoir pour vous guider gratuitement.",
       link: "/services?tab=mentor",
       image: agent5,
     },
