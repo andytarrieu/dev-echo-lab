@@ -656,7 +656,7 @@ const Services = () => {
                 </Card>
               </TabsContent>
 
-              {/* Agent #5 - Victor Le Mentor */}
+              {/* Agent #5 - Alexandre Le Mentor */}
               <TabsContent value="mentor" className="space-y-8">
                 {/* Header */}
                 <Card>
@@ -664,25 +664,25 @@ const Services = () => {
                     <div className="flex items-center gap-4 mb-4">
                       <img 
                         src={agent5} 
-                        alt="Victor Le Mentor"
+                        alt="Alexandre Le Mentor"
                         className="w-20 h-20 rounded-full object-cover object-top border-4 border-primary/20"
                       />
                       <div>
-                        <CardTitle className="text-3xl">Victor — Le Mentor IA</CardTitle>
+                        <CardTitle className="text-3xl">Alexandre — Le Mentor IA</CardTitle>
                         <p className="text-muted-foreground mt-2 text-lg">
-                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Victor détient 100% du savoir pour vous guider <span className="text-primary font-semibold">gratuitement</span>.
+                          Remplace les formations à 2 000 €. De la stratégie fiscale aux secrets bancaires, Alexandre détient 100% du savoir pour vous guider <span className="text-primary font-semibold">gratuitement</span>.
                         </p>
                       </div>
                     </div>
                   </CardHeader>
                 </Card>
 
-                {/* Pourquoi Victor est une révolution */}
+                {/* Pourquoi Alexandre est une révolution */}
                 <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
                   <CardHeader>
                     <CardTitle className="text-2xl flex items-center gap-3">
                       <Sparkles className="h-6 w-6 text-primary" />
-                      Pourquoi Victor est-il une révolution ?
+                      Pourquoi Alexandre est-il une révolution ?
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -708,7 +708,7 @@ const Services = () => {
                             </div>
                           </div>
                           <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
-                            <p className="text-accent font-medium">💎 La valeur de Victor : Il offre ce savoir instantanément et gratuitement. Il démocratise l'élite de l'investissement.</p>
+                            <p className="text-accent font-medium">💎 La valeur de Alexandre : Il offre ce savoir instantanément et gratuitement. Il démocratise l'élite de l'investissement.</p>
                           </div>
                         </div>
                       </div>
@@ -726,7 +726,7 @@ const Services = () => {
                             Le problème des formations classiques est le "Flat Learning" : vous regardez des vidéos, mais vous ne savez pas comment les appliquer à <strong className="text-foreground">VOTRE</strong> cas précis.
                           </p>
                           <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
-                            <p className="text-accent font-medium">💎 L'apport de Victor : Il est interactif. Si vous dites "J'ai 10 000 € d'apport et je veux investir à Bordeaux", Victor ne fait pas un cours général — il vous donne LA stratégie spécifique (micro-logement, colocation) adaptée à votre situation.</p>
+                            <p className="text-accent font-medium">💎 L'apport d'Alexandre : Il est interactif. Si vous dites "J'ai 10 000 € d'apport et je veux investir à Bordeaux", Alexandre ne fait pas un cours général — il vous donne LA stratégie spécifique (micro-logement, colocation) adaptée à votre situation.</p>
                           </div>
                         </div>
                       </div>
@@ -744,7 +744,7 @@ const Services = () => {
                             Lire des livres ou suivre 40 heures de vidéos prend des semaines. L'investisseur moderne veut <strong className="text-foreground">agir vite</strong>.
                           </p>
                           <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
-                            <p className="text-accent font-medium">💎 L'apport de Victor : Il synthétise des concepts complexes en 30 secondes. Il permet de passer de "l'idée" à "l'offre d'achat" 10x plus vite que n'importe quel autre outil.</p>
+                            <p className="text-accent font-medium">💎 L'apport d'Alexandre : Il synthétise des concepts complexes en 30 secondes. Il permet de passer de "l'idée" à "l'offre d'achat" 10x plus vite que n'importe quel autre outil.</p>
                           </div>
                         </div>
                       </div>
@@ -762,7 +762,7 @@ const Services = () => {
                             L'achat immobilier est l'acte le plus stressant d'une vie. La plupart des gens n'achètent pas parce qu'ils ont <strong className="text-foreground">peur de l'inconnu</strong>.
                           </p>
                           <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
-                            <p className="text-accent font-medium">💎 L'apport de Victor : En répondant à toutes vos questions "bêtes" ou techniques sans jugement, il construit votre confiance. Un investisseur en confiance est un investisseur qui passe à l'action.</p>
+                            <p className="text-accent font-medium">💎 L'apport d'Alexandre : En répondant à toutes vos questions "bêtes" ou techniques sans jugement, il construit votre confiance. Un investisseur en confiance est un investisseur qui passe à l'action.</p>
                           </div>
                         </div>
                       </div>
@@ -770,12 +770,12 @@ const Services = () => {
                   </CardContent>
                 </Card>
 
-                {/* Conseils Brillants de Victor */}
+                {/* Conseils Brillants d'Alexandre */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-2xl flex items-center gap-3">
                       <Gem className="h-6 w-6 text-primary" />
-                      Les "Conseils Brillants" de Victor
+                      Les "Conseils Brillants" d'Alexandre
                     </CardTitle>
                     <p className="text-muted-foreground">Des détails précis que seuls les experts connaissent</p>
                   </CardHeader>
@@ -790,7 +790,7 @@ const Services = () => {
                         </CardHeader>
                         <CardContent>
                           <p className="text-muted-foreground text-sm">
-                            Victor n'explique pas juste le crédit — il explique le <strong className="text-foreground">"Lissage de prêt"</strong>, le <strong className="text-foreground">"Différé total vs partiel"</strong> et comment présenter un compte bancaire pour que le banquier dise "Oui" en 5 minutes.
+                            Alexandre n'explique pas juste le crédit — il explique le <strong className="text-foreground">"Lissage de prêt"</strong>, le <strong className="text-foreground">"Différé total vs partiel"</strong> et comment présenter un compte bancaire pour que le banquier dise "Oui" en 5 minutes.
                           </p>
                         </CardContent>
                       </Card>
@@ -844,13 +844,13 @@ const Services = () => {
                 <Card className="border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent">
                   <CardContent className="p-8">
                     <div className="text-center space-y-4">
-                      <h3 className="text-2xl font-bold">Prêt à bénéficier de l'expertise de Victor ?</h3>
+                      <h3 className="text-2xl font-bold">Prêt à bénéficier de l'expertise d'Alexandre ?</h3>
                       <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Posez votre première question et découvrez comment Victor peut transformer votre projet immobilier.
+                        Posez votre première question et découvrez comment Alexandre peut transformer votre projet immobilier.
                       </p>
                       <Button size="lg" className="mt-4" onClick={() => window.location.href = '/login'}>
                         <MessageCircle className="h-5 w-5 mr-2" />
-                        Discuter avec Victor — Gratuit
+                        Discuter avec Alexandre — Gratuit
                       </Button>
                     </div>
                   </CardContent>
@@ -906,7 +906,7 @@ const Services = () => {
                       </tr>
                       <tr>
                         <td className="py-4 px-4 text-muted-foreground font-semibold">5.</td>
-                        <td className="py-4 px-4 font-medium">Victor Le Mentor</td>
+                        <td className="py-4 px-4 font-medium">Alexandre Le Mentor</td>
                         <td className="py-4 px-4 text-muted-foreground">Formation & Stratégie</td>
                         <td className="py-4 px-4 text-muted-foreground">Tous projets immobiliers</td>
                         <td className="py-4 px-4 text-muted-foreground">Coaching gratuit, fiscalité, financement</td>
