@@ -3,8 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb, GraduationCap, Landmark, Scale, MapPin, Hammer, Rocket, Sparkles, AlertCircle, Gem, Brain, MessageCircle } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
+import { Search, Calculator, BarChart3, ShieldCheck, CheckCircle, Bell, FileText, Target, TrendingUp, TrendingDown, DollarSign, Wrench, Lightbulb, GraduationCap, Landmark, Scale, MapPin, Hammer, Rocket, Sparkles, AlertCircle, Gem, Brain, MessageCircle, Shield, ArrowRight } from "lucide-react";
+import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import agent1 from "@/assets/agent-1.webp";
 import agent2 from "@/assets/agent-2.webp";
@@ -650,6 +650,180 @@ const Services = () => {
                             </div>
                           </CardContent>
                         </Card>
+                      </div>
+                    </div>
+
+                    {/* Nouvelle sous-section: Audit d'Offre de Prêt */}
+                    <div className="mt-12 pt-8 border-t border-border">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="relative">
+                          <FileText className="h-8 w-8 text-primary" />
+                          <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full flex items-center justify-center">
+                            <Shield className="h-2.5 w-2.5 text-accent-foreground" />
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">Audit d'Offre de Prêt</h3>
+                      </div>
+                      
+                      <p className="text-muted-foreground mb-8 text-lg">
+                        Léon analyse désormais vos contrats bancaires (PDF) pour sécuriser votre financement et détecter les clauses défavorables.
+                      </p>
+
+                      {/* Effet Scanner visuel */}
+                      <div className="relative mb-8 p-6 bg-muted/30 rounded-xl border border-border overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/10 to-transparent animate-pulse" />
+                        <div className="relative flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="relative">
+                              <div className="w-16 h-20 bg-muted rounded border-2 border-dashed border-muted-foreground/30 flex items-center justify-center">
+                                <FileText className="h-8 w-8 text-muted-foreground/50" />
+                              </div>
+                              <div className="absolute inset-0 border-2 border-accent rounded animate-pulse" />
+                            </div>
+                            <div className="space-y-1">
+                              <div className="flex gap-2">
+                                <span className="px-2 py-0.5 bg-accent/20 text-accent text-xs font-mono rounded">TAEG</span>
+                                <span className="px-2 py-0.5 bg-primary/20 text-primary text-xs font-mono rounded">IRA</span>
+                                <span className="px-2 py-0.5 bg-destructive/20 text-destructive text-xs font-mono rounded">DIFFÉRÉ</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground">Analyse en cours...</p>
+                            </div>
+                          </div>
+                          
+                          {/* Badge de Score */}
+                          <div className="text-center">
+                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-full bg-background flex flex-col items-center justify-center">
+                                <span className="text-2xl font-bold text-accent">85</span>
+                                <span className="text-xs text-muted-foreground">/100</span>
+                              </div>
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-2">Score Qualité</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 6 Points de contrôle critiques */}
+                      <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        <Target className="h-5 w-5 text-accent" />
+                        Les 6 points de contrôle critiques de Léon
+                      </h4>
+                      
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">1</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">TAEG & Frais de l'ombre</h5>
+                                <p className="text-xs text-muted-foreground">Léon débusque les frais de dossier abusifs et les parts sociales cachées pour vous donner le coût réel de votre crédit.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">2</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">Zéro IRA</h5>
+                                <p className="text-xs text-muted-foreground">Il vérifie que la clause de suppression des Indemnités de Remboursement Anticipé en cas de revente est bien inscrite noir sur blanc.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">3</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">Audit de l'Assurance</h5>
+                                <p className="text-xs text-muted-foreground">Il compare votre assurance groupe aux standards de la Loi Lemoine pour réduire vos mensualités dès le premier jour.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">4</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">Optimisation du Différé</h5>
+                                <p className="text-xs text-muted-foreground">Léon clarifie si votre différé est Total ou Partiel et calcule l'impact immédiat sur votre trésorerie de départ.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">5</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">Modularité & Transférabilité</h5>
+                                <p className="text-xs text-muted-foreground">Il détecte si vous pouvez suspendre vos mensualités en cas de pépin ou transférer votre taux bas sur un futur achat.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        <Card className="border-border bg-card/50">
+                          <CardContent className="pt-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                                <span className="text-accent font-bold text-sm">6</span>
+                              </div>
+                              <div>
+                                <h5 className="font-semibold text-sm mb-1">Garantie & Caution</h5>
+                                <p className="text-xs text-muted-foreground">Léon analyse si la banque impose une hypothèque coûteuse ou une caution (Crédit Logement) partiellement remboursable.</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+
+                      {/* Encadré de réassurance - Le Plus de Léon */}
+                      <Card className="border-accent/50 bg-accent/5 mb-8">
+                        <CardContent className="pt-6">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                              <Shield className="h-6 w-6 text-accent" />
+                            </div>
+                            <div>
+                              <h5 className="font-bold text-lg mb-2 flex items-center gap-2">
+                                Le "Plus" de Léon
+                                <span className="px-2 py-0.5 bg-accent text-accent-foreground text-xs rounded-full">Alerte Légale</span>
+                              </h5>
+                              <p className="text-muted-foreground">
+                                Léon calcule automatiquement votre <strong className="text-foreground">délai de réflexion obligatoire de 11 jours</strong> et vous prévient de la date exacte à laquelle vous avez le droit de signer sans risque d'invalidité.
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* Bouton d'action principal */}
+                      <div className="flex justify-center">
+                        <Button size="lg" className="gap-2 text-lg px-8 py-6" asChild>
+                          <Link to="/waitlist">
+                            <FileText className="h-5 w-5" />
+                            Scanner mon offre de prêt (PDF)
+                            <ArrowRight className="h-5 w-5" />
+                          </Link>
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
