@@ -815,16 +815,6 @@ const Services = () => {
                         </CardContent>
                       </Card>
 
-                      {/* Bouton d'action principal */}
-                      <div className="flex justify-center">
-                        <Button size="lg" className="gap-2 text-lg px-8 py-6" asChild>
-                          <Link to="/waitlist">
-                            <FileText className="h-5 w-5" />
-                            Scanner mon offre de prêt (PDF)
-                            <ArrowRight className="h-5 w-5" />
-                          </Link>
-                        </Button>
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
