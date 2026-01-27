@@ -1,6 +1,9 @@
 import NavbarNew from "@/components/NavbarNew";
 import AuditHero from "@/components/AuditHero";
-import FileUploadZone from "@/components/FileUploadZone";
+import LogoSlider from "@/components/LogoSlider";
+import FeaturesSection from "@/components/FeaturesSection";
+import StatsSection from "@/components/StatsSection";
+import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const AuditExpress = () => {
@@ -9,7 +12,10 @@ const AuditExpress = () => {
       <NavbarNew />
       <main>
         <AuditHero />
-        <FileUploadZone />
+        <LogoSlider />
+        <FeaturesSection />
+        <StatsSection />
+        <CTASection />
       </main>
       <Footer />
     </div>
