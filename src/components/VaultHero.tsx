@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Upload, Shield, FileText, Eye } from "lucide-react";
+import { ArrowRight, Shield, FileText, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "./WaitlistBadge";
 
@@ -35,32 +35,14 @@ const VaultHero = () => {
           </p>
         </div>
 
-        {/* Upload Zone - Heart of the page */}
-        <div className="max-w-2xl mx-auto mb-16">
-          <div className="relative">
-            <div className="border-2 border-dashed border-primary/30 rounded-2xl p-12 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300 cursor-pointer group">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <Upload className="h-10 w-10 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Déposez vos documents dans le Vault
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  DPE, diagnostics, PV d'AG, compromis, titres de propriété...
-                </p>
-                <Button size="lg" className="gap-2 text-base px-8 py-6" asChild>
-                  <Link to="/waitlist">
-                    Ouvrir mon Vault
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                </Button>
-                <p className="text-xs text-muted-foreground mt-4">
-                  PDF, images scannées • Jusqu'à 50 Mo par fichier
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* CTA Button */}
+        <div className="flex justify-center mb-16">
+          <Button size="lg" className="gap-2 text-lg px-10 py-7" asChild>
+            <Link to="/waitlist">
+              Essayer Aurea Vault
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </Button>
         </div>
 
         {/* Value Props */}
