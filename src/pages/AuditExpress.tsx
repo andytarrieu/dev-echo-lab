@@ -1,9 +1,10 @@
 import NavbarNew from "@/components/NavbarNew";
-import AuditHero from "@/components/AuditHero";
+import VaultHero from "@/components/VaultHero";
 import LogoSlider from "@/components/LogoSlider";
-import FeaturesSection from "@/components/FeaturesSection";
-import StatsSection from "@/components/StatsSection";
-import CTASection from "@/components/CTASection";
+import UseCasesSection from "@/components/UseCasesSection";
+import ProofSection from "@/components/ProofSection";
+import SecuritySection from "@/components/SecuritySection";
+import VaultFAQ from "@/components/VaultFAQ";
 import Footer from "@/components/Footer";
 
 const AuditExpress = () => {
@@ -11,11 +12,12 @@ const AuditExpress = () => {
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        <AuditHero />
+        <VaultHero />
         <LogoSlider />
-        <FeaturesSection />
-        <StatsSection />
-        <CTASection />
+        <UseCasesSection />
+        <ProofSection />
+        <SecuritySection />
+        <VaultFAQ />
       </main>
       <Footer />
     </div>
