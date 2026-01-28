@@ -38,7 +38,7 @@ const WhyAureaSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 sm:py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-medium text-primary mb-2">POURQUOI AURÉA ?</p>

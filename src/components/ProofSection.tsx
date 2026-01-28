@@ -2,7 +2,7 @@ import { Quote, FileText, ExternalLink } from "lucide-react";
 
 const ProofSection = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 sm:py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
           {/* Left Content */}

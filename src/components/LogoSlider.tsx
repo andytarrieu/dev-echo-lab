@@ -22,7 +22,7 @@ const LogoSlider = () => {
   const allLogos = [...logos, ...logos];
 
   return (
-    <section className="py-12 bg-background border-t border-border">
+    <section className="py-8 sm:py-12 bg-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm text-muted-foreground mb-8">
           Données analysées depuis les principales sources immobilières
