@@ -3,7 +3,7 @@ import { ArrowRight, Shield, FileText, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "./WaitlistBadge";
 const VaultHero = () => {
-  return <section className="pt-28 pb-20 bg-background">
+  return <section className="pt-24 pb-12 sm:pt-28 sm:pb-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Waitlist Badge */}
         <div className="flex justify-center mb-6">
