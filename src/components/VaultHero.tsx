@@ -27,9 +27,7 @@ const VaultHero = () => {
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Votre coffre-fort d'analyse et de vérification, basé exclusivement sur les documents officiels 
-            auxquels vous faites confiance. Optimisé par la puissance de{" "}
-            <span className="font-semibold text-foreground">Gemini 1.5 Pro</span>.
+            Vérifiez chaque détail technique, juridique et financier de votre achat avant de vous engager.
           </p>
         </div>
 
