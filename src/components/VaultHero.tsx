@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, FileText, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "./WaitlistBadge";
-
 const VaultHero = () => {
-  return (
-    <section className="pt-28 pb-20 bg-background">
+  return <section className="pt-28 pb-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Waitlist Badge */}
         <div className="flex justify-center mb-6">
@@ -25,7 +23,7 @@ const VaultHero = () => {
         <div className="text-center max-w-4xl mx-auto mb-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
             Vous allez enfin tout comprendre à vos{" "}
-            <span className="text-primary">dossiers de vente</span>
+            <span className="text-primary">dossiers immobilier</span>
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
@@ -84,8 +82,6 @@ const VaultHero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default VaultHero;
