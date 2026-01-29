@@ -1,12 +1,40 @@
-import { FileSearch, Headphones, AlertTriangle, TrendingDown, Shield, BookOpen, CheckCircle2, Zap, FileText } from "lucide-react";
+import { useState } from "react";
+import { FileSearch, Headphones, AlertTriangle, TrendingDown, Shield, BookOpen, CheckCircle2, Zap, FileText, User, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+type AudienceType = "particulier" | "professionnel";
+
 const FeaturesBentoGrid = () => {
+  const [audience, setAudience] = useState<AudienceType>("particulier");
+
+  const audienceContent = {
+    particulier: {
+      tagline: "Premier achat ou résidence principale",
+      mainTitle: "+50 Alertes Détectées",
+      mainDescription: "Charges cachées, travaux votés, impayés... Comprenez enfin ce que vous signez avant d'acheter.",
+      highlights: ["Charges cachées", "Travaux votés", "Vices cachés", "Risques naturels"],
+      negotiationExamples: ["DPE classé F → -15% négociable", "Travaux votés → Déduction directe"],
+      audioDesc: "Un podcast IA qui résume votre dossier en 5 min. Parfait pour comprendre l'essentiel.",
+      jargonDesc: "État daté, PPD, servitudes... Tout est expliqué en français simple.",
+    },
+    professionnel: {
+      tagline: "Agents, notaires & investisseurs",
+      mainTitle: "+50 Points de Contrôle",
+      mainDescription: "Analysez un dossier notarial complet en 15 minutes. Détectez les anomalies avant vos clients.",
+      highlights: ["Impayés copro >25%", "Procédures syndic", "Origine propriété", "Servitudes actives"],
+      negotiationExamples: ["État daté incomplet → Demande compléments", "DTG obsolète → Renégociation"],
+      audioDesc: "Briefez-vous sur un dossier entre deux rendez-vous. Gagnez 2h par transaction.",
+      jargonDesc: "Watchlist de termes juridiques clés. Détection automatique dans les documents.",
+    },
+  };
+
+  const content = audienceContent[audience];
+
   const features = [
     {
       icon: AlertTriangle,
-      title: "+50 Alertes Détectées",
-      description: "Charges cachées, travaux votés, impayés, procédures judiciaires... Rien n'échappe à notre scan.",
+      title: content.mainTitle,
+      description: content.mainDescription,
       badge: "Puissance",
       badgeColor: "bg-destructive/10 text-destructive",
       colSpan: "md:col-span-2",
@@ -16,12 +44,12 @@ const FeaturesBentoGrid = () => {
         { label: "Points de contrôle", value: "50+" },
         { label: "Minutes d'analyse", value: "15" },
       ],
-      highlights: ["Charges cachées", "Travaux votés", "Impayés copro", "Litiges en cours"],
+      highlights: content.highlights,
     },
     {
       icon: FileSearch,
       title: "Citations Sources",
-      description: "Chaque alerte renvoie à l'extrait exact de vos PDF. Zéro hallucination, 100% vérifiable.",
+      description: "Chaque alerte renvoie à l'extrait exact de vos PDF. Zéro hallucination.",
       badge: "La Preuve",
       badgeColor: "bg-primary/10 text-primary",
       colSpan: "",
@@ -31,8 +59,8 @@ const FeaturesBentoGrid = () => {
     },
     {
       icon: Headphones,
-      title: "Résumé Audio Podcast",
-      description: "Un podcast IA qui résume votre dossier en 5 minutes. Écoutez en voiture ou en marchant.",
+      title: "Résumé Audio",
+      description: content.audioDesc,
       badge: "Innovation",
       badgeColor: "bg-accent/20 text-accent-foreground",
       colSpan: "",
@@ -43,25 +71,27 @@ const FeaturesBentoGrid = () => {
     {
       icon: TrendingDown,
       title: "Arguments de Négociation",
-      description: "Fonds travaux ALUR non à jour ? Audit énergétique obligatoire ? Obtenez des arguments factuels pour négocier le prix.",
+      description: audience === "particulier" 
+        ? "Obtenez des arguments factuels pour négocier le prix de votre futur bien."
+        : "Préparez vos clients avec des arguments chiffrés et sourcés.",
       badge: "Gain €€€",
       badgeColor: "bg-emerald-100 text-emerald-700",
       linkedBadge: "Basé sur +50 points de contrôle",
       colSpan: "md:col-span-2",
       rowSpan: "",
       size: "medium",
-      examples: ["DPE classé F → -15% négociable", "Travaux votés → Déduction directe"],
+      examples: content.negotiationExamples,
     },
     {
       icon: BookOpen,
-      title: "Jargon Traduit",
-      description: "État daté, PPD, servitudes... Tout est expliqué en français simple.",
+      title: audience === "particulier" ? "Jargon Traduit" : "Watchlist Juridique",
+      description: content.jargonDesc,
       badge: "Clarté",
       badgeColor: "bg-blue-100 text-blue-700",
       colSpan: "",
       rowSpan: "",
       size: "small",
-      miniFeature: "Glossaire intégré",
+      miniFeature: audience === "particulier" ? "Glossaire intégré" : "Termes clés surveillés",
     },
     {
       icon: Shield,
@@ -82,19 +112,50 @@ const FeaturesBentoGrid = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-8 bg-gradient-to-b from-primary/20 to-transparent" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8">
+        {/* Section Header with Audience Toggle */}
+        <div className="text-center mb-6">
           <p className="text-sm font-medium text-primary mb-2">TOUR DE CONTRÔLE</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             Plus qu'un scan : <span className="text-primary">Votre tour de contrôle immobilière.</span>
           </h2>
+          
+          {/* Audience Toggle */}
+          <div className="inline-flex items-center p-1 bg-muted rounded-full gap-1">
+            <button
+              onClick={() => setAudience("particulier")}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+                audience === "particulier"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <User className="w-4 h-4" />
+              Particuliers
+            </button>
+            <button
+              onClick={() => setAudience("professionnel")}
+              className={cn(
+                "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+                audience === "professionnel"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              <Briefcase className="w-4 h-4" />
+              Professionnels
+            </button>
+          </div>
+          
+          {/* Audience tagline */}
+          <p className="text-sm text-muted-foreground mt-3">{content.tagline}</p>
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <div
-              key={index}
+              key={`${audience}-${index}`}
               className={cn(
                 "group relative rounded-2xl border border-border bg-card overflow-hidden",
                 "hover:shadow-xl hover:border-primary/30 transition-all duration-300",
