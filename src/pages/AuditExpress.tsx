@@ -4,6 +4,7 @@ import LogoSlider from "@/components/LogoSlider";
 import WhatWeDoSection from "@/components/WhatWeDoSection";
 import WhyAureaSection from "@/components/WhyAureaSection";
 import BuyerFearsSection from "@/components/BuyerFearsSection";
+import ProfessionalSection from "@/components/ProfessionalSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import ProofSection from "@/components/ProofSection";
 import SecuritySection from "@/components/SecuritySection";
@@ -19,6 +20,7 @@ const AuditExpress = () => {
         <LogoSlider />
         <BuyerFearsSection />
         <WhatWeDoSection />
+        <ProfessionalSection />
         <WhyAureaSection />
         <UseCasesSection />
         <ProofSection />
