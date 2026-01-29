@@ -12,7 +12,6 @@ const NavbarNew = () => {
 
   const navLinks = [
     { path: "/", label: "Audit Express" },
-    { path: "/ecosystem", label: "Écosystème" },
     { path: "/pricing", label: "Tarifs" },
   ];
 
