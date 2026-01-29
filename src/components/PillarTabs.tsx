@@ -11,7 +11,10 @@ import {
   Zap,
   FileSearch,
   MessageSquare,
-  Shield
+  Shield,
+  Upload,
+  Sparkles,
+  Link2
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -29,6 +32,7 @@ const PillarTabs = () => {
       borderColor: "border-orange-500/20",
       headline: "Santé Physique du Bien",
       subheadline: "Diagnostics obligatoires décryptés en 2 minutes",
+      description: "Importez vos diagnostics techniques (DPE, amiante, plomb...). Aurea Vault les analyse et établit des liens entre les anomalies grâce à sa compréhension multimodale.",
       keyPoints: [
         { text: "DPE, Amiante, Plomb, Électricité, Gaz", highlight: true },
         { text: "Termites, Assainissement, ERP", highlight: false },
@@ -39,6 +43,8 @@ const PillarTabs = () => {
         "Non-conformité électrique détectée",
         "Audit énergétique obligatoire manquant",
       ],
+      insightText: "L'IA devient votre expert technique personnel, capable de répondre à toutes vos questions sur l'état du bien.",
+      sourceText: "Chaque anomalie détectée est liée à l'extrait exact du diagnostic source. Vérifiez en un clic.",
       stats: { value: "15+", label: "diagnostics analysés" }
     },
     {
@@ -50,6 +56,7 @@ const PillarTabs = () => {
       borderColor: "border-blue-500/20",
       headline: "Finances & Gestion Immeuble",
       subheadline: "État Daté et PV d'AG passés au crible",
+      description: "Importez l'État Daté et les PV d'Assemblée Générale. Aurea Vault croise les données financières et détecte les incohérences cachées.",
       keyPoints: [
         { text: "Charges impayées, travaux votés", highlight: true },
         { text: "Historique des 3 dernières AG", highlight: false },
@@ -60,6 +67,8 @@ const PillarTabs = () => {
         "Impayés copropriétaires > 25%",
         "Procédure judiciaire en cours",
       ],
+      insightText: "L'IA synthétise 3 années de PV d'AG et vous alerte sur les décisions qui impactent votre achat.",
+      sourceText: "Chaque montant, chaque vote est traçable jusqu'au document original avec numéro de page.",
       stats: { value: "50+", label: "points de contrôle" }
     },
     {
@@ -71,6 +80,7 @@ const PillarTabs = () => {
       borderColor: "border-purple-500/20",
       headline: "Pedigree Légal du Bien",
       subheadline: "30 ans d'historique propriété analysés",
+      description: "Importez le compromis et les annexes juridiques. Aurea Vault reconstitue l'historique de propriété et identifie les risques légaux.",
       keyPoints: [
         { text: "Servitudes, hypothèques, préemption", highlight: true },
         { text: "Origine de propriété complexe", highlight: false },
@@ -81,6 +91,8 @@ const PillarTabs = () => {
         "Droit de préemption urbain actif",
         "Succession non réglée détectée",
       ],
+      insightText: "L'IA vulgarise le jargon notarial et vous explique les implications concrètes pour votre achat.",
+      sourceText: "Chaque clause, chaque servitude est citée avec l'article exact du compromis de vente.",
       stats: { value: "30", label: "années d'historique" }
     },
     {
@@ -92,6 +104,7 @@ const PillarTabs = () => {
       borderColor: "border-primary/20",
       headline: "Intelligence Conversationnelle",
       subheadline: "Dialoguez avec vos documents, obtenez des preuves",
+      description: "Posez n'importe quelle question sur vos 400+ pages de documents. L'IA comprend le contexte global et établit des connexions entre tous les thèmes.",
       keyPoints: [
         { text: "Chat contextuel avec citations", highlight: true },
         { text: "Vulgarisation juridique instantanée", highlight: false },
@@ -102,6 +115,8 @@ const PillarTabs = () => {
         "Générateur de questions notaire",
         "Export PDF rapport complet",
       ],
+      insightText: "L'IA devient votre expert immobilier personnel, capable de croiser toutes les informations en temps réel.",
+      sourceText: "Chaque réponse affiche les extraits exacts de vos sources. Pas de réponse sans preuve.",
       stats: { value: "2min", label: "pour 400 pages" }
     },
   ];
@@ -194,7 +209,7 @@ const PillarTabs = () => {
                 activePillarData.borderColor,
                 activePillarData.bgGlow
               )}>
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <div className={cn(
                     "w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br shadow-lg",
                     activePillarData.gradient
@@ -207,12 +222,23 @@ const PillarTabs = () => {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                {/* Description - Import your sources */}
+                <div className="mb-6 p-4 rounded-xl bg-background/60 border border-border/50">
+                  <div className="flex items-start gap-3">
+                    <Upload className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Importez vos sources</p>
+                      <p className="text-sm text-muted-foreground">{activePillarData.description}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
                   {activePillarData.keyPoints.map((point, idx) => (
                     <div 
                       key={idx}
                       className={cn(
-                        "flex items-center gap-3 p-4 rounded-xl transition-all",
+                        "flex items-center gap-3 p-3 rounded-xl transition-all",
                         point.highlight 
                           ? "bg-background/80 border border-border shadow-sm" 
                           : "bg-background/40"
@@ -223,7 +249,7 @@ const PillarTabs = () => {
                         point.highlight ? "text-primary" : "text-muted-foreground"
                       )} />
                       <span className={cn(
-                        "text-base",
+                        "text-sm",
                         point.highlight ? "font-medium text-foreground" : "text-muted-foreground"
                       )}>
                         {point.text}
@@ -232,11 +258,14 @@ const PillarTabs = () => {
                   ))}
                 </div>
 
-                {/* CTA */}
-                <div className="mt-6 pt-6 border-t border-border/50">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Shield className="w-4 h-4 text-primary" />
-                    <span>Analyse automatique avec citations sources</span>
+                {/* Insight text */}
+                <div className="mt-5 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <div className="flex items-start gap-3">
+                    <Sparkles className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Insights instantanés</p>
+                      <p className="text-sm text-muted-foreground">{activePillarData.insightText}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -265,8 +294,19 @@ const PillarTabs = () => {
                   ))}
                 </div>
 
+                {/* Source text - Citations */}
+                <div className="mt-5 p-4 rounded-xl bg-muted/50 border border-border">
+                  <div className="flex items-start gap-3">
+                    <Link2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-medium text-foreground mb-1">Voir la source, pas seulement la réponse</p>
+                      <p className="text-sm text-muted-foreground">{activePillarData.sourceText}</p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Bottom info */}
-                <div className="mt-6 pt-6 border-t border-border">
+                <div className="mt-5 pt-5 border-t border-border">
                   <div className="flex flex-wrap items-center gap-3">
                     <Badge variant="secondary" className="text-sm px-3 py-1">
                       <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
