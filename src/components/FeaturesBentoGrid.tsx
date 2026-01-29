@@ -9,22 +9,24 @@ const FeaturesBentoGrid = () => {
 
   const audienceContent = {
     particulier: {
-      tagline: "Premier achat ou résidence principale",
-      mainTitle: "+50 Alertes Détectées",
-      mainDescription: "Charges cachées, travaux votés, impayés... Comprenez enfin ce que vous signez avant d'acheter.",
-      highlights: ["Charges cachées", "Travaux votés", "Vices cachés", "Risques naturels"],
+      tagline: "Achetez en toute sérénité, sans peur des coûts cachés",
+      mainTitle: "Score de Santé Immobilier",
+      mainDescription: "Fini la lecture manuelle de 400 pages. Aurea scanne instantanément Compromis, DPE, PV d'AG et État Daté pour vous donner une vision claire.",
+      highlights: ["Alertes Rouges", "Charges impayées", "Travaux votés", "Vices juridiques"],
       negotiationExamples: ["DPE classé F → -15% négociable", "Travaux votés → Déduction directe"],
-      audioDesc: "Un podcast IA qui résume votre dossier en 5 min. Parfait pour comprendre l'essentiel.",
-      jargonDesc: "État daté, PPD, servitudes... Tout est expliqué en français simple.",
+      audioDesc: "Un podcast IA qui résume votre dossier en 5 min. Parfait pour comprendre l'essentiel sans lire 400 pages.",
+      jargonDesc: "Traduction instantanée du jargon notarial en langage simple. PPD, servitudes, état daté... tout devient clair.",
+      chatDesc: "Dialoguez avec vos documents. Chaque réponse est prouvée par un lien vers le paragraphe exact du document source.",
     },
     professionnel: {
-      tagline: "Agents, notaires & investisseurs",
-      mainTitle: "+50 Points de Contrôle",
-      mainDescription: "Analysez un dossier notarial complet en 15 minutes. Détectez les anomalies avant vos clients.",
-      highlights: ["Impayés copro >25%", "Procédures syndic", "Origine propriété", "Servitudes actives"],
-      negotiationExamples: ["État daté incomplet → Demande compléments", "DTG obsolète → Renégociation"],
-      audioDesc: "Briefez-vous sur un dossier entre deux rendez-vous. Gagnez 2h par transaction.",
-      jargonDesc: "Watchlist de termes juridiques clés. Détection automatique dans les documents.",
+      tagline: "Agents, notaires, investisseurs & courtiers",
+      mainTitle: "Audit Automatique Pro",
+      mainDescription: "Ce qui prenait 4h à un clerc de notaire prend désormais moins de 2 minutes. Automatisez l'extraction de données pour vos actes.",
+      highlights: ["Dossiers pré-remplis", "Extraction données", "Rentabilité réelle", "Risques copro"],
+      negotiationExamples: ["État daté incomplet → Demande compléments", "DTG obsolète → Renégociation prix"],
+      audioDesc: "Briefez-vous sur un dossier entre deux rendez-vous. Sécurisez vos mandats et accélérez les ventes.",
+      jargonDesc: "Watchlist de termes juridiques clés. Détection automatique des clauses critiques dans vos documents.",
+      chatDesc: "L'IA ne hallucine pas : elle se base exclusivement sur les documents du Vault. Citations directes garanties.",
     },
   };
 
@@ -35,30 +37,30 @@ const FeaturesBentoGrid = () => {
       icon: AlertTriangle,
       title: content.mainTitle,
       description: content.mainDescription,
-      badge: "Puissance",
+      badge: "Audit IA",
       badgeColor: "bg-destructive/10 text-destructive",
       colSpan: "md:col-span-2",
       rowSpan: "md:row-span-2",
       size: "large",
       stats: [
-        { label: "Technique • DPE, amiante, plomb, électricité", value: "50+" },
-        { label: "Analyse automatique de vos PDF", value: "15 min" },
+        { label: "Alertes Rouges détectées automatiquement", value: "50+" },
+        { label: "Ce qui prenait 4h prend maintenant", value: "2 min" },
       ],
       highlights: content.highlights,
       detailedCategories: audience === "particulier" 
-        ? ["🔧 Technique : anomalies électricité, gaz, DPE", "🏢 Copro : charges, travaux votés, impayés", "⚖️ Juridique : servitudes, hypothèques, litiges"]
-        : ["🔧 DDT : conformité diagnostics obligatoires", "🏢 État daté : analyse financière copropriété", "⚖️ Origine : chaîne de propriété sur 30 ans"],
+        ? ["🔍 Compromis, DPE, PV d'AG, État Daté", "⚠️ Charges impayées, travaux votés, vices", "📊 Score de Santé du bien immobilier"]
+        : ["📋 Dossiers d'audit pré-remplis pour vos mandats", "💰 Rentabilité réelle & risques copropriété", "⚡ Extraction automatisée pour actes & financement"],
     },
     {
       icon: FileSearch,
-      title: "Citations Sources",
-      description: "Chaque alerte renvoie à l'extrait exact de vos PDF. Zéro hallucination.",
-      badge: "La Preuve",
+      title: "IA Conversationnelle",
+      description: content.chatDesc,
+      badge: "Grounding",
       badgeColor: "bg-primary/10 text-primary",
       colSpan: "",
       rowSpan: "",
       size: "small",
-      miniFeature: "Page & paragraphe exacts",
+      miniFeature: "Zéro hallucination",
     },
     {
       icon: Headphones,
@@ -73,13 +75,13 @@ const FeaturesBentoGrid = () => {
     },
     {
       icon: TrendingDown,
-      title: "Arguments de Négociation",
+      title: "Négociation Stratégique",
       description: audience === "particulier" 
-        ? "Obtenez des arguments factuels pour négocier le prix de votre futur bien."
-        : "Préparez vos clients avec des arguments chiffrés et sourcés.",
+        ? "Rapports d'arguments basés sur les failles détectées. Ajustez le prix d'achat de manière factuelle."
+        : "Générez des rapports d'arguments pour ajuster le prix basés sur les failles techniques et juridiques.",
       badge: "Gain €€€",
       badgeColor: "bg-emerald-100 text-emerald-700",
-      linkedBadge: "Basé sur +50 points de contrôle",
+      linkedBadge: "Basé sur les failles détectées",
       colSpan: "md:col-span-2",
       rowSpan: "",
       size: "medium",
@@ -87,19 +89,19 @@ const FeaturesBentoGrid = () => {
     },
     {
       icon: BookOpen,
-      title: audience === "particulier" ? "Jargon Traduit" : "Watchlist Juridique",
+      title: audience === "particulier" ? "Vulgarisation Juridique" : "Passeport Numérique",
       description: content.jargonDesc,
-      badge: "Clarté",
+      badge: audience === "particulier" ? "Clarté" : "Tiers de Confiance",
       badgeColor: "bg-blue-100 text-blue-700",
       colSpan: "",
       rowSpan: "",
       size: "small",
-      miniFeature: audience === "particulier" ? "Glossaire intégré" : "Termes clés surveillés",
+      miniFeature: audience === "particulier" ? "Langage simple" : "Source de vérité unique",
     },
     {
       icon: Shield,
-      title: "Données Sécurisées",
-      description: "Chiffrement AES-256. Vos documents ne sont jamais utilisés pour entraîner l'IA.",
+      title: "Coffre-Fort Numérique",
+      description: "Vault ultra-sécurisé. Vos documents ne sont jamais utilisés pour entraîner l'IA. Chiffrement AES-256.",
       badge: "Confiance",
       badgeColor: "bg-primary/10 text-primary",
       colSpan: "",
@@ -117,9 +119,9 @@ const FeaturesBentoGrid = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Audience Toggle */}
         <div className="text-center mb-6">
-          <p className="text-sm font-medium text-primary mb-2">TOUR DE CONTRÔLE</p>
+          <p className="text-sm font-medium text-primary mb-2">PROPERTY INTELLIGENCE</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Plus qu'un scan : <span className="text-primary">Votre tour de contrôle immobilière.</span>
+            Vous ne lisez plus vos documents : <span className="text-primary">vous dialoguez avec eux.</span>
           </h2>
           
           {/* Audience Toggle */}
