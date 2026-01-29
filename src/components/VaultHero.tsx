@@ -26,14 +26,26 @@ const VaultHero = () => {
         {/* Main Title */}
         <div className="text-center max-w-5xl mx-auto mb-6 sm:mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6">
-            Dossiers Immobiliers :{" "}
-            <span className="text-primary">Comprenez enfin tout ce que vous signez.</span>
+            L'Intelligence Augmentée{" "}
+            <span className="text-primary">au Service de l'Immobilier.</span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            L'audit complet qui sécurise votre achat, de la technique au juridique. 
-            Un seul outil pour scanner 600+ pages et détecter les pièges cachés en 15 minutes.
+          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-4">
+            La première plateforme de <span className="font-semibold text-foreground">Property Intelligence</span> qui transforme 
+            vos dossiers notariaux complexes en données claires, exploitables et interactives.
           </p>
+          
+          <div className="flex flex-wrap justify-center gap-3 text-sm">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium">
+              ⚡ 400 pages analysées en 2 min
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 font-medium">
+              🎯 Zéro hallucination IA
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 font-medium">
+              🔒 Coffre-fort numérique
+            </span>
+          </div>
         </div>
 
         {/* CTA Button */}
