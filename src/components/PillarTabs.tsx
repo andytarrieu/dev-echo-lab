@@ -187,16 +187,16 @@ const PillarTabs = () => {
                         <div 
                           key={idx}
                           className={cn(
-                            "flex items-center justify-between gap-3 p-4 rounded-xl",
+                            "flex flex-col gap-2 p-4 rounded-xl",
                             "bg-muted/50 hover:bg-muted transition-colors",
                             doc.critical && "ring-1 ring-primary/20"
                           )}
                         >
-                          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                          <div className="flex items-center gap-2.5">
                             <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                             <span className="text-sm font-medium text-foreground">{doc.name}</span>
                           </div>
-                          <Badge variant="secondary" className="text-xs flex-shrink-0">
+                          <Badge variant="secondary" className="text-xs w-fit">
                             {doc.status}
                           </Badge>
                         </div>
