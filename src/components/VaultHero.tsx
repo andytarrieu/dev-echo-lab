@@ -22,12 +22,12 @@ const VaultHero = () => {
         {/* Main Title */}
         <div className="text-center max-w-4xl mx-auto mb-4 sm:mb-8">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6">
-            Dossiers Immobiliers : Comprenez enfin{" "}
-            <span className="text-primary">tout ce que vous signez.</span>
+            Analysez. Détectez. Négociez.{" "}
+            <span className="text-primary">En 15 minutes.</span>
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Vérifiez chaque détail technique, juridique et financier de votre achat avant de vous engager.
+            Uploadez votre dossier notaire et obtenez un audit complet : 50+ alertes détectées, jargon traduit, arguments de négociation et questions à poser — tout en un seul rapport.
           </p>
         </div>
 
