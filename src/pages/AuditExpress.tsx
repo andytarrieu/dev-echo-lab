@@ -17,9 +17,9 @@ const AuditExpress = () => {
       <main>
         <VaultHero />
         <LogoSlider />
+        <BuyerFearsSection />
         <WhatWeDoSection />
         <WhyAureaSection />
-        <BuyerFearsSection />
         <UseCasesSection />
         <ProofSection />
         <SecuritySection />
