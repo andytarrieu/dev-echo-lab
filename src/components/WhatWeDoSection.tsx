@@ -64,10 +64,10 @@ const WhatWeDoSection = () => {
         <div className="text-center mb-8 sm:mb-16">
           <p className="text-sm font-medium text-primary mb-2">COMMENT ÇA MARCHE</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Ce que fait AURÉA Vault pour vous
+            600 pages analysées. 50+ alertes détectées. 1 rapport clair.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            De l'analyse automatique à la négociation, découvrez comment nous sécurisons votre achat immobilier.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Uploadez votre dossier notaire, obtenez un audit complet avec les pièges à éviter, les arguments de négociation et les questions à poser — le tout en moins de 15 minutes.
           </p>
         </div>
 
