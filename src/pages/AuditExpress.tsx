@@ -1,7 +1,7 @@
 import NavbarNew from "@/components/NavbarNew";
 import VaultHero from "@/components/VaultHero";
-import FeaturesBentoGrid from "@/components/FeaturesBentoGrid";
-import PillarTabs from "@/components/PillarTabs";
+import FeaturesListSection from "@/components/FeaturesListSection";
+import PillarsOverview from "@/components/PillarsOverview";
 import LogoSlider from "@/components/LogoSlider";
 import ProfessionalSection from "@/components/ProfessionalSection";
 import WhyAureaSection from "@/components/WhyAureaSection";
@@ -15,19 +15,19 @@ const AuditExpress = () => {
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        {/* 1. Hero with new storytelling title */}
+        {/* 1. Hero - Titre + Sous-titre + CTA */}
         <VaultHero />
         
-        {/* 2. Bento Grid - All features visible at a glance */}
-        <FeaturesBentoGrid />
+        {/* 2. Features Liste - Toutes les fonctionnalités */}
+        <FeaturesListSection />
         
-        {/* 3. Pillar Tabs - Navigate between sections */}
-        <PillarTabs />
+        {/* 3. Piliers - Vue d'ensemble des 3 piliers + Lab */}
+        <PillarsOverview />
         
         {/* Trust indicators */}
         <LogoSlider />
         
-        {/* Professional deep-dive (complex docs) */}
+        {/* Professional deep-dive */}
         <ProfessionalSection />
         
         {/* Why choose Aurea */}
