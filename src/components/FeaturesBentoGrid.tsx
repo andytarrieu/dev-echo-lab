@@ -41,10 +41,13 @@ const FeaturesBentoGrid = () => {
       rowSpan: "md:row-span-2",
       size: "large",
       stats: [
-        { label: "Points de contrôle", value: "50+" },
-        { label: "Minutes d'analyse", value: "15" },
+        { label: "Technique • DPE, amiante, plomb, électricité", value: "50+" },
+        { label: "Analyse automatique de vos PDF", value: "15 min" },
       ],
       highlights: content.highlights,
+      detailedCategories: audience === "particulier" 
+        ? ["🔧 Technique : anomalies électricité, gaz, DPE", "🏢 Copro : charges, travaux votés, impayés", "⚖️ Juridique : servitudes, hypothèques, litiges"]
+        : ["🔧 DDT : conformité diagnostics obligatoires", "🏢 État daté : analyse financière copropriété", "⚖️ Origine : chaîne de propriété sur 30 ans"],
     },
     {
       icon: FileSearch,
@@ -211,15 +214,27 @@ const FeaturesBentoGrid = () => {
                 {/* Large card: Stats + Highlights */}
                 {feature.size === "large" && feature.stats && (
                   <>
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-3 mb-4">
+                    {/* Stats with detailed labels */}
+                    <div className="grid grid-cols-2 gap-3 mb-3">
                       {feature.stats.map((stat, idx) => (
                         <div key={idx} className="bg-muted/50 rounded-lg p-2.5 text-center">
                           <div className="text-xl font-bold text-primary">{stat.value}</div>
-                          <div className="text-[10px] text-muted-foreground">{stat.label}</div>
+                          <div className="text-[10px] text-muted-foreground leading-tight">{stat.label}</div>
                         </div>
                       ))}
                     </div>
+
+                    {/* Detailed Categories - What Vault analyzes */}
+                    {feature.detailedCategories && (
+                      <div className="space-y-1.5 mb-3 p-2.5 bg-muted/30 rounded-lg border border-border/50">
+                        <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">Ce que Vault analyse :</p>
+                        {feature.detailedCategories.map((cat: string, idx: number) => (
+                          <div key={idx} className="text-xs text-foreground/80">
+                            {cat}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     
                     {/* Highlights */}
                     {feature.highlights && (
