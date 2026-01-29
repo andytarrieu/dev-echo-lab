@@ -173,28 +173,28 @@ const PillarTabs = () => {
                 <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
                   {/* Documents List */}
                   <div className="bg-card rounded-2xl border border-border p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", pillar.bgColor)}>
-                        <FileText className={cn("w-5 h-5", pillar.color)} />
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", pillar.bgColor)}>
+                        <FileText className={cn("w-6 h-6", pillar.color)} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground">Documents Analysés</h3>
+                        <h3 className="text-lg font-semibold text-foreground">Documents Analysés</h3>
                         <p className="text-sm text-muted-foreground">{pillar.description}</p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       {pillar.documents.map((doc, idx) => (
                         <div 
                           key={idx}
                           className={cn(
-                            "flex items-center justify-between gap-2 p-3 rounded-xl",
+                            "flex items-center justify-between gap-3 p-4 rounded-xl",
                             "bg-muted/50 hover:bg-muted transition-colors",
                             doc.critical && "ring-1 ring-primary/20"
                           )}
                         >
-                          <div className="flex items-center gap-2 min-w-0 flex-1">
-                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                            <span className="text-sm font-medium text-foreground truncate">{doc.name}</span>
+                          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                            <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="text-sm font-medium text-foreground">{doc.name}</span>
                           </div>
                           <Badge variant="secondary" className="text-xs flex-shrink-0">
                             {doc.status}
@@ -206,12 +206,12 @@ const PillarTabs = () => {
 
                   {/* Alerts Preview */}
                   <div className="bg-card rounded-2xl border border-border p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", pillar.bgColor)}>
-                        <AlertCircle className={cn("w-5 h-5", pillar.color)} />
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", pillar.bgColor)}>
+                        <AlertCircle className={cn("w-6 h-6", pillar.color)} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground">Alertes Détectables</h3>
+                        <h3 className="text-lg font-semibold text-foreground">Alertes Détectables</h3>
                         <p className="text-sm text-muted-foreground">Exemples de signaux d'alerte</p>
                       </div>
                     </div>
@@ -219,18 +219,18 @@ const PillarTabs = () => {
                       {pillar.alerts.map((alert, idx) => (
                         <div 
                           key={idx}
-                          className="flex items-start gap-3 p-3 rounded-xl bg-destructive/5 border border-destructive/10"
+                          className="flex items-start gap-3 p-4 rounded-xl bg-destructive/5 border border-destructive/10"
                         >
-                          <Zap className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-foreground">{alert}</span>
+                          <Zap className="w-5 h-5 text-destructive mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-foreground leading-relaxed">{alert}</span>
                         </div>
                       ))}
                     </div>
                     
                     {/* Cross-reference badge */}
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-                        <Badge variant="outline" className="text-xs">
+                    <div className="mt-5 pt-4 border-t border-border">
+                      <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                        <Badge variant="outline" className="text-sm px-3 py-1">
                           Lié à +50 points de contrôle
                         </Badge>
                         <span>•</span>
