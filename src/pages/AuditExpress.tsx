@@ -1,6 +1,7 @@
 import NavbarNew from "@/components/NavbarNew";
 import VaultHero from "@/components/VaultHero";
 import LogoSlider from "@/components/LogoSlider";
+import WhatWeDoSection from "@/components/WhatWeDoSection";
 import WhyAureaSection from "@/components/WhyAureaSection";
 import BuyerFearsSection from "@/components/BuyerFearsSection";
 import UseCasesSection from "@/components/UseCasesSection";
@@ -16,6 +17,7 @@ const AuditExpress = () => {
       <main>
         <VaultHero />
         <LogoSlider />
+        <WhatWeDoSection />
         <WhyAureaSection />
         <BuyerFearsSection />
         <UseCasesSection />
