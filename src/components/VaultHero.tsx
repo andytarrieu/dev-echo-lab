@@ -3,8 +3,7 @@ import { ArrowRight, Shield, FileText, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "./WaitlistBadge";
 const VaultHero = () => {
-  return (
-    <section className="pt-24 pb-8 sm:pt-28 sm:pb-12 bg-background relative overflow-hidden">
+  return <section className="pt-24 pb-8 sm:pt-28 sm:pb-12 bg-background relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,hsl(var(--primary)/0.05),transparent_50%)]" />
       
@@ -39,12 +38,8 @@ const VaultHero = () => {
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-medium">
               ⚡ 400 pages analysées en 2 min
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 font-medium">
-              🎯 Zéro hallucination IA
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-100 text-blue-700 font-medium">
-              🔒 Coffre-fort numérique
-            </span>
+            
+            
           </div>
         </div>
 
@@ -61,7 +56,6 @@ const VaultHero = () => {
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 export default VaultHero;
