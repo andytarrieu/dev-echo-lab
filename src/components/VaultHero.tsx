@@ -3,10 +3,14 @@ import { ArrowRight, Shield, FileText, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import WaitlistBadge from "./WaitlistBadge";
 const VaultHero = () => {
-  return <section className="pt-24 pb-12 sm:pt-28 sm:pb-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <section className="pt-24 pb-8 sm:pt-28 sm:pb-12 bg-background relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,hsl(var(--primary)/0.05),transparent_50%)]" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Waitlist Badge */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-4">
           <WaitlistBadge />
         </div>
 
@@ -15,71 +19,37 @@ const VaultHero = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
             <Shield className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-primary">AURÉA Vault</span>
-            <span className="text-sm text-muted-foreground">Le nouveau standard de l'audit immobilier</span>
+            <span className="text-sm text-muted-foreground">Particuliers & Professionnels</span>
           </div>
         </div>
 
         {/* Main Title */}
-        <div className="text-center max-w-4xl mx-auto mb-4 sm:mb-8">
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6">
-            Analysez. Détectez. Négociez.{" "}
-            <span className="text-primary">En 15 minutes.</span>
+        <div className="text-center max-w-5xl mx-auto mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6">
+            Dossiers Immobiliers :{" "}
+            <span className="text-primary">Comprenez enfin tout ce que vous signez.</span>
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Uploadez votre dossier notaire et obtenez un audit complet : 50+ alertes détectées, jargon traduit, arguments de négociation et questions à poser — tout en un seul rapport.
+            L'audit complet qui sécurise votre achat, de la technique au juridique. 
+            Un seul outil pour scanner 600+ pages et détecter les pièges cachés en 15 minutes.
           </p>
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center mb-16">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
           <Button size="lg" className="gap-2 text-lg px-10 py-7" asChild>
             <Link to="/waitlist">
               Essayer Aurea Vault
               <ArrowRight className="h-5 w-5" />
             </Link>
           </Button>
-        </div>
-
-        {/* Value Props */}
-        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="flex items-start gap-4 p-4">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <Shield className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-1">Sécurisez vos sources</h4>
-              <p className="text-sm text-muted-foreground">
-                Vos documents cryptés, jamais partagés ni utilisés pour l'entraînement IA.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-4">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <FileText className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-1">Insights Factuels</h4>
-              <p className="text-sm text-muted-foreground">
-                Plus besoin de feuilleter 300 pages : l'essentiel remonte automatiquement.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-4">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <Eye className="h-5 w-5 text-primary" />
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-1">Transparence Totale</h4>
-              <p className="text-sm text-muted-foreground">
-                Chaque réponse cite l'extrait exact de vos PDF. Zéro hallucination.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm text-muted-foreground">
+            <span className="font-medium text-foreground">14,500+</span> inscrits sur la liste d'attente
+          </p>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default VaultHero;
