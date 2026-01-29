@@ -18,14 +18,14 @@ const AuditExpress = () => {
         {/* 1. Hero with new storytelling title */}
         <VaultHero />
         
+        {/* Trust indicators - moved to top */}
+        <LogoSlider />
+        
         {/* 2. Bento Grid - All features visible at a glance */}
         <FeaturesBentoGrid />
         
         {/* 3. Pillar Tabs - Navigate between sections */}
         <PillarTabs />
-        
-        {/* Trust indicators */}
-        <LogoSlider />
         
         {/* Professional deep-dive (complex docs) */}
         <ProfessionalSection />
