@@ -57,8 +57,8 @@ const Team = () => {
                 Notre Histoire
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                Créé par des investisseurs,<br />
-                <span className="text-primary">pour des investisseurs</span>
+                Créé par des professionnels,<br />
+                <span className="text-primary">pour tous les acteurs de l'immobilier</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 AURÉA Vault est né de la frustration d'investisseurs immobiliers face à la complexité 
