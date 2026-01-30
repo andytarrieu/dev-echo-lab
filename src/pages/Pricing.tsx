@@ -9,20 +9,23 @@ import { Link } from "react-router-dom";
 const Pricing = () => {
   const plans = [
     {
-      name: "Essentiel",
-      description: "Pour un premier audit rapide",
+      name: "Particulier",
+      description: "Pour sécuriser votre achat immobilier",
       icon: Zap,
+      audience: "Acheteurs & Vendeurs",
     },
     {
-      name: "Standard",
-      description: "Pour sécuriser votre achat",
+      name: "Professionnel",
+      description: "Pour les agents, notaires et courtiers",
       icon: Star,
       popular: true,
+      audience: "Agents, Notaires, Juristes",
     },
     {
-      name: "Investisseur",
-      description: "Pour les investisseurs réguliers",
+      name: "Agence",
+      description: "Pour les équipes et cabinets",
       icon: Building2,
+      audience: "Équipes & Multi-utilisateurs",
     },
   ];
 
@@ -83,7 +86,10 @@ const Pricing = () => {
                       <plan.icon className="h-6 w-6" />
                     </div>
                     <h3 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h3>
-                    <p className="text-sm text-muted-foreground">{plan.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3">{plan.description}</p>
+                    <Badge variant="secondary" className="text-xs">
+                      {plan.audience}
+                    </Badge>
                     <div className="mt-4 text-2xl font-bold text-muted-foreground/50">
                       Bientôt
                     </div>
