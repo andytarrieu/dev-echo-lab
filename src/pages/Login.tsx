@@ -135,7 +135,7 @@ const Login = () => {
             <Sparkles className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-4xl font-black mb-3 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            Connexion au Dashboard
+            Connexion au Vault
           </h1>
           <p className="text-muted-foreground">
             Connectez-vous pour accéder à votre espace personnel
