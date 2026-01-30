@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NavbarNew from "@/components/NavbarNew";
 import VaultHero from "@/components/VaultHero";
 import FeaturesBentoGrid from "@/components/FeaturesBentoGrid";
@@ -11,7 +12,10 @@ import SecuritySection from "@/components/SecuritySection";
 import VaultFAQ from "@/components/VaultFAQ";
 import Footer from "@/components/Footer";
 
+export type AudienceType = "particulier" | "professionnel";
+
 const AuditExpress = () => {
+  const [audience, setAudience] = useState<AudienceType>("particulier");
   return (
     <div className="min-h-screen bg-background">
       <NavbarNew />
@@ -23,18 +27,25 @@ const AuditExpress = () => {
         <LogoSlider />
         
         {/* 2. Bento Grid - All features visible at a glance */}
-        <FeaturesBentoGrid />
+        <FeaturesBentoGrid audience={audience} onAudienceChange={setAudience} />
         
-        {/* 3. Detailed section for Particuliers */}
-        <ParticulierDocumentsSection />
+        {/* Sections conditionnelles selon l'audience */}
+        {audience === "particulier" ? (
+          <>
+            {/* 3. Detailed section for Particuliers */}
+            <ParticulierDocumentsSection />
+            
+            {/* 4. Pillar Tabs - Navigate between sections */}
+            <PillarTabs />
+          </>
+        ) : (
+          <>
+            {/* Professional deep-dive (complex docs) */}
+            <ProfessionalSection />
+          </>
+        )}
         
-        {/* 4. Pillar Tabs - Navigate between sections */}
-        <PillarTabs />
-        
-        {/* Professional deep-dive (complex docs) */}
-        <ProfessionalSection />
-        
-        {/* Why choose Aurea */}
+        {/* Why choose Aurea - visible pour tous */}
         <WhyAureaSection />
         
         {/* Social proof */}
