@@ -7,7 +7,6 @@ import ScrollToTop from "./components/ScrollToTop";
 
 // Pages principales (nouvelle architecture)
 import AuditExpress from "./pages/AuditExpress";
-import Ecosystem from "./pages/Ecosystem";
 
 // Pages secondaires
 import Team from "./pages/Team";
@@ -32,9 +31,8 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          {/* Nouvelle architecture */}
+          {/* Page principale */}
           <Route path="/" element={<AuditExpress />} />
-          <Route path="/ecosystem" element={<Ecosystem />} />
           
           {/* Pages existantes */}
           <Route path="/team" element={<Team />} />
