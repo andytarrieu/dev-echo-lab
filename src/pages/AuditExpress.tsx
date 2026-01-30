@@ -30,20 +30,22 @@ const AuditExpress = () => {
         <FeaturesBentoGrid audience={audience} onAudienceChange={setAudience} />
         
         {/* Sections conditionnelles selon l'audience */}
-        {audience === "particulier" ? (
-          <>
-            {/* 3. Detailed section for Particuliers */}
-            <ParticulierDocumentsSection />
-            
-            {/* 4. Pillar Tabs - Navigate between sections */}
-            <PillarTabs />
-          </>
-        ) : (
-          <>
-            {/* Professional deep-dive (complex docs) */}
-            <ProfessionalSection />
-          </>
-        )}
+        <div id="audience-section">
+          {audience === "particulier" ? (
+            <>
+              {/* 3. Detailed section for Particuliers */}
+              <ParticulierDocumentsSection />
+              
+              {/* 4. Pillar Tabs - Navigate between sections */}
+              <PillarTabs />
+            </>
+          ) : (
+            <>
+              {/* Professional deep-dive (complex docs) */}
+              <ProfessionalSection />
+            </>
+          )}
+        </div>
         
         {/* Why choose Aurea - visible pour tous */}
         <WhyAureaSection />
