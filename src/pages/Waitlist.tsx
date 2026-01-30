@@ -1,654 +1,139 @@
-import React, { useRef, useEffect, useState } from "react";
-import { ArrowRight, Mail, User, Phone, CheckCircle2, PartyPopper, Lock, Eye, EyeOff } from "lucide-react";
+import { Shield, FileText, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
+import { Link } from "react-router-dom";
 import NavbarNew from "@/components/NavbarNew";
+import WaitlistBadge from "@/components/WaitlistBadge";
+import WaitlistForm from "@/components/WaitlistForm";
 
-// Validation schema
-const waitlistSchema = z.object({
-  name: z.string()
-    .trim()
-    .min(2, 'Le nom doit contenir au moins 2 caractères')
-    .max(100, 'Le nom doit contenir moins de 100 caractères')
-    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le nom contient des caractères invalides'),
-  email: z.string()
-    .trim()
-    .email('Adresse email invalide')
-    .max(255, 'L\'email doit contenir moins de 255 caractères'),
-  password: z.string()
-    .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
-    .max(72, 'Le mot de passe doit contenir moins de 72 caractères'),
-  phone: z.string()
-    .trim()
-    .regex(/^(\+33|0)[0-9\s.-]{9,}$/, 'Numéro de téléphone invalide (format français attendu)')
-    .max(20, 'Numéro de téléphone trop long')
-    .optional()
-    .or(z.literal('')),
-  referralCode: z.string()
-    .trim()
-    .max(50, 'Code de parrainage trop long')
-    .optional()
-    .or(z.literal(''))
-});
-type RoutePoint = {
-  x: number;
-  y: number;
-  delay: number;
-};
-const DotMap = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0
-  });
-  const routes: {
-    start: RoutePoint;
-    end: RoutePoint;
-    color: string;
-  }[] = [{
-    start: {
-      x: 100,
-      y: 150,
-      delay: 0
-    },
-    end: {
-      x: 200,
-      y: 80,
-      delay: 2
-    },
-    color: "hsl(var(--primary))"
-  }, {
-    start: {
-      x: 200,
-      y: 80,
-      delay: 2
-    },
-    end: {
-      x: 260,
-      y: 120,
-      delay: 4
-    },
-    color: "hsl(var(--primary))"
-  }, {
-    start: {
-      x: 50,
-      y: 50,
-      delay: 1
-    },
-    end: {
-      x: 150,
-      y: 180,
-      delay: 3
-    },
-    color: "hsl(var(--primary))"
-  }, {
-    start: {
-      x: 280,
-      y: 60,
-      delay: 0.5
-    },
-    end: {
-      x: 180,
-      y: 180,
-      delay: 2.5
-    },
-    color: "hsl(var(--primary))"
-  }];
-  const generateDots = (width: number, height: number) => {
-    const dots = [];
-    const gap = 12;
-    const dotRadius = 1;
-    for (let x = 0; x < width; x += gap) {
-      for (let y = 0; y < height; y += gap) {
-        const isInMapShape = x < width * 0.25 && x > width * 0.05 && y < height * 0.4 && y > height * 0.1 || x < width * 0.25 && x > width * 0.15 && y < height * 0.8 && y > height * 0.4 || x < width * 0.45 && x > width * 0.3 && y < height * 0.35 && y > height * 0.15 || x < width * 0.5 && x > width * 0.35 && y < height * 0.65 && y > height * 0.35 || x < width * 0.7 && x > width * 0.45 && y < height * 0.5 && y > height * 0.1 || x < width * 0.8 && x > width * 0.65 && y < height * 0.8 && y > height * 0.6;
-        if (isInMapShape && Math.random() > 0.3) {
-          dots.push({
-            x,
-            y,
-            radius: dotRadius,
-            opacity: Math.random() * 0.5 + 0.2
-          });
-        }
-      }
-    }
-    return dots;
-  };
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const resizeObserver = new ResizeObserver(entries => {
-      const {
-        width,
-        height
-      } = entries[0].contentRect;
-      setDimensions({
-        width,
-        height
-      });
-      canvas.width = width;
-      canvas.height = height;
-    });
-    resizeObserver.observe(canvas.parentElement as Element);
-    return () => resizeObserver.disconnect();
-  }, []);
-  useEffect(() => {
-    if (!dimensions.width || !dimensions.height) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const dots = generateDots(dimensions.width, dimensions.height);
-    let animationFrameId: number;
-    let startTime = Date.now();
-    function drawDots() {
-      ctx.clearRect(0, 0, dimensions.width, dimensions.height);
-      dots.forEach(dot => {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${dot.opacity})`;
-        ctx.fill();
-      });
-    }
-    function drawRoutes() {
-      const currentTime = (Date.now() - startTime) / 1000;
-      routes.forEach(route => {
-        const elapsed = currentTime - route.start.delay;
-        if (elapsed <= 0) return;
-        const duration = 3;
-        const progress = Math.min(elapsed / duration, 1);
-        const x = route.start.x + (route.end.x - route.start.x) * progress;
-        const y = route.start.y + (route.end.y - route.start.y) * progress;
-        ctx.beginPath();
-        ctx.moveTo(route.start.x, route.start.y);
-        ctx.lineTo(x, y);
-        ctx.strokeStyle = route.color;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(route.start.x, route.start.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = route.color;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = "hsl(var(--primary))";
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(x, y, 6, 0, Math.PI * 2);
-        ctx.fillStyle = "hsla(var(--primary), 0.4)";
-        ctx.fill();
-        if (progress === 1) {
-          ctx.beginPath();
-          ctx.arc(route.end.x, route.end.y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = route.color;
-          ctx.fill();
-        }
-      });
-    }
-    function animate() {
-      drawDots();
-      drawRoutes();
-      const currentTime = (Date.now() - startTime) / 1000;
-      if (currentTime > 15) {
-        startTime = Date.now();
-      }
-      animationFrameId = requestAnimationFrame(animate);
-    }
-    animate();
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [dimensions]);
-  return <div className="relative w-full h-full overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-    </div>;
-};
 const Waitlist = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [referralCode, setReferralCode] = useState(searchParams.get('ref') || "");
-  const [isHovered, setIsHovered] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const {
-    toast
-  } = useToast();
-
-  const handleGoogleSignIn = async () => {
-    setIsGoogleLoading(true);
-    
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/success`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          }
-        }
-      });
-
-      if (error) {
-        toast({
-          title: "Erreur",
-          description: "Impossible de se connecter avec Google. Veuillez réessayer.",
-          variant: "destructive"
-        });
-        setIsGoogleLoading(false);
-      }
-    } catch (error) {
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de la connexion.",
-        variant: "destructive"
-      });
-      setIsGoogleLoading(false);
-    }
-  };
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    console.log('🔥 Form submitted', { name, email, phone, referralCode });
-
-    try {
-      // Validate inputs with zod
-      const result = waitlistSchema.safeParse({
-        name,
-        email,
-        password,
-        phone,
-        referralCode
-      });
-
-      if (!result.success) {
-        const firstError = result.error.errors[0];
-        console.log('❌ Validation error:', firstError);
-        toast({
-          title: "Erreur de validation",
-          description: firstError.message,
-          variant: "destructive"
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      console.log('✅ Validation passed');
-
-      // Use validated data
-      const validatedData = result.data;
-      
-      // Create Supabase Auth account
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: validatedData.email,
-        password: validatedData.password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`,
-          data: {
-            name: validatedData.name,
-          }
-        }
-      });
-
-      if (authError) {
-        console.error('❌ Auth error:', authError);
-        if (authError.message.includes('already registered')) {
-          toast({
-            title: "Erreur",
-            description: "Cet email est déjà inscrit. Connectez-vous à la place.",
-            variant: "destructive"
-          });
-        } else {
-          toast({
-            title: "Erreur",
-            description: authError.message,
-            variant: "destructive"
-          });
-        }
-        setIsLoading(false);
-        return;
-      }
-
-      console.log('✅ Auth account created');
-
-      // Vérifier si le code de parrainage existe via la fonction sécurisée
-      let referrerId: string | null = null;
-      if (referralCode) {
-        const { data: referralResult } = await supabase
-          .rpc('verify_referral_code', { code: referralCode, client_ip_hash: '' });
-        
-        if (referralResult && referralResult.length > 0 && referralResult[0].is_valid) {
-          referrerId = referralResult[0].referrer_id;
-        }
-      }
-
-      // Enregistrer dans Supabase avec les données validées
-      // La position est gérée automatiquement par le trigger assign_waitlist_position en DB
-      console.log('💾 Inserting into database...');
-      const { data: insertedData, error } = await supabase
-        .from('waitlist')
-        .insert({
-          name: validatedData.name,
-          email: validatedData.email,
-          phone: validatedData.phone || null,
-          user_id: authData.user?.id || null,
-          position: 0 // Placeholder - sera remplacé par le trigger DB
-        } as any)
-        .select('position, referral_code')
-        .single();
-
-      if (error) {
-        console.error('❌ Database error:', error);
-        toast({
-          title: "Erreur",
-          description: error.message.includes('duplicate') || error.message.includes('unique')
-            ? "Cet email est déjà inscrit sur la liste d'attente" 
-            : "Une erreur est survenue lors de l'inscription",
-          variant: "destructive"
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      console.log('✅ Successfully inserted into database');
-      const assignedPosition = insertedData?.position || 15000;
-
-      // Si un code de parrainage a été utilisé, l'enregistrer
-      // La validation est faite côté serveur via la policy can_create_referral
-      if (referrerId) {
-        console.log('🔗 Recording referral...');
-        await supabase
-          .from('referrals')
-          .insert({
-            referrer_id: referrerId,
-            referred_email: validatedData.email
-          });
-      }
-      
-      console.log('🎉 Showing success toast');
-      toast({
-        title: "🎉 Compte créé avec succès !",
-        description: `Bienvenue ! Tu es #${assignedPosition.toLocaleString('fr-FR')} dans la liste.`,
-        duration: 5000
-      });
-
-      // Redirection immédiate vers le dashboard
-      console.log('🔄 Redirecting to dashboard...');
-      navigate(`/dashboard`);
-      // Réinitialiser le formulaire
-      setName("");
-      setEmail("");
-      setPassword("");
-      setPhone("");
-      setReferralCode("");
-    } catch (error) {
-      console.error('💥 Unexpected error:', error);
-      toast({
-        title: "Erreur",
-        description: "Une erreur inattendue est survenue",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-background to-accent/20">
+    <div className="min-h-screen bg-background">
       <NavbarNew />
-      <div className="flex items-center justify-center p-4 pt-24">
-        <div className="w-full max-w-6xl">
-        <motion.div initial={{
-        opacity: 0,
-        scale: 0.95
-      }} animate={{
-        opacity: 1,
-        scale: 1
-      }} transition={{
-        duration: 0.5
-      }} className="w-full overflow-hidden rounded-2xl flex flex-col md:flex-row bg-card shadow-2xl">
-          {/* Left side - Map */}
-          <div className="hidden md:block w-1/2 h-[600px] relative overflow-hidden border-r border-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5">
-              <DotMap />
-              
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 z-10">
-                <motion.div initial={{
-                opacity: 0,
-                y: -20
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                delay: 0.6,
-                duration: 0.5
-              }} className="mb-6">
-                  
-                </motion.div>
-                <motion.h2 initial={{
-                opacity: 0,
-                y: -20
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                delay: 0.7,
-                duration: 0.5
-              }} className="text-4xl font-bold mb-4 text-center text-primary">
-                  AURÉA IA
-                </motion.h2>
-              <motion.div initial={{
-                opacity: 0
-              }} animate={{
-                opacity: 1
-              }} transition={{
-                delay: 1,
-                duration: 0.5
-              }} className="mt-8 grid grid-cols-2 gap-4 w-full max-w-sm">
-                <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                  <p className="text-2xl font-bold text-primary">1500+</p>
-                  <p className="text-xs text-muted-foreground">Sources</p>
-                </div>
-                <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                  <p className="text-2xl font-bold text-primary">4</p>
-                  <p className="text-xs text-muted-foreground">Agents IA</p>
-                </div>
-              </motion.div>
-              <motion.p initial={{
-                opacity: 0,
-                y: 20
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} transition={{
-                delay: 1.2,
-                duration: 0.5
-              }} className="mt-6 text-base text-center text-muted-foreground max-w-sm leading-relaxed">
-                Rejoignez les investisseurs qui investissent intelligemment grâce à l'IA
-              </motion.p>
+      
+      {/* Hero Section - Matching VaultHero style */}
+      <section className="pt-24 pb-12 sm:pt-28 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,hsl(var(--primary)/0.05),transparent_50%)]" />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Back link */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mb-6"
+          >
+            <Link 
+              to="/" 
+              className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ← Retour à l'accueil
+            </Link>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Waitlist Badge */}
+              <div className="mb-4">
+                <WaitlistBadge />
               </div>
-            </div>
-          </div>
-          
-          {/* Right side - Form */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-card">
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.5
-          }}>
-              <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
-                ← Retour à l'accueil
-              </Link>
-              
-              <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
-                Réserver mon accès
+
+              {/* Badge */}
+              <div className="mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                  <Shield className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">AURÉA Vault</span>
+                </div>
+              </div>
+
+              {/* Main Title */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+                Créez votre compte{" "}
+                <span className="text-primary">AURÉA Vault</span>
               </h1>
-              <p className="text-muted-foreground mb-8">
-                Soyez parmi les premiers à accéder aux 4 agents IA qui révolutionnent l'investissement immobilier
+              
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Rejoignez les premiers utilisateurs et accédez à la plateforme de{" "}
+                <span className="font-semibold text-foreground">Property Intelligence</span>{" "}
+                qui transforme vos dossiers immobiliers complexes en données exploitables.
               </p>
 
-              {/* Google Sign In Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mb-6"
-              >
-                <Button
-                  type="button"
-                  onClick={handleGoogleSignIn}
-                  disabled={isGoogleLoading}
-                  size="lg"
-                  variant="outline"
-                  className="w-full relative group border-2 hover:border-primary/50 hover:bg-primary/5"
-                >
-                  <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
-                    <path
-                      fill="#4285F4"
-                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    />
-                    <path
-                      fill="#34A853"
-                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    />
-                    <path
-                      fill="#FBBC05"
-                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    />
-                    <path
-                      fill="#EA4335"
-                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    />
-                  </svg>
-                  {isGoogleLoading ? "Connexion en cours..." : "Continuer avec Google"}
-                </Button>
-              </motion.div>
-
-              {/* Separator */}
-              <div className="relative mb-6">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-border" />
+              {/* Features */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Zap className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Analyse ultra-rapide</h3>
+                    <p className="text-sm text-muted-foreground">400 pages analysées en 2 minutes</p>
+                  </div>
                 </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Ou avec votre email</span>
+                
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <FileText className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Tous documents supportés</h3>
+                    <p className="text-sm text-muted-foreground">Actes notariés, diagnostics, PLU, cadastre...</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Shield className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground">Sécurité maximale</h3>
+                    <p className="text-sm text-muted-foreground">Données chiffrées, hébergement souverain</p>
+                  </div>
                 </div>
               </div>
+
+              {/* Stats */}
+              <div className="flex flex-wrap gap-6">
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary">4,500+</p>
+                  <p className="text-sm text-muted-foreground">Inscrits</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary">1500+</p>
+                  <p className="text-sm text-muted-foreground">Sources</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary">2 min</p>
+                  <p className="text-sm text-muted-foreground">Par analyse</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <WaitlistForm />
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Nom complet <span className="text-destructive">*</span>
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Votre nom et prénom" required className="pl-10" />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email <span className="text-destructive">*</span>
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" required className="pl-10" />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
-                    Mot de passe <span className="text-destructive">*</span>
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input 
-                      id="password" 
-                      type={showPassword ? "text" : "password"} 
-                      value={password} 
-                      onChange={e => setPassword(e.target.value)} 
-                      placeholder="Minimum 8 caractères" 
-                      required 
-                      className="pl-10 pr-10" 
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                    >
-                      {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                    </button>
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Téléphone <span className="text-muted-foreground text-xs">(optionnel)</span>
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+33 6 12 34 56 78" className="pl-10" />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="referralCode" className="block text-sm font-medium text-foreground mb-2">
-                    Code Parrainage <span className="text-muted-foreground text-xs">(optionnel)</span>
-                  </label>
-                  <div className="relative">
-                    <PartyPopper className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="referralCode" type="text" value={referralCode} onChange={e => setReferralCode(e.target.value)} placeholder="Code de parrainage" className="pl-10" />
-                  </div>
-                </div>
-                
-                <motion.div whileHover={{
-                scale: 1.01
-              }} whileTap={{
-                scale: 0.98
-              }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)} className="pt-2">
-                  <Button type="submit" size="lg" className="w-full relative overflow-hidden group" disabled={isLoading}>
-                    <span className="flex items-center justify-center">
-                      {isLoading ? "Création du compte..." : "Créer mon compte"}
-                      {!isLoading && <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
-                    </span>
-                  </Button>
-                </motion.div>
-
-                <div className="pt-4">
-                  <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>Accès anticipé aux agents IA</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>Tarif préférentiel early-adopter</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>Support prioritaire</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              {/* Login link */}
+              <p className="text-center text-sm text-muted-foreground mt-6">
+                Déjà un compte ?{" "}
+                <Link to="/login" className="text-primary hover:underline font-medium">
+                  Se connecter
+                </Link>
+              </p>
             </motion.div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </section>
     </div>
-  </div>
   );
 };
+
 export default Waitlist;
