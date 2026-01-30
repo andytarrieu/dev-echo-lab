@@ -11,7 +11,7 @@ const NavbarNew = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: "/", label: "Audit Express" },
+    { path: "/", label: "Vault" },
     { path: "/team", label: "À propos" },
     { path: "/contact", label: "Contact" },
   ];
