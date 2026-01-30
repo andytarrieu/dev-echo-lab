@@ -4,78 +4,48 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { 
-  Building2, 
-  Landmark, 
-  Shield, 
-  FileCheck, 
-  Users, 
-  Target, 
-  Handshake, 
-  ArrowRight,
-  Home,
-  Store,
-  Factory,
-  TrendingUp
-} from "lucide-react";
-
+import { Building2, Landmark, Shield, FileCheck, Users, Target, Handshake, ArrowRight, Home, Store, Factory, TrendingUp } from "lucide-react";
 const Team = () => {
-  const founders = [
-    {
-      icon: TrendingUp,
-      title: "Investisseurs Immobiliers",
-      description: "Fondé par des investisseurs actifs qui ont analysé des centaines de dossiers notariaux et compris les difficultés du terrain."
-    }
-  ];
-
-  const partners = [
-    {
-      icon: Landmark,
-      title: "Notaires",
-      description: "Collaboration avec des études notariales pour comprendre la structure exacte des actes et documents juridiques."
-    },
-    {
-      icon: Building2,
-      title: "Banquiers",
-      description: "Partenariat avec des conseillers bancaires pour intégrer les critères d'analyse des dossiers de financement."
-    },
-    {
-      icon: Shield,
-      title: "Assureurs",
-      description: "Expertise des compagnies d'assurance pour identifier les risques couverts et les exclusions importantes."
-    },
-    {
-      icon: FileCheck,
-      title: "Diagnostiqueurs",
-      description: "Travail avec des diagnostiqueurs certifiés pour décrypter DPE, amiante, plomb, électricité et autres rapports techniques."
-    }
-  ];
-
-  const audiences = [
-    {
-      icon: Home,
-      title: "Acheteurs Résidentiels",
-      description: "Particuliers souhaitant acheter leur résidence principale ou un investissement locatif."
-    },
-    {
-      icon: Store,
-      title: "Investisseurs Commerciaux",
-      description: "Acquisition de locaux commerciaux, bureaux, ou murs de boutiques."
-    },
-    {
-      icon: Factory,
-      title: "Immobilier Professionnel",
-      description: "Entrepôts, locaux industriels, et actifs tertiaires."
-    },
-    {
-      icon: Users,
-      title: "Professionnels de l'Immobilier",
-      description: "Agents, notaires, courtiers qui veulent accélérer leur analyse de dossiers."
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const founders = [{
+    icon: TrendingUp,
+    title: "Investisseurs Immobiliers",
+    description: "Fondé par des investisseurs actifs qui ont analysé des centaines de dossiers notariaux et compris les difficultés du terrain."
+  }];
+  const partners = [{
+    icon: Landmark,
+    title: "Notaires",
+    description: "Collaboration avec des études notariales pour comprendre la structure exacte des actes et documents juridiques."
+  }, {
+    icon: Building2,
+    title: "Banquiers",
+    description: "Partenariat avec des conseillers bancaires pour intégrer les critères d'analyse des dossiers de financement."
+  }, {
+    icon: Shield,
+    title: "Assureurs",
+    description: "Expertise des compagnies d'assurance pour identifier les risques couverts et les exclusions importantes."
+  }, {
+    icon: FileCheck,
+    title: "Diagnostiqueurs",
+    description: "Travail avec des diagnostiqueurs certifiés pour décrypter DPE, amiante, plomb, électricité et autres rapports techniques."
+  }];
+  const audiences = [{
+    icon: Home,
+    title: "Acheteurs Résidentiels",
+    description: "Particuliers souhaitant acheter leur résidence principale ou un investissement locatif."
+  }, {
+    icon: Store,
+    title: "Investisseurs Commerciaux",
+    description: "Acquisition de locaux commerciaux, bureaux, ou murs de boutiques."
+  }, {
+    icon: Factory,
+    title: "Immobilier Professionnel",
+    description: "Entrepôts, locaux industriels, et actifs tertiaires."
+  }, {
+    icon: Users,
+    title: "Professionnels de l'Immobilier",
+    description: "Agents, notaires, courtiers qui veulent accélérer leur analyse de dossiers."
+  }];
+  return <div className="min-h-screen">
       <Navbar />
       <main className="pt-16">
         {/* Hero Section */}
@@ -156,14 +126,11 @@ const Team = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Créé en collaboration avec les meilleurs professionnels
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Chaque fonctionnalité a été conçue en collaboration avec des experts du secteur immobilier.
-              </p>
+              
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {partners.map((partner, index) => (
-                <Card key={index} className="border-border hover:shadow-lg transition-all hover:border-primary/30">
+              {partners.map((partner, index) => <Card key={index} className="border-border hover:shadow-lg transition-all hover:border-primary/30">
                   <CardContent className="pt-6">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
                       <partner.icon className="h-7 w-7 text-primary" />
@@ -171,8 +138,7 @@ const Team = () => {
                     <h3 className="text-xl font-semibold mb-2">{partner.title}</h3>
                     <p className="text-muted-foreground text-sm">{partner.description}</p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -194,8 +160,7 @@ const Team = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {audiences.map((audience, index) => (
-                <Card key={index} className="border-border hover:shadow-lg transition-all group">
+              {audiences.map((audience, index) => <Card key={index} className="border-border hover:shadow-lg transition-all group">
                   <CardContent className="pt-6">
                     <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                       <audience.icon className="h-7 w-7 text-accent" />
@@ -203,8 +168,7 @@ const Team = () => {
                     <h3 className="text-xl font-semibold mb-2">{audience.title}</h3>
                     <p className="text-muted-foreground text-sm">{audience.description}</p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -269,8 +233,6 @@ const Team = () => {
 
         <Footer />
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Team;
