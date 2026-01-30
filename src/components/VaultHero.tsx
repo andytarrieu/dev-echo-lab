@@ -52,7 +52,7 @@ const VaultHero = () => {
             </Link>
           </Button>
           <p className="text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">14,500+</span> inscrits sur la liste d'attente
+            <span className="font-medium text-foreground">4,500+</span> inscrits sur la liste d'attente
           </p>
         </div>
       </div>
