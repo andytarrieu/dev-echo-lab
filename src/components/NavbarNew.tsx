@@ -14,7 +14,6 @@ const NavbarNew = () => {
     { path: "/", label: "Audit Express" },
     { path: "/services", label: "Vault" },
     { path: "/team", label: "À propos" },
-    { path: "/pricing", label: "Tarifs" },
     { path: "/contact", label: "Contact" },
   ];
 
