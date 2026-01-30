@@ -48,7 +48,14 @@ const FeaturesBentoGrid = () => {
       ],
       highlights: content.highlights,
       detailedCategories: audience === "particulier" 
-        ? ["🔍 Compromis, DPE, PV d'AG, État Daté", "⚠️ Charges impayées, travaux votés, vices", "📊 Score de Santé du bien immobilier"]
+        ? [
+            "🔍 Compromis, DPE, PV d'AG, État Daté",
+            "⚠️ Charges impayées, travaux votés, vices",
+            "📊 Score de Santé du bien immobilier",
+            "🏦 Offre de Prêt : TAEG, IRA, modularité, garanties",
+            "🛡️ Assurance Emprunteur : quotité, exclusions, irrévocabilités",
+            "📋 DO, MRH & clauses suspensives du compromis"
+          ]
         : ["📋 Dossiers d'audit pré-remplis pour vos mandats", "💰 Rentabilité réelle & risques copropriété", "⚡ Extraction automatisée pour actes & financement"],
     },
     {
