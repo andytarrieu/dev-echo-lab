@@ -59,11 +59,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { id: "home", label: "Accueil" },
-    { id: "services", label: "Services" },
-    { id: "features", label: "Fonctionnalités" },
-    { id: "faq", label: "FAQ" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Accueil", type: "scroll" },
+    { id: "vault", label: "Vault", type: "link", path: "/services" },
+    { id: "about", label: "À propos", type: "link", path: "/team" },
+    { id: "faq", label: "FAQ", type: "scroll" },
+    { id: "contact", label: "Contact", type: "link", path: "/contact" },
   ];
 
   return (
@@ -77,10 +77,10 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => 
-              link.id === "contact" ? (
+              link.type === "link" ? (
                 <Link
                   key={link.id}
-                  to="/contact"
+                  to={link.path!}
                   className="text-sm font-medium transition-colors hover:text-accent text-foreground"
                 >
                   {link.label}
@@ -120,10 +120,10 @@ const Navbar = () => {
           <div className="md:hidden py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => 
-                link.id === "contact" ? (
+                link.type === "link" ? (
                   <Link
                     key={link.id}
-                    to="/contact"
+                    to={link.path!}
                     className="text-sm font-medium transition-colors hover:text-accent text-left text-foreground"
                     onClick={() => setMobileMenuOpen(false)}
                   >
