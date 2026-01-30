@@ -136,7 +136,12 @@ const FeaturesBentoGrid = ({ audience, onAudienceChange }: FeaturesBentoGridProp
           {/* Audience Toggle */}
           <div className="inline-flex items-center p-1 bg-muted rounded-full gap-1">
             <button
-              onClick={() => onAudienceChange("particulier")}
+              onClick={() => {
+                onAudienceChange("particulier");
+                setTimeout(() => {
+                  document.getElementById("audience-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 100);
+              }}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
                 audience === "particulier"
@@ -148,7 +153,12 @@ const FeaturesBentoGrid = ({ audience, onAudienceChange }: FeaturesBentoGridProp
               Particuliers
             </button>
             <button
-              onClick={() => onAudienceChange("professionnel")}
+              onClick={() => {
+                onAudienceChange("professionnel");
+                setTimeout(() => {
+                  document.getElementById("audience-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 100);
+              }}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
                 audience === "professionnel"
