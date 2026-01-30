@@ -38,7 +38,7 @@ const Pricing = () => {
               Lancement bientôt
             </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Tarifs en cours de finalisation
+              Nos offres arrivent bientôt
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Nous travaillons actuellement sur nos offres pour vous proposer 
