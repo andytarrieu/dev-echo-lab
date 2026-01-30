@@ -1,62 +1,28 @@
 import NavbarNew from "@/components/NavbarNew";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Zap, Star, Building2 } from "lucide-react";
+import { Zap, Star, Building2, Clock, Bell, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Pricing = () => {
   const plans = [
     {
       name: "Essentiel",
-      price: "39",
       description: "Pour un premier audit rapide",
       icon: Zap,
-      popular: false,
-      features: [
-        "1 audit complet",
-        "Jusqu'à 5 documents PDF",
-        "Rapport téléchargeable",
-        "Analyse technique & juridique",
-        "Validité 7 jours",
-      ],
-      cta: "Commencer",
     },
     {
       name: "Standard",
-      price: "89",
       description: "Pour sécuriser votre achat",
       icon: Star,
       popular: true,
-      features: [
-        "3 audits complets",
-        "Jusqu'à 15 documents PDF",
-        "Rapports téléchargeables",
-        "Analyse technique & juridique",
-        "Comparaison multi-biens",
-        "Support prioritaire",
-        "Validité 30 jours",
-      ],
-      cta: "Choisir Standard",
     },
     {
       name: "Investisseur",
-      price: "120",
       description: "Pour les investisseurs réguliers",
       icon: Building2,
-      popular: false,
-      features: [
-        "10 audits complets",
-        "Documents illimités par audit",
-        "Rapports personnalisables",
-        "Analyse approfondie",
-        "Historique des analyses",
-        "Support dédié",
-        "Validité 90 jours",
-        "Accès anticipé nouveaux agents",
-      ],
-      cta: "Devenir Investisseur",
     },
   ];
 
@@ -67,101 +33,98 @@ const Pricing = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-6 px-4 py-2">
+              <Clock className="w-4 h-4 mr-2" />
+              Lancement bientôt
+            </Badge>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Tarifs transparents
+              Tarifs en cours de finalisation
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Choisissez la formule adaptée à votre projet. 
-              Pas d'abonnement, payez uniquement ce dont vous avez besoin.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Nous travaillons actuellement sur nos offres pour vous proposer 
+              les meilleurs tarifs possibles. Inscrivez-vous pour être informé du lancement 
+              et bénéficier d'une offre exclusive.
             </p>
+            <Button size="lg" asChild>
+              <Link to="/waitlist" className="gap-2">
+                <Bell className="h-5 w-5" />
+                Être informé du lancement
+              </Link>
+            </Button>
           </div>
 
-          {/* Grille tarifaire */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {plans.map((plan) => (
-              <Card 
-                key={plan.name}
-                className={`relative flex flex-col ${
-                  plan.popular 
-                    ? 'border-primary shadow-lg scale-105' 
-                    : 'border-border'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground px-4">
-                      Le plus populaire
-                    </Badge>
-                  </div>
-                )}
-                
-                <CardHeader className="text-center pb-2">
-                  <div className={`w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center ${
-                    plan.popular ? 'bg-primary text-primary-foreground' : 'bg-muted'
-                  }`}>
-                    <plan.icon className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="text-xl">{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex-1 flex flex-col">
-                  {/* Prix */}
-                  <div className="text-center mb-6">
-                    <span className="text-4xl font-bold text-foreground">{plan.price}€</span>
-                    <span className="text-muted-foreground ml-1">TTC</span>
-                  </div>
-
-                  {/* Features */}
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <Button 
-                    className="w-full" 
-                    variant={plan.popular ? "default" : "outline"}
-                    size="lg"
-                    asChild
-                  >
-                    <Link to="/waitlist">{plan.cta}</Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* FAQ rapide */}
-          <div className="mt-20 max-w-3xl mx-auto">
+          {/* Aperçu des formules */}
+          <div className="max-w-4xl mx-auto mb-16">
             <h2 className="text-2xl font-bold text-foreground text-center mb-8">
-              Questions fréquentes
+              Aperçu des formules à venir
             </h2>
-            <div className="space-y-4">
-              {[
-                {
-                  q: "Comment fonctionne le paiement ?",
-                  a: "Le paiement est unique et sécurisé par Stripe. Vous achetez un pack d'audits que vous pouvez utiliser pendant la durée de validité."
-                },
-                {
-                  q: "Puis-je obtenir un remboursement ?",
-                  a: "Oui, si vous n'êtes pas satisfait de votre premier audit, nous vous remboursons intégralement sous 14 jours."
-                },
-                {
-                  q: "Quels documents puis-je analyser ?",
-                  a: "Léon analyse les DPE, diagnostics techniques (électricité, gaz, plomb, amiante), PV d'assemblées générales, règlements de copropriété et états datés."
-                },
-              ].map((faq, i) => (
-                <div key={i} className="p-4 bg-muted/50 rounded-lg">
-                  <h3 className="font-medium text-foreground mb-2">{faq.q}</h3>
-                  <p className="text-sm text-muted-foreground">{faq.a}</p>
-                </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {plans.map((plan) => (
+                <Card 
+                  key={plan.name}
+                  className={`relative text-center ${
+                    plan.popular 
+                      ? 'border-primary shadow-lg' 
+                      : 'border-border'
+                  }`}
+                >
+                  {plan.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <Badge className="bg-primary text-primary-foreground px-3 text-xs">
+                        Recommandé
+                      </Badge>
+                    </div>
+                  )}
+                  
+                  <CardContent className="pt-8 pb-6">
+                    <div className={`w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center ${
+                      plan.popular ? 'bg-primary text-primary-foreground' : 'bg-muted'
+                    }`}>
+                      <plan.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h3>
+                    <p className="text-sm text-muted-foreground">{plan.description}</p>
+                    <div className="mt-4 text-2xl font-bold text-muted-foreground/50">
+                      Bientôt
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
+          </div>
+
+          {/* Avantages early adopters */}
+          <div className="max-w-2xl mx-auto">
+            <Card className="border-primary/20 bg-primary/5">
+              <CardContent className="pt-8 pb-8 text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 mx-auto mb-6 flex items-center justify-center">
+                  <Gift className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  Avantages Early Adopter
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Les premiers inscrits sur la liste d'attente bénéficieront d'avantages exclusifs :
+                </p>
+                <ul className="text-left max-w-md mx-auto space-y-3 mb-8">
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span className="text-foreground">Réduction sur le premier audit</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span className="text-foreground">Accès prioritaire à la plateforme</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <span className="text-foreground">Fonctionnalités exclusives en avant-première</span>
+                  </li>
+                </ul>
+                <Button size="lg" asChild>
+                  <Link to="/waitlist">Rejoindre la liste d'attente</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
