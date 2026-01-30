@@ -22,7 +22,7 @@ const VaultFAQ = () => {
     },
     {
       question: "Quels types de documents puis-je analyser ?",
-      answer: "Vous pouvez importer tous les documents d'une transaction immobilière : DPE, diagnostics techniques (amiante, électricité, gaz...), PV d'Assemblées Générales, états datés, titres de propriété, règlements de copropriété, compromis de vente, et plus encore.",
+      answer: "Vous pouvez importer tous les documents d'une transaction immobilière : DPE, diagnostics techniques (amiante, électricité, gaz...), PV d'Assemblées Générales, états datés, titres de propriété, règlements de copropriété, compromis de vente, dossier bancaire immobilier, dossier d'assurance immobilier, et plus encore.",
     },
     {
       question: "Combien de temps prend une analyse ?",
