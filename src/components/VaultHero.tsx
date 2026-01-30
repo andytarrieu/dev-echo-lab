@@ -29,8 +29,7 @@ const VaultHero = () => {
             <span className="text-primary">au Service de l'Immobilier.</span>
           </h1>
           
-          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-4">
-            La première plateforme de <span className="font-semibold text-foreground">Property Intelligence</span> qui transforme 
+          <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-4">La première plateforme de Property Intelligence qui transforme vos dossiers immobilliers complexes en données claires, exploitables et interactives.<span className="font-semibold text-foreground">Property Intelligence</span> qui transforme 
             vos dossiers notariaux complexes en données claires, exploitables et interactives.
           </p>
           
