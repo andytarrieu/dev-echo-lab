@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
 import ProblemSection from "@/components/ProblemSection";
@@ -14,7 +14,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 const Home = () => {
   return <div className="min-h-screen">
-      <Navbar />
+      <NavbarNew />
       <main className="pt-16">
         <div id="home">
           <Hero />

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -45,7 +45,7 @@ const Insights = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <NavbarNew />
       <main className="pt-16">
         <section className="py-20 bg-muted">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

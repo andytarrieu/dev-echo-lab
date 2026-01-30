@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { Mail, Sparkles, Lock, Eye, EyeOff } from "lucide-react";
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -124,7 +124,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <Navbar />
+      <NavbarNew />
       <div className="container mx-auto px-4 py-8 max-w-md pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

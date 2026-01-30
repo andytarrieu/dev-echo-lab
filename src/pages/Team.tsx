@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +46,7 @@ const Team = () => {
     description: "Agents, notaires, courtiers qui veulent accélérer leur analyse de dossiers."
   }];
   return <div className="min-h-screen">
-      <Navbar />
+      <NavbarNew />
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-b from-background to-muted">

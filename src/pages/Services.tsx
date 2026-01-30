@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,7 +59,7 @@ const Services = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <NavbarNew />
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-b from-background to-muted">

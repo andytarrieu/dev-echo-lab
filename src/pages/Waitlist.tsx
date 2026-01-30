@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 
 // Validation schema
 const waitlistSchema = z.object({
@@ -401,7 +401,7 @@ const Waitlist = () => {
   };
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-background to-accent/20">
-      <Navbar />
+      <NavbarNew />
       <div className="flex items-center justify-center p-4 pt-24">
         <div className="w-full max-w-6xl">
         <motion.div initial={{
