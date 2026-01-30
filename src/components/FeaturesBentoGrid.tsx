@@ -49,12 +49,12 @@ const FeaturesBentoGrid = () => {
       highlights: content.highlights,
       detailedCategories: audience === "particulier" 
         ? [
-            "🔍 Compromis, DPE, PV d'AG, État Daté",
-            "⚠️ Charges impayées, travaux votés, vices",
-            "📊 Score de Santé du bien immobilier",
-            "🏦 Offre de Prêt : TAEG, IRA, modularité, garanties",
-            "🛡️ Assurance Emprunteur : quotité, exclusions, irrévocabilités",
-            "📋 DO, MRH & clauses suspensives du compromis"
+            "📄 OFFRE DE PRÊT — TAEG réel, coût total du crédit, conditions de déblocage (VEFA/travaux)",
+            "🔄 REMBOURSEMENT — IRA négociées à zéro ? Modularité des échéances, différé de paiement",
+            "🏦 GARANTIES — Hypothèque vs Caution, IPPD (priorité banque), récupération des fonds",
+            "🛡️ ASSURANCE EMPRUNTEUR — Quotité (100%/200%), irrévocabilités, exclusions dos & psy",
+            "📋 ASSURANCES — DO (< 10 ans), MRH (exclusions caves), carence & franchises santé",
+            "✍️ COMPROMIS — Clauses suspensives, conditions de rétractation, pièges juridiques"
           ]
         : ["📋 Dossiers d'audit pré-remplis pour vos mandats", "💰 Rentabilité réelle & risques copropriété", "⚡ Extraction automatisée pour actes & financement"],
     },
