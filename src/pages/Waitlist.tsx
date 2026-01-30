@@ -441,7 +441,7 @@ const Waitlist = () => {
                 delay: 0.7,
                 duration: 0.5
               }} className="text-4xl font-bold mb-4 text-center text-primary">
-                  AURÉA IA
+                  AURÉA Vault
                 </motion.h2>
               <motion.div initial={{
                 opacity: 0
@@ -453,11 +453,11 @@ const Waitlist = () => {
               }} className="mt-8 grid grid-cols-2 gap-4 w-full max-w-sm">
                 <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
                   <p className="text-2xl font-bold text-primary">1500+</p>
-                  <p className="text-xs text-muted-foreground">Sources</p>
+                  <p className="text-xs text-muted-foreground">Sources analysées</p>
                 </div>
                 <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                  <p className="text-2xl font-bold text-primary">4</p>
-                  <p className="text-xs text-muted-foreground">Agents IA</p>
+                  <p className="text-2xl font-bold text-primary">100%</p>
+                  <p className="text-xs text-muted-foreground">Données sécurisées</p>
                 </div>
               </motion.div>
               <motion.p initial={{
@@ -495,7 +495,7 @@ const Waitlist = () => {
                 Réserver mon accès
               </h1>
               <p className="text-muted-foreground mb-8">
-                Soyez parmi les premiers à accéder aux 4 agents IA qui révolutionnent l'investissement immobilier
+                Soyez parmi les premiers à accéder à AURÉA Vault, la plateforme d'intelligence immobilière
               </p>
 
               {/* Google Sign In Button */}
