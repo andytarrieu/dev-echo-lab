@@ -1,6 +1,7 @@
 import NavbarNew from "@/components/NavbarNew";
 import VaultHero from "@/components/VaultHero";
 import FeaturesBentoGrid from "@/components/FeaturesBentoGrid";
+import ParticulierDocumentsSection from "@/components/ParticulierDocumentsSection";
 import PillarTabs from "@/components/PillarTabs";
 import LogoSlider from "@/components/LogoSlider";
 import ProfessionalSection from "@/components/ProfessionalSection";
@@ -24,7 +25,10 @@ const AuditExpress = () => {
         {/* 2. Bento Grid - All features visible at a glance */}
         <FeaturesBentoGrid />
         
-        {/* 3. Pillar Tabs - Navigate between sections */}
+        {/* 3. Detailed section for Particuliers */}
+        <ParticulierDocumentsSection />
+        
+        {/* 4. Pillar Tabs - Navigate between sections */}
         <PillarTabs />
         
         {/* Professional deep-dive (complex docs) */}
