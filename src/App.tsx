@@ -10,7 +10,6 @@ import AuditExpress from "./pages/AuditExpress";
 import Ecosystem from "./pages/Ecosystem";
 
 // Pages secondaires
-import Services from "./pages/Services";
 import Team from "./pages/Team";
 import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
@@ -39,7 +38,6 @@ const App = () => (
           <Route path="/ecosystem" element={<Ecosystem />} />
           
           {/* Pages existantes */}
-          <Route path="/services" element={<Services />} />
           <Route path="/team" element={<Team />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/contact" element={<Contact />} />
