@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
 import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, MessageCircle } from "lucide-react";
 
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 
 interface UserData {
   email: string;
@@ -205,7 +205,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <Navbar />
+      <NavbarNew />
       <div className="container mx-auto px-4 py-8 max-w-4xl pt-24">
         {/* Header avec Logout et Mentor */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">

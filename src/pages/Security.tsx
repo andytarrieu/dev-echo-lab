@@ -1,12 +1,12 @@
 import { Shield, AlertTriangle, BookOpen, Target, Scale, Phone, FileText, CheckCircle, XCircle } from "lucide-react";
-import Navbar from "@/components/Navbar";
+import NavbarNew from "@/components/NavbarNew";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 
 const Security = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <NavbarNew />
       <main className="flex-grow pt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-4xl">
           <div className="text-center mb-12">
