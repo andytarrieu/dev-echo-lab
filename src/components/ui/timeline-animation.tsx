@@ -1,12 +1,10 @@
-"use client";
-
 import { motion, useInView } from "framer-motion";
 import * as React from "react";
 
 interface TimelineContentProps {
   children: React.ReactNode;
   animationNum: number;
-  timelineRef: React.RefObject<HTMLElement>;
+  timelineRef: React.RefObject<HTMLElement | null>;
 }
 
 export function TimelineContent({
