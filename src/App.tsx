@@ -17,7 +17,6 @@ import Waitlist from "./pages/Waitlist";
 import Success from "./pages/Success";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Mentor from "./pages/Mentor";
 import Security from "./pages/Security";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -45,7 +44,6 @@ const App = () => (
           <Route path="/success" element={<Success />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/mentor" element={<Mentor />} />
           <Route path="/security" element={<Security />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
