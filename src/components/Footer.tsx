@@ -6,7 +6,7 @@ const Footer = () => {
   const footerLinks = {
     Entreprise: [
       { label: "À propos", path: "/team" },
-      { label: "Services", path: "/services" },
+      { label: "Vault", path: "/services" },
       { label: "Contact", path: "/contact" },
     ],
     Légal: [
