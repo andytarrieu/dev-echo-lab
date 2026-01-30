@@ -61,9 +61,9 @@ const Team = () => {
                 <span className="text-primary">pour tous les acteurs de l'immobilier</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                AURÉA Vault est né de la frustration d'investisseurs immobiliers face à la complexité 
-                des dossiers notariaux. En collaboration avec les meilleurs professionnels du secteur, 
-                nous avons créé l'outil que nous aurions aimé avoir.
+                AURÉA Vault est né d'un constat simple : les dossiers immobiliers sont trop complexes 
+                pour être analysés sans aide. En collaboration avec notaires, banquiers, assureurs et juristes, 
+                nous avons créé l'outil indispensable pour sécuriser chaque transaction.
               </p>
             </div>
           </div>
