@@ -21,9 +21,9 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 mb-8 sm:mb-10">
           <div className="sm:col-span-2 md:col-span-1">
-            <h3 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">Auréa IA</h3>
+            <h3 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">AURÉA Vault</h3>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              L'intelligence artificielle au service de l'investissement immobilier. Analysez, évaluez et optimisez vos projets avec nos 4 agents IA spécialisés.
+              L'intelligence augmentée au service de l'immobilier. Analysez vos dossiers notariaux, détectez les risques cachés et négociez en toute confiance.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 pt-6 sm:pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/80 text-xs sm:text-sm text-center sm:text-left">
-              © {currentYear} Auréa IA. Tous droits réservés.
+              © {currentYear} AURÉA Vault. Tous droits réservés.
             </p>
           </div>
         </div>
