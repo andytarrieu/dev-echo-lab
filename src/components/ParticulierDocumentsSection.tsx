@@ -1,5 +1,28 @@
-import { FileText, CreditCard, Shield, Home, FileCheck, AlertTriangle, ChevronRight } from "lucide-react";
+import { FileText, CreditCard, Shield, Home, FileCheck, AlertTriangle, ChevronRight, FolderOpen, Building, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const notarialDocuments = [
+  {
+    icon: FolderOpen,
+    title: "DPE & Diagnostics Techniques",
+    detail: "Électricité, gaz, plomb, amiante, termites..."
+  },
+  {
+    icon: Building,
+    title: "Dossier Copropriété",
+    detail: "PV d'AG, règlement, état daté, charges"
+  },
+  {
+    icon: FileText,
+    title: "Titre de Propriété",
+    detail: "Origine de propriété sur 30 ans, servitudes"
+  },
+  {
+    icon: AlertTriangle,
+    title: "Documents Juridiques",
+    detail: "Urbanisme, préemption, hypothèques"
+  }
+];
 
 const documentCategories = [
   {
@@ -150,6 +173,64 @@ const ParticulierDocumentsSection = () => {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
             Des centaines de pages de jargon bancaire et juridique, traduites en alertes claires et actionnables.
+          </p>
+        </div>
+
+        {/* Notarial Documents Hero Card */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="relative rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-primary/5 p-6 sm:p-8 overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(var(--primary)/0.1),transparent_50%)]" />
+            
+            <div className="relative z-10">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <FolderOpen className="w-7 h-7 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                    Analyse automatique de votre "Dossier de Notaire"
+                  </h3>
+                  <p className="text-muted-foreground mt-1">
+                    300 à 600 pages scannées et analysées en quelques minutes
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                Au lieu de lire les <span className="font-semibold text-foreground">300 à 600 pages</span> de documents que vous envoie le notaire ou l'agent, 
+                vous les uploadez sur le Vault. En <span className="font-semibold text-primary">1 à 15 minutes</span>, l'outil scanne tout et extrait les informations critiques.
+              </p>
+
+              {/* Notarial documents grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {notarialDocuments.map((doc, idx) => (
+                  <div key={idx} className="bg-background/80 backdrop-blur-sm rounded-xl p-4 border border-border hover:border-primary/30 transition-colors">
+                    <doc.icon className="w-5 h-5 text-primary mb-2" />
+                    <p className="text-sm font-semibold text-foreground">{doc.title}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{doc.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Time indicator */}
+              <div className="flex items-center gap-2 mt-6 pt-4 border-t border-border">
+                <Clock className="w-4 h-4 text-primary" />
+                <span className="text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">1 à 15 minutes</span> pour analyser l'intégralité de votre dossier
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Section subtitle for banking docs */}
+        <div className="text-center mb-8">
+          <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+            Documents Bancaires & Assurance
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            Vault analyse également vos offres de prêt, assurances et contrats
           </p>
         </div>
 
