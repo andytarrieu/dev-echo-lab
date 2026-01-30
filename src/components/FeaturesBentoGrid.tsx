@@ -1,11 +1,13 @@
-import { useState } from "react";
 import { FileSearch, Headphones, AlertTriangle, TrendingDown, Shield, BookOpen, CheckCircle2, Zap, FileText, User, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { AudienceType } from "@/pages/AuditExpress";
 
-type AudienceType = "particulier" | "professionnel";
+interface FeaturesBentoGridProps {
+  audience: AudienceType;
+  onAudienceChange: (audience: AudienceType) => void;
+}
 
-const FeaturesBentoGrid = () => {
-  const [audience, setAudience] = useState<AudienceType>("particulier");
+const FeaturesBentoGrid = ({ audience, onAudienceChange }: FeaturesBentoGridProps) => {
 
   const audienceContent = {
     particulier: {
@@ -134,7 +136,7 @@ const FeaturesBentoGrid = () => {
           {/* Audience Toggle */}
           <div className="inline-flex items-center p-1 bg-muted rounded-full gap-1">
             <button
-              onClick={() => setAudience("particulier")}
+              onClick={() => onAudienceChange("particulier")}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
                 audience === "particulier"
@@ -146,7 +148,7 @@ const FeaturesBentoGrid = () => {
               Particuliers
             </button>
             <button
-              onClick={() => setAudience("professionnel")}
+              onClick={() => onAudienceChange("professionnel")}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
                 audience === "professionnel"
