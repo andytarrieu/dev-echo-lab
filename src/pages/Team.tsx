@@ -154,7 +154,7 @@ const Team = () => {
                 Nos Partenaires
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Développé avec les meilleurs professionnels
+                Créé en collaboration avec les meilleurs professionnels
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Chaque fonctionnalité a été conçue en collaboration avec des experts du secteur immobilier.
