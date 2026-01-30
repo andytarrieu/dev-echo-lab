@@ -1,4 +1,4 @@
-import { FileText, AlertTriangle, History, CheckCircle2, Building2, Wrench, Scale, FileCheck } from "lucide-react";
+import { FileText, AlertTriangle, History, CheckCircle2, Building2, Wrench, Scale, FileCheck, Mountain, MapPin, HardHat, Shield, Home, Users, Briefcase, Receipt, Gavel } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -51,59 +51,144 @@ const ProfessionalSection = () => {
 
   const documentFamilies = [
     {
-      icon: Scale,
-      title: "Le \"Pedigree\" Juridique",
-      subtitle: "Le passé du bien",
+      icon: Mountain,
+      title: "Terrain et Sol",
+      subtitle: "L'origine foncière",
       documents: [
-        "Titre de propriété complet (origine sur 30 ans)",
-        "État hypothécaire (dettes, saisies)",
-        "Certificat d'Urbanisme (droits de construction)",
-        "Servitudes notariées (passage, vue, écoulement)",
-        "Cadastre (limites et contenance)",
+        "Extrait de Plan Cadastral (situation de la parcelle)",
+        "Modèle 1 Cadastre (fiche d'identité fiscale)",
+        "Procès-verbal de Bornage (géomètre + voisins)",
+        "Études de sol (G1, G2, G5) - rapports géotechniques",
+        "État des Risques et Pollutions (ERP)",
+        "Certificat d'alignement (limite domaine public/privé)",
+        "Attestation d'accessibilité aux réseaux (eau, électricité, gaz, fibre)",
+      ],
+      color: "text-amber-700",
+      bgColor: "bg-amber-50",
+    },
+    {
+      icon: MapPin,
+      title: "Urbanisme",
+      subtitle: "Le droit de faire",
+      documents: [
+        "Note de renseignement d'urbanisme",
+        "Certificat d'Urbanisme (Opérationnel ou d'Information)",
+        "Dossier de Permis de Construire (PC) complet",
+        "Arrêté d'octroi du Permis + prescriptions mairie",
+        "Affichage du permis (constat d'huissier)",
+        "Déclaration d'Ouverture de Chantier (DOC)",
+        "Certificat de non-recours (aucune attaque en justice)",
+      ],
+      color: "text-teal-600",
+      bgColor: "bg-teal-50",
+    },
+    {
+      icon: HardHat,
+      title: "Construction & Travaux",
+      subtitle: "Le technique",
+      documents: [
+        "CCMI ou Contrat d'Architecte",
+        "CCTP (Cahier des Clauses Techniques Particulières)",
+        "CCAP (Clauses Administratives - pénalités, paiements)",
+        "Marché de travaux (contrat avec chaque artisan)",
+        "PPSPS (Plan de sécurité chantier)",
+        "PV de Réception de travaux + réserves",
+        "DOE (Dossier des Ouvrages Exécutés)",
+      ],
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+    },
+    {
+      icon: Shield,
+      title: "Assurances",
+      subtitle: "La protection",
+      documents: [
+        "Attestation Dommage-Ouvrage (DO)",
+        "Garantie Décennale des constructeurs",
+        "Responsabilité Civile Professionnelle (RC Pro)",
+        "Garantie Financière d'Achèvement (GFA)",
+      ],
+      color: "text-green-600",
+      bgColor: "bg-green-50",
+    },
+    {
+      icon: Scale,
+      title: "Vente et Propriété",
+      subtitle: "Le transfert juridique",
+      documents: [
+        "Titre de propriété antérieur (historique 30 ans)",
+        "Promesse ou Compromis de vente",
+        "État Hypothécaire (Service Publicité Foncière)",
+        "DDT complet (Amiante, Plomb, Gaz, Électricité, Termites, DPE)",
+        "Notification DPU (réponse mairie)",
+        "Décompte de vente (frais notaire + prix)",
+        "Acte de vente authentique",
       ],
       color: "text-purple-600",
       bgColor: "bg-purple-50",
     },
     {
-      icon: Wrench,
-      title: "Le Dossier Technique",
-      subtitle: "L'état réel du bâtiment",
-      documents: [
-        "DDT complet (DPE, Amiante, Plomb, Électricité, Gaz, Termites, ERP)",
-        "Assainissement (tout-à-l'égout ou fosse septique)",
-        "Audit Énergétique (obligatoire pour F/G)",
-        "Étude de sol G2 (zones argileuses)",
-      ],
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-50",
-    },
-    {
       icon: Building2,
-      title: "Le \"Bloc\" Copropriété",
-      subtitle: "La partie la plus volumineuse",
+      title: "Copropriété",
+      subtitle: "Le collectif",
       documents: [
-        "Règlement de Copropriété + État Descriptif de Division",
-        "3 derniers PV d'Assemblées Générales",
+        "Règlement de Copropriété (RC)",
+        "État Descriptif de Division (EDD)",
+        "Fiche synthétique de la copropriété",
         "Carnet d'entretien de l'immeuble",
+        "3 derniers PV d'Assemblées Générales",
         "Diagnostic Technique Global (DTG)",
         "Pré-état daté et État daté",
-        "Fiche synthétique de la copropriété",
+        "Appels de fonds (charges + travaux)",
       ],
       color: "text-blue-600",
       bgColor: "bg-blue-50",
     },
     {
-      icon: FileCheck,
-      title: "Urbanisme et Travaux",
-      subtitle: "La légalité des modifications",
+      icon: Home,
+      title: "Location & Gestion",
+      subtitle: "L'usage",
       documents: [
-        "Déclaration Préalable (DP) ou Permis de Construire (PC)",
-        "Certificat de non-opposition ou de conformité",
-        "Assurance Dommages-Ouvrage (DO) si travaux < 10 ans",
-        "Factures artisans (garanties décennales)",
+        "Bail (Habitation, Commercial, Professionnel, Précaire)",
+        "État des lieux (entrée/sortie)",
+        "Acte de cautionnement",
+        "Quittances de loyer",
+        "Avis d'indexation du loyer",
+        "Décompte de régularisation des charges",
+        "Mandat de gestion",
+        "Congé (lettre de rupture par huissier ou RAR)",
       ],
-      color: "text-amber-600",
-      bgColor: "bg-amber-50",
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-50",
+    },
+    {
+      icon: Briefcase,
+      title: "Commerce & Entreprise",
+      subtitle: "Le professionnel",
+      documents: [
+        "Kbis de la société",
+        "Baux commerciaux",
+        "Inventaire du matériel et mobilier",
+        "État des créances et dettes",
+        "Contrats de travail des salariés (transfert)",
+        "Chiffre d'affaires certifié (expert-comptable)",
+      ],
+      color: "text-rose-600",
+      bgColor: "bg-rose-50",
+    },
+    {
+      icon: Receipt,
+      title: "Fiscal & Successoral",
+      subtitle: "La transmission",
+      documents: [
+        "Déclaration de succession",
+        "Avis de Taxe Foncière",
+        "Statuts de la SCI",
+        "Registre des décisions de la SCI",
+        "Déclaration de plus-value immobilière",
+      ],
+      color: "text-slate-600",
+      bgColor: "bg-slate-100",
     },
   ];
 
@@ -112,12 +197,18 @@ const ProfessionalSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <p className="text-sm font-medium text-primary mb-2">POUR LES PROFESSIONNELS</p>
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <Gavel className="h-4 w-4" />
+            POUR LES PROFESSIONNELS
+          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            40 à 50 documents par vente. Même les pros s'y perdent.
+            70+ types de documents par dossier. Vault les scanne tous.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Agents immobiliers, notaires, investisseurs : automatisez l'analyse du "jargon notarial" et gagnez des heures sur chaque dossier.
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            Agents immobiliers, notaires, avocats, juristes, banquiers, investisseurs : automatisez l'analyse du "jargon notarial" et gagnez des heures sur chaque dossier.
+          </p>
+          <p className="text-sm text-muted-foreground mt-3 max-w-3xl mx-auto">
+            Développé en collaboration avec des <span className="font-semibold text-foreground">notaires, avocats, juristes, banquiers, assureurs et diagnostiqueurs</span> pour couvrir 100% des cas d'usage.
           </p>
         </div>
 
@@ -185,9 +276,12 @@ const ProfessionalSection = () => {
 
         {/* Checklist - Document Families */}
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-xl font-semibold text-foreground mb-6 text-center">
-            La Checklist Ultime : 4 familles de documents à analyser
+          <h3 className="text-xl font-semibold text-foreground mb-2 text-center">
+            La Checklist Ultime : 9 familles de documents analysées par Vault
           </h3>
+          <p className="text-sm text-muted-foreground text-center mb-6">
+            Terrain, urbanisme, construction, assurances, vente, copropriété, location, commerce et fiscal
+          </p>
           <Accordion type="single" collapsible className="space-y-4">
             {documentFamilies.map((family, index) => (
               <AccordionItem 
@@ -222,11 +316,14 @@ const ProfessionalSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <p className="text-lg text-foreground font-medium mb-4">
-            Auréa Vault analyse automatiquement ces 50+ documents en quelques minutes.
+        <div className="text-center mt-12 bg-primary/5 rounded-2xl p-8 max-w-3xl mx-auto">
+          <p className="text-xl text-foreground font-semibold mb-4">
+            Auréa Vault analyse automatiquement ces <span className="text-primary">70+ types de documents</span> en quelques minutes.
           </p>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground mb-2">
+            Terrain • Urbanisme • Construction • Assurances • Vente • Copropriété • Location • Commerce • Fiscal
+          </p>
+          <p className="text-sm text-muted-foreground">
             Gagnez du temps, réduisez les erreurs, impressionnez vos clients.
           </p>
         </div>
