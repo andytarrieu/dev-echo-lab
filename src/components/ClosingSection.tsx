@@ -23,7 +23,7 @@ const ClosingSection = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{

@@ -34,7 +34,7 @@ const SentinelSection = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-background relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-background relative overflow-hidden">
       {/* Background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
       

@@ -24,7 +24,7 @@ const WeaponSection = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-muted/30">
+    <section className="py-12 sm:py-16 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
