@@ -38,9 +38,8 @@ const VaultHeroNew = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-8"
           >
-            Dans l'immobilier,{" "}
-            <span className="text-primary">ce que vous ne voyez pas</span>{" "}
-            peut vous ruiner.
+            Ne lisez plus vos dossiers immobiliers.{" "}
+            <span className="text-primary">Dialoguez avec eux.</span>
           </motion.h1>
 
           {/* Subheadline */}
