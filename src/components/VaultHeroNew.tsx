@@ -25,10 +25,10 @@ const VaultHeroNew = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/30 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8"
           >
-            <AlertTriangle className="h-4 w-4 text-destructive" />
-            <span className="text-sm font-medium text-destructive">Risque détecté dans 73% des dossiers analysés</span>
+            <AlertTriangle className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Risque détecté dans 73% des dossiers analysés</span>
           </motion.div>
 
           {/* Main headline */}
@@ -39,7 +39,7 @@ const VaultHeroNew = () => {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-8"
           >
             Dans l'immobilier,{" "}
-            <span className="text-destructive">ce que vous ne voyez pas</span>{" "}
+            <span className="text-primary">ce que vous ne voyez pas</span>{" "}
             peut vous ruiner.
           </motion.h1>
 
@@ -74,7 +74,7 @@ const VaultHeroNew = () => {
           >
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 group bg-destructive hover:bg-destructive/90"
+              className="text-lg px-8 py-6 group"
               asChild
             >
               <Link to="/waitlist">
