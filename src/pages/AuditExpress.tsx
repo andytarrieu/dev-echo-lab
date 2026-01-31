@@ -1,62 +1,49 @@
-import { useState } from "react";
 import NavbarNew from "@/components/NavbarNew";
 import VaultHero from "@/components/VaultHero";
-import FeaturesBentoGrid from "@/components/FeaturesBentoGrid";
-import ParticulierDocumentsSection from "@/components/ParticulierDocumentsSection";
-import PillarTabs from "@/components/PillarTabs";
 import LogoSlider from "@/components/LogoSlider";
-import ProfessionalSection from "@/components/ProfessionalSection";
+import ChaosSection from "@/components/ChaosSection";
+import VaultSolutionSection from "@/components/VaultSolutionSection";
+import UseCasesScenariosSection from "@/components/UseCasesScenariosSection";
 import WhyAureaSection from "@/components/WhyAureaSection";
 import ProofSection from "@/components/ProofSection";
+import PricingSection from "@/components/PricingSection";
 import SecuritySection from "@/components/SecuritySection";
 import VaultFAQ from "@/components/VaultFAQ";
 import Footer from "@/components/Footer";
 
-export type AudienceType = "particulier" | "professionnel";
-
 const AuditExpress = () => {
-  const [audience, setAudience] = useState<AudienceType>("particulier");
   return (
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        {/* 1. Hero with new storytelling title */}
+        {/* 1. Hero - Le Coffre-Fort Intelligent */}
         <VaultHero />
         
-        {/* Trust indicators - moved to top */}
+        {/* Trust indicators */}
         <LogoSlider />
         
-        {/* 2. Bento Grid - All features visible at a glance */}
-        <FeaturesBentoGrid audience={audience} onAudienceChange={setAudience} />
+        {/* 2. Le problème - Chaos de la donnée immobilière */}
+        <ChaosSection />
         
-        {/* Sections conditionnelles selon l'audience */}
-        <div id="audience-section">
-          {audience === "particulier" ? (
-            <>
-              {/* 3. Detailed section for Particuliers */}
-              <ParticulierDocumentsSection />
-              
-              {/* 4. Pillar Tabs - Navigate between sections */}
-              <PillarTabs />
-            </>
-          ) : (
-            <>
-              {/* Professional deep-dive (complex docs) */}
-              <ProfessionalSection />
-            </>
-          )}
-        </div>
+        {/* 3. La solution - Aurea Vault */}
+        <VaultSolutionSection />
         
-        {/* Why choose Aurea - visible pour tous */}
+        {/* 4. Cas pratiques - L'intelligence en action */}
+        <UseCasesScenariosSection />
+        
+        {/* 5. Pourquoi Aurea - Avantages uniques */}
         <WhyAureaSection />
         
-        {/* Social proof */}
+        {/* 6. Preuve - Citations et transparence */}
         <ProofSection />
         
-        {/* Security & Trust */}
+        {/* 7. Tarification */}
+        <PricingSection />
+        
+        {/* 8. Sécurité & Éthique */}
         <SecuritySection />
         
-        {/* FAQ */}
+        {/* 9. FAQ */}
         <VaultFAQ />
       </main>
       <Footer />
