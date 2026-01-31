@@ -6,6 +6,7 @@ import VaultSolutionSection from "@/components/VaultSolutionSection";
 import UseCasesScenariosSection from "@/components/UseCasesScenariosSection";
 import WhyAureaSection from "@/components/WhyAureaSection";
 import ProofSection from "@/components/ProofSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
 import SecuritySection from "@/components/SecuritySection";
 import VaultFAQ from "@/components/VaultFAQ";
@@ -37,7 +38,10 @@ const AuditExpress = () => {
         {/* 6. Preuve - Citations et transparence */}
         <ProofSection />
         
-        {/* 7. Tarification */}
+        {/* 7. Témoignages clients */}
+        <TestimonialsSection />
+        
+        {/* 8. Tarification */}
         <PricingSection />
         
         {/* 8. Sécurité & Éthique */}
