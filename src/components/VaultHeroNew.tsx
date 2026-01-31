@@ -78,7 +78,7 @@ const VaultHeroNew = () => {
             >
               <Link to="/waitlist">
                 <Shield className="mr-2 h-5 w-5" />
-                Sécuriser mon dossier maintenant
+                Essayer Auréa Vault
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
