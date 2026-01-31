@@ -1,14 +1,11 @@
 import NavbarNew from "@/components/NavbarNew";
-import VaultHero from "@/components/VaultHero";
+import VaultHeroNew from "@/components/VaultHeroNew";
 import LogoSlider from "@/components/LogoSlider";
-import ChaosSection from "@/components/ChaosSection";
-import VaultSolutionSection from "@/components/VaultSolutionSection";
-import UseCasesScenariosSection from "@/components/UseCasesScenariosSection";
-import WhyAureaSection from "@/components/WhyAureaSection";
-import ProofSection from "@/components/ProofSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import PricingSection from "@/components/PricingSection";
-import SecuritySection from "@/components/SecuritySection";
+import WeaponSection from "@/components/WeaponSection";
+import SentinelSection from "@/components/SentinelSection";
+import AudienceSection from "@/components/AudienceSection";
+import ProofSourceSection from "@/components/ProofSourceSection";
+import ClosingSection from "@/components/ClosingSection";
 import VaultFAQ from "@/components/VaultFAQ";
 import Footer from "@/components/Footer";
 
@@ -17,37 +14,28 @@ const AuditExpress = () => {
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        {/* 1. Hero - Le Coffre-Fort Intelligent */}
-        <VaultHero />
+        {/* 1. Hero - Ce que vous ne voyez pas peut vous ruiner */}
+        <VaultHeroNew />
         
         {/* Trust indicators */}
         <LogoSlider />
         
-        {/* 2. Le problème - Chaos de la donnée immobilière */}
-        <ChaosSection />
+        {/* 2. L'Arme Fatale - Dialogue & Réaction */}
+        <WeaponSection />
         
-        {/* 3. La solution - Aurea Vault */}
-        <VaultSolutionSection />
+        {/* 3. Sentinelle - L'Alerte qui sauve */}
+        <SentinelSection />
         
-        {/* 4. Cas pratiques - L'intelligence en action */}
-        <UseCasesScenariosSection />
+        {/* 4. Indispensable pour qui - La Chaîne de Confiance */}
+        <AudienceSection />
         
-        {/* 5. Pourquoi Aurea - Avantages uniques */}
-        <WhyAureaSection />
+        {/* 5. La Preuve par la Source */}
+        <ProofSourceSection />
         
-        {/* 6. Preuve - Citations et transparence */}
-        <ProofSection />
+        {/* 6. Closing - Le Coût de l'Inaction */}
+        <ClosingSection />
         
-        {/* 7. Témoignages clients */}
-        <TestimonialsSection />
-        
-        {/* 8. Tarification */}
-        <PricingSection />
-        
-        {/* 8. Sécurité & Éthique */}
-        <SecuritySection />
-        
-        {/* 9. FAQ */}
+        {/* FAQ */}
         <VaultFAQ />
       </main>
       <Footer />
