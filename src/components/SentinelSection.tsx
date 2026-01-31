@@ -9,9 +9,9 @@ const SentinelSection = () => {
       icon: Scale,
       title: "Alerte \"Bombe Juridique\"",
       message: "Attention, j'ai détecté une servitude de passage non signalée dans votre compromis mais présente dans l'acte de 1982.",
-      color: "destructive",
-      bgColor: "bg-destructive/5",
-      borderColor: "border-destructive/30"
+      color: "primary",
+      bgColor: "bg-primary/5",
+      borderColor: "border-primary/30"
     },
     {
       type: "financier",
@@ -48,9 +48,9 @@ const SentinelSection = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/30 mb-6">
-              <Eye className="h-4 w-4 text-destructive" />
-              <span className="text-sm font-medium text-destructive">Sentinelle</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6">
+              <Eye className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Sentinelle</span>
             </div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -99,19 +99,19 @@ const SentinelSection = () => {
                 <div className="flex items-start gap-4">
                   <div className={cn(
                     "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0",
-                    alert.type === "juridique" ? "bg-destructive/10" : 
+                    alert.type === "juridique" ? "bg-primary/10" : 
                     alert.type === "financier" ? "bg-amber-100" : "bg-orange-100"
                   )}>
                     <alert.icon className={cn(
                       "h-6 w-6",
-                      alert.type === "juridique" ? "text-destructive" : 
+                      alert.type === "juridique" ? "text-primary" : 
                       alert.type === "financier" ? "text-amber-600" : "text-orange-600"
                     )} />
                   </div>
                   <div>
                     <h3 className={cn(
                       "font-bold text-lg mb-2",
-                      alert.type === "juridique" ? "text-destructive" : 
+                      alert.type === "juridique" ? "text-primary" : 
                       alert.type === "financier" ? "text-amber-800" : "text-orange-800"
                     )}>
                       {alert.title}

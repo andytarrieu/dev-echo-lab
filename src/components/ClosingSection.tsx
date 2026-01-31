@@ -42,8 +42,8 @@ const ClosingSection = () => {
             transition={{ duration: 0.5 }}
             className="flex justify-center mb-8"
           >
-            <div className="w-20 h-20 rounded-full bg-destructive/10 flex items-center justify-center border-2 border-destructive/30">
-              <AlertTriangle className="h-10 w-10 text-destructive" />
+            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center border-2 border-primary/30">
+              <AlertTriangle className="h-10 w-10 text-primary" />
             </div>
           </motion.div>
 
@@ -57,7 +57,7 @@ const ClosingSection = () => {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               "Le prix de l'erreur est bien plus élevé{" "}
-              <span className="text-destructive">que le prix d'Aurea.</span>"
+              <span className="text-primary">que le prix d'Aurea.</span>"
             </h2>
           </motion.div>
 
@@ -72,10 +72,10 @@ const ClosingSection = () => {
             {costs.map((cost, index) => (
               <div
                 key={index}
-                className="bg-destructive/5 border border-destructive/20 rounded-xl p-6 text-center"
+                className="bg-muted/50 border border-border rounded-xl p-6 text-center"
               >
                 <p className="text-sm text-muted-foreground mb-2">{cost.label}</p>
-                <p className="text-3xl font-bold text-destructive mb-1">{cost.amount}</p>
+                <p className="text-3xl font-bold text-primary mb-1">{cost.amount}</p>
                 <p className="text-xs text-muted-foreground">{cost.detail}</p>
               </div>
             ))}
