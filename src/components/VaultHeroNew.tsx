@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, AlertTriangle } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import WaitlistBadge from "./WaitlistBadge";
 
 const VaultHeroNew = () => {
   return (
@@ -20,14 +21,14 @@ const VaultHeroNew = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Social proof badge */}
+          {/* Social proof badge with avatars */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8"
+            className="mb-8"
           >
-            <span className="text-sm font-medium text-primary">🚀 4 500+ inscrits sur la liste d'attente</span>
+            <WaitlistBadge />
           </motion.div>
 
           {/* Main headline */}
