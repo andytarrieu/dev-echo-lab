@@ -58,9 +58,9 @@ const VaultHeroNew = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-muted/50 border border-border rounded-xl p-6 mb-10 max-w-2xl mx-auto"
+            className="inline-flex bg-muted/50 border border-border rounded-lg px-4 py-2 mb-8"
           >
-            <p className="text-foreground font-semibold text-lg">
+            <p className="text-foreground font-semibold text-sm">
               +de 400 pages analysées en 5 min
             </p>
           </motion.div>
