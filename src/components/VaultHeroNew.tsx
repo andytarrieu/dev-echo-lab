@@ -20,15 +20,14 @@ const VaultHeroNew = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Warning badge */}
+          {/* Social proof badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8"
           >
-            <AlertTriangle className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Risque détecté dans 73% des dossiers analysés</span>
+            <span className="text-sm font-medium text-primary">🚀 4 500+ inscrits sur la liste d'attente</span>
           </motion.div>
 
           {/* Main headline */}
@@ -38,8 +37,9 @@ const VaultHeroNew = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-8"
           >
-            Ne lisez plus vos dossiers immobiliers.{" "}
-            <span className="text-primary">Dialoguez avec eux.</span>
+            L'intelligence{" "}
+            <span className="text-primary">augmentée</span>{" "}
+            au service de l'immobilier
           </motion.h1>
 
           {/* Subheadline */}
