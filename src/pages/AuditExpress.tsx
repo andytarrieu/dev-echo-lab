@@ -1,63 +1,42 @@
-import { useState } from "react";
 import NavbarNew from "@/components/NavbarNew";
-import VaultHero from "@/components/VaultHero";
-import FeaturesBentoGrid from "@/components/FeaturesBentoGrid";
-import ParticulierDocumentsSection from "@/components/ParticulierDocumentsSection";
-import PillarTabs from "@/components/PillarTabs";
-import LogoSlider from "@/components/LogoSlider";
-import ProfessionalSection from "@/components/ProfessionalSection";
-import WhyAureaSection from "@/components/WhyAureaSection";
-import ProofSection from "@/components/ProofSection";
-import SecuritySection from "@/components/SecuritySection";
-import VaultFAQ from "@/components/VaultFAQ";
+import VaultHeroMinimal from "@/components/VaultHeroMinimal";
+import ValuePillars from "@/components/ValuePillars";
+import GroundingSection from "@/components/GroundingSection";
+import UseCasesMinimal from "@/components/UseCasesMinimal";
+import AudioFeature from "@/components/AudioFeature";
+import PrivacySection from "@/components/PrivacySection";
+import FAQMinimal from "@/components/FAQMinimal";
+import CTAMinimal from "@/components/CTAMinimal";
 import Footer from "@/components/Footer";
 
-export type AudienceType = "particulier" | "professionnel";
-
 const AuditExpress = () => {
-  const [audience, setAudience] = useState<AudienceType>("particulier");
   return (
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        {/* 1. Hero with new storytelling title */}
-        <VaultHero />
+        {/* 1. Hero - Direct & Minimal */}
+        <VaultHeroMinimal />
         
-        {/* Trust indicators - moved to top */}
-        <LogoSlider />
+        {/* 2. Value Pillars - 3 icônes simples */}
+        <ValuePillars />
         
-        {/* 2. Bento Grid - All features visible at a glance */}
-        <FeaturesBentoGrid audience={audience} onAudienceChange={setAudience} />
+        {/* 3. Grounding - L'IA ancrée sur vos sources */}
+        <GroundingSection />
         
-        {/* Sections conditionnelles selon l'audience */}
-        <div id="audience-section">
-          {audience === "particulier" ? (
-            <>
-              {/* 3. Detailed section for Particuliers */}
-              <ParticulierDocumentsSection />
-              
-              {/* 4. Pillar Tabs - Navigate between sections */}
-              <PillarTabs />
-            </>
-          ) : (
-            <>
-              {/* Professional deep-dive (complex docs) */}
-              <ProfessionalSection />
-            </>
-          )}
-        </div>
+        {/* 4. Use Cases - Particuliers & Pros unifiés */}
+        <UseCasesMinimal />
         
-        {/* Why choose Aurea - visible pour tous */}
-        <WhyAureaSection />
+        {/* 5. Audio Feature - Le Wow Effect */}
+        <AudioFeature />
         
-        {/* Social proof */}
-        <ProofSection />
+        {/* 6. Privacy - Sécurité */}
+        <PrivacySection />
         
-        {/* Security & Trust */}
-        <SecuritySection />
+        {/* 7. FAQ - Minimal */}
+        <FAQMinimal />
         
-        {/* FAQ */}
-        <VaultFAQ />
+        {/* 8. CTA Final */}
+        <CTAMinimal />
       </main>
       <Footer />
     </div>
