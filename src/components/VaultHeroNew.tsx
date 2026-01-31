@@ -49,8 +49,7 @@ const VaultHeroNew = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8 max-w-4xl mx-auto"
           >
-            <span className="font-semibold text-foreground">80% des litiges immobiliers</span> proviennent d'une clause ou d'un risque technique enfoui dans la masse documentaire. 
-            Aurea Vault est le seul <span className="text-primary font-semibold">"Cerveau Augmenté"</span> capable d'auditer instantanément l'intégralité de votre dossier pour en extraire la vérité brute.
+            Votre dossier immobilier devient interactif. Oubliez la lecture manuelle et interrogez directement votre <span className="text-primary font-semibold">"Vault"</span> pour obtenir une <span className="font-semibold text-foreground">analyse de risque chirurgicale</span>.
           </motion.p>
 
           {/* Warning box */}
