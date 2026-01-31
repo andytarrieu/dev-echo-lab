@@ -27,9 +27,9 @@ const VaultHero = () => {
         {/* Main Title */}
         <div className="text-center max-w-5xl mx-auto mb-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6">
-            Le Coffre-Fort{" "}
-            <span className="text-primary">Intelligent</span>{" "}
-            de l'Immobilier
+            Le cerveau{" "}
+            <span className="text-primary">analytique</span>{" "}
+            dédié à la donnée immobilière
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-6">
