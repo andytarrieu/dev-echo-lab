@@ -61,7 +61,7 @@ const VaultHeroNew = () => {
             className="bg-muted/50 border border-border rounded-xl p-6 mb-10 max-w-2xl mx-auto"
           >
             <p className="text-foreground font-semibold text-lg">
-              Ne signez rien sans l'avoir passé au Vault.
+              +de 400 pages analysées en 5 min
             </p>
           </motion.div>
 
