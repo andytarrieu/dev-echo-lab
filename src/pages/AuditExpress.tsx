@@ -1,5 +1,6 @@
 import NavbarNew from "@/components/NavbarNew";
-import VaultHeroNew from "@/components/VaultHeroNew";
+import VaultHero from "@/components/VaultHero";
+import LogoSlider from "@/components/LogoSlider";
 import ChaosSection from "@/components/ChaosSection";
 import VaultSolutionSection from "@/components/VaultSolutionSection";
 import UseCasesScenariosSection from "@/components/UseCasesScenariosSection";
@@ -16,8 +17,11 @@ const AuditExpress = () => {
     <div className="min-h-screen bg-background">
       <NavbarNew />
       <main>
-        {/* 1. Hero - Le Cerveau Analytique */}
-        <VaultHeroNew />
+        {/* 1. Hero - Le Coffre-Fort Intelligent */}
+        <VaultHero />
+        
+        {/* Trust indicators */}
+        <LogoSlider />
         
         {/* 2. Le problème - Chaos de la donnée immobilière */}
         <ChaosSection />
