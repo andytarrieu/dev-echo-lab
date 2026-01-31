@@ -1,9 +1,118 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { FileCheck, Lock, Link as LinkIcon, CheckCircle } from "lucide-react";
+import { Warp } from "@paper-design/shaders-react";
+import { FileCheck, Lock, Link as LinkIcon, Shield, Server, Trash2, Brain } from "lucide-react";
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+const features: Feature[] = [
+  {
+    title: "Preuve de source",
+    description:
+      "Chaque alerte de risque est liée par un surlignage dynamique dans le document source. Vérifiez en un clic.",
+    icon: <LinkIcon className="w-5 h-5" />,
+  },
+  {
+    title: "Chiffrement AES-256",
+    description: "Vos données sont cryptées bout en bout selon les standards les plus stricts du marché.",
+    icon: <Lock className="w-5 h-5" />,
+  },
+  {
+    title: "Hébergement HDS/RGPD",
+    description: "Infrastructure sécurisée hébergée en Europe, conforme aux normes de santé et RGPD.",
+    icon: <Server className="w-5 h-5" />,
+  },
+  {
+    title: "Zéro hallucination IA",
+    description: "Contrairement aux outils classiques, Aurea Vault est ancré dans vos documents uniquement.",
+    icon: <Brain className="w-5 h-5" />,
+  },
+  {
+    title: "Confidentialité Vault",
+    description: "Votre coffre-fort est inviolable. Vos secrets industriels et personnels restent protégés.",
+    icon: <Shield className="w-5 h-5" />,
+  },
+  {
+    title: "Suppression automatique",
+    description: "Vos documents sont automatiquement supprimés à la clôture du dossier. Aucune trace.",
+    icon: <Trash2 className="w-5 h-5" />,
+  },
+];
 
 const ProofSourceSection = () => {
+  const getShaderConfig = (index: number) => {
+    const configs = [
+      {
+        proportion: 0.3,
+        softness: 0.8,
+        distortion: 0.15,
+        swirl: 0.6,
+        swirlIterations: 8,
+        shape: "checks" as const,
+        shapeScale: 0.08,
+        colors: ["hsl(185, 65%, 18%)", "hsl(185, 80%, 35%)", "hsl(180, 60%, 25%)", "hsl(185, 70%, 45%)"],
+      },
+      {
+        proportion: 0.4,
+        softness: 1.2,
+        distortion: 0.2,
+        swirl: 0.9,
+        swirlIterations: 12,
+        shape: "stripes" as const,
+        shapeScale: 0.12,
+        colors: ["hsl(185, 100%, 15%)", "hsl(180, 100%, 40%)", "hsl(175, 90%, 25%)", "hsl(185, 100%, 50%)"],
+      },
+      {
+        proportion: 0.35,
+        softness: 0.9,
+        distortion: 0.18,
+        swirl: 0.7,
+        swirlIterations: 10,
+        shape: "edge" as const,
+        shapeScale: 0.1,
+        colors: ["hsl(180, 80%, 20%)", "hsl(185, 90%, 40%)", "hsl(175, 70%, 30%)", "hsl(180, 85%, 50%)"],
+      },
+      {
+        proportion: 0.45,
+        softness: 1.1,
+        distortion: 0.22,
+        swirl: 0.8,
+        swirlIterations: 15,
+        shape: "checks" as const,
+        shapeScale: 0.09,
+        colors: ["hsl(185, 65%, 22%)", "hsl(180, 80%, 45%)", "hsl(175, 60%, 30%)", "hsl(185, 75%, 55%)"],
+      },
+      {
+        proportion: 0.38,
+        softness: 0.95,
+        distortion: 0.16,
+        swirl: 0.85,
+        swirlIterations: 11,
+        shape: "stripes" as const,
+        shapeScale: 0.11,
+        colors: ["hsl(185, 70%, 18%)", "hsl(180, 85%, 38%)", "hsl(175, 65%, 28%)", "hsl(185, 80%, 48%)"],
+      },
+      {
+        proportion: 0.42,
+        softness: 1.0,
+        distortion: 0.19,
+        swirl: 0.75,
+        swirlIterations: 9,
+        shape: "edge" as const,
+        shapeScale: 0.13,
+        colors: ["hsl(180, 75%, 20%)", "hsl(185, 90%, 42%)", "hsl(175, 70%, 32%)", "hsl(180, 85%, 52%)"],
+      },
+    ];
+    return configs[index % configs.length];
+  };
+
   return (
-    <section className="py-12 sm:py-16 bg-background">
+    <section className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -18,100 +127,77 @@ const ProofSourceSection = () => {
               <FileCheck className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary">La Preuve par la Source</span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               L'intelligence artificielle,{" "}
               <span className="text-primary">la rigueur notariale</span> en plus.
             </h2>
-            
+
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Contrairement aux outils classiques qui inventent des réponses, <span className="font-semibold text-foreground">Aurea Vault est ancré dans vos documents</span>.
+              Contrairement aux outils classiques qui inventent des réponses,{" "}
+              <span className="font-semibold text-foreground">Aurea Vault est ancré dans vos documents</span>.
             </p>
           </motion.div>
 
-          {/* Two Pillars */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Proof of Source */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 border border-primary/20"
-            >
-              <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mb-6">
-                <LinkIcon className="h-7 w-7 text-primary-foreground" />
-              </div>
-              
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Preuve de source
-              </h3>
-              
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Chaque alerte de risque générée est liée par un <span className="font-semibold text-foreground">surlignage dynamique</span> dans le document source. Vérifiez en un clic.
-              </p>
-              
-              {/* Visual demo */}
-              <div className="bg-background rounded-xl p-4 border border-border">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                </div>
-                <div className="space-y-2">
-                  <div className="h-2 bg-muted rounded w-full" />
-                  <div className="h-2 bg-muted rounded w-4/5" />
-                  <div className="h-4 bg-primary/30 rounded w-3/4 border-l-4 border-primary" />
-                  <div className="h-2 bg-muted rounded w-5/6" />
-                  <div className="h-2 bg-muted rounded w-2/3" />
-                </div>
-                <p className="text-xs text-muted-foreground mt-3 flex items-center gap-1">
-                  <CheckCircle className="h-3 w-3 text-primary" />
-                  Page 47, paragraphe 3 — Cliquez pour voir
-                </p>
-              </div>
-            </motion.div>
+          {/* Shader Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => {
+              const shaderConfig = getShaderConfig(index);
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm hover:shadow-xl transition-all duration-500"
+                >
+                  {/* Shader Background */}
+                  <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
+                    <Warp
+                      speed={0.2}
+                      {...shaderConfig}
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </div>
 
-            {/* Vault Confidentiality */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-muted/50 to-muted rounded-2xl p-8 border border-border"
-            >
-              <div className="w-14 h-14 rounded-xl bg-foreground flex items-center justify-center mb-6">
-                <Lock className="h-7 w-7 text-background" />
-              </div>
-              
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Confidentialité "Vault"
-              </h3>
-              
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Votre coffre-fort est inviolable. Vos secrets industriels et personnels sont cryptés selon les <span className="font-semibold text-foreground">standards les plus stricts</span>.
-              </p>
-              
-              {/* Security badges */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-3 bg-background rounded-lg p-3 border border-border">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-foreground">Chiffrement AES-256 bout en bout</span>
-                </div>
-                <div className="flex items-center gap-3 bg-background rounded-lg p-3 border border-border">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-foreground">Hébergement HDS/RGPD en Europe</span>
-                </div>
-                <div className="flex items-center gap-3 bg-background rounded-lg p-3 border border-border">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-foreground">Zéro utilisation pour entraînement IA</span>
-                </div>
-                <div className="flex items-center gap-3 bg-background rounded-lg p-3 border border-border">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-foreground">Suppression automatique à la clôture</span>
-                </div>
-              </div>
-            </motion.div>
+                  {/* Content */}
+                  <div className="relative z-10 p-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                      {feature.icon}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      {feature.title}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+
+                    <div className="mt-4 flex items-center gap-1 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      En savoir plus
+                      <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
