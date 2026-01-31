@@ -1,7 +1,6 @@
 import { FileSearch, Headphones, AlertTriangle, TrendingDown, Shield, BookOpen, CheckCircle2, Zap, FileText, User, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-export type AudienceType = "particulier" | "professionnel";
+import type { AudienceType } from "@/pages/AuditExpress";
 
 interface FeaturesBentoGridProps {
   audience: AudienceType;
