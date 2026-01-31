@@ -84,27 +84,6 @@ const VaultHeroNew = () => {
               </Link>
             </Button>
           </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="grid grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
-          >
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary">2 min</div>
-              <div className="text-sm text-muted-foreground mt-1">Audit complet</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary">50+</div>
-              <div className="text-sm text-muted-foreground mt-1">Points de contrôle</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary">0</div>
-              <div className="text-sm text-muted-foreground mt-1">Hallucination IA</div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
