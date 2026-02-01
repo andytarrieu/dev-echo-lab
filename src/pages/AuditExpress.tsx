@@ -20,7 +20,10 @@ const AuditExpress = () => {
         {/* Trust indicators */}
         <LogoSlider />
         
-        {/* 2. L'Arme Fatale - Dialogue & Réaction */}
+        {/* 2. Comment ça marche */}
+        <HowItWorksSection />
+        
+        {/* 3. L'Arme Fatale - Dialogue & Réaction */}
         <WeaponSection />
         
         {/* 3. Sentinelle - L'Alerte qui sauve */}
