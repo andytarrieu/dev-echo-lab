@@ -74,6 +74,7 @@ export type Database = {
           position: number
           referral_code: string
           user_id: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
         }
         Insert: {
           created_at?: string
@@ -84,6 +85,7 @@ export type Database = {
           position: number
           referral_code?: string
           user_id?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
         }
         Update: {
           created_at?: string
@@ -94,6 +96,7 @@ export type Database = {
           position?: number
           referral_code?: string
           user_id?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
         }
         Relationships: []
       }
@@ -116,7 +119,7 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      user_type: "particulier" | "professionnel"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -243,6 +246,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_type: ["particulier", "professionnel"],
+    },
   },
 } as const
