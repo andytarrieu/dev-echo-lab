@@ -1,6 +1,7 @@
 import NavbarNew from "@/components/NavbarNew";
 import VaultHeroNew from "@/components/VaultHeroNew";
 import LogoSlider from "@/components/LogoSlider";
+import HowItWorksSection from "@/components/HowItWorksSection";
 import WeaponSection from "@/components/WeaponSection";
 import SentinelSection from "@/components/SentinelSection";
 import AudienceSection from "@/components/AudienceSection";
