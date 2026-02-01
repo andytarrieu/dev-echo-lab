@@ -115,8 +115,9 @@ const ClosingSection = () => {
           delay: 0.3
         }} className="text-center">
             <Button size="lg" className="text-lg px-8 py-6 group bg-primary hover:bg-primary/90" asChild>
-              <Link to="/waitlist">Essayer Auréa Vault<Shield className="mr-2 h-5 w-5" />
-                Protéger mon investissement
+              <Link to="/waitlist">
+                <Shield className="mr-2 h-5 w-5" />
+                <span>Protéger mon investissement</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
