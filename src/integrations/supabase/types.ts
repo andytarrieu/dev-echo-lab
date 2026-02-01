@@ -127,6 +127,11 @@ export type Database = {
         Args: { p_referred_email: string; p_referrer_id: string }
         Returns: boolean
       }
+      check_lookup_attempt_rate: {
+        Args: { p_ip_hash: string }
+        Returns: boolean
+      }
+      check_waitlist_signup_rate: { Args: never; Returns: boolean }
       cleanup_old_lookup_attempts: { Args: never; Returns: undefined }
       verify_referral_code: {
         Args: { client_ip_hash?: string; code: string }
