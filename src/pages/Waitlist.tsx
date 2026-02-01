@@ -8,6 +8,9 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import NavbarNew from "@/components/NavbarNew";
+import AudienceSelector from "@/components/AudienceSelector";
+
+type UserType = 'particulier' | 'professionnel';
 
 // Validation schema
 const waitlistSchema = z.object({
@@ -33,7 +36,8 @@ const waitlistSchema = z.object({
     .trim()
     .max(50, 'Code de parrainage trop long')
     .optional()
-    .or(z.literal(''))
+    .or(z.literal('')),
+  userType: z.enum(['particulier', 'professionnel'])
 });
 type RoutePoint = {
   x: number;
@@ -208,6 +212,15 @@ const DotMap = () => {
 const Waitlist = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  
+  // Initialize userType from URL parameter
+  const initialUserType = searchParams.get('type') as UserType | null;
+  const [userType, setUserType] = useState<UserType | null>(
+    initialUserType === 'particulier' || initialUserType === 'professionnel' 
+      ? initialUserType 
+      : null
+  );
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -256,7 +269,18 @@ const Waitlist = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log('🔥 Form submitted', { name, email, phone, referralCode });
+    console.log('🔥 Form submitted', { name, email, phone, referralCode, userType });
+
+    // Check if user type is selected
+    if (!userType) {
+      toast({
+        title: "Erreur",
+        description: "Veuillez sélectionner votre profil (Particulier ou Professionnel)",
+        variant: "destructive"
+      });
+      setIsLoading(false);
+      return;
+    }
 
     try {
       // Validate inputs with zod
@@ -265,7 +289,8 @@ const Waitlist = () => {
         email,
         password,
         phone,
-        referralCode
+        referralCode,
+        userType
       });
 
       if (!result.success) {
@@ -339,6 +364,7 @@ const Waitlist = () => {
           email: validatedData.email,
           phone: validatedData.phone || null,
           user_id: authData.user?.id || null,
+          user_type: validatedData.userType,
           position: 0 // Placeholder - sera remplacé par le trigger DB
         } as any)
         .select('position, referral_code')
@@ -383,6 +409,7 @@ const Waitlist = () => {
       console.log('🔄 Redirecting to dashboard...');
       navigate(`/dashboard`);
       // Réinitialiser le formulaire
+      setUserType(null);
       setName("");
       setEmail("");
       setPassword("");
@@ -546,6 +573,12 @@ const Waitlist = () => {
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Audience Selector */}
+                <AudienceSelector 
+                  selectedType={userType} 
+                  onSelect={setUserType} 
+                />
+
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Nom complet <span className="text-destructive">*</span>

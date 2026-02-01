@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, User, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import WaitlistBadge from "./WaitlistBadge";
@@ -65,21 +65,34 @@ const VaultHeroNew = () => {
             </p>
           </motion.div>
 
-          {/* CTA */}
+          {/* CTA Buttons - Particulier / Professionnel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 group"
               asChild
             >
-              <Link to="/waitlist">
-                <Shield className="mr-2 h-5 w-5" />
-                Essayer Auréa Vault
+              <Link to="/waitlist?type=particulier">
+                <User className="mr-2 h-5 w-5" />
+                Je suis Particulier
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 py-6 group border-2 hover:border-primary hover:bg-primary/5"
+              asChild
+            >
+              <Link to="/waitlist?type=professionnel">
+                <Briefcase className="mr-2 h-5 w-5" />
+                Je suis Professionnel
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
