@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, MessageCircle } from "lucide-react";
+import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, Shield, FileSearch, Lock } from "lucide-react";
 
 import NavbarNew from "@/components/NavbarNew";
 
@@ -15,6 +15,7 @@ interface UserData {
   position: number;
   referralCode: string;
   referralCount: number;
+  userType: 'particulier' | 'professionnel';
 }
 
 interface RewardTier {
@@ -23,16 +24,17 @@ interface RewardTier {
   targetPosition: number;
   icon: any;
   color: string;
+  benefit: string;
 }
 
 const REWARD_TIERS: RewardTier[] = [
-  { name: "Founding Members", requiredReferrals: 34, targetPosition: 50, icon: Crown, color: "text-yellow-500" },
-  { name: "Pioneer Status", requiredReferrals: 30, targetPosition: 100, icon: Trophy, color: "text-orange-500" },
-  { name: "Early Adopters", requiredReferrals: 20, targetPosition: 500, icon: Star, color: "text-blue-500" },
-  { name: "Insiders", requiredReferrals: 15, targetPosition: 1000, icon: Zap, color: "text-purple-500" },
-  { name: "Supporters", requiredReferrals: 10, targetPosition: 5000, icon: Users, color: "text-green-500" },
-  { name: "Members", requiredReferrals: 5, targetPosition: 10000, icon: Star, color: "text-indigo-500" },
-  { name: "Lancement", requiredReferrals: 3, targetPosition: 15000, icon: Zap, color: "text-pink-500" },
+  { name: "Founding Members", requiredReferrals: 34, targetPosition: 50, icon: Crown, color: "text-primary", benefit: "Accès prioritaire + 6 mois offerts" },
+  { name: "Pioneer Status", requiredReferrals: 30, targetPosition: 100, icon: Trophy, color: "text-primary/90", benefit: "Accès prioritaire + 3 mois offerts" },
+  { name: "Early Adopters", requiredReferrals: 20, targetPosition: 500, icon: Star, color: "text-primary/80", benefit: "Accès prioritaire + 1 mois offert" },
+  { name: "Insiders", requiredReferrals: 15, targetPosition: 1000, icon: Zap, color: "text-primary/70", benefit: "Accès prioritaire + fonctionnalités bêta" },
+  { name: "Supporters", requiredReferrals: 10, targetPosition: 5000, icon: Users, color: "text-primary/60", benefit: "Accès anticipé" },
+  { name: "Members", requiredReferrals: 5, targetPosition: 10000, icon: Star, color: "text-primary/50", benefit: "Accès standard" },
+  { name: "Lancement", requiredReferrals: 3, targetPosition: 15000, icon: Zap, color: "text-muted-foreground", benefit: "Accès au lancement" },
 ];
 
 const Dashboard = () => {
@@ -43,22 +45,18 @@ const Dashboard = () => {
 
   useEffect(() => {
     const checkAuthAndFetchData = async () => {
-      // Vérifier l'authentification Supabase - UNIQUEMENT via session, pas localStorage
       const { data: { session } } = await supabase.auth.getSession();
       
       if (!session?.user?.email) {
-        // Pas de session authentifiée, rediriger vers login
         navigate("/login");
         return;
       }
       
-      // Utiliser uniquement l'email de la session authentifiée
       fetchDashboardData(session.user.email);
     };
 
     checkAuthAndFetchData();
 
-    // Écouter les changements d'authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === 'SIGNED_OUT') {
@@ -74,7 +72,6 @@ const Dashboard = () => {
 
   const fetchDashboardData = async (userEmail: string) => {
     try {
-      // Chercher l'utilisateur par email
       const { data: user, error: userError } = await supabase
         .from("waitlist")
         .select("*")
@@ -84,7 +81,7 @@ const Dashboard = () => {
       if (userError) {
         console.error("Error fetching user:", userError);
         toast({
-          title: "❌ Erreur",
+          title: "Erreur",
           description: "Impossible de charger vos données",
           variant: "destructive",
         });
@@ -94,21 +91,18 @@ const Dashboard = () => {
 
       if (!user) {
         toast({
-          title: "⚠️ Profil introuvable",
+          title: "Profil introuvable",
           description: "Veuillez d'abord vous inscrire à la liste d'attente",
         });
-        localStorage.removeItem("userEmail");
         navigate("/waitlist");
         return;
       }
 
-      // 2. Compte des parrainages
       const { count: referralCount } = await supabase
         .from("referrals")
         .select("*", { count: "exact", head: true })
         .eq("referrer_id", user.id);
 
-      // 3. Total des inscrits
       const { count: totalCount } = await supabase
         .from("waitlist")
         .select("*", { count: "exact", head: true });
@@ -119,12 +113,13 @@ const Dashboard = () => {
         position: user.position,
         referralCode: user.referral_code,
         referralCount: referralCount || 0,
+        userType: user.user_type || 'particulier',
       });
       setTotalUsers(totalCount || 0);
     } catch (error) {
       console.error("Erreur:", error);
       toast({
-        title: "❌ Erreur",
+        title: "Erreur",
         description: "Impossible de charger les données",
         variant: "destructive",
       });
@@ -136,7 +131,7 @@ const Dashboard = () => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     toast({
-      title: "👋 À bientôt !",
+      title: "À bientôt !",
       description: "Vous avez été déconnecté",
     });
     navigate("/login");
@@ -151,36 +146,35 @@ const Dashboard = () => {
   const getNextTier = () => {
     if (!userData) return null;
     const finalPosition = calculateFinalPosition();
-    // Trouver le prochain palier basé sur la position corrigée
     return REWARD_TIERS.find(tier => finalPosition > tier.targetPosition);
   };
 
   const getCurrentTier = () => {
     if (!userData) return null;
     const finalPosition = calculateFinalPosition();
-    // Trouver le palier actuel basé sur la position corrigée
     return REWARD_TIERS.find(tier => finalPosition <= tier.targetPosition) || REWARD_TIERS[REWARD_TIERS.length - 1];
-  };
-
-  const getUnlockedTiers = () => {
-    if (!userData) return [];
-    const finalPosition = calculateFinalPosition();
-    return REWARD_TIERS.filter(tier => finalPosition <= tier.targetPosition);
   };
 
   const copyReferralLink = () => {
     const link = `${window.location.origin}/waitlist?ref=${userData?.referralCode}`;
     navigator.clipboard.writeText(link);
     toast({
-      title: "✅ Lien copié !",
-      description: "Partage-le avec tes amis pour grimper dans la liste",
+      title: "Lien copié !",
+      description: "Partage-le avec tes contacts pour grimper dans la liste",
     });
   };
 
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="animate-pulse text-2xl font-bold">Chargement...</div>
+        <motion.div 
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="flex flex-col items-center gap-4"
+        >
+          <Shield className="h-12 w-12 text-primary" />
+          <span className="text-lg font-medium text-muted-foreground">Chargement...</span>
+        </motion.div>
       </div>
     );
   }
@@ -192,9 +186,7 @@ const Dashboard = () => {
   const finalPosition = calculateFinalPosition();
   const nextTier = getNextTier();
   const currentTier = getCurrentTier();
-  const unlockedTiers = getUnlockedTiers();
   
-  // Calculer combien de parrainages il faut pour le prochain palier
   const referralsToNext = nextTier 
     ? Math.ceil((finalPosition - nextTier.targetPosition) / 1500)
     : 0;
@@ -207,152 +199,177 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <NavbarNew />
       <div className="container mx-auto px-4 py-8 max-w-4xl pt-24">
-        {/* Header avec Logout et Mentor */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-          {/* Bouton Mentor - Style Chatbot */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full sm:w-auto"
-          >
-            <Button 
-              asChild 
-              size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white shadow-lg shadow-violet-500/30 border-0"
-            >
-              <Link to="/mentor">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Discuter avec votre mentor
-              </Link>
-            </Button>
-          </motion.div>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Shield className="h-5 w-5 text-primary" />
+            </div>
+            <div>
+              <h2 className="text-sm font-medium text-muted-foreground">AURÉA Vault</h2>
+              <p className="text-xs text-muted-foreground/70">
+                {userData.userType === 'professionnel' ? 'Compte Professionnel' : 'Compte Particulier'}
+              </p>
+            </div>
+          </div>
 
-          <Button variant="outline" size="sm" onClick={handleLogout} className="w-full sm:w-auto">
+          <Button variant="outline" size="sm" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
             Déconnexion
           </Button>
         </div>
-        {/* Titre accrocheur */}
+
+        {/* Titre de bienvenue */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <h1 className="text-4xl md:text-5xl font-black mb-3 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            Vous êtes dans la course ! 🚀
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
+            Bienvenue, <span className="text-primary">{userData.name}</span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            Bienvenue <span className="font-bold text-foreground">{userData.name}</span>, parrainez vos amis pour booster votre position
+          <p className="text-muted-foreground">
+            Votre accès prioritaire à l'intelligence immobilière augmentée
           </p>
         </motion.div>
 
-        {/* Position Actuelle - GROS */}
+        {/* Position Actuelle */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-card border-4 border-primary rounded-2xl p-8 mb-6 text-center shadow-2xl"
+          className="bg-card border border-border rounded-2xl p-8 mb-6 text-center relative overflow-hidden"
         >
-          <div className="text-muted-foreground text-sm uppercase tracking-wider mb-2">
-            Votre Position Actuelle
-          </div>
-          <div className="text-5xl md:text-6xl font-black bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent mb-2">
-            #{finalPosition.toLocaleString('fr-FR')}
-          </div>
-          {currentTier && (
-            <div className="mb-3">
-              <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full">
-                <currentTier.icon className={`h-5 w-5 ${currentTier.color}`} />
-                <span className="font-bold text-lg">{currentTier.name}</span>
-              </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+          <div className="relative z-10">
+            <div className="text-muted-foreground text-sm uppercase tracking-wider mb-2 flex items-center justify-center gap-2">
+              <Lock className="h-4 w-4" />
+              Position dans la liste d'attente
             </div>
-          )}
-          <div className="text-sm text-muted-foreground">
-            Position initiale : #{userData.position.toLocaleString('fr-FR')} 
-            {userData.referralCount > 0 && (
-              <span className="text-primary font-bold ml-2">
-                (-{(userData.referralCount * 1500).toLocaleString('fr-FR')} places gagnées !)
-              </span>
+            <div className="text-5xl md:text-6xl font-bold text-primary mb-3">
+              #{finalPosition.toLocaleString('fr-FR')}
+            </div>
+            {currentTier && (
+              <div className="mb-3">
+                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+                  <currentTier.icon className={`h-5 w-5 ${currentTier.color}`} />
+                  <span className="font-semibold">{currentTier.name}</span>
+                </div>
+              </div>
             )}
+            <div className="text-sm text-muted-foreground">
+              Position initiale : #{userData.position.toLocaleString('fr-FR')} 
+              {userData.referralCount > 0 && (
+                <span className="text-primary font-medium ml-2">
+                  (-{(userData.referralCount * 1500).toLocaleString('fr-FR')} places gagnées)
+                </span>
+              )}
+            </div>
           </div>
         </motion.div>
 
-        {/* Lien de Parrainage */}
+        {/* Avantages du Vault */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"
+        >
+          <div className="bg-card border border-border rounded-xl p-5">
+            <FileSearch className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-semibold mb-1">Audit Automatisé</h3>
+            <p className="text-sm text-muted-foreground">Analyse de dossiers complexes en 15 minutes</p>
+          </div>
+          <div className="bg-card border border-border rounded-xl p-5">
+            <Shield className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-semibold mb-1">Détection de Risques</h3>
+            <p className="text-sm text-muted-foreground">Alertes sur les anomalies et vices cachés</p>
+          </div>
+          <div className="bg-card border border-border rounded-xl p-5">
+            <Zap className="h-8 w-8 text-primary mb-3" />
+            <h3 className="font-semibold mb-1">Arguments de Négo</h3>
+            <p className="text-sm text-muted-foreground">Leviers chiffrés pour négocier le prix</p>
+          </div>
+        </motion.div>
+
+        {/* Code de Parrainage */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="bg-card rounded-xl p-6 mb-6 border"
+          className="bg-card rounded-xl p-6 mb-6 border border-border"
         >
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <Zap className="h-6 w-6 text-primary" />
-            Votre Code de Parrainage
+          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+            <Users className="h-5 w-5 text-primary" />
+            Parrainez et gagnez des places
           </h2>
           
-          {/* Code de parrainage en gros */}
-          <div className="bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg p-6 mb-4 text-center">
+          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 mb-4 text-center border border-primary/10">
             <p className="text-sm text-muted-foreground mb-2">Votre code unique</p>
-            <div className="text-4xl font-black font-mono tracking-wider text-primary mb-3">
+            <div className="text-3xl font-bold font-mono tracking-wider text-primary mb-4">
               {userData.referralCode}
             </div>
-            <Button onClick={() => {
-              navigator.clipboard.writeText(userData.referralCode);
-              toast({
-                title: "✅ Code copié !",
-                description: "Partage ce code avec tes amis",
-              });
-            }} variant="secondary" size="sm">
-              <Copy className="mr-2 h-4 w-4" />
-              Copier le code
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button onClick={() => {
+                navigator.clipboard.writeText(userData.referralCode);
+                toast({
+                  title: "Code copié !",
+                  description: "Partage ce code avec tes contacts",
+                });
+              }} variant="secondary" size="sm">
+                <Copy className="mr-2 h-4 w-4" />
+                Copier le code
+              </Button>
+              <Button onClick={copyReferralLink} size="sm">
+                <Zap className="mr-2 h-4 w-4" />
+                Copier le lien complet
+              </Button>
+            </div>
           </div>
 
+          <p className="text-sm text-muted-foreground text-center">
+            Chaque parrainage vous fait gagner <span className="font-semibold text-primary">1 500 places</span> dans la liste
+          </p>
         </motion.div>
 
-        {/* Progression Gamification */}
+        {/* Progression */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-card rounded-xl p-6 mb-6 border"
+          className="bg-card rounded-xl p-6 mb-6 border border-border"
         >
-          <h2 className="text-xl font-bold mb-4">Progression</h2>
+          <h2 className="text-lg font-semibold mb-4">Votre progression</h2>
           
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-muted-foreground">Parrainages réussis</span>
               <span className="text-2xl font-bold text-primary">{userData.referralCount}</span>
             </div>
-            <div className="text-xs text-primary/70 mb-4">
-              = -{(userData.referralCount * 1500).toLocaleString('fr-FR')} places gagnées
-            </div>
             
             {nextTier && (
               <>
-                <Progress value={progressToNext} className="h-4 mb-2" />
+                <Progress value={progressToNext} className="h-3 mb-3" />
                 <p className="text-sm text-muted-foreground">
-                  Il vous manque seulement <span className="font-bold text-foreground">
+                  Encore <span className="font-semibold text-foreground">
                     {referralsToNext} parrainage{referralsToNext > 1 ? 's' : ''}
-                  </span> pour atteindre le <span className="font-bold text-primary">
-                    {nextTier.name} (Top {nextTier.targetPosition.toLocaleString('fr-FR')})
-                  </span> !
-                </p>
-                <p className="text-xs text-primary/70 mt-1">
-                  {referralsToNext} × 1500 = -{(referralsToNext * 1500).toLocaleString('fr-FR')} places
+                  </span> pour atteindre <span className="font-semibold text-primary">
+                    {nextTier.name}
+                  </span>
                 </p>
               </>
             )}
             {!nextTier && (
-              <p className="text-sm text-green-500 font-bold">
-                🎉 Vous avez débloqué tous les paliers disponibles !
+              <p className="text-sm text-primary font-medium">
+                Vous avez débloqué tous les paliers disponibles !
               </p>
             )}
           </div>
 
-          {/* Récompenses */}
-          <div className="space-y-3">
-            <h3 className="font-bold text-lg mb-3">🎁 Paliers de Récompenses</h3>
+          {/* Paliers */}
+          <div className="space-y-2">
+            <h3 className="font-medium text-sm text-muted-foreground mb-3">Paliers d'accès</h3>
             {REWARD_TIERS.map((tier, index) => {
               const isUnlocked = finalPosition <= tier.targetPosition;
               const isCurrent = currentTier?.name === tier.name;
@@ -363,30 +380,26 @@ const Dashboard = () => {
                   key={tier.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  className={`flex items-center gap-4 p-4 rounded-lg border-2 transition-all ${
+                  transition={{ delay: 0.5 + index * 0.05 }}
+                  className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${
                     isUnlocked 
-                      ? 'bg-primary/10 border-primary shadow-lg' 
+                      ? 'bg-primary/5 border-primary/30' 
                       : isCurrent
-                        ? 'bg-accent/50 border-accent ring-2 ring-primary/50'
-                        : 'bg-muted/30 border-muted opacity-50'
+                        ? 'bg-accent/50 border-border'
+                        : 'bg-muted/20 border-transparent opacity-60'
                   }`}
                 >
-                  <Icon className={`h-8 w-8 ${isUnlocked ? tier.color : 'text-muted-foreground'}`} />
-                  <div className="flex-1">
-                    <div className="font-bold">{tier.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      Top {tier.targetPosition.toLocaleString('fr-FR')} • ~{tier.requiredReferrals} parrainages
-                    </div>
+                  <Icon className={`h-5 w-5 ${isUnlocked ? tier.color : 'text-muted-foreground'}`} />
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm">{tier.name}</div>
+                    <div className="text-xs text-muted-foreground truncate">{tier.benefit}</div>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Top {tier.targetPosition.toLocaleString('fr-FR')}
                   </div>
                   {isUnlocked && (
-                    <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      ✨ DÉBLOQUÉ
-                    </div>
-                  )}
-                  {isCurrent && !isUnlocked && (
-                    <div className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold">
-                      📍 ACTUEL
+                    <div className="bg-primary text-primary-foreground px-2 py-0.5 rounded text-xs font-medium">
+                      ✓
                     </div>
                   )}
                 </motion.div>
@@ -395,7 +408,6 @@ const Dashboard = () => {
           </div>
         </motion.div>
 
-
         {/* CTA Final */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -403,10 +415,13 @@ const Dashboard = () => {
           transition={{ delay: 0.6 }}
           className="text-center"
         >
-          <Button onClick={copyReferralLink} size="lg" className="text-lg px-8 py-6">
+          <Button onClick={copyReferralLink} size="lg" className="px-8">
             <Zap className="mr-2 h-5 w-5" />
-            Partager maintenant et grimper !
+            Partager et grimper dans la liste
           </Button>
+          <p className="text-xs text-muted-foreground mt-3">
+            Plus vous parrainez, plus vite vous accéderez à AURÉA Vault
+          </p>
         </motion.div>
       </div>
     </div>
