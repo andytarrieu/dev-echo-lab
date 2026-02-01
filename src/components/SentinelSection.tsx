@@ -7,27 +7,18 @@ const alerts = [
     title: "Alerte \"Bombe Juridique\"",
     content:
       "Attention, j'ai détecté une servitude de passage non signalée dans votre compromis mais présente dans l'acte de 1982. Ce type de risque peut remettre en cause toute la transaction.",
-    color: "text-red-500",
-    bgColor: "bg-red-500/10",
-    borderColor: "border-red-500/30",
   },
   {
     icon: DollarSign,
     title: "Alerte \"Désastre Financier\"",
     content:
       "Probabilité élevée : Le diagnostic termites signale une activité passée, mais aucune facture de traitement n'apparaît dans le carnet d'entretien. Risque de coûts cachés importants.",
-    color: "text-amber-500",
-    bgColor: "bg-amber-500/10",
-    borderColor: "border-amber-500/30",
   },
   {
     icon: FileWarning,
     title: "Alerte \"Conformité Critique\"",
     content:
       "Bloquant : Le permis d'urbanisme a été affiché, mais le constat d'huissier est incomplet. Risque de recours prolongé pouvant bloquer votre projet.",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-    borderColor: "border-orange-500/30",
   },
 ];
 
@@ -77,14 +68,14 @@ const SentinelSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className={`relative p-6 rounded-2xl border ${alert.borderColor} ${alert.bgColor} backdrop-blur-sm`}
+                className="relative p-6 rounded-2xl border border-primary/20 bg-primary/5 backdrop-blur-sm"
               >
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 rounded-xl ${alert.bgColor} ${alert.color}`}>
+                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
                     <alert.icon className="h-6 w-6" />
                   </div>
                   <div className="flex-1">
-                    <h3 className={`text-lg font-semibold mb-2 ${alert.color}`}>
+                    <h3 className="text-lg font-semibold mb-2 text-primary">
                       {alert.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
