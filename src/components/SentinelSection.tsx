@@ -24,7 +24,7 @@ const alerts = [
 
 const SentinelSection = () => {
   return (
-    <section className="py-16 sm:py-24 bg-background relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-background relative overflow-hidden">
       {/* Background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
 
@@ -36,7 +36,7 @@ const SentinelSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-6">
               <Eye className="h-4 w-4 text-primary" />

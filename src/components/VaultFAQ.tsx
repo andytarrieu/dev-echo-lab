@@ -31,9 +31,9 @@ const VaultFAQ = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-20 bg-background">
+    <section className="py-12 sm:py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-12">
+        <div className="flex flex-col items-center text-center mb-8">
           <p className="text-sm font-medium text-primary mb-2">FAQ</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Questions Fréquentes
