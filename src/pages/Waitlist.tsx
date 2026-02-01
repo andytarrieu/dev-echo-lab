@@ -346,8 +346,16 @@ const Waitlist = () => {
       // Vérifier si le code de parrainage existe via la fonction sécurisée
       let referrerId: string | null = null;
       if (referralCode) {
+        // Generate client fingerprint for rate limiting (SHA-256 hash of browser properties)
+        const fingerprintData = `${navigator.userAgent}${navigator.language}${screen.width}x${screen.height}${new Date().getTimezoneOffset()}`;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(fingerprintData);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const clientFingerprint = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
         const { data: referralResult } = await supabase
-          .rpc('verify_referral_code', { code: referralCode, client_ip_hash: '' });
+          .rpc('verify_referral_code', { code: referralCode, client_ip_hash: clientFingerprint });
         
         if (referralResult && referralResult.length > 0 && referralResult[0].is_valid) {
           referrerId = referralResult[0].referrer_id;
