@@ -112,7 +112,7 @@ const ProofSourceSection = () => {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-background">
+    <section className="py-12 sm:py-16 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -121,7 +121,7 @@ const ProofSourceSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <FileCheck className="h-4 w-4 text-primary" />
