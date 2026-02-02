@@ -298,69 +298,7 @@ const Dashboard = () => {
         
 
         {/* Progression */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.4
-      }} className="bg-card rounded-xl p-6 mb-6 border border-border">
-          <h2 className="text-lg font-semibold mb-4">Votre progression</h2>
-          
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-muted-foreground">Parrainages réussis</span>
-              <span className="text-2xl font-bold text-primary">{userData.referralCount}</span>
-            </div>
-            
-            {nextTier && <>
-                <Progress value={progressToNext} className="h-3 mb-3" />
-                <p className="text-sm text-muted-foreground">
-                  Encore <span className="font-semibold text-foreground">
-                    {referralsToNext} parrainage{referralsToNext > 1 ? 's' : ''}
-                  </span> pour atteindre <span className="font-semibold text-primary">
-                    {nextTier.name}
-                  </span>
-                </p>
-              </>}
-            {!nextTier && <p className="text-sm text-primary font-medium">
-                Vous avez débloqué tous les paliers disponibles !
-              </p>}
-          </div>
-
-          {/* Paliers */}
-          <div className="space-y-2">
-            <h3 className="font-medium text-sm text-muted-foreground mb-3">Paliers d'accès</h3>
-            {REWARD_TIERS.map((tier, index) => {
-            const isUnlocked = finalPosition <= tier.targetPosition;
-            const isCurrent = currentTier?.name === tier.name;
-            const Icon = tier.icon;
-            return <motion.div key={tier.name} initial={{
-              opacity: 0,
-              x: -20
-            }} animate={{
-              opacity: 1,
-              x: 0
-            }} transition={{
-              delay: 0.5 + index * 0.05
-            }} className={`flex items-center gap-3 p-3 rounded-lg border transition-all ${isUnlocked ? 'bg-primary/5 border-primary/30' : isCurrent ? 'bg-accent/50 border-border' : 'bg-muted/20 border-transparent opacity-60'}`}>
-                  <Icon className={`h-5 w-5 ${isUnlocked ? tier.color : 'text-muted-foreground'}`} />
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-sm">{tier.name}</div>
-                    <div className="text-xs text-muted-foreground truncate">{tier.benefit}</div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Top {tier.targetPosition.toLocaleString('fr-FR')}
-                  </div>
-                  {isUnlocked && <div className="bg-primary text-primary-foreground px-2 py-0.5 rounded text-xs font-medium">
-                      ✓
-                    </div>}
-                </motion.div>;
-          })}
-          </div>
-        </motion.div>
+        
 
         {/* CTA Final */}
         <motion.div initial={{
