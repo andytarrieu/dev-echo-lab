@@ -265,38 +265,7 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Position Actuelle */}
-        <motion.div initial={{
-        opacity: 0,
-        scale: 0.95
-      }} animate={{
-        opacity: 1,
-        scale: 1
-      }} transition={{
-        delay: 0.2
-      }} className="bg-card border border-border rounded-2xl p-8 mb-6 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-          <div className="relative z-10">
-            <div className="text-muted-foreground text-sm uppercase tracking-wider mb-2 flex items-center justify-center gap-2">
-              <Lock className="h-4 w-4" />
-              Position dans la liste d'attente
-            </div>
-            <div className="text-5xl md:text-6xl font-bold text-primary mb-3">
-              #{finalPosition.toLocaleString('fr-FR')}
-            </div>
-            {currentTier && <div className="mb-3">
-                <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-                  <currentTier.icon className={`h-5 w-5 ${currentTier.color}`} />
-                  <span className="font-semibold">{currentTier.name}</span>
-                </div>
-              </div>}
-            <div className="text-sm text-muted-foreground">
-              Position initiale : #{userData.position.toLocaleString('fr-FR')} 
-              {userData.referralCount > 0 && <span className="text-primary font-medium ml-2">
-                  (-{(userData.referralCount * 1500).toLocaleString('fr-FR')} places gagnées)
-                </span>}
-            </div>
-          </div>
-        </motion.div>
+        
 
         {/* Avantages du Vault */}
         <motion.div initial={{
