@@ -352,8 +352,7 @@ const Dashboard = () => {
       }} transition={{
         delay: 0.6
       }} className="text-center bg-card border border-border rounded-2xl p-6">
-          <p className="text-muted-foreground">
-            Merci de faire partie des premiers à tester <span className="text-primary font-semibold">AURÉA Vault</span>. Nous vous contacterons très bientôt !
+          <p className="text-muted-foreground">Merci de faire partie des premiers à tester AURÉA Vault. <span className="text-primary font-semibold">AURÉA Vault</span>. Nous vous contacterons très bientôt !
           </p>
         </motion.div>
       </div>
