@@ -369,7 +369,7 @@ const Waitlist = () => {
         .insert({
           name: validatedData.name,
           email: validatedData.email,
-          phone: validatedData.phone || null,
+          phone: validatedData.phone,
           user_id: authData.user?.id || null,
           user_type: validatedData.userType,
           position: 0 // Placeholder - sera remplacé par le trigger DB
