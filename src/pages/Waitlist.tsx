@@ -28,10 +28,9 @@ const waitlistSchema = z.object({
     .max(72, 'Le mot de passe doit contenir moins de 72 caractères'),
   phone: z.string()
     .trim()
+    .min(1, 'Le numéro de téléphone est requis')
     .regex(/^(\+33|0)[0-9\s.-]{9,}$/, 'Numéro de téléphone invalide (format français attendu)')
-    .max(20, 'Numéro de téléphone trop long')
-    .optional()
-    .or(z.literal('')),
+    .max(20, 'Numéro de téléphone trop long'),
   referralCode: z.string()
     .trim()
     .max(50, 'Code de parrainage trop long')
@@ -634,7 +633,7 @@ const Waitlist = () => {
                 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Téléphone <span className="text-muted-foreground text-xs">(optionnel)</span>
+                    Téléphone <span className="text-destructive">*</span>
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
