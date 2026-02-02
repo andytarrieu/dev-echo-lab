@@ -65,34 +65,20 @@ const VaultHeroNew = () => {
             </p>
           </motion.div>
 
-          {/* CTA Buttons - Particulier / Professionnel */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex justify-center"
           >
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 group"
               asChild
             >
-              <Link to="/waitlist?type=particulier">
-                <User className="mr-2 h-5 w-5" />
-                Je suis Particulier
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-lg px-8 py-6 group border-2 hover:border-primary hover:bg-primary/5"
-              asChild
-            >
-              <Link to="/waitlist?type=professionnel">
-                <Briefcase className="mr-2 h-5 w-5" />
-                Je suis Professionnel
+              <Link to="/waitlist">
+                Essayer gratuitement la bêta
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
