@@ -326,44 +326,7 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Code de Parrainage */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.3
-      }} className="bg-card rounded-xl p-6 mb-6 border border-border">
-          <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Users className="h-5 w-5 text-primary" />
-            Parrainez et gagnez des places
-          </h2>
-          
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 mb-4 text-center border border-primary/10">
-            <p className="text-sm text-muted-foreground mb-2">Votre code unique</p>
-            <div className="text-3xl font-bold font-mono tracking-wider text-primary mb-4">
-              {userData.referralCode}
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button onClick={() => {
-              navigator.clipboard.writeText(userData.referralCode);
-              toast({
-                title: "Code copié !",
-                description: "Partage ce code avec tes contacts"
-              });
-            }} variant="secondary" size="sm">
-                <Copy className="mr-2 h-4 w-4" />
-                Copier le code
-              </Button>
-              
-            </div>
-          </div>
-
-          <p className="text-sm text-muted-foreground text-center">
-            Chaque parrainage vous fait gagner <span className="font-semibold text-primary">1 500 places</span> dans la liste
-          </p>
-        </motion.div>
+        
 
         {/* Progression */}
         <motion.div initial={{
