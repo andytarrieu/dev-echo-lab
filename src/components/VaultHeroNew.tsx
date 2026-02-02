@@ -65,12 +65,12 @@ const VaultHeroNew = () => {
             </p>
           </motion.div>
 
-          {/* CTA Button */}
+{/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center"
+            className="flex flex-col items-center"
           >
             <Button 
               size="lg" 
