@@ -78,10 +78,13 @@ const VaultHeroNew = () => {
               asChild
             >
               <Link to="/waitlist">
-                Essayer gratuitement la bêta
+                Rejoindre le programme Bêta-Fondateur
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
+            <p className="text-sm text-muted-foreground mt-3">
+              Offre limitée aux 50 premiers inscrits
+            </p>
           </motion.div>
         </div>
       </div>
