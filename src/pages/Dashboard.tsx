@@ -5,7 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "@/hooks/use-toast";
-import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, Shield, FileSearch, Lock } from "lucide-react";
+import { Trophy, Users, Copy, Zap, Crown, Star, LogOut, Shield, FileSearch, Lock, Send } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import NavbarNew from "@/components/NavbarNew";
 interface UserData {
   email: string;
@@ -14,6 +15,7 @@ interface UserData {
   referralCode: string;
   referralCount: number;
   userType: 'particulier' | 'professionnel';
+  priorityDocument: string | null;
 }
 interface RewardTier {
   name: string;
@@ -78,6 +80,8 @@ const Dashboard = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [totalUsers, setTotalUsers] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [priorityInput, setPriorityInput] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   useEffect(() => {
     const checkAuthAndFetchData = async () => {
       const {
@@ -147,7 +151,8 @@ const Dashboard = () => {
         position: user.position,
         referralCode: user.referral_code,
         referralCount: referralCount || 0,
-        userType: user.user_type || 'particulier'
+        userType: user.user_type || 'particulier',
+        priorityDocument: user.priority_document || null
       });
       setTotalUsers(totalCount || 0);
     } catch (error) {
@@ -258,14 +263,62 @@ const Dashboard = () => {
               Nous ouvrons les accès par petits groupes pour garantir une analyse chirurgicale de chaque dossier.
             </p>
             <h3 className="font-semibold text-foreground mb-2">Vous voulez passer en priorité ?</h3>
-            <p className="text-sm text-muted-foreground">
-              Répondez simplement à cet email en nous disant : <span className="font-medium text-foreground">Quel est le document qui vous fait le plus peur ou vous fait perdre le plus de temps ?</span> (ex: PV d'AG, diagnostics, servitudes...).
+            <p className="text-sm text-muted-foreground mb-4">
+              Dites-nous : <span className="font-medium text-foreground">Quel est le document qui vous fait le plus peur ou vous fait perdre le plus de temps ?</span> (ex: PV d'AG, diagnostics, servitudes...).
             </p>
+            
+            {userData.priorityDocument ? (
+              <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+                <p className="text-sm text-muted-foreground mb-1">Votre réponse :</p>
+                <p className="text-foreground font-medium">{userData.priorityDocument}</p>
+                <p className="text-xs text-primary mt-2">✓ Merci ! Votre réponse a été enregistrée.</p>
+              </div>
+            ) : (
+              <form onSubmit={async (e) => {
+                e.preventDefault();
+                if (!priorityInput.trim()) return;
+                
+                setSubmitting(true);
+                try {
+                  const { error } = await supabase
+                    .from("waitlist")
+                    .update({ priority_document: priorityInput.trim() })
+                    .eq("email", userData.email);
+                  
+                  if (error) throw error;
+                  
+                  setUserData({ ...userData, priorityDocument: priorityInput.trim() });
+                  toast({
+                    title: "Merci pour votre réponse !",
+                    description: "Cela nous aide à vous prioriser dans la liste d'attente."
+                  });
+                } catch (error) {
+                  console.error("Error saving priority document:", error);
+                  toast({
+                    title: "Erreur",
+                    description: "Impossible d'enregistrer votre réponse",
+                    variant: "destructive"
+                  });
+                } finally {
+                  setSubmitting(false);
+                }
+              }} className="space-y-3">
+                <Textarea
+                  value={priorityInput}
+                  onChange={(e) => setPriorityInput(e.target.value)}
+                  placeholder="Ex: Les diagnostics techniques sont incompréhensibles..."
+                  className="resize-none"
+                  rows={3}
+                  maxLength={500}
+                />
+                <Button type="submit" disabled={submitting || !priorityInput.trim()} className="w-full sm:w-auto">
+                  <Send className="mr-2 h-4 w-4" />
+                  {submitting ? "Envoi..." : "Envoyer ma réponse"}
+                </Button>
+              </form>
+            )}
           </div>
         </motion.div>
-
-        {/* Position Actuelle */}
-        
 
         {/* Avantages du Vault */}
         <motion.div initial={{
