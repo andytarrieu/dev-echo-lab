@@ -251,8 +251,7 @@ const Dashboard = () => {
       }} transition={{
         delay: 0.1
       }} className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-8 text-center">
-          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-            Bienvenue dans le coffre-fort, <span className="text-primary">{userData.name}</span> ! 🚀
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Bienvenue dans le coffre-fort, gnfg ! <span className="text-primary">{userData.name}</span> ! 🚀
           </h1>
           <p className="text-muted-foreground mb-4">
             Votre demande pour accéder à la Bêta d'Aurea Vault a bien été enregistrée.
@@ -267,56 +266,46 @@ const Dashboard = () => {
               Dites-nous : <span className="font-medium text-foreground">Quel est le document qui vous fait le plus peur ou vous fait perdre le plus de temps ?</span> (ex: PV d'AG, diagnostics, servitudes...).
             </p>
             
-            {userData.priorityDocument ? (
-              <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
+            {userData.priorityDocument ? <div className="bg-primary/10 border border-primary/30 rounded-lg p-4">
                 <p className="text-sm text-muted-foreground mb-1">Votre réponse :</p>
                 <p className="text-foreground font-medium">{userData.priorityDocument}</p>
                 <p className="text-xs text-primary mt-2">✓ Merci ! Votre réponse a été enregistrée.</p>
-              </div>
-            ) : (
-              <form onSubmit={async (e) => {
-                e.preventDefault();
-                if (!priorityInput.trim()) return;
-                
-                setSubmitting(true);
-                try {
-                  const { error } = await supabase
-                    .from("waitlist")
-                    .update({ priority_document: priorityInput.trim() })
-                    .eq("email", userData.email);
-                  
-                  if (error) throw error;
-                  
-                  setUserData({ ...userData, priorityDocument: priorityInput.trim() });
-                  toast({
-                    title: "Merci pour votre réponse !",
-                    description: "Cela nous aide à vous prioriser dans la liste d'attente."
-                  });
-                } catch (error) {
-                  console.error("Error saving priority document:", error);
-                  toast({
-                    title: "Erreur",
-                    description: "Impossible d'enregistrer votre réponse",
-                    variant: "destructive"
-                  });
-                } finally {
-                  setSubmitting(false);
-                }
-              }} className="space-y-3">
-                <Textarea
-                  value={priorityInput}
-                  onChange={(e) => setPriorityInput(e.target.value)}
-                  placeholder="Ex: Les diagnostics techniques sont incompréhensibles..."
-                  className="resize-none"
-                  rows={3}
-                  maxLength={500}
-                />
+              </div> : <form onSubmit={async e => {
+            e.preventDefault();
+            if (!priorityInput.trim()) return;
+            setSubmitting(true);
+            try {
+              const {
+                error
+              } = await supabase.from("waitlist").update({
+                priority_document: priorityInput.trim()
+              }).eq("email", userData.email);
+              if (error) throw error;
+              setUserData({
+                ...userData,
+                priorityDocument: priorityInput.trim()
+              });
+              toast({
+                title: "Merci pour votre réponse !",
+                description: "Cela nous aide à vous prioriser dans la liste d'attente."
+              });
+            } catch (error) {
+              console.error("Error saving priority document:", error);
+              toast({
+                title: "Erreur",
+                description: "Impossible d'enregistrer votre réponse",
+                variant: "destructive"
+              });
+            } finally {
+              setSubmitting(false);
+            }
+          }} className="space-y-3">
+                <Textarea value={priorityInput} onChange={e => setPriorityInput(e.target.value)} placeholder="Ex: Les diagnostics techniques sont incompréhensibles..." className="resize-none" rows={3} maxLength={500} />
                 <Button type="submit" disabled={submitting || !priorityInput.trim()} className="w-full sm:w-auto">
                   <Send className="mr-2 h-4 w-4" />
                   {submitting ? "Envoi..." : "Envoyer ma réponse"}
                 </Button>
-              </form>
-            )}
+              </form>}
           </div>
         </motion.div>
 
