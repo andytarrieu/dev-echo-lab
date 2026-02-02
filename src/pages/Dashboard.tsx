@@ -342,7 +342,7 @@ const Dashboard = () => {
         {/* Progression */}
         
 
-        {/* CTA Final */}
+        {/* Remerciement */}
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -351,13 +351,9 @@ const Dashboard = () => {
         y: 0
       }} transition={{
         delay: 0.6
-      }} className="text-center">
-          <Button onClick={copyReferralLink} size="lg" className="px-8">
-            <Zap className="mr-2 h-5 w-5" />
-            Partager et grimper dans la liste
-          </Button>
-          <p className="text-xs text-muted-foreground mt-3">
-            Plus vous parrainez, plus vite vous accéderez à AURÉA Vault
+      }} className="text-center bg-card border border-border rounded-2xl p-6">
+          <p className="text-muted-foreground">
+            Merci de faire partie des premiers à tester <span className="text-primary font-semibold">AURÉA Vault</span>. Nous vous contacterons très bientôt !
           </p>
         </motion.div>
       </div>
