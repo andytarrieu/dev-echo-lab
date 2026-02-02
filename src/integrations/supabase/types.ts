@@ -72,6 +72,7 @@ export type Database = {
           name: string
           phone: string | null
           position: number
+          priority_document: string | null
           referral_code: string
           user_id: string | null
           user_type: Database["public"]["Enums"]["user_type"]
@@ -83,6 +84,7 @@ export type Database = {
           name: string
           phone?: string | null
           position: number
+          priority_document?: string | null
           referral_code?: string
           user_id?: string | null
           user_type?: Database["public"]["Enums"]["user_type"]
@@ -94,6 +96,7 @@ export type Database = {
           name?: string
           phone?: string | null
           position?: number
+          priority_document?: string | null
           referral_code?: string
           user_id?: string | null
           user_type?: Database["public"]["Enums"]["user_type"]
