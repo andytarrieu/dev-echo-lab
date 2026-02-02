@@ -236,7 +236,7 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        {/* Titre de bienvenue */}
+        {/* Message de bienvenue */}
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -245,13 +245,23 @@ const Dashboard = () => {
         y: 0
       }} transition={{
         delay: 0.1
-      }} className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
-            Bienvenue, <span className="text-primary">{userData.name}</span>
+      }} className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-8 text-center">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+            Bienvenue dans le coffre-fort, <span className="text-primary">{userData.name}</span> ! 🚀
           </h1>
-          <p className="text-muted-foreground">
-            Votre accès prioritaire à l'intelligence immobilière augmentée
+          <p className="text-muted-foreground mb-4">
+            Votre demande pour accéder à la Bêta d'Aurea Vault a bien été enregistrée.
           </p>
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 md:p-6 text-left max-w-2xl mx-auto">
+            <h3 className="font-semibold text-foreground mb-2">Quelle est la suite ?</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Nous ouvrons les accès par petits groupes pour garantir une analyse chirurgicale de chaque dossier.
+            </p>
+            <h3 className="font-semibold text-foreground mb-2">Vous voulez passer en priorité ?</h3>
+            <p className="text-sm text-muted-foreground">
+              Répondez simplement à cet email en nous disant : <span className="font-medium text-foreground">Quel est le document qui vous fait le plus peur ou vous fait perdre le plus de temps ?</span> (ex: PV d'AG, diagnostics, servitudes...).
+            </p>
+          </div>
         </motion.div>
 
         {/* Position Actuelle */}
