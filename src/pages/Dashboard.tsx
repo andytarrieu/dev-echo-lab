@@ -251,7 +251,8 @@ const Dashboard = () => {
       }} transition={{
         delay: 0.1
       }} className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-8 text-center">
-          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Bienvenue dans le coffre-fort, gnfg ! <span className="text-primary">{userData.name}</span> ! 🚀
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+            Bienvenue dans le coffre-fort, <span className="text-primary">{userData.name}</span> ! 🚀
           </h1>
           <p className="text-muted-foreground mb-4">
             Votre demande pour accéder à la Bêta d'Aurea Vault a bien été enregistrée.
@@ -352,8 +353,7 @@ const Dashboard = () => {
       }} transition={{
         delay: 0.6
       }} className="text-center bg-card border border-border rounded-2xl p-6">
-          <p className="text-muted-foreground">Merci de faire partie des premiers à tester AURÉA Vault. <span className="text-primary font-semibold">AURÉA Vault</span>. Nous vous contacterons très bientôt !
-          </p>
+          <p className="text-muted-foreground">Merci de faire partie des premiers à tester <span className="text-primary font-semibold">AURÉA Vault</span>. Nous vous contacterons très bientôt !</p>
         </motion.div>
       </div>
     </div>;
