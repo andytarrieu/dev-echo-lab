@@ -16,7 +16,7 @@ const ClosingSection = () => {
     amount: "30%",
     detail: "de perte de valeur"
   }];
-  return <section className="py-12 sm:py-16 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
+  return <section className="py-10 sm:py-12 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
