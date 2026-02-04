@@ -78,7 +78,7 @@ const VaultHeroNew = () => {
               asChild
             >
               <Link to="/waitlist">
-                Rejoindre le programme Bêta-Fondateur
+                Rejoindre le programme Bêta
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
