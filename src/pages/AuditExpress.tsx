@@ -9,6 +9,7 @@ import ProofSourceSection from "@/components/ProofSourceSection";
 import ClosingSection from "@/components/ClosingSection";
 import VaultFAQ from "@/components/VaultFAQ";
 import VaultPowerFeaturesSection from "@/components/VaultPowerFeaturesSection";
+import VaultAdvancedFeaturesSection from "@/components/VaultAdvancedFeaturesSection";
 import Footer from "@/components/Footer";
 
 const AuditExpress = () => {
@@ -30,6 +31,9 @@ const AuditExpress = () => {
         
         {/* 4. Les 5 Super-Pouvoirs */}
         <VaultPowerFeaturesSection />
+        
+        {/* 5. Fonctionnalités Avancées (Podcast, Mind Map, Rapports, Tableaux) */}
+        <VaultAdvancedFeaturesSection />
         
         {/* 4. Indispensable pour qui - La Chaîne de Confiance */}
         <AudienceSection />
