@@ -36,7 +36,7 @@ const WeaponSection = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-muted/30">
+    <section className="py-10 sm:py-12 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
@@ -45,7 +45,7 @@ const WeaponSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Zap className="h-4 w-4 text-primary" />

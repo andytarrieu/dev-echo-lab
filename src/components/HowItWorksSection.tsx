@@ -48,7 +48,7 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="py-10 sm:py-12 md:py-16">
+    <section className="py-8 sm:py-10 md:py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl sm:rounded-3xl bg-primary p-5 sm:p-8 md:p-10 lg:p-12">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">

@@ -23,7 +23,7 @@ const AudienceSection = () => {
     benefit: "0 zone d'ombre",
     color: "primary"
   }];
-  return <section className="py-12 sm:py-16 bg-muted/30">
+  return <section className="py-10 sm:py-12 bg-muted/30">
       
     </section>;
 };

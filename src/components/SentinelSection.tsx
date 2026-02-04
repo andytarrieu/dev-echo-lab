@@ -24,7 +24,7 @@ const alerts = [
 
 const SentinelSection = () => {
   return (
-    <section className="py-12 sm:py-16 bg-background relative overflow-hidden">
+    <section className="py-10 sm:py-12 bg-background relative overflow-hidden">
       {/* Background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
 
@@ -60,7 +60,7 @@ const SentinelSection = () => {
           </motion.div>
 
           {/* Alert Cards */}
-          <div className="grid gap-6">
+          <div className="grid gap-4">
             {alerts.map((alert, index) => (
               <motion.div
                 key={index}

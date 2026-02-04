@@ -6,7 +6,7 @@ import WaitlistBadge from "./WaitlistBadge";
 
 const VaultHeroNew = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-background pt-16 pb-16">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-background pt-12 pb-12">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-destructive/5 via-background to-primary/5" />
       
