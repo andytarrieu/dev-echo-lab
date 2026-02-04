@@ -8,6 +8,7 @@ import AudienceSection from "@/components/AudienceSection";
 import ProofSourceSection from "@/components/ProofSourceSection";
 import ClosingSection from "@/components/ClosingSection";
 import VaultFAQ from "@/components/VaultFAQ";
+import VaultPowerFeaturesSection from "@/components/VaultPowerFeaturesSection";
 import Footer from "@/components/Footer";
 
 const AuditExpress = () => {
@@ -26,6 +27,9 @@ const AuditExpress = () => {
         
         {/* 3. Sentinelle - L'Alerte qui sauve */}
         <SentinelSection />
+        
+        {/* 4. Les 5 Super-Pouvoirs */}
+        <VaultPowerFeaturesSection />
         
         {/* 4. Indispensable pour qui - La Chaîne de Confiance */}
         <AudienceSection />
