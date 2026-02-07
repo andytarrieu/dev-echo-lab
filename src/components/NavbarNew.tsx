@@ -36,7 +36,7 @@ const NavbarNew = () => {
               
             </Button>
             <Button size="sm" asChild>
-              <Link to="/waitlist">Commencer</Link>
+              
             </Button>
           </div>
 
