@@ -572,15 +572,7 @@ const Waitlist = () => {
                   </div>
                 </div>
                 
-                <div>
-                  <label htmlFor="referralCode" className="block text-sm font-medium text-foreground mb-2">
-                    Code Parrainage <span className="text-muted-foreground text-xs">(optionnel)</span>
-                  </label>
-                  <div className="relative">
-                    <PartyPopper className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="referralCode" type="text" value={referralCode} onChange={e => setReferralCode(e.target.value)} placeholder="Code de parrainage" className="pl-10" />
-                  </div>
-                </div>
+                
                 
                 <motion.div whileHover={{
                   scale: 1.01
