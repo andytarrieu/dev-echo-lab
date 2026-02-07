@@ -76,23 +76,7 @@ const VaultHeroNew = () => {
           </motion.div>
 
         {/* CTA Button */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.5,
-          delay: 0.4
-        }} className="flex flex-col items-center">
-            <Button size="lg" className="text-lg px-8 py-6 group" asChild>
-              
-            </Button>
-            <p className="text-sm text-muted-foreground mt-3">
-              Offre limitée aux 50 premiers inscrits
-            </p>
-          </motion.div>
+          
         </div>
       </div>
     </section>;
