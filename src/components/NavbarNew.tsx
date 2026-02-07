@@ -52,10 +52,7 @@ const NavbarNew = () => {
               {navLinks.map(link => <Link key={link.path} to={link.path} onClick={() => setMobileMenuOpen(false)} className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive(link.path) ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}>
                   {link.label}
                 </Link>)}
-              <div className="pt-4 space-y-2 border-t border-border mt-2">
-                <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link to="/login">Connexion</Link>
-                </Button>
+              <div className="pt-4 border-t border-border mt-2">
                 <Button size="sm" className="w-full" asChild>
                   <Link to="/waitlist">Commencer</Link>
                 </Button>
