@@ -410,13 +410,13 @@ const Waitlist = () => {
                   delay: 1,
                   duration: 0.5
                 }} className="mt-8 grid grid-cols-2 gap-4 w-full max-w-sm">
-                <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                  <p className="text-2xl font-bold text-primary">1500+</p>
-                  <p className="text-xs text-muted-foreground">Sources analysées</p>
+              <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
+                  <p className="text-lg font-bold text-primary">Zéro Hallucination</p>
+                  <p className="text-xs text-muted-foreground">Chaque réponse est sourcée et vérifiable dans vos PDF</p>
                 </div>
                 <div className="bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border">
-                  <p className="text-2xl font-bold text-primary">100%</p>
-                  <p className="text-xs text-muted-foreground">Données sécurisées</p>
+                  <p className="text-lg font-bold text-primary">Souveraineté Totale</p>
+                  <p className="text-xs text-muted-foreground">Hébergement HDS/RGPD en France</p>
                 </div>
               </motion.div>
               <motion.p initial={{
@@ -429,7 +429,7 @@ const Waitlist = () => {
                   delay: 1.2,
                   duration: 0.5
                 }} className="mt-6 text-base text-center text-muted-foreground max-w-sm leading-relaxed">
-                Rejoignez les investisseurs qui investissent intelligemment grâce à l'IA
+                Rejoignez les experts qui ne craignent plus les dossiers de 500 pages.
               </motion.p>
               </div>
             </div>
@@ -447,10 +447,10 @@ const Waitlist = () => {
               duration: 0.5
             }}>
               <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground leading-tight">
-                Ne lisez plus vos dossiers immobiliers. <span className="text-primary">Maîtrisez-les en 5 minutes</span>
+                Divisez votre temps d'audit par 10. <span className="text-primary">Maîtrisez n'importe quel dossier en 5 minutes.</span>
               </h1>
               <p className="text-muted-foreground mb-8">
-                Soyez parmi les premiers à accéder à AURÉA Vault, la plateforme d'intelligence immobilière
+                L'IA qui audite vos PDF, détecte les risques juridiques et synthétise vos PV d'AG. Sécurisez votre devoir de conseil sans l'effort de lecture.
               </p>
 
               {/* Google Sign In Button */}
