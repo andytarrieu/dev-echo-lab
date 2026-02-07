@@ -573,7 +573,7 @@ const Waitlist = () => {
                 }} onHoverStart={() => setIsHovered(true)} onHoverEnd={() => setIsHovered(false)} className="pt-2">
                   <Button type="submit" size="lg" className="w-full relative overflow-hidden group" disabled={isLoading}>
                     <span className="flex items-center justify-center">
-                      {isLoading ? "Création du compte..." : "Créer mon compte"}
+                      {isLoading ? "Accès en cours..." : "Accédez à la bêta"}
                       {!isLoading && <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
                     </span>
                   </Button>
