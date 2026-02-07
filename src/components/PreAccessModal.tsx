@@ -5,6 +5,23 @@ import { Mail, Sparkles, Shield, FileCheck, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import logoImage from "@/assets/aurea-logo-new.png";
 
+// Import logos
+import seloger from "@/assets/logos/seloger.png";
+import leboncoin from "@/assets/logos/leboncoin.png";
+import orpi from "@/assets/logos/orpi-new.png";
+import century21 from "@/assets/logos/century21.png";
+import laforet from "@/assets/logos/laforet.png";
+import iad from "@/assets/logos/iad.png";
+
+const logos = [
+  { src: seloger, alt: "SeLoger" },
+  { src: leboncoin, alt: "Leboncoin" },
+  { src: orpi, alt: "Orpi" },
+  { src: century21, alt: "Century 21" },
+  { src: laforet, alt: "Laforêt" },
+  { src: iad, alt: "IAD" },
+];
+
 // ==================== Animated Input Component ====================
 const AnimatedInput = memo(
   forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
@@ -314,8 +331,8 @@ const PreAccessModal = ({ onAccessGranted }: PreAccessModalProps) => {
             </div>
 
             <BoxReveal width="100%" duration={0.5}>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Accès Anticipé
+              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl leading-tight">
+                Ne lisez plus vos dossiers immobiliers. Maîtrisez-les en 5 minutes.
               </h1>
             </BoxReveal>
 
@@ -377,7 +394,7 @@ const PreAccessModal = ({ onAccessGranted }: PreAccessModalProps) => {
                   />
                 ) : (
                   <>
-                    Accéder au site
+                    S'inscrire à la waitlist
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </>
                 )}
@@ -407,12 +424,42 @@ const PreAccessModal = ({ onAccessGranted }: PreAccessModalProps) => {
               ))}
             </motion.div>
 
-            {/* Footer text */}
-            <motion.p
-              className="mt-8 text-center text-xs text-muted-foreground"
+            {/* Logo slider */}
+            <motion.div
+              className="mt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
+            >
+              <p className="text-center text-xs text-muted-foreground mb-4">
+                Données analysées depuis les principales sources immobilières
+              </p>
+              <div className="relative overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10" />
+                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10" />
+                <div className="flex animate-slide-logos">
+                  {[...logos, ...logos].map((logo, index) => (
+                    <div
+                      key={index}
+                      className="flex-shrink-0 mx-4 flex items-center justify-center"
+                    >
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="h-6 w-auto object-contain grayscale opacity-50"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Footer text */}
+            <motion.p
+              className="mt-6 text-center text-xs text-muted-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
             >
               En vous inscrivant, vous acceptez nos{" "}
               <span className="text-primary underline-offset-2 hover:underline cursor-pointer">
