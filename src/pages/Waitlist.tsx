@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { ArrowRight, Mail, User, Phone, CheckCircle2, PartyPopper, Lock, Eye, EyeOff } from "lucide-react";
+import { ArrowRight, Mail, User, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,8 +15,6 @@ type UserType = 'particulier' | 'professionnel';
 const waitlistSchema = z.object({
   name: z.string().trim().min(2, 'Le nom doit contenir au moins 2 caractères').max(100, 'Le nom doit contenir moins de 100 caractères').regex(/^[a-zA-ZÀ-ÿ\s'-]+$/, 'Le nom contient des caractères invalides'),
   email: z.string().trim().email('Adresse email invalide').max(255, 'L\'email doit contenir moins de 255 caractères'),
-  password: z.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères').max(72, 'Le mot de passe doit contenir moins de 72 caractères'),
-  phone: z.string().trim().min(1, 'Le numéro de téléphone est requis').regex(/^(\+33|0)[0-9\s.-]{9,}$/, 'Numéro de téléphone invalide (format français attendu)').max(20, 'Numéro de téléphone trop long'),
   referralCode: z.string().trim().max(50, 'Code de parrainage trop long').optional().or(z.literal('')),
   userType: z.enum(['particulier', 'professionnel'])
 });
@@ -199,9 +197,6 @@ const Waitlist = () => {
   const [userType, setUserType] = useState<UserType | null>(initialUserType === 'particulier' || initialUserType === 'professionnel' ? initialUserType : null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [phone, setPhone] = useState("");
   const [referralCode, setReferralCode] = useState(searchParams.get('ref') || "");
   const [isHovered, setIsHovered] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
@@ -247,7 +242,6 @@ const Waitlist = () => {
     console.log('🔥 Form submitted', {
       name,
       email,
-      phone,
       referralCode,
       userType
     });
@@ -267,8 +261,6 @@ const Waitlist = () => {
       const result = waitlistSchema.safeParse({
         name,
         email,
-        password,
-        phone,
         referralCode,
         userType
       });
@@ -287,40 +279,6 @@ const Waitlist = () => {
 
       // Use validated data
       const validatedData = result.data;
-
-      // Create Supabase Auth account
-      const {
-        data: authData,
-        error: authError
-      } = await supabase.auth.signUp({
-        email: validatedData.email,
-        password: validatedData.password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`,
-          data: {
-            name: validatedData.name
-          }
-        }
-      });
-      if (authError) {
-        console.error('❌ Auth error:', authError);
-        if (authError.message.includes('already registered')) {
-          toast({
-            title: "Erreur",
-            description: "Cet email est déjà inscrit. Connectez-vous à la place.",
-            variant: "destructive"
-          });
-        } else {
-          toast({
-            title: "Erreur",
-            description: authError.message,
-            variant: "destructive"
-          });
-        }
-        setIsLoading(false);
-        return;
-      }
-      console.log('✅ Auth account created');
 
       // Vérifier si le code de parrainage existe via la fonction sécurisée
       let referrerId: string | null = null;
@@ -352,8 +310,6 @@ const Waitlist = () => {
       } = await supabase.from('waitlist').insert({
         name: validatedData.name,
         email: validatedData.email,
-        phone: validatedData.phone,
-        user_id: authData.user?.id || null,
         user_type: validatedData.userType,
         position: 0 // Placeholder - sera remplacé par le trigger DB
       } as any).select('position, referral_code').single();
@@ -381,20 +337,18 @@ const Waitlist = () => {
       }
       console.log('🎉 Showing success toast');
       toast({
-        title: "🎉 Compte créé avec succès !",
+        title: "🎉 Inscription réussie !",
         description: `Bienvenue ! Tu es #${assignedPosition.toLocaleString('fr-FR')} dans la liste.`,
         duration: 5000
       });
 
-      // Redirection immédiate vers le dashboard
-      console.log('🔄 Redirecting to dashboard...');
-      navigate(`/dashboard`);
+      // Redirection vers la page Success
+      console.log('🔄 Redirecting to success page...');
+      navigate(`/success`);
       // Réinitialiser le formulaire
       setUserType(null);
       setName("");
       setEmail("");
-      setPassword("");
-      setPhone("");
       setReferralCode("");
     } catch (error) {
       console.error('💥 Unexpected error:', error);
