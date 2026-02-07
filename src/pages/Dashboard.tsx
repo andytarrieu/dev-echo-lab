@@ -288,12 +288,8 @@ const Dashboard = () => {
               });
               toast({
                 title: "Merci pour votre réponse !",
-                description: "Vous allez être redirigé vers le site."
+                description: "Cela nous aide à vous prioriser dans la liste d'attente."
               });
-              // Redirect to landing page after feedback
-              setTimeout(() => {
-                navigate("/");
-              }, 1500);
             } catch (error) {
               console.error("Error saving priority document:", error);
               toast({
