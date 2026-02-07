@@ -562,15 +562,7 @@ const Waitlist = () => {
 
                 
                 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Téléphone <span className="text-destructive">*</span>
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input id="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+33 6 12 34 56 78" className="pl-10" />
-                  </div>
-                </div>
+                
                 
                 
                 
