@@ -7,12 +7,12 @@ import ScrollToTop from "./components/ScrollToTop";
 
 // Pages principales (nouvelle architecture)
 import AuditExpress from "./pages/AuditExpress";
+import Waitlist from "./pages/Waitlist";
 
 // Pages secondaires
 import Team from "./pages/Team";
 import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
-import Waitlist from "./pages/Waitlist";
 import Success from "./pages/Success";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -31,8 +31,9 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          {/* Page principale */}
-          <Route path="/" element={<AuditExpress />} />
+          {/* Page principale - Waitlist en premier */}
+          <Route path="/" element={<Waitlist />} />
+          <Route path="/vault" element={<AuditExpress />} />
           
           {/* Pages existantes */}
           <Route path="/team" element={<Team />} />

@@ -341,9 +341,9 @@ const Waitlist = () => {
         duration: 5000
       });
 
-      // Redirection vers la page Success
-      console.log('🔄 Redirecting to success page...');
-      navigate(`/success`);
+      // Redirection vers la landing page Vault
+      console.log('🔄 Redirecting to vault page...');
+      navigate(`/vault`);
       // Réinitialiser le formulaire
       setUserType(null);
       setName("");
@@ -447,12 +447,8 @@ const Waitlist = () => {
             }} transition={{
               duration: 0.5
             }}>
-              <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
-                ← Retour à l'accueil
-              </Link>
-              
-              <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
-                Participer à la Bêta
+              <h1 className="text-3xl md:text-4xl font-bold mb-2 text-foreground leading-tight">
+                Ne lisez plus vos dossiers immobiliers. <span className="text-primary">Maîtrisez-les en 5 minutes</span>
               </h1>
               <p className="text-muted-foreground mb-8">
                 Soyez parmi les premiers à accéder à AURÉA Vault, la plateforme d'intelligence immobilière
