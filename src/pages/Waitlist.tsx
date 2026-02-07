@@ -302,17 +302,16 @@ const Waitlist = () => {
       }
 
       // Enregistrer dans Supabase avec les données validées
-      // La position est gérée automatiquement par le trigger assign_waitlist_position en DB
+      // NOTE: on n'utilise pas .select() ici, sinon PostgREST tente de relire la ligne insérée
+      // et échoue pour les utilisateurs anonymes (RLS interdit le SELECT sur waitlist).
       console.log('💾 Inserting into database...');
-      const {
-        data: insertedData,
-        error
-      } = await supabase.from('waitlist').insert({
+      const { error } = await supabase.from('waitlist').insert({
         name: validatedData.name,
         email: validatedData.email,
         user_type: validatedData.userType,
-        position: 0 // Placeholder - sera remplacé par le trigger DB
-      } as any).select('position, referral_code').single();
+        position: 0 // Placeholder - colonne NOT NULL
+      } as any);
+
       if (error) {
         console.error('❌ Database error:', error);
         toast({
@@ -324,7 +323,6 @@ const Waitlist = () => {
         return;
       }
       console.log('✅ Successfully inserted into database');
-      const assignedPosition = insertedData?.position || 15000;
 
       // Si un code de parrainage a été utilisé, l'enregistrer
       // La validation est faite côté serveur via la policy can_create_referral
@@ -335,10 +333,11 @@ const Waitlist = () => {
           referred_email: validatedData.email
         });
       }
+
       console.log('🎉 Showing success toast');
       toast({
         title: "🎉 Inscription réussie !",
-        description: `Bienvenue ! Tu es #${assignedPosition.toLocaleString('fr-FR')} dans la liste.`,
+        description: "Bienvenue ! Votre demande a bien été enregistrée.",
         duration: 5000
       });
 
