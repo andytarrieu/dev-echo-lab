@@ -1,4 +1,5 @@
 import { useState, useEffect, memo, forwardRef, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, useAnimation, useInView, useMotionValue, useMotionTemplate } from "framer-motion";
 import { Mail, Sparkles, Shield, FileCheck, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -209,6 +210,7 @@ interface PreAccessModalProps {
 }
 
 const PreAccessModal = ({ onAccessGranted }: PreAccessModalProps) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -238,6 +240,9 @@ const PreAccessModal = ({ onAccessGranted }: PreAccessModalProps) => {
 
     setIsLoading(false);
     onAccessGranted();
+    
+    // Navigate to dashboard
+    navigate("/dashboard");
   };
 
   const features = [
