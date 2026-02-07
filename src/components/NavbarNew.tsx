@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logoImage from "@/assets/aurea-logo-new.png";
 
@@ -42,14 +42,8 @@ const NavbarNew = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/login" className="gap-2">
-                <User className="h-4 w-4" />
-                Connexion
-              </Link>
-            </Button>
             <Button size="sm" asChild>
-              <Link to="/waitlist">Commencer</Link>
+              <Link to="/">Commencer</Link>
             </Button>
           </div>
 
@@ -82,11 +76,8 @@ const NavbarNew = () => {
                 </Link>
               ))}
               <div className="pt-4 space-y-2 border-t border-border mt-2">
-                <Button variant="outline" size="sm" className="w-full" asChild>
-                  <Link to="/login">Connexion</Link>
-                </Button>
                 <Button size="sm" className="w-full" asChild>
-                  <Link to="/waitlist">Commencer</Link>
+                  <Link to="/">Commencer</Link>
                 </Button>
               </div>
             </div>

@@ -14,7 +14,6 @@ import Team from "./pages/Team";
 import Insights from "./pages/Insights";
 import Contact from "./pages/Contact";
 import Success from "./pages/Success";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Security from "./pages/Security";
 import Privacy from "./pages/Privacy";
@@ -41,7 +40,6 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/success" element={<Success />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/security" element={<Security />} />
           <Route path="/privacy" element={<Privacy />} />
