@@ -361,8 +361,7 @@ const Waitlist = () => {
     }
   };
   return <div className="min-h-screen w-full bg-gradient-to-br from-background to-accent/20">
-      <NavbarNew />
-      <div className="flex items-center justify-center p-4 pt-24">
+      <div className="flex items-center justify-center p-4 min-h-screen">
         <div className="w-full max-w-6xl">
         <motion.div initial={{
           opacity: 0,
