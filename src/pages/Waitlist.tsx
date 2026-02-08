@@ -305,13 +305,14 @@ const Waitlist = () => {
       // NOTE: on n'utilise pas .select() ici, sinon PostgREST tente de relire la ligne insérée
       // et échoue pour les utilisateurs anonymes (RLS interdit le SELECT sur waitlist).
       console.log('💾 Inserting into database...');
-      const { error } = await supabase.from('waitlist').insert({
+      const {
+        error
+      } = await supabase.from('waitlist').insert({
         name: validatedData.name,
         email: validatedData.email,
         user_type: validatedData.userType,
         position: 0 // Placeholder - colonne NOT NULL
       } as any);
-
       if (error) {
         console.error('❌ Database error:', error);
         toast({
@@ -333,7 +334,6 @@ const Waitlist = () => {
           referred_email: validatedData.email
         });
       }
-
       console.log('🎉 Showing success toast');
       toast({
         title: "🎉 Inscription réussie !",
@@ -532,7 +532,7 @@ const Waitlist = () => {
                     <div className="space-y-2 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>Accès anticipé aux agents IA</span>
+                        <span>Accès anticipé </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
