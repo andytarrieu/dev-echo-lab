@@ -536,7 +536,7 @@ const Waitlist = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>Tarif préférentiel early-adopter</span>
+                        <span>Tarif préférentiel aux premiers inscrits</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
