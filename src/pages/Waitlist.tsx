@@ -525,6 +525,11 @@ const Waitlist = () => {
                       {!isLoading && <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
                     </span>
                   </Button>
+                  <p className="text-center text-sm text-muted-foreground mt-3">
+                    <span className="font-medium text-primary">Lancement en avant-première</span>
+                    <br />
+                    Accès réservé aux 150 premiers professionnels.
+                  </p>
                 </motion.div>
 
                 <div className="pt-4">
